@@ -18,14 +18,13 @@
       @include directionX;
       cursor: pointer;
       align-items: center;
-
+      gap: 0.5rem;
       .logo {
-        width: 1.5rem;
+        width: auto;
         height: 1.5rem;
-        margin-right: 0.5rem;
       }
-      .title {
-        font-weight: 700;
+      .dark {
+        filter: brightness(0) invert(1);
       }
     }
 

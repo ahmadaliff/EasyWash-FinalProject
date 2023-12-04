@@ -8,6 +8,7 @@ const env = { production, development }[nodeENV];
 const config = {
   api: {
     host: env.API_HOST,
+    secretKeyCrypto: env.CRYPTOJS_SECRET,
   },
 };
 

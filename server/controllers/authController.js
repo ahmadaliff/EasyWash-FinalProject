@@ -70,12 +70,11 @@ exports.login = async (req, res) => {
     }
     redisClient.setex(dataUser.id.toString(), 24 * 60 * 60, token);
     return handleSuccess(res, {
+      imagePath: dataUser.imagePath,
       token: token,
       message: "Login success",
     });
   } catch (error) {
-    console.log(process.env.CRYPTOJS_SECRET, "<<<<<<<<<<<<<<<<<<");
-    console.log(error, "<<<<<<<<<<<<<<<<<<");
     return handleServerError(res);
   }
 };
