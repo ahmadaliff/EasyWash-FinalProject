@@ -14,7 +14,7 @@ import { setLocale, setTheme } from '@containers/App/actions';
 
 import classes from './style.module.scss';
 
-const Navbar = ({ title, locale, theme }) => {
+const Navbar = ({ locale, theme }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [menuPosition, setMenuPosition] = useState(null);
@@ -40,15 +40,14 @@ const Navbar = ({ title, locale, theme }) => {
   };
 
   const goHome = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   return (
     <div className={classes.headerWrapper} data-testid="navbar">
       <div className={classes.contentWrapper}>
         <div className={classes.logoImage} onClick={goHome}>
-          <img src="/vite.svg" alt="logo" className={classes.logo} />
-          <div className={classes.title}>{title}</div>
+          <img src="/longLogo.svg" alt="logo" className={`${classes.logo} ${theme === 'dark' && classes.dark}`} />
         </div>
         <div className={classes.toolbar}>
           <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
@@ -84,7 +83,6 @@ const Navbar = ({ title, locale, theme }) => {
 };
 
 Navbar.propTypes = {
-  title: PropTypes.string,
   locale: PropTypes.string.isRequired,
   theme: PropTypes.string,
 };
