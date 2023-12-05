@@ -1,10 +1,12 @@
 import {
+  FORGOT_PASSWORD,
   IS_VERIFY,
   LOGIN,
   LOGOUT,
   REGISTER,
   RESET_REGISTER_VALUE,
   SEND_OTP,
+  SEND_RESET_PASSWORD,
   SEND_VERIFY_EMAIL,
   SET_LOGIN,
   SET_TOKEN,
@@ -66,4 +68,16 @@ export const actionHandleRegister = (data, callback) => ({
 
 export const actionResetRegisterValue = () => ({
   type: RESET_REGISTER_VALUE,
+});
+
+export const actionSendForgotPassword = (data, callback) => ({
+  type: FORGOT_PASSWORD,
+  data,
+  callback,
+});
+
+export const actionResetPassword = (data, callback) => ({
+  type: SEND_RESET_PASSWORD,
+  data,
+  callback,
 });

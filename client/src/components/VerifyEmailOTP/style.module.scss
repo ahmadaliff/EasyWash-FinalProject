@@ -19,8 +19,8 @@
         transform: scale(1.0125, 1.0125);
       }
       &:disabled {
-        background-color: rgba(black, 0.2);
-        color: rgba($color: black, $alpha: 0.5);
+        background-color: rgba(gray, 0.2);
+        color: rgba($color: gray, $alpha: 0.5);
       }
       &:disabled:hover {
         transform: none;

@@ -22,6 +22,10 @@ export default {
   app_verify_email_otp_invalid: 'OTP tidak sesuai',
   app_verify_email_otp_failed: 'OTP gagal terkirim ke email',
   app_verify: 'Terverivikasi',
+  app_forgot_password_email_sent: 'Silahkan cek email kamu untuk lupa password',
+  app_forgot_password_email_failed: 'Lupa password gagal terkirim ke email',
+  app_reset_password_success: 'Berhasil reset password',
+  app_token_expired: 'token telah kadaluarsa',
 
   // login and register
   app_profile: 'Profil',

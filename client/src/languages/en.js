@@ -22,6 +22,10 @@ export default {
   app_verify_email_otp_invalid: 'OTP Invalid',
   app_verify_email_otp_failed: 'Email for OTP verify failed to sent',
   app_verify: 'verify',
+  app_forgot_password_email_sent: 'Check your email for forgot password',
+  app_forgot_password_email_failed: 'Email for forgot password failed to sent',
+  app_reset_password_success: 'Success reset password',
+  app_token_expired: 'token expired',
 
   // login and register
   app_profile: 'Profile',

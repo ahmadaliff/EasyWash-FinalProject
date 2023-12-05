@@ -7,7 +7,7 @@ exports.authenticationMiddleware = async (req, res, next) => {
   if (!authHeader) return res.sendStatus(403);
   const token = authHeader.replace("Bearer ", "");
   const { id, role, fullName, error } = verifyToken(token);
-  // console.log(id)
+
   if (error) {
     return res.sendStatus(401);
   }
@@ -17,7 +17,7 @@ exports.authenticationMiddleware = async (req, res, next) => {
   }
   const isExist = await User.findOne({ where: { id: id } });
   if (!isExist || isExist.role != role) {
-    return res.sendStatus(401);
+    return handleClientError(res, 403, "app_token_expired");
   }
   req.id = id;
   req.fullName = fullName;
