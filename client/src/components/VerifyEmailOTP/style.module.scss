@@ -1,0 +1,55 @@
+@import '@styles/base';
+
+.form {
+  .buttonWrap {
+    @include directionX;
+    gap: 2rem;
+    .buttonSubmit {
+      width: 100%;
+      border-radius: 2.5rem;
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+      margin: auto;
+      margin-top: 0.75rem;
+      box-shadow: none;
+      border: none;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.0125, 1.0125);
+      }
+      &:disabled {
+        background-color: rgba(black, 0.2);
+        color: rgba($color: black, $alpha: 0.5);
+      }
+      &:disabled:hover {
+        transform: none;
+      }
+    }
+  }
+  .timerComp {
+    font-size: small;
+    padding: 0.5rem 0 0.5rem 0;
+    @include directionX;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .buttonResend {
+    border: none;
+    border-radius: 10rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    cursor: pointer;
+    font-size: smaller;
+    &:hover {
+      transform: scale(1.05, 1.05);
+    }
+  }
+}
+.showPassword {
+  @include directionX;
+  align-items: center;
+  padding-top: 0.25rem;
+  font-size: small;
+}

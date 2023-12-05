@@ -8,6 +8,21 @@ export default {
   app_popup_error_message: 'Sorry, an error has occurred. Please try again later',
   app_popup_close_button_label: 'Close',
 
+  // backend response
+  app_404: 'data not found',
+  app_login_max_attemps: 'hit maximum Login Attempt, try again in 120 seconds',
+  app_login_invalid: 'invalid email or password',
+  app_login_success: 'login success',
+  app_login_not_verify: 'your account need to verify by admin',
+  app_logout_success: 'logout success',
+  app_register_already_exist: 'user with that email already existed',
+  app_register_success: `register success`,
+  app_register_success_laundry: `your account created, but wait for verify by admin`,
+  app_verify_email_otp_send: 'otp sent to email',
+  app_verify_email_otp_invalid: 'OTP Invalid',
+  app_verify_email_otp_failed: 'Email for OTP verify failed to sent',
+  app_verify: 'verify',
+
   // login and register
   app_profile: 'Profile',
   app_header_login: 'Login',
@@ -16,6 +31,10 @@ export default {
   app_user_already_login: 'You already Login',
   app_user_fullName: 'Fullname',
   app_user_fullName_require_message: 'Fullname is require',
+  app_user_role: 'Sign-up as ',
+  app_user_phone: 'Phone',
+  app_user_phone_require_message: 'Phone is require',
+  app_user_phone_min_length: 'Phone minimum 8 character',
   app_user_email: 'Email',
   app_user_email_require_message: 'Email is require',
   app_user_email_pattern_message: 'invalid Format Email',

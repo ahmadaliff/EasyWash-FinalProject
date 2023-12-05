@@ -19,15 +19,16 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       password: DataTypes.STRING,
       role: DataTypes.STRING,
+      isVerify: DataTypes.BOOLEAN,
       imagePath: DataTypes.STRING,
     },
     {
       hooks: {
         beforeCreate: (user) => {
           user.password = hashPassword(user.password);
-          if (!user.role) {
-            user.role = "user";
-          }
+          user.role === "laundry"
+            ? (user.isVerify = false)
+            : (user.isVerify = true);
         },
       },
       sequelize,
