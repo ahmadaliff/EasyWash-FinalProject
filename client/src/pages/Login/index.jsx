@@ -27,7 +27,7 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
     formState: { errors },
     watch,
   } = useForm();
-  const fullName = watch('fullName');
+  const email = watch('email');
   const password = watch('password');
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
                   <FormattedMessage id="app_forgot_password" />
                 </Link>
               </p>
-              <button type="submit" className={classes.buttonSubmit} disabled={fullName === '' || password === ''}>
+              <button type="submit" className={classes.buttonSubmit} disabled={!email || !password}>
                 <FormattedMessage id="app_header_login" />
               </button>
             </form>

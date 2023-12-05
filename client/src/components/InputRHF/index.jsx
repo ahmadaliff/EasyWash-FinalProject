@@ -8,23 +8,23 @@ const InputRHF = ({ children, input, disabled = false, register, errors, accept 
   <FormControl className={classes.inputContainer}>
     <label htmlFor={input?.name} className={classes.inputLabel}>
       {input?.label}
+      <input
+        className={`${classes.input} ${errors[input?.name] && classes.inputError}`}
+        {...register(input?.name, {
+          required: input?.required,
+          pattern: { value: input?.pattern, message: input?.messagePatern },
+          minLength: {
+            value: input?.minLength,
+            message: input?.messageMin,
+          },
+        })}
+        type={input?.type}
+        id={input?.name}
+        defaultValue={input?.value}
+        accept={accept && accept}
+        disabled={disabled}
+      />
     </label>
-    <input
-      className={`${classes.input} ${errors[input?.name] && classes.inputError}`}
-      {...register(input?.name, {
-        required: input?.required,
-        pattern: { value: input?.pattern, message: input?.messagePatern },
-        minLength: {
-          value: input?.minLength,
-          message: input?.messageMin,
-        },
-      })}
-      type={input?.type}
-      id={input?.name}
-      defaultValue={input?.value}
-      accept={accept && accept}
-      disabled={disabled}
-    />
     {errors[input?.name] && <span className={classes.inputLabelError}>{errors[input?.name].message}</span>}
     {children}
   </FormControl>
