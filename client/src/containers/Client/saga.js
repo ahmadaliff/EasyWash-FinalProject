@@ -6,15 +6,27 @@ import config from '@config/index';
 
 import { takeLatest, call, put } from 'redux-saga/effects';
 
+import intlHelper from '@utils/intlHelper';
+
 import {
   apiHandleLogin,
   apiHandleLogout,
   apiHandleCheckOtpVerifyEmail,
   apiHandleSendVerifyEmail,
   apiHandleRegister,
+  apiHandleSendForgotPassword,
+  apiHandleResetForgotPassword,
 } from '@domain/api';
 
-import { LOGIN, LOGOUT, REGISTER, SEND_OTP, SEND_VERIFY_EMAIL } from '@containers/Client/constants';
+import {
+  FORGOT_PASSWORD,
+  LOGIN,
+  LOGOUT,
+  REGISTER,
+  SEND_OTP,
+  SEND_RESET_PASSWORD,
+  SEND_VERIFY_EMAIL,
+} from '@containers/Client/constants';
 import { showPopup, setLoading } from '@containers/App/actions';
 import { actionHandleResetStep, actionSetEmail, actionSetExpire, actionSetStep } from '@pages/Register/actions';
 import {
@@ -25,7 +37,6 @@ import {
   setToken,
   setUser,
 } from '@containers/Client/actions';
-import intlHelper from '@utils/intlHelper';
 
 function* sagaHandleLogin({ data, callback }) {
   yield put(setLoading(true));
@@ -123,10 +134,45 @@ function* sagaHandleRegister({ data, callback }) {
   yield put(setLoading(false));
 }
 
+function* sagaHandleSendEmailForgot({ data, callback }) {
+  yield put(setLoading(true));
+  try {
+    const response = yield call(apiHandleSendForgotPassword, data);
+    toast.success(intlHelper({ message: response?.message }));
+    yield call(callback);
+  } catch (error) {
+    if (error?.response?.status === 404) {
+      toast.error(intlHelper({ message: error.response.data.message }));
+    } else {
+      yield put(showPopup());
+    }
+  }
+  yield put(setLoading(false));
+}
+
+function* sendResetPassword({ data, callback }) {
+  yield put(setLoading(true));
+  try {
+    data.new_password = CryptoJS.AES.encrypt(data.new_password, import.meta.env.VITE_CRYPTOJS_SECRET).toString();
+    const response = yield call(apiHandleResetForgotPassword, data);
+    toast.success(intlHelper({ message: response?.message }));
+    yield call(callback);
+  } catch (error) {
+    if (error?.response?.status === 404 || error?.response?.status === 403) {
+      toast.error(intlHelper({ message: error.response.data.message }));
+    } else {
+      yield put(showPopup());
+    }
+  }
+  yield put(setLoading(false));
+}
+
 export default function* clientSaga() {
   yield takeLatest(LOGIN, sagaHandleLogin);
   yield takeLatest(LOGOUT, sagaHandleLogout);
   yield takeLatest(SEND_VERIFY_EMAIL, sagaHandleSendVerifyEmail);
   yield takeLatest(SEND_OTP, sagaHandleSendOTP);
   yield takeLatest(REGISTER, sagaHandleRegister);
+  yield takeLatest(FORGOT_PASSWORD, sagaHandleSendEmailForgot);
+  yield takeLatest(SEND_RESET_PASSWORD, sendResetPassword);
 }

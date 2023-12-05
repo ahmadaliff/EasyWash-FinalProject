@@ -35,3 +35,5 @@ export const apiHandleLogout = () => callAPI(`${urls.user}/logout`, 'get');
 export const apiHandleRegister = (data) => callAPI(`${urls.user}/register`, 'POST', {}, {}, data);
 export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.user}/verifyEmail`, 'POST', {}, {}, data);
 export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.user}/checkOtpVerifyEmail`, 'POST', {}, {}, data);
+export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.user}/forgotPassword`, 'POST', {}, {}, data);
+export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.user}/resetPassword`, 'PUT', {}, {}, data);

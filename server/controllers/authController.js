@@ -175,3 +175,54 @@ exports.checkOtpVerifyEmail = async (req, res) => {
     return handleServerError(res);
   }
 };
+
+exports.forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const isUserExist = await User.findOne({
+      where: { email: email, isVerify: true },
+    });
+    if (!isUserExist) {
+      return handleNotFound(res);
+    }
+    const token = createTokenForForgetPassword(email);
+    const resp = await handleSendMailForgotPass(token, email);
+    if (resp.accepted.length > 0) {
+      return handleSuccess(res, {
+        message: "app_forgot_password_email_sent",
+      });
+    } else {
+      return handleSuccess(res, {
+        message: "app_forgot_password_email_failed",
+      });
+    }
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.setResetPassword = async (req, res) => {
+  try {
+    const { email } = req;
+    const { new_password } = req.body;
+
+    const plainPassword = CryptoJS.AES.decrypt(
+      new_password,
+      process.env.CRYPTOJS_SECRET
+    ).toString(CryptoJS.enc.Utf8);
+
+    const isUserExist = await User.findOne({ where: { email: email } });
+    if (!isUserExist) {
+      return handleNotFound(res);
+    }
+    await User.update(
+      { password: hashPassword(plainPassword) },
+      { where: { email: email } }
+    );
+    return handleSuccess(res, {
+      message: "app_reset_password_success",
+    });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};

@@ -3,6 +3,11 @@ export const SET_USER = 'Client/SET_USER';
 export const SET_TOKEN = 'Client/SET_TOKEN';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+
+// forgot password
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const SEND_RESET_PASSWORD = 'SEND_RESET_PASSWORD';
+
 // register
 export const REGISTER = 'client/REGISTER';
 export const SEND_VERIFY_EMAIL = 'SEND_VERIFY_EMAIL';
