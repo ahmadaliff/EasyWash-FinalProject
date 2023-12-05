@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 
 import config from '@config/index';
 
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import intlHelper from '@utils/intlHelper';
 
@@ -37,6 +37,7 @@ import {
   setToken,
   setUser,
 } from '@containers/Client/actions';
+import { selectUser } from './selectors';
 
 function* sagaHandleLogin({ data, callback }) {
   yield put(setLoading(true));
@@ -50,6 +51,7 @@ function* sagaHandleLogin({ data, callback }) {
     yield put(setUser({ role, id, fullName, imagePath: response.imagePath }));
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
+    console.log(error);
     if (error?.response?.status === 400) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
@@ -62,14 +64,15 @@ function* sagaHandleLogin({ data, callback }) {
 function* sagaHandleLogout({ callback }) {
   yield put(setLoading(true));
   try {
-    const response = yield call(apiHandleLogout);
+    const { id } = yield select(selectUser);
+    const response = yield call(apiHandleLogout, id);
     toast.success(intlHelper({ message: response?.message }));
     yield call(callback);
     yield put(setLogin(false));
     yield put(setToken(null));
     yield put(setUser(null));
   } catch (error) {
-    if (error?.response?.status === 400) {
+    if (error?.response?.status === 400 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

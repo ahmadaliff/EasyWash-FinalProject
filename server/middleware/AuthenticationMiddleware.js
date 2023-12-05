@@ -9,11 +9,11 @@ exports.authenticationMiddleware = async (req, res, next) => {
   const { id, role, fullName, error } = verifyToken(token);
 
   if (error) {
-    return res.sendStatus(401);
+    return res.sendStatus(403);
   }
   const chacheToken = await redisClient.get(id.toString());
   if (token !== chacheToken) {
-    return res.sendStatus(401);
+    return res.sendStatus(403);
   }
   const isExist = await User.findOne({ where: { id: id } });
   if (!isExist || isExist.role != role) {

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 env.config();
 
 const secretKey = process.env.SECRET_KEY;
+const secretKeyRefresh = process.env.SECRET_KEY_REFRESH;
 const secretKeyVerifyEmail = process.env.SECRET_KEY_VERIFY_EMAIL;
 const secretKeyForForgetPassword = process.env.SECRET_KEY_FOR_FORGET_PASSWORD;
 
@@ -11,7 +12,7 @@ exports.createToken = (user) => {
   if (!role || !id || !fullName) {
     return false;
   }
-  return jwt.sign({ id, role, fullName }, secretKey);
+  return jwt.sign({ id, role, fullName }, secretKey, { expiresIn: "10m" });
 };
 
 exports.verifyToken = (token) => {
@@ -46,6 +47,24 @@ exports.createTokenForForgetPassword = (email) => {
 
 exports.verifyTokenForForgetPassword = (token) => {
   return jwt.verify(token, secretKeyForForgetPassword, (err, decoded) => {
+    if (decoded) return decoded;
+    if (err) return { error: true };
+  });
+};
+
+// JWT UTILS for refresh token
+exports.createRefreshToken = (user) => {
+  const { role, id, fullName } = user;
+  if (!role || !id) {
+    return false;
+  }
+  return jwt.sign({ id, role, fullName }, secretKeyRefresh, {
+    expiresIn: "1d",
+  });
+};
+
+exports.verifyRefreshToken = (token) => {
+  return jwt.verify(token, secretKeyRefresh, (err, decoded) => {
     if (decoded) return decoded;
     if (err) return { error: true };
   });
