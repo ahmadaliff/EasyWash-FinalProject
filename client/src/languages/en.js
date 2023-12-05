@@ -26,6 +26,7 @@ export default {
   app_forgot_password_email_failed: 'Email for forgot password failed to sent',
   app_reset_password_success: 'Success reset password',
   app_token_expired: 'token expired',
+  app_session_expired: 'login session expired',
 
   // login and register
   app_profile: 'Profile',

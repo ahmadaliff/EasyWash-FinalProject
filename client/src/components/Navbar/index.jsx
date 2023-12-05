@@ -47,7 +47,7 @@ const Navbar = ({ locale, theme }) => {
     <div className={classes.headerWrapper} data-testid="navbar">
       <div className={classes.contentWrapper}>
         <div className={classes.logoImage} onClick={goHome}>
-          <img src="/longLogo.svg" alt="logo" className={`${classes.logo} ${theme === 'dark' && classes.dark}`} />
+          <img src="/longLogo.svg" alt="logo" className={classes.logo} />
         </div>
         <div className={classes.toolbar}>
           <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">

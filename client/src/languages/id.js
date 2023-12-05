@@ -26,6 +26,7 @@ export default {
   app_forgot_password_email_failed: 'Lupa password gagal terkirim ke email',
   app_reset_password_success: 'Berhasil reset password',
   app_token_expired: 'token telah kadaluarsa',
+  app_session_expired: 'sesi login kadaluarsa',
 
   // login and register
   app_profile: 'Profil',

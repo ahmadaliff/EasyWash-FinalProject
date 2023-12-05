@@ -8,7 +8,7 @@ const urls = {
   user: 'user',
 };
 
-export const callAPI = async (endpoint, method, header = {}, params = {}, data = {}) => {
+export const callAPI = async (endpoint, method, iswithCredentials = false, data = {}, header = {}, params = {}) => {
   const defaultHeader = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   };
@@ -20,6 +20,7 @@ export const callAPI = async (endpoint, method, header = {}, params = {}, data =
     headers,
     data,
     params,
+    withCredentials: iswithCredentials,
   };
 
   return request(options).then((response) => {
@@ -29,11 +30,13 @@ export const callAPI = async (endpoint, method, header = {}, params = {}, data =
 };
 
 export const ping = () => callAPI(urls.ping, 'get');
+// refresh token
+export const apiRefreshToken = () => callAPI(`${urls.user}/refresh`, 'get', true);
 // user
-export const apiHandleLogin = (data) => callAPI(`${urls.user}/login`, 'post', {}, {}, data);
-export const apiHandleLogout = () => callAPI(`${urls.user}/logout`, 'get');
-export const apiHandleRegister = (data) => callAPI(`${urls.user}/register`, 'POST', {}, {}, data);
-export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.user}/verifyEmail`, 'POST', {}, {}, data);
-export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.user}/checkOtpVerifyEmail`, 'POST', {}, {}, data);
-export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.user}/forgotPassword`, 'POST', {}, {}, data);
-export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.user}/resetPassword`, 'PUT', {}, {}, data);
+export const apiHandleLogin = (data) => callAPI(`${urls.user}/login`, 'post', true, data);
+export const apiHandleLogout = (id) => callAPI(`${urls.user}/logout`, 'post', true, id);
+export const apiHandleRegister = (data) => callAPI(`${urls.user}/register`, 'POST', data);
+export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.user}/verifyEmail`, 'POST', data);
+export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.user}/checkOtpVerifyEmail`, 'POST', data);
+export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.user}/forgotPassword`, 'POST', data);
+export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.user}/resetPassword`, 'PUT', data);

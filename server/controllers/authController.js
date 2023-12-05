@@ -1,6 +1,7 @@
 const CryptoJS = require("crypto-js");
 const { unlink } = require("fs");
 const dotenv = require("dotenv");
+require("cookie-parser");
 
 const {
   handleServerError,
@@ -20,6 +21,8 @@ const {
   createToken,
   createTokenForForgetPassword,
   createTokenVerifyEmail,
+  createRefreshToken,
+  verifyRefreshToken,
 } = require("../utils/jwtUtil");
 const redisClient = require("../utils/redisClient");
 
@@ -65,10 +68,18 @@ exports.login = async (req, res) => {
       });
     }
     const token = createToken(dataUser);
-    if (!token) {
+    const refreshToken = createRefreshToken(dataUser);
+
+    if (!token || !refreshToken) {
       throw new Error("Token Created failed");
     }
-    redisClient.setex(dataUser.id.toString(), 24 * 60 * 60, token);
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    redisClient.setex(dataUser.id.toString(), 10 * 60, token);
     redisClient.del(`loginAttempts:${email}`);
     return handleSuccess(res, {
       imagePath: dataUser.imagePath,
@@ -82,10 +93,30 @@ exports.login = async (req, res) => {
 
 exports.logout = async (req, res) => {
   try {
-    const { id } = req;
+    const { id } = req.body;
     // delete token
     redisClient.del(id.toString());
     return handleSuccess(res, { message: "app_logout_success" });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.refreshToken = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken)
+      return handleResponse(res, 401, { message: "app_session_expired" });
+    const { id, role, errorJWT } = verifyRefreshToken(refreshToken);
+    if (errorJWT) {
+      return handleResponse(res, 401, { message: "app_session_expired" });
+    }
+    const dataUser = await User.findOne({ where: { id: id, role: role } });
+    if (!dataUser) {
+      return handleNotFound(res);
+    }
+    const token = createToken(dataUser);
+    return handleSuccess(res, { token: token });
   } catch (error) {
     return handleServerError(res);
   }
