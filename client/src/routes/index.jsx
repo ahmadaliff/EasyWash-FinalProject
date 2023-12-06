@@ -4,6 +4,7 @@ import ForgotPassword from '@pages/ForgotPassword';
 import Home from '@pages/Home';
 import Login from '@pages/Login';
 import NotFound from '@pages/NotFound';
+import Profile from '@pages/Profile';
 import Register from '@pages/Register';
 import ResetPassword from '@pages/ResetPassword';
 
@@ -38,6 +39,13 @@ const routes = [
     name: 'Forgot Password',
     protected: false,
     component: ResetPassword,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    protected: true,
+    component: Profile,
+    layout: MainLayout,
   },
   { path: '*', name: 'Not Found', component: NotFound, layout: MainLayout, protected: false },
 ];

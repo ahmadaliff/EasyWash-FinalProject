@@ -8,6 +8,9 @@ const {
   forgotPassword,
   setResetPassword,
   refreshToken,
+  getProfile,
+  editPhotoProfile,
+  editProfile,
 } = require("../controllers/authController");
 
 const {
@@ -19,6 +22,7 @@ const {
 const {
   verifySendResetMiddleware,
 } = require("../middleware/sendResetPassMiddleware");
+const { multerMiddleware } = require("../middleware/multerMiddleware");
 
 const router = Router();
 
@@ -32,5 +36,8 @@ router.get("/refresh", refreshToken);
 router.post("/logout", logout);
 
 router.use(authenticationMiddleware);
+router.get("/profile", getProfile);
+router.put("/edit/photoProfile", multerMiddleware, editPhotoProfile);
+router.put("/edit/profile", editProfile);
 
 module.exports = router;
