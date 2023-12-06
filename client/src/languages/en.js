@@ -29,6 +29,7 @@ export default {
   app_session_expired: 'login session expired',
   app_edit_profile_pass_invalid: 'invalid Old Password',
   app_edit_photo_profile_success: 'success edit photo profile',
+  app_user_deleted: 'Success,user deleted',
 
   // login and register
   app_profile: 'Profile',
@@ -64,9 +65,15 @@ export default {
   app_profile_edit: 'Edit Profile',
   app_account_type: 'Account Type',
   app_user: 'User',
+  app_role_user: 'Role',
 
   // profile
   app_edit_profile_desc:
     'You can change your personal data in this dialog, like your Full Name, Phone Number, and your Password',
   app_edit_profile_pass_not_same: 'Old Password and New Password same',
+
+  // usersPage
+  app_user_page_header: 'User Management',
+  app_action: 'Action',
+  app_delete_account: 'Delete Account',
 };

@@ -1,11 +1,11 @@
 const { handleResponse } = require("../helpers/handleResponseHelper");
 
-exports.authorizationRolePro = async (req, res, next) => {
+exports.authorizationRoleAdmin = async (req, res, next) => {
   const { role } = req;
-  if (role != "pro") {
+  if (role != "admin") {
     return handleResponse(res, 403, {
       message:
-        "unauthorize, forbidden access this endpoint login with pro account",
+        "unauthorize, forbidden access this endpoint login with admin account",
     });
   }
   next();

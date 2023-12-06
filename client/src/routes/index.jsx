@@ -7,6 +7,7 @@ import NotFound from '@pages/NotFound';
 import Profile from '@pages/Profile';
 import Register from '@pages/Register';
 import ResetPassword from '@pages/ResetPassword';
+import Users from '@pages/Users';
 
 const routes = [
   {
@@ -45,6 +46,13 @@ const routes = [
     name: 'Profile',
     protected: true,
     component: Profile,
+    layout: MainLayout,
+  },
+  {
+    path: '/admin/user',
+    name: 'User',
+    protected: true,
+    component: Users,
     layout: MainLayout,
   },
   { path: '*', name: 'Not Found', component: NotFound, layout: MainLayout, protected: false },

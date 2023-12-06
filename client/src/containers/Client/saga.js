@@ -51,7 +51,6 @@ function* sagaHandleLogin({ data, callback }) {
     yield put(setUser({ role, id, fullName, imagePath: response.imagePath }));
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    console.log(error);
     if (error?.response?.status === 400) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {

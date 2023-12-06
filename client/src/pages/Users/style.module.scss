@@ -1,0 +1,119 @@
+@import '@styles/base';
+
+.header {
+  @include directionX;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  .searchInputWrap {
+    @include directionX;
+    align-items: center;
+    gap: 0.25rem;
+    .searchInput {
+      box-sizing: border-box;
+      padding: 0.5rem;
+      font-size: small;
+      border: 1px solid var(--color-text);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      border-radius: 10px;
+      &:focus {
+        outline: none;
+        border: 1px solid var(--color-primary);
+      }
+    }
+  }
+}
+.tableWrap {
+  padding: 0.75rem;
+  @include apply-at-md-size {
+    padding: 2rem 4rem 2rem 4rem;
+  }
+  .tableHead {
+    color: var(--color-primary);
+    font-weight: 600;
+    width: 5rem;
+    @include apply-at-md-size {
+      width: auto;
+      min-width: 5rem;
+    }
+  }
+  .email {
+    display: none;
+    @include apply-at-md-size {
+      display: table-cell;
+    }
+  }
+  .tableBody {
+    width: 5rem;
+    font-size: small;
+    @include apply-at-md-size {
+      width: auto;
+      min-width: 5rem;
+      font-size: medium;
+    }
+  }
+  .tablePagination {
+    p,
+    div {
+      margin: 0.25rem;
+      font-size: smaller;
+      @include apply-at-sm-size {
+        font-size: small;
+      }
+    }
+    button > svg {
+      width: 0.75rem;
+      height: 0.75rem;
+      @include apply-at-sm-size {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+  .tableAction {
+    @include directionY;
+    width: 100%;
+    gap: 0.25rem;
+    @include apply-at-lg-size {
+      gap: 0.25rem;
+      @include directionX;
+    }
+  }
+  .buttonAction {
+    width: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 2.5rem;
+    padding: 0.25rem;
+    @include apply-at-md-size {
+      padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    }
+    margin: auto;
+    box-shadow: none;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.025, 1.025);
+    }
+  }
+  .buttonAction {
+    width: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 2.5rem;
+    padding: 0.25rem;
+    @include apply-at-md-size {
+      padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    }
+    margin: auto;
+    box-shadow: none;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.025, 1.025);
+    }
+  }
+}

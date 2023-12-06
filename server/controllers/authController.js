@@ -1,6 +1,6 @@
+require("dotenv").config();
 const CryptoJS = require("crypto-js");
 const { unlink } = require("fs");
-const dotenv = require("dotenv");
 require("cookie-parser");
 
 const {
@@ -29,8 +29,6 @@ const redisClient = require("../utils/redisClient");
 const { User } = require("../models");
 
 const { chatStreamClient } = require("../utils/streamChatUtil");
-
-dotenv.config();
 
 exports.login = async (req, res) => {
   try {

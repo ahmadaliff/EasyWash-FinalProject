@@ -6,6 +6,7 @@ import request from '@utils/request';
 const urls = {
   ping: 'ping.json',
   user: 'user',
+  admin: 'admin',
 };
 
 export const callAPI = async (endpoint, method, iswithCredentials = false, data = {}, header = {}, params = {}) => {
@@ -44,3 +45,10 @@ export const apiHandleGetProfile = () => callAPI(`${urls.user}/profile`, 'GET', 
 export const apiHandleEditPhotoProfile = (data) =>
   callAPI(`${urls.user}/edit/photoProfile`, 'PUT', true, data, { 'Content-Type': 'multipart/form-data' });
 export const apiHandleEditProfile = (data) => callAPI(`${urls.user}/edit/profile`, 'PUT', true, data);
+
+// admin
+export const apiGetUsers = (search, limit, page) =>
+  callAPI(`${urls.admin}/users?search=${search}&page=${page}&limit=${limit}`, 'GET', true);
+export const apiGetUserUnverified = (search, limit, page) =>
+  callAPI(`${urls.admin}/users/unverified?search=${search}&page=${page}&limit=${limit}`, 'GET', true);
+export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELETE', true, id);
