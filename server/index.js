@@ -13,8 +13,10 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
 app.use("/api", routes);
 
 app.listen(process.env.APP_PORT, () => {

@@ -40,7 +40,7 @@ const Navbar = ({ locale, theme }) => {
   };
 
   const goHome = () => {
-    navigate('/login');
+    navigate('/');
   };
 
   return (

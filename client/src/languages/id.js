@@ -27,6 +27,8 @@ export default {
   app_reset_password_success: 'Berhasil reset password',
   app_token_expired: 'token telah kadaluarsa',
   app_session_expired: 'sesi login kadaluarsa',
+  app_edit_profile_pass_invalid: 'Password lama tidak sesuai',
+  app_edit_photo_profile_success: 'sukses mengganti foto pofil',
 
   // login and register
   app_profile: 'Profil',
@@ -47,6 +49,7 @@ export default {
   app_user_otp_require_message: 'OTP dibutuhkan',
   app_user_otp_min_length: 'OTP minimal 4 karakter',
   app_user_password: 'Kata Sandi',
+  app_user_old_password: 'Kata Sandi lama',
   app_user_new_password: 'Kata Sandi Baru',
   app_user_reset_password: 'Reset kata Sandi',
   app_user_password_require_message: 'Kata Sandi dibutuhkan',
@@ -61,4 +64,9 @@ export default {
   app_profile_edit: 'Ubah Profil',
   app_account_type: 'Tipe Akun',
   app_user: 'Pengguna',
+
+  // profile
+  app_edit_profile_desc:
+    'Kamu dapat mengubah data pribadi kamu pada dialog ini, seperti nama lengkap, Nomor Telepon, dan Password kamu',
+  app_edit_profile_pass_not_same: 'Password lama dan Password Baru tidak sama',
 };

@@ -116,6 +116,7 @@ exports.refreshToken = async (req, res) => {
       return handleNotFound(res);
     }
     const token = createToken(dataUser);
+    redisClient.setex(dataUser.id.toString(), 10 * 60, token);
     return handleSuccess(res, { token: token });
   } catch (error) {
     return handleServerError(res);
@@ -252,6 +253,90 @@ exports.setResetPassword = async (req, res) => {
     );
     return handleSuccess(res, {
       message: "app_reset_password_success",
+    });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.getProfile = async (req, res) => {
+  try {
+    const { id } = req;
+    const response = await User.findByPk(id);
+    if (!response) {
+      return handleNotFound(res);
+    }
+    delete response.password;
+    return handleSuccess(res, { data: response, message: "success" });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.editPhotoProfile = async (req, res) => {
+  try {
+    const { id } = req;
+    const image = req?.file?.path;
+    if (!image) {
+      return handleNotFound(res);
+    }
+    const isExist = await User.findOne({ where: { id: id } });
+    if (!isExist) {
+      return handleNotFound(res);
+    }
+    if (isExist.imagePath) {
+      unlink(isExist.imagePath, (err) => {});
+    }
+    const response = await isExist.update({ imagePath: image });
+
+    return handleSuccess(res, {
+      data: response,
+      message: "app_edit_photo_profile_success",
+    });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.editProfile = async (req, res) => {
+  try {
+    const { id } = req;
+    const newUser = req.body;
+    const isExist = await User.findOne({ where: { id: id } });
+    if (!isExist) {
+      return handleNotFound(res);
+    }
+    if (newUser?.new_password || newUser?.old_password) {
+      const plainNewPassword = CryptoJS.AES.decrypt(
+        newUser.new_password,
+        process.env.CRYPTOJS_SECRET
+      ).toString(CryptoJS.enc.Utf8);
+      const plainOldPassword = CryptoJS.AES.decrypt(
+        newUser.old_password,
+        process.env.CRYPTOJS_SECRET
+      ).toString(CryptoJS.enc.Utf8);
+      if (!comparePassword(plainOldPassword, isExist.password)) {
+        return handleClientError(res, 400, "app_edit_profile_pass_invalid");
+      }
+      newUser.password = hashPassword(plainNewPassword);
+      delete newUser.new_password;
+      delete newUser.old_password;
+    }
+    const fieldtoEdit = Object.keys(newUser);
+    const { error, handleRes } = validateJoi(
+      res,
+      newUser,
+      schemaUser,
+      fieldtoEdit
+    );
+    if (error) {
+      return handleRes;
+    }
+    const response = await isExist.update(newUser);
+
+    return handleSuccess(res, {
+      data: response,
+      message: "success edit profile",
     });
   } catch (error) {
     return handleServerError(res);

@@ -27,6 +27,8 @@ export default {
   app_reset_password_success: 'Success reset password',
   app_token_expired: 'token expired',
   app_session_expired: 'login session expired',
+  app_edit_profile_pass_invalid: 'invalid Old Password',
+  app_edit_photo_profile_success: 'success edit photo profile',
 
   // login and register
   app_profile: 'Profile',
@@ -47,6 +49,7 @@ export default {
   app_user_otp_require_message: 'OTP is require',
   app_user_otp_min_length: 'OTP minimum 4 character',
   app_user_password: 'Password',
+  app_user_old_password: 'Old Password',
   app_user_new_password: 'New Password',
   app_user_reset_password: 'Reset Password',
   app_user_password_require_message: 'Password is require',
@@ -61,4 +64,9 @@ export default {
   app_profile_edit: 'Edit Profile',
   app_account_type: 'Account Type',
   app_user: 'User',
+
+  // profile
+  app_edit_profile_desc:
+    'You can change your personal data in this dialog, like your Full Name, Phone Number, and your Password',
+  app_edit_profile_pass_not_same: 'Old Password and New Password same',
 };
