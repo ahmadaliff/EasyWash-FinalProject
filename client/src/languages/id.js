@@ -30,6 +30,8 @@ export default {
   app_session_expired: 'sesi login kadaluarsa',
   app_edit_profile_pass_invalid: 'Password lama tidak sesuai',
   app_edit_photo_profile_success: 'sukses mengganti foto pofil',
+  app_user_deleted: 'Berhasil menghapus user',
+  app_user_decline: 'User Berhasil ditolak dan dihapus',
 
   // login and register
   app_profile: 'Profil',
@@ -65,6 +67,7 @@ export default {
   app_profile_edit: 'Ubah Profil',
   app_account_type: 'Tipe Akun',
   app_user: 'Pengguna',
+  app_role_user: 'Peran',
   app_description: 'Deskripsi',
   app_location: 'Lokasi',
   app_merchant_name: 'Nama Laundry',
@@ -74,4 +77,13 @@ export default {
   app_edit_profile_desc:
     'Kamu dapat mengubah data pribadi kamu pada dialog ini, seperti nama lengkap, Nomor Telepon, dan Password kamu',
   app_edit_profile_pass_not_same: 'Password lama dan Password Baru tidak sama',
+
+  // userPage
+  app_user_page_header: 'Manajemen User',
+  app_action: 'Aksi',
+  app_delete_account: 'Hapus Akun',
+  app_account_verified: 'Terverifikasi',
+  app_account_unverified: 'Tidak Terverifikasi',
+  app_verify_action: 'Verifikasi',
+  app_decline: 'Tolak',
 };

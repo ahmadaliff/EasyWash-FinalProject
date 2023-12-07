@@ -6,6 +6,7 @@ import request from '@utils/request';
 const urls = {
   ping: 'ping.json',
   user: 'user',
+  admin: 'admin',
 };
 
 export const callAPI = async (endpoint, method, data = {}, iswithCredentials = false, header = {}, params = {}) => {
@@ -42,5 +43,13 @@ export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.user}/forgo
 export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.user}/resetPassword`, 'PUT', data);
 export const apiHandleGetProfile = () => callAPI(`${urls.user}/profile`, 'GET', {}, true);
 export const apiHandleEditPhotoProfile = (data) =>
-  callAPI(`${urls.user}/edit/photoProfile`, 'PUT', data, true, { 'Content-Type': 'multipart/form-data' });
+  callAPI(`${urls.user}/edit/photoProfile`, 'PUT', true, data, { 'Content-Type': 'multipart/form-data' });
 export const apiHandleEditProfile = (data) => callAPI(`${urls.user}/edit/profile`, 'PUT', data, true);
+
+// admin
+export const apiGetUsers = (search, limit, page) =>
+  callAPI(`${urls.admin}/users?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
+export const apiGetUserUnverified = (search, limit, page) =>
+  callAPI(`${urls.admin}/users/unverified?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
+export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELETE', id, true);
+export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);
