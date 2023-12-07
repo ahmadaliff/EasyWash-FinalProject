@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect, useDispatch } from 'react-redux';
 import {
   Alert,
+  Button,
   Stack,
   Table,
   TableBody,
@@ -14,17 +15,27 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  ToggleButton,
+  ToggleButtonGroup,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { actionDeleteUser, actionGetUsers, actionResetUsers } from '@pages/Users/actions';
+import {
+  actionDeleteUser,
+  actionGetUnverifiedUsers,
+  actionGetUsers,
+  actionResetUsers,
+  actionVerifyUser,
+} from '@pages/Users/actions';
 
 import classes from '@pages/Users/style.module.scss';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { PersonSearch } from '@mui/icons-material';
+import { DoNotDisturb, PersonSearch, Unpublished, Verified } from '@mui/icons-material';
+import styled from 'styled-components';
 
 const Users = ({ user, users, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isVerifiedUsers, setIsVerifiedUsers] = useState(true);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [search, setSearch] = useState('');
@@ -36,7 +47,9 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
   }, [navigate, user]);
 
   useEffect(() => {
-    dispatch(actionGetUsers(search, rowsPerPage, page));
+    isVerifiedUsers
+      ? dispatch(actionGetUsers(search, rowsPerPage, page))
+      : dispatch(actionGetUnverifiedUsers(search, rowsPerPage, page));
 
     return () => {
       if (users) {
@@ -44,7 +57,7 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, page, rowsPerPage]);
+  }, [dispatch, page, rowsPerPage, isVerifiedUsers]);
 
   useEffect(() => {
     const timeOutId = setTimeout(() => dispatch(actionGetUsers(search, rowsPerPage, page)), 1000);
@@ -61,6 +74,14 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
     setPage(0);
   };
 
+  const StyledToggleButton = styled(ToggleButton)({
+    '&.Mui-selected, &.Mui-selected:hover': {
+      color: 'white',
+      backgroundColor: '#7ac94c',
+      border: 'none',
+    },
+  });
+
   const columns = [
     { id: 'fullName', label: formatMessage({ id: 'app_user_fullName' }), minWidth: 170 },
     { id: 'email', label: formatMessage({ id: 'app_user_email' }), minWidth: 100 },
@@ -74,9 +95,26 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
   return (
     <div className={classes.tableWrap}>
       <div className={classes.header}>
-        <h3>
-          <FormattedMessage id="app_user_page_header" />
-        </h3>
+        <div>
+          <h3>
+            <FormattedMessage id="app_user_page_header" />
+          </h3>
+          <ToggleButtonGroup
+            value={isVerifiedUsers}
+            exclusive
+            onChange={() => setIsVerifiedUsers(!isVerifiedUsers)}
+            fullWidth
+            className={classes.toggleRole}
+            size="small"
+          >
+            <StyledToggleButton value>
+              <Verified /> <FormattedMessage id="app_account_verified" />
+            </StyledToggleButton>
+            <StyledToggleButton value={false}>
+              <Unpublished /> <FormattedMessage id="app_account_unverified" />
+            </StyledToggleButton>
+          </ToggleButtonGroup>
+        </div>
         <div className={classes.searchInputWrap}>
           <PersonSearch />
           <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
@@ -111,13 +149,35 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
                   );
                 })}
                 <TableCell className={`${classes.tableBody} ${classes.tableAction}`}>
-                  <button
-                    type="button"
-                    className={classes.buttonAction}
-                    onClick={() => dispatch(actionDeleteUser(row.id))}
-                  >
-                    <FormattedMessage id="app_delete_account" />
-                  </button>
+                  {isVerifiedUsers ? (
+                    <Button
+                      type="button"
+                      className={classes.buttonAction}
+                      onClick={() => dispatch(actionDeleteUser(row.id))}
+                    >
+                      <FormattedMessage id="app_delete_account" />
+                    </Button>
+                  ) : (
+                    <>
+                      <Button
+                        type="button"
+                        className={classes.buttonActionAcc}
+                        onClick={() => dispatch(actionVerifyUser(row.id))}
+                        size="small"
+                      >
+                        <Verified />
+                        <FormattedMessage id="app_verify_action" />
+                      </Button>
+                      <Button
+                        type="button"
+                        className={classes.buttonActionDec}
+                        onClick={() => dispatch(actionDeleteUser(row.id))}
+                      >
+                        <DoNotDisturb />
+                        <FormattedMessage id="app_decline" />
+                      </Button>
+                    </>
+                  )}
                 </TableCell>
               </TableRow>
             ))}

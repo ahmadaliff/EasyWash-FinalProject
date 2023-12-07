@@ -31,6 +31,7 @@ export default {
   app_edit_profile_pass_invalid: 'invalid Old Password',
   app_edit_photo_profile_success: 'success edit photo profile',
   app_user_deleted: 'Success,user deleted',
+  app_user_decline: 'user declined and deleted',
 
   // login and register
   app_profile: 'Profile',
@@ -81,4 +82,8 @@ export default {
   app_user_page_header: 'User Management',
   app_action: 'Action',
   app_delete_account: 'Delete Account',
+  app_account_verified: 'Verified',
+  app_account_unverified: 'Unverified',
+  app_verify_action: 'verify',
+  app_decline: 'Decline',
 };

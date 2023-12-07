@@ -52,3 +52,4 @@ export const apiGetUsers = (search, limit, page) =>
 export const apiGetUserUnverified = (search, limit, page) =>
   callAPI(`${urls.admin}/users/unverified?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
 export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELETE', id, true);
+export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);

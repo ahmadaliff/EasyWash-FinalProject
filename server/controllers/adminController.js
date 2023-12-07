@@ -7,7 +7,7 @@ const {
   handleNotFound,
 } = require("../helpers/handleResponseHelper");
 
-const { User } = require("../models");
+const { User, Merchant, sequelize } = require("../models");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -19,7 +19,7 @@ exports.getUsers = async (req, res) => {
     const totalRows = await User.count({
       where: {
         id: { [Op.ne]: id },
-        isVerify: true,
+        isVerified: true,
         [Op.or]: [
           {
             fullName: {
@@ -38,7 +38,7 @@ exports.getUsers = async (req, res) => {
     const response = await User.findAll({
       where: {
         id: { [Op.ne]: id },
-        isVerify: true,
+        isVerified: true,
         [Op.or]: [
           {
             fullName: {
@@ -68,7 +68,6 @@ exports.getUsers = async (req, res) => {
       totalRows: totalRows,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -83,7 +82,7 @@ exports.getUnverifiedUsers = async (req, res) => {
     const totalRows = await User.count({
       where: {
         id: { [Op.ne]: id },
-        isVerify: false,
+        isVerified: false,
         [Op.or]: [
           {
             fullName: {
@@ -102,7 +101,7 @@ exports.getUnverifiedUsers = async (req, res) => {
     const response = await User.findAll({
       where: {
         id: { [Op.ne]: id },
-        isVerify: false,
+        isVerified: false,
         [Op.or]: [
           {
             fullName: {
@@ -132,7 +131,6 @@ exports.getUnverifiedUsers = async (req, res) => {
       totalRows: totalRows,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -145,9 +143,35 @@ exports.deleteUser = async (req, res) => {
       return handleNotFound(res);
     }
     await User.destroy({ where: { id: id } });
-    return handleSuccess(res, { message: "app_user_deleted" });
+    return handleSuccess(res, {
+      message: isExist.dataValues.isVerified
+        ? "app_user_deleted"
+        : "app_user_decline",
+    });
   } catch (error) {
-    console.log(error);
+    return handleServerError(res);
+  }
+};
+
+exports.verifyUser = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const isExist = await User.findByPk(id);
+    if (!isExist) {
+      return handleNotFound(res);
+    }
+    await sequelize.transaction(async (t) => {
+      await User.update(
+        { isVerified: true },
+        { where: { id: id }, transaction: t }
+      );
+      await Merchant.update(
+        { isVerified: true },
+        { where: { userId: id }, transaction: t }
+      );
+    });
+    return handleSuccess(res, { message: "app_account_verified" });
+  } catch (error) {
     return handleServerError(res);
   }
 };

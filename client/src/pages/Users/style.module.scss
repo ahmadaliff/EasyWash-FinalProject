@@ -1,7 +1,11 @@
 @import '@styles/base';
 
 .header {
-  @include directionX;
+  @include directionY;
+  @include apply-at-md-size {
+    @include directionX;
+  }
+  gap: 0.5rem;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -21,6 +25,17 @@
         outline: none;
         border: 1px solid var(--color-primary);
       }
+    }
+  }
+  .toggleRole {
+    button {
+      width: 11rem;
+      svg {
+        color: var(--color-primary);
+      }
+      font-weight: 600;
+      border-color: var(--color-primary);
+      text-transform: capitalize;
     }
   }
 }
@@ -80,16 +95,14 @@
       @include directionX;
     }
   }
-  .buttonAction {
+  .buttonAction,
+  .buttonActionAcc,
+  .buttonActionDec {
     width: 100%;
-    background-color: var(--color-bg);
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
     border-radius: 2.5rem;
-    padding: 0.25rem;
-    @include apply-at-md-size {
-      padding: 0.5rem 2.5rem 0.5rem 2.5rem;
-    }
+    padding: 0.125rem;
+    font-size: small;
+    text-transform: capitalize;
     margin: auto;
     box-shadow: none;
     font-weight: bold;
@@ -99,21 +112,19 @@
     }
   }
   .buttonAction {
-    width: 100%;
     background-color: var(--color-bg);
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
-    border-radius: 2.5rem;
-    padding: 0.25rem;
-    @include apply-at-md-size {
-      padding: 0.5rem 2.5rem 0.5rem 2.5rem;
-    }
-    margin: auto;
-    box-shadow: none;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
-      transform: scale(1.025, 1.025);
-    }
+  }
+
+  .buttonActionAcc {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border: none;
+  }
+  .buttonActionDec {
+    background-color: rgba($color: red, $alpha: 0.6);
+    color: var(--color-bg);
+    border: none;
   }
 }

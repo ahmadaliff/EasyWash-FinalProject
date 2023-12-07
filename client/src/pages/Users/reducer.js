@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import { DELETE_USER, RESET_USERS, SET_USERS } from './constants';
+import { DELETE_USER, RESET_USERS, SET_USERS, VERIFY_USER } from './constants';
 
 export const initialState = {
   users: null,
@@ -14,6 +14,16 @@ export const usersReducer = (state = initialState, action) =>
         draft.users = action.users;
         break;
       case DELETE_USER: {
+        const filteredDataUsers = state.users.data.filter((val) => val.id !== action.data);
+
+        const tempObj = { ...state.users };
+        tempObj.data = filteredDataUsers;
+        tempObj.totalRows -= 1;
+
+        draft.users = tempObj;
+        break;
+      }
+      case VERIFY_USER: {
         const filteredDataUsers = state.users.data.filter((val) => val.id !== action.data);
 
         const tempObj = { ...state.users };
