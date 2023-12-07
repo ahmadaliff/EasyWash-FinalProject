@@ -26,7 +26,7 @@ const {
 } = require("../utils/jwtUtil");
 const redisClient = require("../utils/redisClient");
 
-const { User } = require("../models");
+const { User, Merchant, sequelize } = require("../models");
 
 const { chatStreamClient } = require("../utils/streamChatUtil");
 
@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
     if (!dataUser || !comparePassword(plainPassword, dataUser?.password)) {
       return handleResponse(res, 400, { message: "app_login_invalid" });
     }
-    if (!dataUser.isVerify) {
+    if (!dataUser.isVerified) {
       return handleResponse(res, 400, {
         message: "app_login_not_verify",
       });
@@ -126,13 +126,15 @@ exports.refreshToken = async (req, res) => {
 exports.register = async (req, res) => {
   try {
     const newUser = req.body;
-
     const plainPassword = CryptoJS.AES.decrypt(
       newUser.password,
       process.env.CRYPTOJS_SECRET
     ).toString(CryptoJS.enc.Utf8);
 
     newUser.password = plainPassword;
+
+    const merchant = newUser.merchant;
+    delete newUser.merchant;
 
     const { error, handleRes } = validateJoi(res, newUser, schemaUser);
     if (error) {
@@ -144,7 +146,18 @@ exports.register = async (req, res) => {
         message: "app_register_already_exist",
       });
     }
-    const response = await User.create(newUser);
+
+    const response = await sequelize.transaction(async (t) => {
+      const responseUser = await User.create(newUser, { transaction: t });
+      if (newUser.role === "laundry") {
+        merchant.userId = responseUser.id;
+        merchant.location = JSON.stringify(merchant.location);
+        await Merchant.create(merchant, {
+          transaction: t,
+        });
+      }
+      return responseUser;
+    });
 
     return handleSuccess(res, {
       data: response,
@@ -182,7 +195,6 @@ exports.verifyEmail = async (req, res) => {
       message: "app_verify_email_otp_failed",
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -212,7 +224,7 @@ exports.forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const isUserExist = await User.findOne({
-      where: { email: email, isVerify: true },
+      where: { email: email, isVerified: true },
     });
     if (!isUserExist) {
       return handleNotFound(res);

@@ -13,7 +13,7 @@ import { actionSetStep } from '@pages/Register/actions';
 
 import classes from '@components/VerifyEmail/style.module.scss';
 
-const VerifyEmail = ({ email, step, isVerify, intl: { formatMessage } }) => {
+const VerifyEmail = ({ email, step, isVerified, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -23,7 +23,7 @@ const VerifyEmail = ({ email, step, isVerify, intl: { formatMessage } }) => {
 
   const onSubmit = (data) => {
     if (!email || data.email !== email) dispatch(actionHandleSendEmailVerify(data));
-    else if (isVerify) dispatch(actionSetStep(step + 2));
+    else if (isVerified) dispatch(actionSetStep(step + 2));
     else dispatch(actionSetStep(step + 1));
   };
   return (
@@ -52,13 +52,13 @@ VerifyEmail.propTypes = {
   intl: PropTypes.object,
   step: PropTypes.number,
   email: PropTypes.string,
-  isVerify: PropTypes.bool,
+  isVerified: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   step: selectStep,
   email: selectEmail,
-  isVerify: selectIsVerify,
+  isVerified: selectIsVerify,
 });
 
 export default injectIntl(connect(mapStateToProps)(VerifyEmail));

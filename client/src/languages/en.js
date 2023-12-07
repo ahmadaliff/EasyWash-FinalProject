@@ -7,6 +7,7 @@ export default {
   app_popup_error_title: 'Something went wrong!',
   app_popup_error_message: 'Sorry, an error has occurred. Please try again later',
   app_popup_close_button_label: 'Close',
+  app_my_location: 'My location',
 
   // backend response
   app_404: 'data not found',
@@ -64,6 +65,10 @@ export default {
   app_profile_edit: 'Edit Profile',
   app_account_type: 'Account Type',
   app_user: 'User',
+  app_description: 'Description',
+  app_location: 'Location',
+  app_merchant_name: 'Merchant Name',
+  app_merchant_require: 'Merchant Name is required',
 
   // profile
   app_edit_profile_desc:

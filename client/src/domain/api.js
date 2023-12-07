@@ -8,7 +8,7 @@ const urls = {
   user: 'user',
 };
 
-export const callAPI = async (endpoint, method, iswithCredentials = false, data = {}, header = {}, params = {}) => {
+export const callAPI = async (endpoint, method, data = {}, iswithCredentials = false, header = {}, params = {}) => {
   const defaultHeader = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   };
@@ -31,16 +31,16 @@ export const callAPI = async (endpoint, method, iswithCredentials = false, data 
 
 export const ping = () => callAPI(urls.ping, 'get');
 // refresh token
-export const apiRefreshToken = () => callAPI(`${urls.user}/refresh`, 'get', true);
+export const apiRefreshToken = () => callAPI(`${urls.user}/refresh`, 'get', {}, true);
 // user
-export const apiHandleLogin = (data) => callAPI(`${urls.user}/login`, 'post', true, data);
-export const apiHandleLogout = (id) => callAPI(`${urls.user}/logout`, 'post', true, id);
+export const apiHandleLogin = (data) => callAPI(`${urls.user}/login`, 'post', data, true);
+export const apiHandleLogout = (id) => callAPI(`${urls.user}/logout`, 'post', id, true);
 export const apiHandleRegister = (data) => callAPI(`${urls.user}/register`, 'POST', data);
 export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.user}/verifyEmail`, 'POST', data);
 export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.user}/checkOtpVerifyEmail`, 'POST', data);
 export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.user}/forgotPassword`, 'POST', data);
 export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.user}/resetPassword`, 'PUT', data);
-export const apiHandleGetProfile = () => callAPI(`${urls.user}/profile`, 'GET', true);
+export const apiHandleGetProfile = () => callAPI(`${urls.user}/profile`, 'GET', {}, true);
 export const apiHandleEditPhotoProfile = (data) =>
-  callAPI(`${urls.user}/edit/photoProfile`, 'PUT', true, data, { 'Content-Type': 'multipart/form-data' });
-export const apiHandleEditProfile = (data) => callAPI(`${urls.user}/edit/profile`, 'PUT', true, data);
+  callAPI(`${urls.user}/edit/photoProfile`, 'PUT', data, true, { 'Content-Type': 'multipart/form-data' });
+export const apiHandleEditProfile = (data) => callAPI(`${urls.user}/edit/profile`, 'PUT', data, true);

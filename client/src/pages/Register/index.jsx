@@ -18,6 +18,7 @@ import { actionResetRegisterValue } from '@containers/Client/actions';
 import { actionHandleResetStep } from '@pages/Register/actions';
 
 import classes from '@pages/Register/style.module.scss';
+import RegisterRole from '@components/RegisterRole';
 
 const Register = ({ isLogin, step, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
@@ -37,6 +38,8 @@ const Register = ({ isLogin, step, intl: { formatMessage } }) => {
       case 1:
         return <VerifyEmailOTP />;
       case 2:
+        return <RegisterRole />;
+      case 3:
         return <RegisterForm />;
     }
   };
