@@ -40,9 +40,9 @@ export const actionHandleLogout = (callback) => ({
   callback,
 });
 
-export const actionSetVerify = (isVerify) => ({
+export const actionSetVerify = (isVerified) => ({
   type: IS_VERIFY,
-  isVerify,
+  isVerified,
 });
 
 export const actionSetTokenVerify = (token) => ({

@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {}
+    static associate(models) {
+      User.hasOne(models.Merchant, {
+        foreignKey: { name: "userId" },
+        onDelete: "CASCADE",
+      });
+    }
   }
   User.init(
     {
@@ -19,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       password: DataTypes.STRING,
       role: DataTypes.STRING,
-      isVerify: DataTypes.BOOLEAN,
+      isVerified: DataTypes.BOOLEAN,
       imagePath: DataTypes.STRING,
     },
     {
@@ -27,8 +32,8 @@ module.exports = (sequelize, DataTypes) => {
         beforeCreate: (user) => {
           user.password = hashPassword(user.password);
           user.role === "laundry"
-            ? (user.isVerify = false)
-            : (user.isVerify = true);
+            ? (user.isVerified = false)
+            : (user.isVerified = true);
         },
       },
       sequelize,
