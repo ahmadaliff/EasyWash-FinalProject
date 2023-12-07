@@ -7,6 +7,7 @@ export default {
   app_popup_error_title: 'Terjadi kesalahan!',
   app_popup_error_message: 'Maaf, telah terjadi kesalahan. Silakan coba beberapa saat lagi',
   app_popup_close_button_label: 'Tutup',
+  app_my_location: 'Lokasi Saya',
 
   // backend response
   app_404: 'data tidak ditemukan',
@@ -66,6 +67,10 @@ export default {
   app_account_type: 'Tipe Akun',
   app_user: 'Pengguna',
   app_role_user: 'Peran',
+  app_description: 'Deskripsi',
+  app_location: 'Lokasi',
+  app_merchant_name: 'Nama Laundry',
+  app_merchant_require: 'Nama Laundry dibutuhkan',
 
   // profile
   app_edit_profile_desc:

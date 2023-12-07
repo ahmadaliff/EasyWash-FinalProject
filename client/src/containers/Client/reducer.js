@@ -13,11 +13,11 @@ export const initialState = {
   login: false,
   token: null,
   tokenVerify: null,
-  isVerify: false,
+  isVerified: false,
   user: null,
 };
 
-export const storedKey = ['token', 'login', 'user', 'tokenVerify', 'isVerify'];
+export const storedKey = ['token', 'login', 'user', 'tokenVerify', 'isVerified'];
 
 const clientReducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -35,10 +35,10 @@ const clientReducer = (state = initialState, action) =>
         draft.tokenVerify = action.token;
         break;
       case IS_VERIFY:
-        draft.isVerify = action.isVerify;
+        draft.isVerified = action.isVerified;
         break;
       case RESET_REGISTER_VALUE:
-        draft.isVerify = initialState.isVerify;
+        draft.isVerified = initialState.isVerified;
         draft.tokenVerify = initialState.tokenVerify;
         break;
     }

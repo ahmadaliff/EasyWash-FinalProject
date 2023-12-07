@@ -37,7 +37,8 @@ import {
   setToken,
   setUser,
 } from '@containers/Client/actions';
-import { selectUser } from './selectors';
+import { selectUser } from '@containers/Client/selectors';
+import { selectMerchant } from '@pages/Register/selectors';
 
 function* sagaHandleLogin({ data, callback }) {
   yield put(setLoading(true));
@@ -121,6 +122,10 @@ function* sagaHandleRegister({ data, callback }) {
   yield put(setLoading(true));
   try {
     data.password = CryptoJS.AES.encrypt(data.password, config.api.secretKeyCrypto).toString();
+    const merchant = yield select(selectMerchant);
+    if (data.role !== 'user') {
+      data.merchant = merchant;
+    }
     const response = yield call(apiHandleRegister, data);
     toast.success(intlHelper({ message: response?.message }));
     yield put(actionResetRegisterValue());
