@@ -10,28 +10,32 @@ export default {
   app_my_location: 'My location',
 
   // backend response
-  app_404: 'data not found',
-  app_login_max_attemps: 'hit maximum Login Attempt, try again in 120 seconds',
-  app_login_invalid: 'invalid email or password',
-  app_login_success: 'login success',
-  app_login_not_verify: 'your account need to verify by admin',
-  app_logout_success: 'logout success',
-  app_register_already_exist: 'user with that email already existed',
-  app_register_success: `register success`,
-  app_register_success_laundry: `your account created, but wait for verify by admin`,
-  app_verify_email_otp_send: 'otp sent to email',
+  app_404: 'Data not found',
+  app_login_max_attemps: 'Hit maximum Login Attempt, try again in 120 seconds',
+  app_login_invalid: 'Invalid email or password',
+  app_login_success: 'Login success',
+  app_login_not_verify: 'Your account need to verify by admin',
+  app_logout_success: 'Logout success',
+  app_register_already_exist: 'User with that email already existed',
+  app_register_success: `Register success`,
+  app_register_success_laundry: `Your account created, waiting verify by admin`,
+  app_verify_email_otp_send: 'OTP sent to email',
   app_verify_email_otp_invalid: 'OTP Invalid',
   app_verify_email_otp_failed: 'Email for OTP verify failed to sent',
-  app_verify: 'verify',
+  app_verify: 'Verify',
   app_forgot_password_email_sent: 'Check your email for forgot password',
   app_forgot_password_email_failed: 'Email for forgot password failed to sent',
   app_reset_password_success: 'Success reset password',
-  app_token_expired: 'token expired',
-  app_session_expired: 'login session expired',
-  app_edit_profile_pass_invalid: 'invalid Old Password',
-  app_edit_photo_profile_success: 'success edit photo profile',
-  app_user_deleted: 'Success,user deleted',
-  app_user_decline: 'user declined and deleted',
+  app_token_expired: 'Token expired',
+  app_session_expired: 'Login session expired',
+  app_edit_profile_pass_invalid: 'Invalid old password',
+  app_edit_photo_profile_success: 'Success change photo profile',
+  app_user_deleted: 'Success, user deleted',
+  app_user_decline: 'User declined and deleted',
+  app_service_already_exist: 'Services with that name already existed in your laundry services',
+  app_service_created: 'Service created',
+  app_service_updated: 'Service edited',
+  app_service_deleted: 'Service deleted',
 
   // login and register
   app_profile: 'Profile',
@@ -75,8 +79,8 @@ export default {
 
   // profile
   app_edit_profile_desc:
-    'You can change your personal data in this dialog, like your Full Name, Phone Number, and your Password',
-  app_edit_profile_pass_not_same: 'Old Password and New Password same',
+    'You can change your personal data in this dialog, like your Full Name, Phone Number, and Password',
+  app_edit_profile_pass_not_same: 'Old Password and New Password not same',
 
   // usersPage
   app_user_page_header: 'User Management',
@@ -84,6 +88,19 @@ export default {
   app_delete_account: 'Delete Account',
   app_account_verified: 'Verified',
   app_account_unverified: 'Unverified',
-  app_verify_action: 'verify',
+  app_verify_action: 'Verify',
   app_decline: 'Decline',
+
+  // services
+  app_service_add_header: 'Add Service',
+  app_service_name: 'Service Name',
+  app_service_name_require_message: 'Service Name is required',
+  app_service_name_desc: `Service name 
+It is recommended not to use excess capital letters, include more than 1 service, and promotional words.`,
+  app_service_price: 'Price',
+  app_service_price_require_message: 'Price is required',
+  app_service_price_desc: `price entered in rupiah (RP.) currency`,
+  app_service_isUnit: 'Is unit service?',
+  app_service_isUnit_require_message: 'Is unit service ? is required',
+  app_service_isUnit_desc: `Specify whether this service is unit or kilo`,
 };

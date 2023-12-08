@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from 'react';
 import MarkerLeaflet from '@components/MarkerLeaflet';
 
 import classes from '@components/MapLeaflet/style.module.scss';
-import 'leaflet/dist/leaflet.css';
 import { IconButton } from '@mui/material';
 import { MyLocation } from '@mui/icons-material';
 import { FormattedMessage } from 'react-intl';
@@ -44,7 +43,7 @@ const MapLeaflet = ({ handleLocation, islocated }) => {
       {markerloc != null && (
         <MapContainer center={markerloc} zoom={17} className={classes.mapContainer} ref={setMap}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Circle center={myLocation} pathOptions={{ fillColor: 'blue' }} radius={5}>
+          <Circle center={myLocation} pathOptions={{ fillColor: 'blue', color: 'blue' }} radius={5}>
             <Tooltip sticky>
               <FormattedMessage id="app_my_location" />
             </Tooltip>

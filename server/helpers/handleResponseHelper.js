@@ -13,6 +13,3 @@ exports.handleSuccess = (res, json) => {
 exports.handleCreated = (res, json) => {
   return res.status(201).json(json);
 };
-exports.handleResponse = (res, status, json) => {
-  return res.status(status).json(json);
-};

@@ -44,6 +44,7 @@
       z-index: 2;
     }
     .registerCard {
+      box-shadow: 0 0 0.25rem gray;
       margin: 0;
       padding: 2rem 0 2rem 0;
       @include apply-at-sm-size {

@@ -29,7 +29,7 @@ import {
 
 import classes from '@pages/Users/style.module.scss';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { DoNotDisturb, PersonSearch, Unpublished, Verified } from '@mui/icons-material';
+import { DoNotDisturb, ManageSearch, Unpublished, Verified } from '@mui/icons-material';
 import styled from 'styled-components';
 
 const Users = ({ user, users, intl: { formatMessage } }) => {
@@ -116,7 +116,7 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
           </ToggleButtonGroup>
         </div>
         <div className={classes.searchInputWrap}>
-          <PersonSearch />
+          <ManageSearch />
           <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
         </div>
       </div>

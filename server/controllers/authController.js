@@ -6,11 +6,14 @@ require("cookie-parser");
 const {
   handleServerError,
   handleSuccess,
-  handleResponse,
   handleNotFound,
   handleClientError,
 } = require("../helpers/handleResponseHelper");
-const { validateJoi, schemaUser } = require("../helpers/joiHelper");
+const {
+  validateJoi,
+  schemaUser,
+  schemaMerchant,
+} = require("../helpers/joiHelper");
 const {
   handleSendMailForgotPass,
   handleSendMailVerifyOTP,
@@ -33,13 +36,16 @@ const { chatStreamClient } = require("../utils/streamChatUtil");
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const maxAttempts = process.env.MAX_ATTEMPTS_LOGIN;
     const attemptsExpire = eval(process.env.ATTEMPTS_EXPIRE);
     redisClient.expire(`loginAttempts:${email}`, attemptsExpire);
+
     const attempts = await redisClient.incr(`loginAttempts:${email}`);
     if (attempts > maxAttempts) {
       return handleClientError(res, 400, `app_login_max_attemps`);
     }
+
     const plainPassword = CryptoJS.AES.decrypt(
       password,
       process.env.CRYPTOJS_SECRET
@@ -58,12 +64,10 @@ exports.login = async (req, res) => {
       where: { email: email },
     });
     if (!dataUser || !comparePassword(plainPassword, dataUser?.password)) {
-      return handleResponse(res, 400, { message: "app_login_invalid" });
+      return handleClientError(res, 400, "app_login_invalid");
     }
     if (!dataUser.isVerified) {
-      return handleResponse(res, 400, {
-        message: "app_login_not_verify",
-      });
+      return handleClientError(res, 400, "app_login_not_verify");
     }
     const token = createToken(dataUser);
     const refreshToken = createRefreshToken(dataUser);
@@ -92,7 +96,6 @@ exports.login = async (req, res) => {
 exports.logout = async (req, res) => {
   try {
     const { id } = req.body;
-    // delete token
     redisClient.del(id.toString());
     return handleSuccess(res, { message: "app_logout_success" });
   } catch (error) {
@@ -104,10 +107,10 @@ exports.refreshToken = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken)
-      return handleResponse(res, 401, { message: "app_session_expired" });
+      return handleClientError(res, 401, "app_session_expired");
     const { id, role, errorJWT } = verifyRefreshToken(refreshToken);
     if (errorJWT) {
-      return handleResponse(res, 401, { message: "app_session_expired" });
+      return handleClientError(res, 401, "app_session_expired");
     }
     const dataUser = await User.findOne({ where: { id: id, role: role } });
     if (!dataUser) {
@@ -138,11 +141,15 @@ exports.register = async (req, res) => {
     if (error) {
       return handleRes;
     }
+    if (merchant) {
+      const { error, handleRes } = validateJoi(res, merchant, schemaMerchant);
+      if (error) {
+        return handleRes;
+      }
+    }
     const isExist = await User.findOne({ where: { email: newUser.email } });
     if (isExist) {
-      return handleResponse(res, 400, {
-        message: "app_register_already_exist",
-      });
+      return handleClientError(res, 400, "app_register_already_exist");
     }
 
     const response = await sequelize.transaction(async (t) => {
@@ -174,9 +181,7 @@ exports.verifyEmail = async (req, res) => {
     const { email } = req.body;
     const dataUser = await User.findOne({ where: { email: email } });
     if (dataUser) {
-      return handleResponse(res, 400, {
-        message: "app_register_already_exist",
-      });
+      return handleClientError(res, 400, "app_register_already_exist");
     }
     const OTP = Math.floor(Math.random() * 9000 + 1000);
     const status = handleSendMailVerifyOTP(OTP, email);
@@ -203,14 +208,10 @@ exports.checkOtpVerifyEmail = async (req, res) => {
     const { otpJWT, email } = req;
     const dataUser = await User.findOne({ where: { email: email } });
     if (dataUser) {
-      return handleResponse(res, 400, {
-        message: "app_register_already_exist",
-      });
+      return handleClientError(res, 400, "app_register_already_exist");
     }
     if (otp != otpJWT) {
-      return handleResponse(res, 404, {
-        message: "app_verify_email_otp_invalid",
-      });
+      return handleClientError(res, 400, "app_verify_email_otp_invalid");
     }
     return handleSuccess(res, { message: "app_verify" });
   } catch (error) {
@@ -273,9 +274,6 @@ exports.getProfile = async (req, res) => {
   try {
     const { id } = req;
     const response = await User.findByPk(id);
-    if (!response) {
-      return handleNotFound(res);
-    }
     delete response.password;
     return handleSuccess(res, { data: response, message: "success" });
   } catch (error) {
@@ -290,14 +288,11 @@ exports.editPhotoProfile = async (req, res) => {
     if (!image) {
       return handleNotFound(res);
     }
-    const isExist = await User.findOne({ where: { id: id } });
-    if (!isExist) {
-      return handleNotFound(res);
+    const user = await User.findOne({ where: { id: id } });
+    if (user.imagePath) {
+      unlink(user.imagePath, (err) => {});
     }
-    if (isExist.imagePath) {
-      unlink(isExist.imagePath, (err) => {});
-    }
-    const response = await isExist.update({ imagePath: image });
+    const response = await user.update({ imagePath: image });
 
     return handleSuccess(res, {
       data: response,
@@ -312,10 +307,6 @@ exports.editProfile = async (req, res) => {
   try {
     const { id } = req;
     const newUser = req.body;
-    const isExist = await User.findOne({ where: { id: id } });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
     if (newUser?.new_password || newUser?.old_password) {
       const plainNewPassword = CryptoJS.AES.decrypt(
         newUser.new_password,
@@ -342,7 +333,7 @@ exports.editProfile = async (req, res) => {
     if (error) {
       return handleRes;
     }
-    const response = await isExist.update(newUser);
+    const response = await User.update(newUser, { where: { id: id } });
 
     return handleSuccess(res, {
       data: response,
