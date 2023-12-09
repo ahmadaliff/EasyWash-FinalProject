@@ -34,6 +34,7 @@ exports.authorizationOwnService = async (req, res, next) => {
   const { id } = req;
   const { serviceId } = req.params;
 
+  console.log(req);
   if (serviceId) {
     const service = await Service.findOne({
       where: { id: serviceId },
@@ -41,7 +42,7 @@ exports.authorizationOwnService = async (req, res, next) => {
         model: Merchant,
       },
     });
-    const merchant = service.Merchant;
+    const merchant = service?.Merchant;
     if (!merchant) {
       return handleNotFound(res);
     } else if (merchant?.userId != id) {

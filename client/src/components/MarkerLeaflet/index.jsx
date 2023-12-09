@@ -2,6 +2,8 @@ import { PropTypes } from 'prop-types';
 import { useState } from 'react';
 import { Marker, Circle, useMapEvents, Popup } from 'react-leaflet';
 import L from 'leaflet';
+import 'leaflet-control-geocoder';
+
 import classes from '@components/MarkerLeaflet/style.module.scss';
 
 const MarkerLeaflet = ({ positionProps, handleLocation }) => {

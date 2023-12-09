@@ -24,9 +24,7 @@ const Profile = ({ user, profile }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    if (!profile && user?.id) {
-      dispatch(actionGetProfile(user?.id));
-    }
+    dispatch(actionGetProfile(user?.id));
     return () => {
       if (profile) {
         dispatch(actionResetProfile());

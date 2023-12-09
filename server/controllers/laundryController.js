@@ -26,6 +26,26 @@ exports.getMyService = async (req, res) => {
   }
 };
 
+exports.getServiceById = async (req, res) => {
+  try {
+    const { id } = req;
+    const { serviceId } = req.params;
+    const response = await Service.findOne({
+      where: { id: serviceId },
+      include: {
+        model: Merchant,
+        where: {
+          userId: id,
+        },
+        attributes: [],
+      },
+    });
+    return handleSuccess(res, { data: response });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
 exports.addService = async (req, res) => {
   try {
     const { id } = req;

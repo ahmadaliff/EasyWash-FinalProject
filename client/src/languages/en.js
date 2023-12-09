@@ -93,6 +93,7 @@ export default {
 
   // services
   app_service_add_header: 'Add Service',
+  app_service_edit_header: 'Edit Service',
   app_service_name: 'Service Name',
   app_service_name_require_message: 'Service Name is required',
   app_service_name_desc: `Service name 

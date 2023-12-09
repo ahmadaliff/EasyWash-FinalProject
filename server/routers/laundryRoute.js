@@ -4,6 +4,7 @@ const {
   editService,
   deleteService,
   addService,
+  getServiceById,
 } = require("../controllers/laundryController");
 const { authorizationOwnService } = require("../middleware/authorizationRole");
 
@@ -17,5 +18,6 @@ router.delete(
   authorizationOwnService,
   deleteService
 );
+router.get("/service/:serviceId", authorizationOwnService, getServiceById);
 
 module.exports = router;

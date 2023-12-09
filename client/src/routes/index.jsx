@@ -8,6 +8,7 @@ import Register from '@pages/Register';
 import ResetPassword from '@pages/ResetPassword';
 import Users from '@pages/Users';
 import FormService from '@pages/FormService';
+import EditService from '@pages/EditService';
 
 const routes = [
   {
@@ -58,8 +59,15 @@ const routes = [
   {
     path: '/service/add',
     name: 'Add Service',
-    protected: false,
+    protected: true,
     component: FormService,
+    layout: MainLayout,
+  },
+  {
+    path: '/service/edit/:id',
+    name: 'Edit Service',
+    protected: true,
+    component: EditService,
     layout: MainLayout,
   },
   { path: '*', name: 'Not Found', component: NotFound, layout: MainLayout, protected: false },

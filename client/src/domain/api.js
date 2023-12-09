@@ -56,5 +56,8 @@ export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELET
 export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);
 
 // laundry
-export const apiGetServices = () => callAPI(`${urls.laundry}/service`, 'GET', {}, true);
+export const apiGetServices = () => callAPI(`${urls.laundry}/services`, 'GET', {}, true);
+export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'GET', {}, true);
 export const apiAddServices = (data) => callAPI(`${urls.laundry}/service/add`, 'POST', data, true);
+export const apiEditServices = (data, id) => callAPI(`${urls.laundry}/service/edit/${id}`, 'PUT', data, true);
+export const apiDeleteServices = (id) => callAPI(`${urls.laundry}/service/delete/${id}`, 'DELETE', {}, true);

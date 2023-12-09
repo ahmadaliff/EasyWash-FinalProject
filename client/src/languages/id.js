@@ -91,7 +91,8 @@ export default {
   app_decline: 'Tolak',
 
   // service
-  app_service_add_header: 'Tambah Service',
+  app_service_add_header: 'Tambah Layanan',
+  app_service_edit_header: 'Ubah Layanan',
   app_service_name: 'Nama Layanan',
   app_service_name_require_message: 'Nama Layanan Dibutuhkan',
   app_service_name_desc: `Nama layanan 
