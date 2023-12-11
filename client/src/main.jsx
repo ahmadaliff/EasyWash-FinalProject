@@ -9,6 +9,9 @@ import Language from '@containers/Language';
 
 import store, { persistor } from '@store';
 
+import 'leaflet/dist/leaflet.css';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>

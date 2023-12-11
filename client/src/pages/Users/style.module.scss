@@ -13,14 +13,22 @@
     @include directionX;
     align-items: center;
     gap: 0.25rem;
+    width: 100%;
+    @include apply-at-md-size {
+      width: auto;
+    }
     .searchInput {
       box-sizing: border-box;
+      width: 100%;
       padding: 0.5rem;
       font-size: small;
       border: 1px solid var(--color-text);
       background-color: var(--color-bg);
       color: var(--color-text);
-      border-radius: 10px;
+      border-radius: 3px;
+      @include apply-at-md-size {
+        width: auto;
+      }
       &:focus {
         outline: none;
         border: 1px solid var(--color-primary);

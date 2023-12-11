@@ -1,6 +1,7 @@
 const { verifyToken } = require("../utils/jwtUtil");
 const redisClient = require("../utils/redisClient");
 const { User } = require("../models");
+const { handleNotFound } = require("../helpers/handleResponseHelper");
 
 exports.authenticationMiddleware = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -13,10 +14,13 @@ exports.authenticationMiddleware = async (req, res, next) => {
   }
   const chacheToken = await redisClient.get(id.toString());
   if (token !== chacheToken) {
-    return res.sendStatus(403);
+    return handleClientError(res, 403, "app_token_expired");
   }
   const isExist = await User.findOne({ where: { id: id } });
-  if (!isExist || isExist.role != role) {
+  if (!isExist) {
+    return handleNotFound(res, 403, "app_token_expired");
+  }
+  if (isExist.role != role) {
     return handleClientError(res, 403, "app_token_expired");
   }
   req.id = id;

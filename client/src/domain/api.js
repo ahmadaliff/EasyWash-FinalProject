@@ -7,6 +7,7 @@ const urls = {
   ping: 'ping.json',
   user: 'user',
   admin: 'admin',
+  laundry: 'laundry',
 };
 
 export const callAPI = async (endpoint, method, data = {}, iswithCredentials = false, header = {}, params = {}) => {
@@ -53,3 +54,10 @@ export const apiGetUserUnverified = (search, limit, page) =>
   callAPI(`${urls.admin}/users/unverified?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
 export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELETE', id, true);
 export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);
+
+// laundry
+export const apiGetServices = () => callAPI(`${urls.laundry}/services`, 'GET', {}, true);
+export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'GET', {}, true);
+export const apiAddServices = (data) => callAPI(`${urls.laundry}/service/add`, 'POST', data, true);
+export const apiEditServices = (data, id) => callAPI(`${urls.laundry}/service/edit/${id}`, 'PUT', data, true);
+export const apiDeleteServices = (id) => callAPI(`${urls.laundry}/service/delete/${id}`, 'DELETE', {}, true);

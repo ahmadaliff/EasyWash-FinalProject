@@ -29,8 +29,15 @@ import {
 
 import classes from '@pages/Users/style.module.scss';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { DoNotDisturb, PersonSearch, Unpublished, Verified } from '@mui/icons-material';
+import { DoNotDisturb, ManageSearch, Unpublished, Verified } from '@mui/icons-material';
 import styled from 'styled-components';
+
+const StyledToggle = styled(ToggleButton)({
+  '&.Mui-selected, &.Mui-selected:hover': {
+    color: 'white',
+    border: 'none',
+  },
+});
 
 const Users = ({ user, users, intl: { formatMessage } }) => {
   const navigate = useNavigate();
@@ -41,7 +48,7 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    if (user.role !== 'admin') {
+    if (user?.role !== 'admin') {
       navigate('/');
     }
   }, [navigate, user]);
@@ -74,14 +81,6 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
     setPage(0);
   };
 
-  const StyledToggleButton = styled(ToggleButton)({
-    '&.Mui-selected, &.Mui-selected:hover': {
-      color: 'white',
-      backgroundColor: '#7ac94c',
-      border: 'none',
-    },
-  });
-
   const columns = [
     { id: 'fullName', label: formatMessage({ id: 'app_user_fullName' }), minWidth: 170 },
     { id: 'email', label: formatMessage({ id: 'app_user_email' }), minWidth: 100 },
@@ -102,21 +101,21 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
           <ToggleButtonGroup
             value={isVerifiedUsers}
             exclusive
-            onChange={() => setIsVerifiedUsers(!isVerifiedUsers)}
+            onClick={() => setIsVerifiedUsers(!isVerifiedUsers)}
             fullWidth
             className={classes.toggleRole}
             size="small"
           >
-            <StyledToggleButton value>
+            <StyledToggle value={false}>
               <Verified /> <FormattedMessage id="app_account_verified" />
-            </StyledToggleButton>
-            <StyledToggleButton value={false}>
+            </StyledToggle>
+            <StyledToggle value>
               <Unpublished /> <FormattedMessage id="app_account_unverified" />
-            </StyledToggleButton>
+            </StyledToggle>
           </ToggleButtonGroup>
         </div>
         <div className={classes.searchInputWrap}>
-          <PersonSearch />
+          <ManageSearch />
           <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
         </div>
       </div>

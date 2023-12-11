@@ -1,0 +1,32 @@
+@import '@styles/base';
+
+.container {
+  color: var(--color-text);
+  background-color: var(--color-bg) !important;
+  * {
+    color: var(--color-text);
+    background-color: var(--color-bg) !important;
+  }
+  td > span {
+    background-color: white !important;
+  }
+  input {
+    pointer-events: none;
+  }
+  div > span,
+  button {
+    display: none;
+  }
+  max-width: 70vw !important;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  @include apply-at-md-size {
+    max-width: auto;
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+}
+.iconMarker {
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 5px var(--color-primary));
+}

@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
           name: "userId",
         },
       });
+      Merchant.hasMany(models.Service, {
+        foreignKey: {
+          name: "merchantId",
+        },
+      });
     }
   }
   Merchant.init(

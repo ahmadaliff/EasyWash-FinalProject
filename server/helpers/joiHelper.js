@@ -1,5 +1,5 @@
 const joi = require("joi");
-const { handleResponse } = require("./handleResponseHelper");
+const { handleClientError } = require("./handleResponseHelper");
 
 //Function to return error status and hanlde response
 exports.validateJoi = (res, data, schema, field = null) => {
@@ -7,10 +7,7 @@ exports.validateJoi = (res, data, schema, field = null) => {
   if (error) {
     return {
       error: true,
-      handleRes: handleResponse(res, 400, {
-        status: "Validation Failed",
-        message: error.details[0].message,
-      }),
+      handleRes: handleClientError(res, 400, error.details[0].message),
     };
   }
   return { error: false, handleRes: null };
@@ -38,4 +35,21 @@ exports.schemaUser = {
   email: joi.string().email().required(),
   password: joi.string().required(),
   role: joi.string().required(),
+};
+
+//Schema Merchant
+exports.schemaMerchant = {
+  name: joi.string().required(),
+  description: joi.string().required(),
+  imagePath: joi.string().optional(),
+  userId: joi.number().optional(),
+  location: joi.string().optional(),
+  isVerified: joi.boolean().optional(),
+};
+
+//Schema Service
+exports.schemaService = {
+  name: joi.string().required(),
+  price: joi.number().required(),
+  isUnit: joi.boolean().required(),
 };
