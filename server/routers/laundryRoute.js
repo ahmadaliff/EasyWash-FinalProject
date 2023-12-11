@@ -5,8 +5,15 @@ const {
   deleteService,
   addService,
   getServiceById,
+  getOrders,
+  getOrderById,
+  addTotalPriceOrder,
+  getMerchant,
+  editMerchant,
+  editPhotoMerchant,
 } = require("../controllers/laundryController");
 const { authorizationOwnService } = require("../middleware/authorizationRole");
+const { multerMiddleware } = require("../middleware/multerMiddleware");
 
 const router = Router();
 
@@ -19,5 +26,11 @@ router.delete(
   deleteService
 );
 router.get("/service/:serviceId", authorizationOwnService, getServiceById);
+router.get("/orders", getOrders);
+router.patch("/order/totalPrice/:orderId", addTotalPriceOrder);
+router.get("/my", getMerchant);
+router.put("/edit", editMerchant);
+router.patch("/changePhoto", multerMiddleware, editPhotoMerchant);
+router.get("/order/:orderId", getOrderById);
 
 module.exports = router;

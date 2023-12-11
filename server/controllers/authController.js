@@ -99,6 +99,7 @@ exports.logout = async (req, res) => {
     redisClient.del(id.toString());
     return handleSuccess(res, { message: "app_logout_success" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

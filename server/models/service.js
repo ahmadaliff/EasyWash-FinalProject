@@ -14,6 +14,18 @@ module.exports = (sequelize, DataTypes) => {
           name: "merchantId",
         },
       });
+      Service.hasMany(models.ServicesOrdered, {
+        foreignKey: { name: "serviceId" },
+        onDelete: "CASCADE",
+      });
+      Service.hasMany(models.Cart, {
+        foreignKey: { name: "serviceId" },
+        onDelete: "CASCADE",
+      });
+
+      Service.belongsToMany(models.Order, {
+        through: models.ServicesOrdered,
+      });
     }
   }
   Service.init(

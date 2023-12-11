@@ -36,6 +36,17 @@ export default {
   app_service_created: 'Service created',
   app_service_updated: 'Service edited',
   app_service_deleted: 'Service deleted',
+  app_success_already_fav: 'Merchant already in favorit',
+  app_success_add_to_fav: 'Success add to favorit',
+  app_success_delete_from_fav: 'Success delete from favorit',
+  app_success_already_exist: 'Data Already exist',
+  app_success_add_to_cart: 'Success add to cart',
+  app_success_delete_from_cart: 'Success delete from cart',
+  app_created_order: 'Success created order',
+  app_cannot_cancel_order: 'Your order already acc by laundry, you cant cancel the order',
+  app_cancel_order_success: 'Order dibatalkan',
+  app_updated_merchant: 'Success update merchant',
+  app_updated_merchant_photo: 'Success update photo merchant',
 
   // login and register
   app_profile: 'Profile',
@@ -76,6 +87,10 @@ export default {
   app_location: 'Location',
   app_merchant_name: 'Merchant Name',
   app_merchant_require: 'Merchant Name is required',
+  app_not_have_access: 'Not have access',
+  app_success_add_total_price: 'Success ad total price',
+  app_status_invalid: 'Status Invalid',
+  app_status_updated: 'Status updated',
 
   // profile
   app_edit_profile_desc:
@@ -104,4 +119,8 @@ It is recommended not to use excess capital letters, include more than 1 service
   app_service_isUnit: 'Is unit service?',
   app_service_isUnit_require_message: 'Is unit service ? is required',
   app_service_isUnit_desc: `Specify whether this service is unit or kilo`,
+
+  // laundry
+  app_merchant_header: 'Merchant',
+  app_edit_merchant: 'Update Merchant',
 };

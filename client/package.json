@@ -42,6 +42,7 @@
     "redux-saga": "^1.2.3",
     "reselect": "^4.1.8",
     "sass": "^1.63.6",
+    "socket.io-client": "^4.7.2",
     "styled-components": "^6.1.1",
     "vite": "^4.4.0"
   },

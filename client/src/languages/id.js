@@ -36,6 +36,22 @@ export default {
   app_service_created: 'Layanan berhasil ditambahkan',
   app_service_updated: 'Data layanan berhasil diubah',
   app_service_deleted: 'Data layanan berhasil dihapus',
+  app_success_already_fav: 'Sudah ada dalam favorit',
+  app_success_add_to_fav: 'Berhasil menambahkan favorit',
+  app_success_delete_from_fav: 'Berhasil menghapus dari favorit',
+  app_success_already_exist: 'Data sudah ada',
+  app_success_add_to_cart: 'Berhasil menambahkan ke keranjang',
+  app_success_delete_from_cart: 'Berhasil menghapus dari keranjang',
+  app_created_order: 'Berhasil Membuat Order',
+  app_cannot_cancel_order: 'Order kamu telah diambil oleh laundry, kamu tidak bisa membatalkan pesanan',
+  app_cancel_order_success: 'Order dibatalkan',
+  app_not_have_access: 'Tidak punya akses',
+  app_success_add_total_price: 'Berhasil menambahkan total price',
+  app_status_invalid: 'Status tidak sesuai',
+  app_status_updated: 'Status diperbarui',
+  app_updated_merchant: 'Berhasil ubah data merchant',
+  app_updated_merchant_photo: 'Berhasil ubah foto merchant',
+
   // login and register
   app_profile: 'Profil',
   app_header_login: 'Masuk',
@@ -103,4 +119,8 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   app_service_isUnit: 'Layanan Satuan?',
   app_service_isUnit_require_message: 'layanan Satuan ? is required',
   app_service_isUnit_desc: `Tentukan apakah layanan ini satuan atau kiloan`,
+
+  // laundry
+  app_merchant_header: 'Laundry',
+  app_edit_merchant: 'Ubah Laundry',
 };

@@ -15,6 +15,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: "userId" },
         onDelete: "CASCADE",
       });
+      User.hasMany(models.Order, {
+        foreignKey: { name: "userId" },
+        onDelete: "CASCADE",
+      });
+      User.hasMany(models.Favorit, {
+        foreignKey: { name: "userId" },
+        onDelete: "CASCADE",
+      });
+      User.hasMany(models.Cart, {
+        foreignKey: { name: "userId" },
+        onDelete: "CASCADE",
+      });
     }
   }
   User.init(

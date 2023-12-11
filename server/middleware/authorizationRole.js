@@ -24,7 +24,20 @@ exports.authorizationRoleLaundry = async (req, res, next) => {
       res,
       403,
 
-      "unauthorize, forbidden access this endpoint login with standard account"
+      "unauthorize, forbidden access this endpoint login with laundry account"
+    );
+  }
+  next();
+};
+
+exports.authorizationRoleUser = async (req, res, next) => {
+  const { role } = req;
+  if (role != "user") {
+    return handleClientError(
+      res,
+      403,
+
+      "unauthorize, forbidden access this endpoint login with user account"
     );
   }
   next();

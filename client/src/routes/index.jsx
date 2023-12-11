@@ -9,6 +9,8 @@ import ResetPassword from '@pages/ResetPassword';
 import Users from '@pages/Users';
 import FormService from '@pages/FormService';
 import EditService from '@pages/EditService';
+import StatusOrder from '@pages/StatusOrder';
+import MyMerchant from '@pages/MyMerchant';
 
 const routes = [
   {
@@ -68,6 +70,20 @@ const routes = [
     name: 'Edit Service',
     protected: true,
     component: EditService,
+    layout: MainLayout,
+  },
+  {
+    path: '/order/status/:orderId',
+    name: 'Status Order',
+    protected: true,
+    component: StatusOrder,
+    layout: MainLayout,
+  },
+  {
+    path: '/laundry/merchant',
+    name: 'My Merchant',
+    protected: true,
+    component: MyMerchant,
     layout: MainLayout,
   },
   { path: '*', name: 'Not Found', component: NotFound, layout: MainLayout, protected: false },

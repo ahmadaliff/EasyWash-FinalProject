@@ -5,8 +5,10 @@ import clientReducer, { storedKey as storedClientState } from '@containers/Clien
 import registerReducer, { storedKey as storedResisterStep } from '@pages/Register/reducer';
 import usersReducer, { storedKey as storedUsersState } from '@pages/Users/reducer';
 import editServiceReducer from '@pages/EditService/reducer';
+import statusOrderReducer from '@pages/StatusOrder/reducer';
 import languageReducer from '@containers/Language/reducer';
 import profileReducer from '@pages/Profile/reducer';
+import myMerchantReducer from '@pages/MyMerchant/reducer';
 
 import { mapWithPersistor } from './persistence';
 
@@ -21,6 +23,8 @@ const temporaryReducers = {
   language: languageReducer,
   profile: profileReducer,
   editService: editServiceReducer,
+  statusOrder: statusOrderReducer,
+  myMerchant: myMerchantReducer,
 };
 
 const createReducer = () => {

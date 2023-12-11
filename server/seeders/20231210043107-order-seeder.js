@@ -12,26 +12,24 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    return queryInterface.bulkInsert("Merchants", [
+    return await queryInterface.bulkInsert("Orders", [
       {
-        id: 1,
-        name: "Laundry 1",
-        userId: 3,
-        description: "ini adalah description",
-        imagePath: null,
+        userId: 2,
+        estimatedPrice: 100.0,
+        totalPrice: 80,
+        status: "app_pending",
+        weigth: 12,
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
-        isVerified: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 2,
-        name: "Laundry 2",
-        userId: 5,
-        description: "ini adalah description",
-        imagePath: null,
+        userId: 2,
+        estimatedPrice: 150.0,
+        totalPrice: 120,
+        weigth: 12,
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
-        isVerified: false,
+        status: "app_finish ",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -46,6 +44,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    return queryInterface.bulkDelete("Merchants", null, {});
+    return await queryInterface.bulkDelete("Orders", null, {});
   },
 };

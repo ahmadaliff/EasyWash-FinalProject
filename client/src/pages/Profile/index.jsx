@@ -9,7 +9,7 @@ import config from '@config/index';
 import EditProfile from '@components/EditProfile';
 
 import { Edit } from '@mui/icons-material';
-import { Avatar, Card, CardContent, Skeleton, Typography } from '@mui/material';
+import { Avatar, Card, CardContent, Skeleton } from '@mui/material';
 
 import { actionEditPhotoProfile, actionGetProfile, actionResetProfile } from '@pages/Profile/actions';
 import { selectProfile } from '@pages/Profile/selectors';
@@ -70,30 +70,30 @@ const Profile = ({ user, profile }) => {
           <h4>
             <FormattedMessage id="app_profile" />
           </h4>
-          <Typography className={classes.profileInfo}>
+          <span className={classes.profileInfo}>
             <p className={classes.profileLabel}>
               <FormattedMessage id="app_user_fullName" />
             </p>
             <p className={classes.profileText}>{profile?.fullName}</p>
-          </Typography>
-          <Typography className={classes.profileInfo}>
+          </span>
+          <span className={classes.profileInfo}>
             <p className={classes.profileLabel}>
               <FormattedMessage id="app_user_phone" />
             </p>
             <p className={classes.profileText}>{profile?.phone}</p>
-          </Typography>
-          <Typography className={classes.profileInfo}>
+          </span>
+          <span className={classes.profileInfo}>
             <p className={classes.profileLabel}>
               <FormattedMessage id="app_user_email" />
             </p>
             <p className={classes.profileText}>{profile?.email}</p>
-          </Typography>
-          <Typography className={classes.profileInfo}>
+          </span>
+          <span className={classes.profileInfo}>
             <p className={classes.profileLabel}>
               <FormattedMessage id="app_account_type" />
             </p>
             <p className={classes.profileText}>{profile?.role}</p>
-          </Typography>
+          </span>
         </div>
       </div>
       <EditProfile profile={profile} open={isDialogOpen} handleClose={() => setIsDialogOpen(false)} />

@@ -5,9 +5,10 @@ import request from '@utils/request';
 
 const urls = {
   ping: 'ping.json',
-  user: 'user',
+  auth: 'auth',
   admin: 'admin',
   laundry: 'laundry',
+  user: 'user',
 };
 
 export const callAPI = async (endpoint, method, data = {}, iswithCredentials = false, header = {}, params = {}) => {
@@ -33,19 +34,19 @@ export const callAPI = async (endpoint, method, data = {}, iswithCredentials = f
 
 export const ping = () => callAPI(urls.ping, 'get');
 // refresh token
-export const apiRefreshToken = () => callAPI(`${urls.user}/refresh`, 'get', {}, true);
-// user
-export const apiHandleLogin = (data) => callAPI(`${urls.user}/login`, 'post', data, true);
-export const apiHandleLogout = (id) => callAPI(`${urls.user}/logout`, 'post', id, true);
-export const apiHandleRegister = (data) => callAPI(`${urls.user}/register`, 'POST', data);
-export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.user}/verifyEmail`, 'POST', data);
-export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.user}/checkOtpVerifyEmail`, 'POST', data);
-export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.user}/forgotPassword`, 'POST', data);
-export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.user}/resetPassword`, 'PUT', data);
-export const apiHandleGetProfile = () => callAPI(`${urls.user}/profile`, 'GET', {}, true);
+export const apiRefreshToken = () => callAPI(`${urls.auth}/refresh`, 'get', {}, true);
+// userAUTH
+export const apiHandleLogin = (data) => callAPI(`${urls.auth}/login`, 'post', data, true);
+export const apiHandleLogout = (id) => callAPI(`${urls.auth}/logout`, 'post', id, true);
+export const apiHandleRegister = (data) => callAPI(`${urls.auth}/register`, 'POST', data);
+export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.auth}/verifyEmail`, 'POST', data);
+export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.auth}/checkOtpVerifyEmail`, 'POST', data);
+export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.auth}/forgotPassword`, 'POST', data);
+export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.auth}/resetPassword`, 'PUT', data);
+export const apiHandleGetProfile = () => callAPI(`${urls.auth}/profile`, 'GET', {}, true);
 export const apiHandleEditPhotoProfile = (data) =>
-  callAPI(`${urls.user}/edit/photoProfile`, 'PUT', true, data, { 'Content-Type': 'multipart/form-data' });
-export const apiHandleEditProfile = (data) => callAPI(`${urls.user}/edit/profile`, 'PUT', data, true);
+  callAPI(`${urls.auth}/edit/photoProfile`, 'PUT', true, data, { 'Content-Type': 'multipart/form-data' });
+export const apiHandleEditProfile = (data) => callAPI(`${urls.auth}/edit/profile`, 'PUT', data, true);
 
 // admin
 export const apiGetUsers = (search, limit, page) =>
@@ -61,3 +62,11 @@ export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'G
 export const apiAddServices = (data) => callAPI(`${urls.laundry}/service/add`, 'POST', data, true);
 export const apiEditServices = (data, id) => callAPI(`${urls.laundry}/service/edit/${id}`, 'PUT', data, true);
 export const apiDeleteServices = (id) => callAPI(`${urls.laundry}/service/delete/${id}`, 'DELETE', {}, true);
+export const apiGetMyMerchant = () => callAPI(`${urls.laundry}/my`, 'GET', {}, true);
+export const apiEditMerchant = (data) => callAPI(`${urls.laundry}/edit`, 'PUT', data, true);
+export const apiEditPhotoMerchant = (data) =>
+  callAPI(`${urls.laundry}/changePhoto`, 'PATCH', data, true, { 'Content-Type': 'multipart/form-data' });
+
+// user role
+export const apiGetOrders = () => callAPI(`${urls.user}/orders`, 'GET', {}, true);
+export const apiGetOrderById = (id) => callAPI(`${urls.user}/order/${id}`, 'GET', {}, true);

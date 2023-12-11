@@ -1,20 +1,19 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import toast from 'react-hot-toast';
-import CryptoJS from 'crypto-js';
 
-import { apiHandleEditPhotoProfile, apiHandleEditProfile, apiHandleGetProfile } from '@domain/api';
+import { apiEditMerchant, apiEditPhotoMerchant, apiGetMyMerchant } from '@domain/api';
 
 import intlHelper from '@utils/intlHelper';
 
+import { CHANGE_PHOTO_MERCHANT, EDIT_MERCHANT, GET_MERCHANT } from '@pages/MyMerchant/constants';
+import { actionSetMerchant } from '@pages/MyMerchant/actions';
 import { showPopup, setLoading } from '@containers/App/actions';
-import { EDIT_PHOTO_PROFILE, EDIT_PROFILE, GET_PROFILE } from '@pages/Profile/constants';
-import { actionSetProfile } from '@pages/Profile/actions';
 
-function* sagaHandleGetUser() {
+function* sagaHandleGetMerchant() {
   yield put(setLoading(true));
   try {
-    const response = yield call(apiHandleGetProfile);
-    yield put(actionSetProfile(response.data));
+    const response = yield call(apiGetMyMerchant);
+    yield put(actionSetMerchant(response.data));
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 404) {
       toast.error(error.response.data.message);
@@ -27,11 +26,11 @@ function* sagaHandleGetUser() {
   yield put(setLoading(false));
 }
 
-function* sagaHandleEditPhotoProfile({ data }) {
+function* sagaHandleEditPhotoMErchant({ data }) {
   yield put(setLoading(true));
   try {
-    const response = yield call(apiHandleEditPhotoProfile, { image: data });
-    yield put(actionSetProfile(response.data));
+    const response = yield call(apiEditPhotoMerchant, { image: data });
+    yield put(actionSetMerchant(response.data));
     toast.success(intlHelper({ message: response?.message }));
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 404) {
@@ -43,16 +42,12 @@ function* sagaHandleEditPhotoProfile({ data }) {
   yield put(setLoading(false));
 }
 
-function* sagaHandleEditProfile({ data }) {
+function* sagaHandleEditMerchant({ data }) {
   yield put(setLoading(true));
   try {
-    if (data?.new_password || data?.old_password) {
-      data.new_password = CryptoJS.AES.encrypt(data.new_password, import.meta.env.VITE_CRYPTOJS_SECRET).toString();
-      data.old_password = CryptoJS.AES.encrypt(data.old_password, import.meta.env.VITE_CRYPTOJS_SECRET).toString();
-    }
-    const response = yield call(apiHandleEditProfile, data);
+    const response = yield call(apiEditMerchant, data);
     toast.success(intlHelper({ message: response?.message }));
-    yield put(actionSetProfile(response.data));
+    yield put(actionSetMerchant(response.data));
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 404) {
       toast.error(intlHelper({ message: error.response.data.message }));
@@ -63,8 +58,8 @@ function* sagaHandleEditProfile({ data }) {
   yield put(setLoading(false));
 }
 
-export default function* profileSaga() {
-  yield takeLatest(GET_PROFILE, sagaHandleGetUser);
-  yield takeLatest(EDIT_PHOTO_PROFILE, sagaHandleEditPhotoProfile);
-  yield takeLatest(EDIT_PROFILE, sagaHandleEditProfile);
+export default function* myMerchantSaga() {
+  yield takeLatest(GET_MERCHANT, sagaHandleGetMerchant);
+  yield takeLatest(EDIT_MERCHANT, sagaHandleEditMerchant);
+  yield takeLatest(CHANGE_PHOTO_MERCHANT, sagaHandleEditPhotoMErchant);
 }
