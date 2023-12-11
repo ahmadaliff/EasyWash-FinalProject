@@ -7,6 +7,7 @@ import { connect, useDispatch } from 'react-redux';
 import {
   Alert,
   Button,
+  Card,
   Stack,
   Table,
   TableBody,
@@ -29,7 +30,7 @@ import {
 
 import classes from '@pages/Users/style.module.scss';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { DoNotDisturb, ManageSearch, Unpublished, Verified } from '@mui/icons-material';
+import { Delete, DoNotDisturb, ManageSearch, Unpublished, Verified } from '@mui/icons-material';
 import styled from 'styled-components';
 
 const StyledToggle = styled(ToggleButton)({
@@ -119,91 +120,103 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
           <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
         </div>
       </div>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell key={column.id} className={`${classes.tableHead} ${column.id === 'email' && classes.email}`}>
-                  {column.label}
+      <Card className={classes.card}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    className={`${classes.tableHead} ${column.id === 'email' && classes.email}`}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+                <TableCell className={classes.tableHead}>
+                  <FormattedMessage id="app_action" />
                 </TableCell>
-              ))}
-              <TableCell className={classes.tableHead}>
-                <FormattedMessage id="app_action" />
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users?.data?.map((row) => (
-              <TableRow hover key={row.id}>
-                {columns.map((column) => {
-                  const value = row[column.id];
-                  return (
-                    <TableCell
-                      key={column.id}
-                      className={`${classes.tableBody} ${column.id === 'email' && classes.email}`}
-                    >
-                      {value}
-                    </TableCell>
-                  );
-                })}
-                <TableCell className={`${classes.tableBody} ${classes.tableAction}`}>
-                  {isVerifiedUsers ? (
-                    <Button
-                      type="button"
-                      className={classes.buttonAction}
-                      onClick={() => dispatch(actionDeleteUser(row.id))}
-                    >
-                      <FormattedMessage id="app_delete_account" />
-                    </Button>
-                  ) : (
-                    <>
-                      <Button
-                        type="button"
-                        className={classes.buttonActionAcc}
-                        onClick={() => dispatch(actionVerifyUser(row.id))}
-                        size="small"
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users?.data?.map((row) => (
+                <TableRow hover key={row.id}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell
+                        key={column.id}
+                        className={`${classes.tableBody} ${column.id === 'email' && classes.email}`}
                       >
-                        <Verified />
-                        <FormattedMessage id="app_verify_action" />
-                      </Button>
+                        {value}
+                      </TableCell>
+                    );
+                  })}
+                  <TableCell className={`${classes.tableBody} ${classes.tableAction}`}>
+                    {isVerifiedUsers ? (
                       <Button
                         type="button"
-                        className={classes.buttonActionDec}
+                        className={classes.buttonAction}
                         onClick={() => dispatch(actionDeleteUser(row.id))}
                       >
-                        <DoNotDisturb />
-                        <FormattedMessage id="app_decline" />
+                        <Delete />
+                        <div className={classes.email}>
+                          <FormattedMessage id="app_delete_account" />
+                        </div>
                       </Button>
-                    </>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-            {users?.data?.length === 0 && (
-              <TableRow hover>
-                <TableCell colSpan={4}>
-                  <Stack sx={{ width: '100%' }} spacing={2}>
-                    <Alert severity="error">
-                      <FormattedMessage id="app_404" />
-                    </Alert>
-                  </Stack>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        className={classes.tablePagination}
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={users?.totalRows || 0}
-        rowsPerPage={rowsPerPage}
-        page={users ? page : 0}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+                    ) : (
+                      <>
+                        <Button
+                          type="button"
+                          className={classes.buttonActionAcc}
+                          onClick={() => dispatch(actionVerifyUser(row.id))}
+                          size="small"
+                        >
+                          <Verified />
+                          <div className={classes.email}>
+                            <FormattedMessage id="app_verify_action" />
+                          </div>
+                        </Button>
+                        <Button
+                          type="button"
+                          className={classes.buttonActionDec}
+                          onClick={() => dispatch(actionDeleteUser(row.id))}
+                        >
+                          <DoNotDisturb />
+                          <div className={classes.email}>
+                            <FormattedMessage id="app_decline" />
+                          </div>
+                        </Button>
+                      </>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+              {users?.data?.length === 0 && (
+                <TableRow hover>
+                  <TableCell colSpan={4}>
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                      <Alert severity="error">
+                        <FormattedMessage id="app_404" />
+                      </Alert>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          className={classes.tablePagination}
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={users?.totalRows || 0}
+          rowsPerPage={rowsPerPage}
+          page={users ? page : 0}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Card>
     </div>
   );
 };

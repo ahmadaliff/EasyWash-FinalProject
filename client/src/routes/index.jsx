@@ -11,6 +11,7 @@ import FormService from '@pages/FormService';
 import EditService from '@pages/EditService';
 import StatusOrder from '@pages/StatusOrder';
 import MyMerchant from '@pages/MyMerchant';
+import LaundryServices from '@pages/LaundryServices';
 
 const routes = [
   {
@@ -59,6 +60,13 @@ const routes = [
     layout: MainLayout,
   },
   {
+    path: '/service',
+    name: 'Services',
+    protected: true,
+    component: LaundryServices,
+    layout: MainLayout,
+  },
+  {
     path: '/service/add',
     name: 'Add Service',
     protected: true,
@@ -80,7 +88,7 @@ const routes = [
     layout: MainLayout,
   },
   {
-    path: '/laundry/merchant',
+    path: '/laundry',
     name: 'My Merchant',
     protected: true,
     component: MyMerchant,

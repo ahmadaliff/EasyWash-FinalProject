@@ -1,7 +1,10 @@
 const { verifyToken } = require("../utils/jwtUtil");
 const redisClient = require("../utils/redisClient");
 const { User } = require("../models");
-const { handleNotFound } = require("../helpers/handleResponseHelper");
+const {
+  handleNotFound,
+  handleClientError,
+} = require("../helpers/handleResponseHelper");
 
 exports.authenticationMiddleware = async (req, res, next) => {
   const authHeader = req.headers["authorization"];

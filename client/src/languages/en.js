@@ -123,4 +123,6 @@ It is recommended not to use excess capital letters, include more than 1 service
   // laundry
   app_merchant_header: 'Merchant',
   app_edit_merchant: 'Update Merchant',
+  app_delete_service: 'Delete Service',
+  app_services_header: 'Service management',
 };

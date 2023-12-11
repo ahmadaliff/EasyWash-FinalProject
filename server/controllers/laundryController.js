@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { checkStatusOrder } = require("../helpers/checkStatusOrderHelper");
 const {
   handleNotFound,
@@ -82,7 +83,16 @@ exports.editPhotoMerchant = async (req, res) => {
 exports.getMyService = async (req, res) => {
   try {
     const { id } = req;
-    const response = await Service.findAll({
+    const page = parseInt(req.query.page) || 0;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+    const offset = limit * page;
+    const totalRows = await Service.count({
+      where: {
+        name: {
+          [Op.like]: "%" + search + "%",
+        },
+      },
       include: {
         model: Merchant,
         where: {
@@ -91,8 +101,30 @@ exports.getMyService = async (req, res) => {
         attributes: [],
       },
     });
-    return handleSuccess(res, { data: response });
+    const totalPage = Math.ceil(totalRows / limit);
+    const response = await Service.findAll({
+      where: {
+        name: {
+          [Op.like]: "%" + search + "%",
+        },
+      },
+      include: {
+        model: Merchant,
+        where: {
+          userId: id,
+        },
+        attributes: [],
+      },
+      offset: offset,
+      limit: limit,
+    });
+    return handleSuccess(res, {
+      data: response,
+      totalPage: totalPage,
+      totalRows: totalRows,
+    });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

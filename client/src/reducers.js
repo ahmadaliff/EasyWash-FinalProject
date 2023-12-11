@@ -4,6 +4,7 @@ import appReducer, { storedKey as storedAppState } from '@containers/App/reducer
 import clientReducer, { storedKey as storedClientState } from '@containers/Client/reducer';
 import registerReducer, { storedKey as storedResisterStep } from '@pages/Register/reducer';
 import usersReducer, { storedKey as storedUsersState } from '@pages/Users/reducer';
+import servicesReducer, { storedKey as storedServicesState } from '@pages/LaundryServices/reducer';
 import editServiceReducer from '@pages/EditService/reducer';
 import statusOrderReducer from '@pages/StatusOrder/reducer';
 import languageReducer from '@containers/Language/reducer';
@@ -17,6 +18,7 @@ const storedReducers = {
   client: { reducer: clientReducer, whitelist: storedClientState },
   registerStep: { reducer: registerReducer, whitelist: storedResisterStep },
   users: { reducer: usersReducer, whitelist: storedUsersState },
+  services: { reducer: servicesReducer, whitelist: storedServicesState },
 };
 
 const temporaryReducers = {

@@ -57,15 +57,16 @@ export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELET
 export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);
 
 // laundry
-export const apiGetServices = () => callAPI(`${urls.laundry}/services`, 'GET', {}, true);
 export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'GET', {}, true);
 export const apiAddServices = (data) => callAPI(`${urls.laundry}/service/add`, 'POST', data, true);
 export const apiEditServices = (data, id) => callAPI(`${urls.laundry}/service/edit/${id}`, 'PUT', data, true);
-export const apiDeleteServices = (id) => callAPI(`${urls.laundry}/service/delete/${id}`, 'DELETE', {}, true);
+export const apiDeleteService = (id) => callAPI(`${urls.laundry}/service/delete/${id}`, 'DELETE', {}, true);
 export const apiGetMyMerchant = () => callAPI(`${urls.laundry}/my`, 'GET', {}, true);
 export const apiEditMerchant = (data) => callAPI(`${urls.laundry}/edit`, 'PUT', data, true);
 export const apiEditPhotoMerchant = (data) =>
   callAPI(`${urls.laundry}/changePhoto`, 'PATCH', data, true, { 'Content-Type': 'multipart/form-data' });
+export const apiGetServices = (search, limit, page) =>
+  callAPI(`${urls.laundry}/services?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
 
 // user role
 export const apiGetOrders = () => callAPI(`${urls.user}/orders`, 'GET', {}, true);

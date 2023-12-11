@@ -123,4 +123,6 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   // laundry
   app_merchant_header: 'Laundry',
   app_edit_merchant: 'Ubah Laundry',
+  app_delete_service: 'Hapus Layanan',
+  app_services_header: 'Manajemen layanan ',
 };
