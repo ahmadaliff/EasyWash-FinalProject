@@ -17,9 +17,6 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
-      estimatedPrice: {
-        type: Sequelize.INTEGER,
-      },
       totalPrice: {
         type: Sequelize.INTEGER,
       },
@@ -28,9 +25,6 @@ module.exports = {
       },
       status: {
         type: Sequelize.STRING,
-      },
-      weigth: {
-        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,

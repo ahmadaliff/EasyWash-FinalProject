@@ -11,6 +11,7 @@ const {
   getMerchant,
   editMerchant,
   editPhotoMerchant,
+  changeStatus,
 } = require("../controllers/laundryController");
 const { authorizationOwnService } = require("../middleware/authorizationRole");
 const { multerMiddleware } = require("../middleware/multerMiddleware");
@@ -27,6 +28,7 @@ router.delete(
 );
 router.get("/service/:serviceId", authorizationOwnService, getServiceById);
 router.get("/orders", getOrders);
+router.patch("/order/changeStatus", changeStatus);
 router.patch("/order/totalPrice/:orderId", addTotalPriceOrder);
 router.get("/my", getMerchant);
 router.put("/edit", editMerchant);

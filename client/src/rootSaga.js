@@ -8,6 +8,7 @@ import formServiceSaga from '@pages/FormService/saga';
 import editServiceSaga from '@pages/EditService/saga';
 import myMerchantSaga from '@pages/MyMerchant/saga';
 import servicesSaga from '@pages/LaundryServices/saga';
+import laundryOrdersSaga from '@pages/LaundryOrders/saga';
 import { statusOrderSaga } from '@pages/StatusOrder/saga';
 
 export default function* rootSaga() {
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     statusOrderSaga(),
     myMerchantSaga(),
     servicesSaga(),
+    laundryOrdersSaga(),
   ]);
 }

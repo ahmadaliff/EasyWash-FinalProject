@@ -67,6 +67,9 @@ export const apiEditPhotoMerchant = (data) =>
   callAPI(`${urls.laundry}/changePhoto`, 'PATCH', data, true, { 'Content-Type': 'multipart/form-data' });
 export const apiGetServices = (search, limit, page) =>
   callAPI(`${urls.laundry}/services?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
+export const apiGetLaundryOrders = (limit, page) =>
+  callAPI(`${urls.laundry}/orders?page=${page}&limit=${limit}`, 'GET', {}, true);
+export const apiChangeStatus = (data) => callAPI(`${urls.laundry}/order/changeStatus`, 'PATCH', data, true);
 
 // user role
 export const apiGetOrders = () => callAPI(`${urls.user}/orders`, 'GET', {}, true);

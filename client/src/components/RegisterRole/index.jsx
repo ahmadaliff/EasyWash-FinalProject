@@ -96,7 +96,7 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
           <FormControl fullWidth>
             <div className={classes.inputLabel}>
               <FormattedMessage id="app_location" />
-              <MapLeaflet handleLocation={handleLocation} islocated={merchant?.location} />
+              <MapLeaflet handleLocation={handleLocation} islocated={merchant?.location} permanent={false} />
             </div>
           </FormControl>
           <FormControl className={classes.inputContainer}>

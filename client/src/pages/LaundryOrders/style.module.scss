@@ -59,6 +59,7 @@
   .tableHead {
     color: var(--color-primary);
     font-weight: 600;
+    font-size: medium;
     width: 5rem;
     @include apply-at-md-size {
       width: auto;
@@ -120,6 +121,9 @@
     cursor: pointer;
     &:hover {
       transform: scale(1.025, 1.025);
+    }
+    &:disabled {
+      background-color: rgba($color: gray, $alpha: 0.6);
     }
   }
   .buttonAction {

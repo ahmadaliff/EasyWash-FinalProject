@@ -4,12 +4,13 @@ import appReducer, { storedKey as storedAppState } from '@containers/App/reducer
 import clientReducer, { storedKey as storedClientState } from '@containers/Client/reducer';
 import registerReducer, { storedKey as storedResisterStep } from '@pages/Register/reducer';
 import usersReducer, { storedKey as storedUsersState } from '@pages/Users/reducer';
-import servicesReducer, { storedKey as storedServicesState } from '@pages/LaundryServices/reducer';
+import laundryOrdersReducer from '@pages/LaundryOrders/reducer';
+import servicesReducer from '@pages/LaundryServices/reducer';
 import editServiceReducer from '@pages/EditService/reducer';
 import statusOrderReducer from '@pages/StatusOrder/reducer';
 import languageReducer from '@containers/Language/reducer';
-import profileReducer from '@pages/Profile/reducer';
 import myMerchantReducer from '@pages/MyMerchant/reducer';
+import profileReducer from '@pages/Profile/reducer';
 
 import { mapWithPersistor } from './persistence';
 
@@ -18,7 +19,6 @@ const storedReducers = {
   client: { reducer: clientReducer, whitelist: storedClientState },
   registerStep: { reducer: registerReducer, whitelist: storedResisterStep },
   users: { reducer: usersReducer, whitelist: storedUsersState },
-  services: { reducer: servicesReducer, whitelist: storedServicesState },
 };
 
 const temporaryReducers = {
@@ -27,6 +27,8 @@ const temporaryReducers = {
   editService: editServiceReducer,
   statusOrder: statusOrderReducer,
   myMerchant: myMerchantReducer,
+  services: servicesReducer,
+  laundryOrders: laundryOrdersReducer,
 };
 
 const createReducer = () => {

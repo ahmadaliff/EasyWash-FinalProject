@@ -124,5 +124,22 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   app_merchant_header: 'Laundry',
   app_edit_merchant: 'Ubah Laundry',
   app_delete_service: 'Hapus Layanan',
-  app_services_header: 'Manajemen layanan ',
+  app_services_header: 'Manajemen layanan',
+  app_orders_header: 'Manajemen Pesanan',
+  app_order_id: 'Id Pesanan',
+  app_total_price: 'Harga Total',
+  app_edit: 'Ubah',
+  app_total_price_require: 'Harga Total dibutuhkan',
+  app_detail_order: 'Detail pesanan',
+  app_acc: 'Terima',
+  app_next_status: 'Status selanjutnya',
+
+  // status
+  app_pending: 'Ditunda',
+  app_pickUp: 'Diambil',
+  app_payment: 'Pembayaran',
+  app_onProcess: 'Diproses',
+  app_onDelivery: 'Diantar',
+  app_finish: 'Selesai',
+  app_rejected: 'Ditolak',
 };

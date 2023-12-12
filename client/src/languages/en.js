@@ -125,4 +125,21 @@ It is recommended not to use excess capital letters, include more than 1 service
   app_edit_merchant: 'Update Merchant',
   app_delete_service: 'Delete Service',
   app_services_header: 'Service management',
+  app_orders_header: 'Order management',
+  app_order_id: 'Order Id',
+  app_total_price: 'Total Price',
+  app_edit: 'Edit',
+  app_total_price_require: 'Total price is required',
+  app_detail_order: 'Order Detail',
+  app_acc: 'Accept',
+  app_next_status: 'Next status',
+
+  // status
+  app_pending: 'Pending',
+  app_pickUp: 'Pick Up',
+  app_payment: 'Payment',
+  app_onProcess: 'On Process',
+  app_onDelivery: 'On Delivery',
+  app_finish: 'Finish',
+  app_rejected: 'Rejected',
 };

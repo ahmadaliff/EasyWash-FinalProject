@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 import { MyLocation } from '@mui/icons-material';
 import { FormattedMessage } from 'react-intl';
 
-const MapLeaflet = ({ handleLocation, islocated }) => {
+const MapLeaflet = ({ handleLocation, islocated, permanent = true }) => {
   const [markerloc, setMarkerloc] = useState(null);
   const [myLocation, setMyLocation] = useState(null);
   const [map, setMap] = useState(null);
@@ -26,6 +26,7 @@ const MapLeaflet = ({ handleLocation, islocated }) => {
         handleLocation({ lat: latitude, lng: longitude });
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleToMyLocation = useCallback(() => {
@@ -48,7 +49,7 @@ const MapLeaflet = ({ handleLocation, islocated }) => {
               <FormattedMessage id="app_my_location" />
             </Tooltip>
           </Circle>
-          <MarkerLeaflet positionProps={markerloc} handleLocation={handleLocation} />
+          <MarkerLeaflet positionProps={markerloc} handleLocation={handleLocation} permanent={permanent} />
         </MapContainer>
       )}
       <IconButton onClick={handleToMyLocation} size="small" className={classes.myLocationButton}>
@@ -61,6 +62,7 @@ const MapLeaflet = ({ handleLocation, islocated }) => {
 MapLeaflet.propTypes = {
   handleLocation: PropTypes.func,
   islocated: PropTypes.object,
+  permanent: PropTypes.bool,
 };
 
 export default MapLeaflet;

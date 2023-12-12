@@ -152,43 +152,45 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
                       </TableCell>
                     );
                   })}
-                  <TableCell className={`${classes.tableBody} ${classes.tableAction}`}>
-                    {isVerifiedUsers ? (
-                      <Button
-                        type="button"
-                        className={classes.buttonAction}
-                        onClick={() => dispatch(actionDeleteUser(row.id))}
-                      >
-                        <Delete />
-                        <div className={classes.email}>
-                          <FormattedMessage id="app_delete_account" />
-                        </div>
-                      </Button>
-                    ) : (
-                      <>
+                  <TableCell className={classes.tableBody}>
+                    <div className={classes.tableAction}>
+                      {isVerifiedUsers ? (
                         <Button
                           type="button"
-                          className={classes.buttonActionAcc}
-                          onClick={() => dispatch(actionVerifyUser(row.id))}
-                          size="small"
-                        >
-                          <Verified />
-                          <div className={classes.email}>
-                            <FormattedMessage id="app_verify_action" />
-                          </div>
-                        </Button>
-                        <Button
-                          type="button"
-                          className={classes.buttonActionDec}
+                          className={classes.buttonAction}
                           onClick={() => dispatch(actionDeleteUser(row.id))}
                         >
-                          <DoNotDisturb />
+                          <Delete />
                           <div className={classes.email}>
-                            <FormattedMessage id="app_decline" />
+                            <FormattedMessage id="app_delete_account" />
                           </div>
                         </Button>
-                      </>
-                    )}
+                      ) : (
+                        <>
+                          <Button
+                            type="button"
+                            className={classes.buttonActionAcc}
+                            onClick={() => dispatch(actionVerifyUser(row.id))}
+                            size="small"
+                          >
+                            <Verified />
+                            <div className={classes.email}>
+                              <FormattedMessage id="app_verify_action" />
+                            </div>
+                          </Button>
+                          <Button
+                            type="button"
+                            className={classes.buttonActionDec}
+                            onClick={() => dispatch(actionDeleteUser(row.id))}
+                          >
+                            <DoNotDisturb />
+                            <div className={classes.email}>
+                              <FormattedMessage id="app_decline" />
+                            </div>
+                          </Button>
+                        </>
+                      )}
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}

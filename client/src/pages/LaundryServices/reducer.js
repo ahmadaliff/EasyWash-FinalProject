@@ -5,8 +5,6 @@ export const initialState = {
   services: null,
 };
 
-export const storedKey = ['services'];
-
 export const servicesReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {

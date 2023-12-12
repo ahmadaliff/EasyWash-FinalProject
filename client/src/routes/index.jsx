@@ -12,6 +12,7 @@ import EditService from '@pages/EditService';
 import StatusOrder from '@pages/StatusOrder';
 import MyMerchant from '@pages/MyMerchant';
 import LaundryServices from '@pages/LaundryServices';
+import LaundryOrders from '@pages/LaundryOrders';
 
 const routes = [
   {
@@ -81,10 +82,10 @@ const routes = [
     layout: MainLayout,
   },
   {
-    path: '/order/status/:orderId',
-    name: 'Status Order',
+    path: '/laundry/orders',
+    name: 'Laundry Orders',
     protected: true,
-    component: StatusOrder,
+    component: LaundryOrders,
     layout: MainLayout,
   },
   {
@@ -92,6 +93,13 @@ const routes = [
     name: 'My Merchant',
     protected: true,
     component: MyMerchant,
+    layout: MainLayout,
+  },
+  {
+    path: '/order/status/:orderId',
+    name: 'Status Order',
+    protected: true,
+    component: StatusOrder,
     layout: MainLayout,
   },
   { path: '*', name: 'Not Found', component: NotFound, layout: MainLayout, protected: false },

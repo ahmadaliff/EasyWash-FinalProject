@@ -16,9 +16,10 @@ const twoIcon = divIcon({
   html: renderToStaticMarkup(<LocalLaundryService className={classes.marker} />),
   iconSize: [0, 0],
 });
-const createRoutineMachineLayer = () => {
+
+const createRoutineMachineLayer = ({ laundryPoint, userPoint }) => {
   const instance = L.Routing.control({
-    waypoints: [L.latLng(-6.223710368739434, 106.84333920478822), L.latLng(-6.223614378310005, 106.84399902820589)],
+    waypoints: [L.latLng(userPoint), L.latLng(laundryPoint)],
     lineOptions: {
       styles: [
         { color: 'gray', opacity: 0.5, weight: 8 },
@@ -26,7 +27,6 @@ const createRoutineMachineLayer = () => {
         { color: 'green', opacity: 1, weight: 2 },
       ],
     },
-    // show: false,
     addWaypoints: true,
     routeWhileDragging: true,
     draggableWaypoints: true,
@@ -43,7 +43,7 @@ const createRoutineMachineLayer = () => {
         toolTip = 'Laundry';
       }
       const marker = L.marker(start.latLng, {
-        draggable: true,
+        draggable: false,
         icon: markerIcon,
       }).bindTooltip(toolTip, {
         direction: 'top',

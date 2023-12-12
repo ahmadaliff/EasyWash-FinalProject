@@ -26,7 +26,8 @@
     min-height: 2rem;
   }
 }
-.iconMarker {
+.iconMarker,
+.marker {
   color: var(--color-primary);
   filter: drop-shadow(0 0 5px var(--color-primary));
 }

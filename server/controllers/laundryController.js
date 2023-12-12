@@ -124,7 +124,6 @@ exports.getMyService = async (req, res) => {
       totalRows: totalRows,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -221,7 +220,10 @@ exports.deleteService = async (req, res) => {
 exports.getOrders = async (req, res) => {
   try {
     const { id } = req;
-    const response = await Order.findAll({
+    const page = parseInt(req.query.page) || 0;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = limit * page;
+    const totalRows = await Order.count({
       include: {
         model: Service,
         include: {
@@ -234,10 +236,27 @@ exports.getOrders = async (req, res) => {
         attributes: [],
       },
     });
-    if (!response) {
-      return handleNotFound(res);
-    }
-    return handleSuccess(res, { data: response });
+    const totalPage = Math.ceil(totalRows / limit);
+    const response = await Order.findAll({
+      include: {
+        model: Service,
+        include: {
+          model: Merchant,
+          where: {
+            userId: id,
+          },
+          attributes: ["location"],
+        },
+        attributes: ["merchantId"],
+      },
+      offset: offset,
+      limit: limit,
+    });
+    return handleSuccess(res, {
+      data: response,
+      totalPage: totalPage,
+      totalRows: totalRows,
+    });
   } catch (error) {
     return handleServerError(res);
   }

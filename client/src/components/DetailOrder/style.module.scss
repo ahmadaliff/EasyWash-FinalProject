@@ -1,0 +1,19 @@
+@import '@styles/base';
+
+.dialog {
+  width: max-content;
+}
+.field {
+  @include directionX;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  .label {
+    float: left;
+    font-weight: 700;
+    width: 10rem;
+  }
+  .text {
+    width: 100%;
+  }
+}

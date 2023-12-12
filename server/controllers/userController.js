@@ -245,7 +245,7 @@ exports.createOrder = async (req, res) => {
       return acc + service.ServicesOrdered.quantity * service.price;
     }, 0);
 
-    await Order.update({ estimatedPrice: total }, { where: { id: order.id } });
+    await Order.update({ totalPrice: total }, { where: { id: order.id } });
 
     return handleCreated(res, { message: "app_created_order" });
   } catch (error) {
