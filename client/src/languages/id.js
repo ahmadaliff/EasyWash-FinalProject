@@ -8,6 +8,8 @@ export default {
   app_popup_error_message: 'Maaf, telah terjadi kesalahan. Silakan coba beberapa saat lagi',
   app_popup_close_button_label: 'Tutup',
   app_my_location: 'Lokasi Saya',
+  app_tagline: 'Pengalaman mencuci Anda lebih mudah !!',
+  app_no_data_to_show: 'Tidak ada data untuk ditampilkan',
 
   // backend response
   app_404: 'Data tidak ditemukan',

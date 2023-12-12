@@ -56,7 +56,7 @@ function* watchStatusUpdates({ orderId }) {
   yield takeEvery(channel, handleStatusUpdate);
 }
 
-export function* statusOrderSaga() {
+export default function* statusOrderSaga() {
   yield takeEvery(GET_STATUS, sagaGetStatus);
   yield takeEvery(CONNECT_SOCKET, connectSocket);
   yield takeEvery(DISCONNECT_SOCKET, disconnectSocket);

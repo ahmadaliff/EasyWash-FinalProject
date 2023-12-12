@@ -20,7 +20,7 @@ const { authorizationRoleUser } = require("../middleware/authorizationRole");
 
 const router = Router();
 
-router.get("/merchant", getAllLaundry);
+router.post("/merchant", getAllLaundry);
 
 router.use(authenticationMiddleware);
 router.use(authorizationRoleUser);

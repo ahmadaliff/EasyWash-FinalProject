@@ -8,6 +8,8 @@ export default {
   app_popup_error_message: 'Sorry, an error has occurred. Please try again later',
   app_popup_close_button_label: 'Close',
   app_my_location: 'My location',
+  app_tagline: 'Make your wash life easier!!',
+  app_no_data_to_show: 'No data to show',
 
   // backend response
   app_404: 'Data not found',

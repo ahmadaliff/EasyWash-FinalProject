@@ -50,7 +50,7 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
 
   return (
     <main className={classes.main}>
-      <img src="login.svg" className={classes.loginIlustration} alt="ilustrator" />
+      <img src="login.svg" className={classes.loginIlustration} alt="https://storyset.com" />
       <div className={classes.content}>
         <div onClick={() => navigate('/')} className={classes.logoHeader}>
           <img src="longLogo.svg" alt="logo" className={classes.logo} />

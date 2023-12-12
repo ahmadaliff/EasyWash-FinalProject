@@ -35,6 +35,10 @@ export const callAPI = async (endpoint, method, data = {}, iswithCredentials = f
 export const ping = () => callAPI(urls.ping, 'get');
 // refresh token
 export const apiRefreshToken = () => callAPI(`${urls.auth}/refresh`, 'get', {}, true);
+
+// home
+export const apiGetMerchants = (data) => callAPI(`${urls.user}/merchant`, 'post', data);
+
 // userAUTH
 export const apiHandleLogin = (data) => callAPI(`${urls.auth}/login`, 'post', data, true);
 export const apiHandleLogout = (id) => callAPI(`${urls.auth}/logout`, 'post', id, true);
@@ -74,3 +78,6 @@ export const apiChangeStatus = (data) => callAPI(`${urls.laundry}/order/changeSt
 // user role
 export const apiGetOrders = () => callAPI(`${urls.user}/orders`, 'GET', {}, true);
 export const apiGetOrderById = (id) => callAPI(`${urls.user}/order/${id}`, 'GET', {}, true);
+export const apiGetFavoritMerchants = () => callAPI(`${urls.user}/favorit`, 'GET', {}, true);
+export const apiAddtoFavorit = (id) => callAPI(`${urls.user}/favorit/add/${id}`, 'POST', {}, true);
+export const apiDeleteFromFavorit = (id) => callAPI(`${urls.user}/favorit/delete/${id}`, 'DELETE', {}, true);

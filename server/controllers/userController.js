@@ -22,7 +22,7 @@ exports.getAllLaundry = async (req, res) => {
       return handleNotFound(res);
     }
     const reqLocation = JSON.parse(location);
-    const response = await Merchant.findAll();
+    const response = await Merchant.findAll({ include: Favorit });
     const filteredResponse = response.filter((merchant) => {
       const { lat, lng } = JSON.parse(merchant.location);
       const distance = getDistance(reqLocation.lat, reqLocation.lng, lat, lng);
@@ -39,9 +39,11 @@ exports.getAllLaundry = async (req, res) => {
 exports.getFavorit = async (req, res) => {
   try {
     const { id } = req;
-    const response = await Favorit.findAll({
-      where: { userId: id },
-      include: Merchant,
+    const response = await Merchant.findAll({
+      include: {
+        model: Favorit,
+        where: { userId: id },
+      },
     });
 
     if (!response) {
@@ -87,12 +89,10 @@ exports.deleteFromFavorit = async (req, res) => {
     if (!isExist) {
       return handleNotFound(res);
     }
-    const response = await Favorit.destroy({
-      userId: id,
-      merchantId: merchantId,
-    });
+    await isExist.destroy();
     return handleSuccess(res, { message: "app_success_delete_from_fav" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

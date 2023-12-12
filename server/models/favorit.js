@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
           name: "userId",
         },
       });
+      Favorit.belongsTo(models.Merchant, {
+        foreignKey: {
+          name: "merchantId",
+        },
+      });
     }
   }
   Favorit.init(

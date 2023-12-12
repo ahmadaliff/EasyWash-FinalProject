@@ -14,31 +14,21 @@
     box-sizing: border-box;
   }
   .head {
-    @include directionY;
-    align-items: center;
-    gap: 0;
-    @include apply-at-sm-size {
-      @include directionX;
-      gap: 2rem;
-      justify-content: center;
-    }
+    @include directionX;
+    justify-content: space-between;
     width: 100%;
-    .ilustration {
-      max-width: 20rem;
-      @include apply-at-md-size {
-        max-width: 40vw;
-      }
+    align-items: center;
+    padding: 1rem;
+    @include apply-at-md-size {
+      padding: 2rem 5rem 2rem 5rem;
     }
-    .headerText {
-      @include directionX;
-      align-items: center;
-      font-size: 2.5rem;
-      max-width: 15rem;
-      @include apply-at-md-size {
-        font-size: 3rem;
-        max-width: 15rem;
-      }
-      font-family: 'Lobster', cursive;
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
     }
   }
   .content {

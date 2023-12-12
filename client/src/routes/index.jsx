@@ -13,6 +13,7 @@ import StatusOrder from '@pages/StatusOrder';
 import MyMerchant from '@pages/MyMerchant';
 import LaundryServices from '@pages/LaundryServices';
 import LaundryOrders from '@pages/LaundryOrders';
+import Favorit from '@pages/Favorit';
 
 const routes = [
   {
@@ -20,6 +21,13 @@ const routes = [
     name: 'Home',
     protected: false,
     component: Home,
+    layout: MainLayout,
+  },
+  {
+    path: '/favorit',
+    name: 'Favorit',
+    protected: true,
+    component: Favorit,
     layout: MainLayout,
   },
   {

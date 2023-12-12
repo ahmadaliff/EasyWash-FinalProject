@@ -49,7 +49,7 @@ const Register = ({ isLogin, step, intl: { formatMessage } }) => {
       <div onClick={() => navigate('/')} className={classes.logoHeader}>
         <img src="longLogo.svg" alt="logo" className={classes.logo} />
       </div>
-      <img src="register.svg" className={classes.registerIlustration} alt="ilustrator" />
+      <img src="register.svg" className={classes.registerIlustration} alt="https://storyset.com" />
       <div className={classes.content}>
         <Card className={classes.registerCard}>
           <CardContent>

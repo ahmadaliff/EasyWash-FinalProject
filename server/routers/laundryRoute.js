@@ -13,11 +13,15 @@ const {
   editPhotoMerchant,
   changeStatus,
 } = require("../controllers/laundryController");
-const { authorizationOwnService } = require("../middleware/authorizationRole");
+const {
+  authorizationOwnService,
+  authorizationRoleLaundry,
+} = require("../middleware/authorizationRole");
 const { multerMiddleware } = require("../middleware/multerMiddleware");
 
 const router = Router();
 
+router.use(authorizationRoleLaundry);
 router.get("/services", getMyService);
 router.post("/service/add", addService);
 router.put("/service/edit/:serviceId", authorizationOwnService, editService);
