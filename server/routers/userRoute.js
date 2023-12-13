@@ -12,6 +12,7 @@ const {
   getMyOrderById,
   cancelOrder,
   createOrder,
+  getLaundryById,
 } = require("../controllers/userController");
 const {
   authenticationMiddleware,
@@ -25,6 +26,7 @@ router.post("/merchant", getAllLaundry);
 router.use(authenticationMiddleware);
 router.use(authorizationRoleUser);
 
+router.post("/detail/laundry/:merchantId", getLaundryById);
 router.get("/favorit", getFavorit);
 router.post("/favorit/add/:merchantId", addToFavorit);
 router.delete("/favorit/delete/:merchantId", deleteFromFavorit);

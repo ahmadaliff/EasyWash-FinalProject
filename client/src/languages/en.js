@@ -49,6 +49,8 @@ export default {
   app_cancel_order_success: 'Order dibatalkan',
   app_updated_merchant: 'Success update merchant',
   app_updated_merchant_photo: 'Success update photo merchant',
+  app_laundry_out_of_range: 'Laundry out of range, minimum in range 3km',
+  app_unathorize_auto: 'Unauthorize, Auto logout',
 
   // login and register
   app_profile: 'Profile',
@@ -109,6 +111,7 @@ export default {
   app_decline: 'Decline',
 
   // services
+  app_service_datail: 'Service Detail',
   app_service_add_header: 'Add Service',
   app_service_edit_header: 'Edit Service',
   app_service_name: 'Service Name',
@@ -139,6 +142,7 @@ It is recommended not to use excess capital letters, include more than 1 service
   // cart
   app_cart_header: 'Cart',
   app_create_order: 'Create Order',
+  app_add_to_cart: 'Add to cart',
 
   // order
   app_order: 'Order',

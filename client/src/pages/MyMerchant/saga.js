@@ -15,7 +15,7 @@ function* sagaHandleGetMerchant() {
     const response = yield call(apiGetMyMerchant);
     yield put(actionSetMerchant(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(error.response.data.message);
 
       toast.error(intlHelper({ message: error.response.data.message }));
@@ -33,7 +33,7 @@ function* sagaHandleEditPhotoMErchant({ data }) {
     yield put(actionSetMerchant(response.data));
     toast.success(intlHelper({ message: response?.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -49,7 +49,7 @@ function* sagaHandleEditMerchant({ data }) {
     toast.success(intlHelper({ message: response?.message }));
     yield put(actionSetMerchant(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

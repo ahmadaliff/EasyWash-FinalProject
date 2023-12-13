@@ -12,7 +12,7 @@ function* sagaGetServices({ search, limit, page }) {
     const response = yield call(apiGetServices, search, limit, page);
     yield put(actionSetServices(response));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -27,7 +27,7 @@ function* sagaDeleteService({ data }) {
     const response = yield call(apiDeleteService, data);
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

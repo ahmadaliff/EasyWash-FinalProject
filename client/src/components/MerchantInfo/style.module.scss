@@ -1,8 +1,11 @@
 @import '@styles/base';
 .merchant {
-  --image-size-sm: 2.5rem;
+  --image-size-sm: 5rem;
   --image-size-md: 5rem;
-  @include directionX;
+  @include directionY;
+  @include apply-at-sm-size {
+    @include directionX;
+  }
   gap: 1rem;
   .imgWrap {
     align-self: center;
@@ -67,6 +70,10 @@
     .profileText {
       margin: 0;
       width: 100%;
+      max-width: 10rem;
+      @include apply-at-sm-size {
+        max-width: 15rem;
+      }
     }
   }
 }

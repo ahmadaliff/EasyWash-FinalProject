@@ -15,7 +15,7 @@ function* sagaGetCarts() {
     const response = yield call(apiGetCarts);
     yield put(actionSetCarts(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -24,15 +24,15 @@ function* sagaGetCarts() {
   yield put(setLoading(false));
 }
 
-function* sagaAddToCart({ id }) {
+function* sagaAddToCart({ id, quantity }) {
   yield put(setLoading(true));
   try {
-    const response = yield call(apiAddToCart, id);
+    const response = yield call(apiAddToCart, { serviceId: id, quantity });
     yield put(actionResetCarts());
     yield put(actionGetCarts());
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -49,7 +49,7 @@ function* sagaDeleteFromCart({ id }) {
     yield put(actionGetCarts());
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -65,7 +65,7 @@ function* sagaChangeQuantity({ id, quantity }) {
     yield put(actionResetCarts());
     yield put(actionGetCarts());
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

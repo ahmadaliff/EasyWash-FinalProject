@@ -30,14 +30,9 @@ const MerchantInfo = ({ merchant }) => {
       </div>
       <div>
         <h4 className={classes.merchantInfoHeader}>
-          <FormattedMessage id="app_merchant_header" />
+          {/* <FormattedMessage id="app_merchant_header" /> */}
+          {merchant?.name}
         </h4>
-        <span className={classes.profileInfo}>
-          <p className={classes.profileLabel}>
-            <FormattedMessage id="app_merchant_name" />
-          </p>
-          <p className={classes.profileText}>: {merchant?.name}</p>
-        </span>
         <span className={classes.profileInfo}>
           <p className={classes.profileLabel}>
             <FormattedMessage id="app_description" />

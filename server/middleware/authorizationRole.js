@@ -9,8 +9,7 @@ exports.authorizationRoleAdmin = async (req, res, next) => {
   if (role != "admin") {
     return handleClientError(
       res,
-      403,
-
+      401,
       "unauthorize, forbidden access this endpoint login with admin account"
     );
   }
@@ -22,8 +21,7 @@ exports.authorizationRoleLaundry = async (req, res, next) => {
   if (role != "laundry") {
     return handleClientError(
       res,
-      403,
-
+      401,
       "unauthorize, forbidden access this endpoint login with laundry account"
     );
   }
@@ -35,8 +33,7 @@ exports.authorizationRoleUser = async (req, res, next) => {
   if (role != "user") {
     return handleClientError(
       res,
-      403,
-
+      401,
       "unauthorize, forbidden access this endpoint login with user account"
     );
   }
@@ -59,7 +56,7 @@ exports.authorizationOwnService = async (req, res, next) => {
     if (!merchant) {
       return handleNotFound(res);
     } else if (merchant?.userId != id) {
-      return handleClientError(res, 403, "Forbidden, not your merchant");
+      return handleClientError(res, 401, "Forbidden, not your merchant");
     }
   }
 

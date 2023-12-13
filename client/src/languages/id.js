@@ -53,6 +53,8 @@ export default {
   app_status_updated: 'Status diperbarui',
   app_updated_merchant: 'Berhasil ubah data merchant',
   app_updated_merchant_photo: 'Berhasil ubah foto merchant',
+  app_laundry_out_of_range: 'Laundry diluar jangkauan, hanya bisa akses dalam range 3km',
+  app_unathorize_auto: 'Tidak diizinkan, dikeluarkan secara automatis',
 
   // login and register
   app_profile: 'Profil',
@@ -109,6 +111,7 @@ export default {
   app_decline: 'Tolak',
 
   // service
+  app_service_datail: 'Detail Layanan',
   app_service_add_header: 'Tambah Layanan',
   app_service_edit_header: 'Ubah Layanan',
   app_service_name: 'Nama Layanan',
@@ -139,6 +142,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   // cart
   app_cart_header: 'Cart',
   app_create_order: 'Buat Pesanan',
+  app_add_to_cart: 'Tambahkan ke keranjang',
 
   // order
   app_order: 'Pesan',

@@ -17,7 +17,7 @@ function* sagaEditService({ id, data, callback }) {
     toast.success(intlHelper({ message: response.message }));
     yield call(callback);
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -32,7 +32,7 @@ function* sagaGetService({ id }) {
     const response = yield call(apiGetService, id);
     yield put(actionSetService(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

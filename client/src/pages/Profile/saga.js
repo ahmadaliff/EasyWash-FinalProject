@@ -16,7 +16,7 @@ function* sagaHandleGetUser() {
     const response = yield call(apiHandleGetProfile);
     yield put(actionSetProfile(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(error.response.data.message);
 
       toast.error(intlHelper({ message: error.response.data.message }));
@@ -34,7 +34,7 @@ function* sagaHandleEditPhotoProfile({ data }) {
     yield put(actionSetProfile(response.data));
     toast.success(intlHelper({ message: response?.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -54,7 +54,7 @@ function* sagaHandleEditProfile({ data }) {
     toast.success(intlHelper({ message: response?.message }));
     yield put(actionSetProfile(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

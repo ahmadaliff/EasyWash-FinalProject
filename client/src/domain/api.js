@@ -41,7 +41,7 @@ export const apiGetMerchants = (data) => callAPI(`${urls.user}/merchant`, 'post'
 
 // userAUTH
 export const apiHandleLogin = (data) => callAPI(`${urls.auth}/login`, 'post', data, true);
-export const apiHandleLogout = (id) => callAPI(`${urls.auth}/logout`, 'post', id, true);
+export const apiHandleLogout = (id) => callAPI(`${urls.auth}/logout`, 'post', { id }, true);
 export const apiHandleRegister = (data) => callAPI(`${urls.auth}/register`, 'POST', data);
 export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.auth}/verifyEmail`, 'POST', data);
 export const apiHandleCheckOtpVerifyEmail = (data) => callAPI(`${urls.auth}/checkOtpVerifyEmail`, 'POST', data);
@@ -60,7 +60,7 @@ export const apiGetUserUnverified = (search, limit, page) =>
 export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELETE', id, true);
 export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);
 
-// laundry
+// laundry role
 export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'GET', {}, true);
 export const apiAddServices = (data) => callAPI(`${urls.laundry}/service/add`, 'POST', data, true);
 export const apiEditServices = (data, id) => callAPI(`${urls.laundry}/service/edit/${id}`, 'PUT', data, true);
@@ -82,9 +82,13 @@ export const apiGetFavoritMerchants = () => callAPI(`${urls.user}/favorit`, 'GET
 export const apiAddtoFavorit = (id) => callAPI(`${urls.user}/favorit/add/${id}`, 'POST', {}, true);
 export const apiDeleteFromFavorit = (id) => callAPI(`${urls.user}/favorit/delete/${id}`, 'DELETE', {}, true);
 export const apiGetCarts = () => callAPI(`${urls.user}/cart`, 'GET', {}, true);
-export const apiAddToCart = (id) => callAPI(`${urls.user}/cart/add/${id}`, 'POST', {}, true);
+export const apiAddToCart = (data) => callAPI(`${urls.user}/cart/add`, 'POST', data, true);
 export const apiDeleteFromCart = (id) => callAPI(`${urls.user}/cart/delete/${id}`, 'DELETE', {}, true);
 export const apiChangeQuantityCart = (data) => callAPI(`${urls.user}/cart/updateQuantity`, 'PUT', data, true);
 
 // order
 export const apiCreateOrder = (data) => callAPI(`${urls.user}/order/add`, 'POST', data, true);
+
+// laundry page
+export const apiGetMerchantById = (id, location) =>
+  callAPI(`${urls.user}/detail/laundry/${id}`, 'POST', location, true);

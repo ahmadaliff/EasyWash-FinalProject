@@ -27,13 +27,13 @@ axios.interceptors.response.use(
         }
       } catch (err) {
         if (err.response?.status === 401) {
-          store.dispatch(actionHandleLogout(() => window.location.assign('/')));
+          store.dispatch(actionHandleLogout());
           return Promise.reject(err);
         }
       }
     }
     if (error.response?.status === 401) {
-      store.dispatch(actionHandleLogout(() => window.location.assign('/')));
+      store.dispatch(actionHandleLogout());
     }
     return Promise.reject(error);
   }

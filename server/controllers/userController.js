@@ -5,7 +5,6 @@ const {
   handleCreated,
   handleClientError,
 } = require("../helpers/handleResponseHelper");
-const { validateJoi, schemaOrderItems } = require("../helpers/joiHelper");
 const {
   Merchant,
   Cart,
@@ -33,7 +32,33 @@ exports.getAllLaundry = async (req, res) => {
     });
     return handleSuccess(res, { data: filteredResponse });
   } catch (error) {
-    console.log(error);
+    return handleServerError(res);
+  }
+};
+
+exports.getLaundryById = async (req, res) => {
+  try {
+    const { location } = req.body;
+    const { merchantId } = req.params;
+    if (!location || !merchantId) {
+      return handleNotFound(res);
+    }
+    const reqLocation = JSON.parse(location);
+    const response = await Merchant.findOne({
+      where: { id: merchantId },
+      include: Service,
+    });
+    if (!response) {
+      return handleNotFound(res);
+    }
+    const { lat, lng } = JSON.parse(response.location);
+    const distance = getDistance(reqLocation.lat, reqLocation.lng, lat, lng);
+    if (distance > 3) {
+      return handleClientError(res, 400, "app_laundry_out_of_range");
+    }
+    response.dataValues.distance = distance;
+    return handleSuccess(res, { data: response });
+  } catch (error) {
     return handleServerError(res);
   }
 };

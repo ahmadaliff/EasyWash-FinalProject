@@ -15,7 +15,7 @@ function* sagaAddService({ data, callback }) {
     toast.success(intlHelper({ message: response.message }));
     yield call(callback);
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

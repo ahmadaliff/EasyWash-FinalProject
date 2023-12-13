@@ -12,7 +12,7 @@ function* sagaGetUsers({ search, limit, page }) {
     const response = yield call(apiGetUsers, search, limit, page);
     yield put(actionSetUsers(response));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -27,7 +27,7 @@ function* sagaGetUnverifiedUsers({ search, limit, page }) {
     const response = yield call(apiGetUserUnverified, search, limit, page);
     yield put(actionSetUsers(response));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -42,7 +42,7 @@ function* sagaVerifyUser({ data }) {
     const response = yield call(apiVerifyUser, { id: data });
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -57,7 +57,7 @@ function* sagaDeleteUser({ data }) {
     const response = yield call(apiDeleteUser, { id: data });
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

@@ -14,7 +14,7 @@ function* sagaGetFavoritMerchants() {
     const response = yield call(apiGetFavoritMerchants);
     yield put(actionSetFavoritMerchants(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -34,7 +34,7 @@ function* sagaAddtoFavorit({ id }) {
     yield put(actionGetMerchants());
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -51,7 +51,7 @@ function* sagaDeleteFromFavorit({ id }) {
     yield put(actionGetMerchants());
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

@@ -42,7 +42,7 @@ const Order = ({ orders }) => {
 
   const handleOrder = () => {
     const orderItems = orders.map(({ serviceName, servicePrice, createdAt, updatedAt, userId, ...order }) => order);
-    dispatch(actionCreateOrder({ location: JSON.stringify(location), orderItems }, () => navigate('user/order')));
+    dispatch(actionCreateOrder({ location: JSON.stringify(location), orderItems }, () => navigate('/user/order')));
   };
   return (
     <main className={classes.mainWrap}>
@@ -91,7 +91,7 @@ const Order = ({ orders }) => {
           </div>
         </div>
       ))}
-      <NoData />
+      {(orders?.length === 0 || !orders) && <NoData />}
       <div className={classes.totalPrice}>
         <p>
           <FormattedMessage id="app_total_price" />
@@ -107,7 +107,12 @@ const Order = ({ orders }) => {
         </p>
       </div>
 
-      <Button variant="contained" className={classes.createButton} onClick={handleOrder}>
+      <Button
+        variant="contained"
+        className={classes.createButton}
+        onClick={handleOrder}
+        disabled={orders?.length === 0 || !orders}
+      >
         <FormattedMessage id="app_order" />
       </Button>
     </main>

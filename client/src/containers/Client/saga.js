@@ -67,10 +67,12 @@ function* sagaHandleLogout({ callback }) {
     const { id } = yield select(selectUser);
     const response = yield call(apiHandleLogout, id);
     toast.success(intlHelper({ message: response?.message }));
-    yield call(callback);
     yield put(setLogin(false));
     yield put(setToken(null));
     yield put(setUser(null));
+    if (callback) {
+      yield call(callback);
+    }
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
@@ -92,7 +94,7 @@ function* sagaHandleSendVerifyEmail({ data }) {
     yield put(actionSetExpire(response.data.expire));
     yield put(actionSetEmail(data.email));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -109,7 +111,7 @@ function* sagaHandleSendOTP({ data }) {
     yield put(actionSetStep(2));
     yield put(actionSetVerify(true));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -132,7 +134,7 @@ function* sagaHandleRegister({ data, callback }) {
     yield put(actionHandleResetStep());
     yield call(callback);
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

@@ -38,7 +38,7 @@ function* sagaGetStatus({ orderId }) {
     const response = yield call(apiGetOrderById, orderId);
     yield put(actionSetStatus(response.data));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

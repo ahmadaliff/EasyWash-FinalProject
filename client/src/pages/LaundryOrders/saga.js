@@ -12,7 +12,7 @@ function* sagaGetOrders({ limit, page }) {
     const response = yield call(apiGetLaundryOrders, limit, page);
     yield put(actionSetOrders(response));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -28,7 +28,7 @@ function* sagaChangeStatus({ id, newStatus }) {
     const response = yield call(apiChangeStatus, { orderId: id, newStatus: newStatus });
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
-    if (error?.response?.status === 400 || error?.response?.status === 404) {
+    if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
