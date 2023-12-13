@@ -99,6 +99,7 @@ exports.getMyService = async (req, res) => {
           userId: id,
         },
         attributes: [],
+        required: true,
       },
     });
     const totalPage = Math.ceil(totalRows / limit);
@@ -114,6 +115,7 @@ exports.getMyService = async (req, res) => {
           userId: id,
         },
         attributes: [],
+        required: true,
       },
       offset: offset,
       limit: limit,
@@ -140,6 +142,7 @@ exports.getServiceById = async (req, res) => {
           userId: id,
         },
         attributes: [],
+        required: true,
       },
     });
     return handleSuccess(res, { data: response });
@@ -163,6 +166,7 @@ exports.addService = async (req, res) => {
         where: {
           userId: id,
         },
+        required: true,
       },
     });
     if (isExistByName) {
@@ -232,7 +236,9 @@ exports.getOrders = async (req, res) => {
             userId: id,
           },
           attributes: [],
+          required: true,
         },
+        required: true,
         attributes: [],
       },
     });
@@ -246,9 +252,11 @@ exports.getOrders = async (req, res) => {
             userId: id,
           },
           attributes: ["location"],
+          required: true,
         },
         attributes: ["merchantId"],
       },
+      required: true,
       offset: offset,
       limit: limit,
     });
@@ -278,7 +286,9 @@ exports.getOrderById = async (req, res) => {
             userId: id,
           },
           attributes: [],
+          required: true,
         },
+        required: true,
         attributes: [],
       },
     });

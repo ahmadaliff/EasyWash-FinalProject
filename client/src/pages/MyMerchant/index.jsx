@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { Avatar, Button, Card, CardContent, Skeleton } from '@mui/material';
 import classes from '@pages/MyMerchant/style.module.scss';
 import config from '@config/index';

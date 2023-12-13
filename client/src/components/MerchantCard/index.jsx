@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { Avatar, Card, CardContent, CardMedia, IconButton, Skeleton } from '@mui/material';
 import classes from '@components/MerchantCard/style.module.scss';
 import { Favorite } from '@mui/icons-material';
@@ -9,20 +9,22 @@ import { selectLogin, selectUser } from '@containers/Client/selectors';
 import { connect, useDispatch } from 'react-redux';
 import _ from 'lodash';
 import { actionAddToFavorit, actionDeleteFromFavorit } from '@pages/Favorit/action';
+import { useNavigate } from 'react-router-dom';
 
 const MerchantCard = ({ user, login, merchant }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   return (
     <div className={classes.cardWrap}>
-      <Card className={classes.card}>
+      <Card className={classes.card} onClick={() => navigate(`/laundry/${merchant?.id}`)}>
         {merchant?.imagePath ? (
           <>
             {loading && <Skeleton variant="rectangular" height="194" width="100%" />}
 
             <CardMedia
               component="img"
-              height="194"
+              className={classes.img}
               image={`${config.api.server}${merchant?.imagePath}`}
               alt={merchant?.name}
               loading="lazy"

@@ -1,8 +1,8 @@
 @import '@styles/base';
 
 .mainWrap {
-  --image-size-sm: 10rem;
-  --image-size-md: 12rem;
+  --image-size-sm: 2rem;
+  --image-size-md: 2rem;
   @include directionY;
   padding: 1rem;
   @include apply-at-md-size {

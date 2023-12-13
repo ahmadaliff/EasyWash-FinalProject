@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { selectUser } from '@containers/Client/selectors';
 import { selectUsers } from '@pages/Users/selectors';

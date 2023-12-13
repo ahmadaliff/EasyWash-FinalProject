@@ -1,18 +1,20 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useEffect } from 'react';
 
 import MerchantCard from '@components/MerchantCard';
+import NoData from '@components/NoData';
+
+import { Button } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
 
 import { actionGetFavoritMerchants, actionResetFavoritMerchants } from '@pages/Favorit/action';
 import { selectMerchants } from '@pages/Favorit/selectors';
 
 import classes from '@pages/Favorit/style.module.scss';
-import { Button } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 
 const Favorit = ({ merchants }) => {
   const dispatch = useDispatch();
@@ -45,11 +47,7 @@ const Favorit = ({ merchants }) => {
         ))}
       </div>
 
-      {merchants?.length === 0 && (
-        <div className={classes.noData}>
-          <FormattedMessage id="app_no_data_to_show" />
-        </div>
-      )}
+      {merchants?.length === 0 && <NoData />}
     </main>
   );
 };

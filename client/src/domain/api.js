@@ -81,3 +81,10 @@ export const apiGetOrderById = (id) => callAPI(`${urls.user}/order/${id}`, 'GET'
 export const apiGetFavoritMerchants = () => callAPI(`${urls.user}/favorit`, 'GET', {}, true);
 export const apiAddtoFavorit = (id) => callAPI(`${urls.user}/favorit/add/${id}`, 'POST', {}, true);
 export const apiDeleteFromFavorit = (id) => callAPI(`${urls.user}/favorit/delete/${id}`, 'DELETE', {}, true);
+export const apiGetCarts = () => callAPI(`${urls.user}/cart`, 'GET', {}, true);
+export const apiAddToCart = (id) => callAPI(`${urls.user}/cart/add/${id}`, 'POST', {}, true);
+export const apiDeleteFromCart = (id) => callAPI(`${urls.user}/cart/delete/${id}`, 'DELETE', {}, true);
+export const apiChangeQuantityCart = (data) => callAPI(`${urls.user}/cart/updateQuantity`, 'PUT', data, true);
+
+// order
+export const apiCreateOrder = (data) => callAPI(`${urls.user}/order/add`, 'POST', data, true);

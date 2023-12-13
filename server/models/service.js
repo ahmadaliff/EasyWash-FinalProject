@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Service.belongsToMany(models.Order, {
         through: models.ServicesOrdered,
+        foreignKey: { name: "serviceId" },
       });
     }
   }

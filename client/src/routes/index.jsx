@@ -14,6 +14,8 @@ import MyMerchant from '@pages/MyMerchant';
 import LaundryServices from '@pages/LaundryServices';
 import LaundryOrders from '@pages/LaundryOrders';
 import Favorit from '@pages/Favorit';
+import Cart from '@pages/Cart';
+import Order from '@pages/Order';
 
 const routes = [
   {
@@ -28,6 +30,20 @@ const routes = [
     name: 'Favorit',
     protected: true,
     component: Favorit,
+    layout: MainLayout,
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    protected: true,
+    component: Cart,
+    layout: MainLayout,
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    protected: true,
+    component: Order,
     layout: MainLayout,
   },
   {

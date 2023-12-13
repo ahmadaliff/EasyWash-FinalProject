@@ -21,7 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
       });
 
-      Order.belongsToMany(models.Service, { through: models.ServicesOrdered });
+      Order.belongsToMany(models.Service, {
+        through: models.ServicesOrdered,
+        foreignKey: {
+          name: "orderId",
+        },
+      });
     }
   }
   Order.init(

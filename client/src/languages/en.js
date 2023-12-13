@@ -44,7 +44,7 @@ export default {
   app_success_already_exist: 'Data Already exist',
   app_success_add_to_cart: 'Success add to cart',
   app_success_delete_from_cart: 'Success delete from cart',
-  app_created_order: 'Success created order',
+  app_created_order: 'Success create order, check your order list',
   app_cannot_cancel_order: 'Your order already acc by laundry, you cant cancel the order',
   app_cancel_order_success: 'Order dibatalkan',
   app_updated_merchant: 'Success update merchant',
@@ -135,6 +135,14 @@ It is recommended not to use excess capital letters, include more than 1 service
   app_detail_order: 'Order Detail',
   app_acc: 'Accept',
   app_next_status: 'Next status',
+
+  // cart
+  app_cart_header: 'Cart',
+  app_create_order: 'Create Order',
+
+  // order
+  app_order: 'Order',
+  app_location_order: 'Pickup Location',
 
   // status
   app_pending: 'Pending',

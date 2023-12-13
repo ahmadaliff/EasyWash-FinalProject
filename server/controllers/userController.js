@@ -5,6 +5,7 @@ const {
   handleCreated,
   handleClientError,
 } = require("../helpers/handleResponseHelper");
+const { validateJoi, schemaOrderItems } = require("../helpers/joiHelper");
 const {
   Merchant,
   Cart,
@@ -12,6 +13,7 @@ const {
   Order,
   ServicesOrdered,
   Service,
+  sequelize,
 } = require("../models");
 const getDistance = require("../utils/getDistanceUtil");
 
@@ -100,9 +102,18 @@ exports.deleteFromFavorit = async (req, res) => {
 exports.getCart = async (req, res) => {
   try {
     const { id } = req;
-    const response = await Cart.findAll({
-      where: { userId: id },
-      include: Service,
+    const response = await Merchant.findAll({
+      include: {
+        model: Service,
+        include: {
+          model: Cart,
+          where: { userId: id },
+          atrributes: ["quantity"],
+          required: true,
+        },
+        required: true,
+        atrributes: ["id"],
+      },
     });
 
     if (!response) {
@@ -111,6 +122,7 @@ exports.getCart = async (req, res) => {
 
     return handleSuccess(res, { data: response });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };
@@ -159,19 +171,18 @@ exports.updateQuantity = async (req, res) => {
 exports.deleteFromCart = async (req, res) => {
   try {
     const { id } = req;
-    const { serviceId } = req.params;
+    const { cartId } = req.params;
     const isExist = await Cart.findOne({
-      where: { userId: id, serviceId: serviceId },
+      where: { userId: id, id: cartId },
     });
+
     if (!isExist) {
       return handleNotFound(res);
     }
-    await Cart.destroy({
-      userId: id,
-      serviceId: serviceId,
-    });
+    await isExist.destroy();
     return handleSuccess(res, { message: "app_success_delete_from_cart" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };
@@ -219,33 +230,59 @@ exports.createOrder = async (req, res) => {
   try {
     const { id } = req;
     const { orderItems, location } = req.body;
-    if (!orderItems) {
+    if (!orderItems || !location) {
       return handleNotFound(res);
     }
-    const order = await Order.create({
-      userId: id,
-      status: "app_pending",
-      location: location,
+    const cartId = [];
+    const filteredOrderItems = orderItems.map(({ id, ...order }) => {
+      if (id) {
+        cartId.push(id);
+      }
+      return order;
     });
+    await sequelize.transaction(async (t) => {
+      const order = await Order.create(
+        {
+          userId: id,
+          status: "app_pending",
+          location: location,
+        },
+        { transaction: t }
+      );
 
-    orderItems.forEach(async (item) => {
-      await ServicesOrdered.create({
-        serviceId: item.serviceId,
-        orderId: order.id,
-        quantity: item.quantity,
+      for (let i = 0; i < filteredOrderItems.length; i++) {
+        const item = filteredOrderItems[i];
+        await ServicesOrdered.create(
+          {
+            serviceId: item.serviceId,
+            orderId: order.id,
+            quantity: item.quantity,
+          },
+          { transaction: t }
+        );
+      }
+
+      const result = await Order.findOne({
+        where: { id: order.id },
+        include: Service,
+        transaction: t,
       });
+
+      const total = result.Services.reduce((acc, service) => {
+        return acc + service.ServicesOrdered.quantity * service.price;
+      }, 0);
+
+      await Order.update(
+        { totalPrice: total },
+        { where: { id: order.id }, transaction: t }
+      );
+      if (cartId.length > 0) {
+        for (let j = 0; j < cartId.length; j++) {
+          const id = cartId[j];
+          await Cart.destroy({ where: { id: id }, transaction: t });
+        }
+      }
     });
-
-    const result = await Order.findOne({
-      where: { id: order.id },
-      include: Service,
-    });
-
-    const total = result.Service.reduce((acc, service) => {
-      return acc + service.ServicesOrdered.quantity * service.price;
-    }, 0);
-
-    await Order.update({ totalPrice: total }, { where: { id: order.id } });
 
     return handleCreated(res, { message: "app_created_order" });
   } catch (error) {

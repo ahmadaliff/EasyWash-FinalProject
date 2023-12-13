@@ -43,7 +43,7 @@
     @include apply-at-xl-size {
       grid-template-columns: repeat(4, minmax(15rem, 1fr));
     }
-    gap: 0.5rem;
+    gap: 1rem;
     padding-top: 2rem;
   }
   .noData {

@@ -1,0 +1,72 @@
+@import '@styles/base';
+.merchant {
+  --image-size-sm: 2.5rem;
+  --image-size-md: 5rem;
+  @include directionX;
+  gap: 1rem;
+  .imgWrap {
+    align-self: center;
+    @include apply-at-md-size {
+      align-self: auto;
+    }
+    height: var(--image-size-sm);
+    width: var(--image-size-sm);
+    @include apply-at-md-size {
+      height: var(--image-size-md);
+      width: var(--image-size-md);
+    }
+    overflow: hidden;
+    position: relative;
+    img {
+      object-fit: cover;
+      object-position: top;
+      height: var(--image-size-sm);
+      width: var(--image-size-sm);
+      @include apply-at-md-size {
+        height: var(--image-size-md);
+        width: var(--image-size-md);
+      }
+    }
+    .skeleton {
+      position: absolute;
+      height: var(--image-size-sm);
+      width: var(--image-size-sm);
+      @include apply-at-md-size {
+        height: var(--image-size-md);
+        width: var(--image-size-md);
+      }
+    }
+    .avatar {
+      height: var(--image-size-sm);
+      width: var(--image-size-sm);
+      @include apply-at-md-size {
+        height: var(--image-size-md);
+        width: var(--image-size-md);
+      }
+    }
+    .buttonEdit {
+      position: absolute;
+      display: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .merchantInfoHeader {
+    margin: 0;
+  }
+  .profileInfo {
+    @include directionX;
+    font-size: 0.75rem;
+    font-weight: 500;
+    .profileLabel {
+      float: left;
+      width: 8rem;
+      margin: 0;
+    }
+    .profileText {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}

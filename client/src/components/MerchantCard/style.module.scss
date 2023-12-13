@@ -2,8 +2,16 @@
 .cardWrap {
   position: relative;
   .card {
-    width: 15rem;
+    width: 10rem;
+    @include apply-at-sm-size {
+      width: 15rem;
+    }
     box-shadow: 0 0 0.25rem gray;
+    &:hover {
+      transform: scale(1.05, 1.05);
+      cursor: pointer;
+      opacity: 0.7;
+    }
   }
   .headerText {
     margin-top: 0;
@@ -11,7 +19,10 @@
   .desc {
     font-size: small;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
+    @include apply-at-sm-size {
+      -webkit-line-clamp: 4;
+    }
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -20,8 +31,18 @@
     top: 0;
     right: 0;
   }
+  .img {
+    height: 125px;
+    @include apply-at-sm-size {
+      height: 194px;
+    }
+    object-fit: contain;
+  }
   .avatar {
-    height: 194px;
+    height: 125px;
+    @include apply-at-sm-size {
+      height: 194px;
+    }
     width: 100%;
     background-color: var(--color-primary);
   }

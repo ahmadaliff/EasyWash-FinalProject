@@ -4,7 +4,9 @@ import appReducer, { storedKey as storedAppState } from '@containers/App/reducer
 import clientReducer, { storedKey as storedClientState } from '@containers/Client/reducer';
 import registerReducer, { storedKey as storedResisterStep } from '@pages/Register/reducer';
 import usersReducer, { storedKey as storedUsersState } from '@pages/Users/reducer';
+import orderReducer, { storedKey as storedOrderState } from '@pages/Order/reducer';
 import homeReducer, { storedKey as storedhomeState } from '@pages/Home/reducer';
+import cartReducer, { storedKey as storedCartState } from '@pages/Cart/reducer';
 
 import laundryOrdersReducer from '@pages/LaundryOrders/reducer';
 import servicesReducer from '@pages/LaundryServices/reducer';
@@ -23,6 +25,8 @@ const storedReducers = {
   registerStep: { reducer: registerReducer, whitelist: storedResisterStep },
   users: { reducer: usersReducer, whitelist: storedUsersState },
   home: { reducer: homeReducer, whitelist: storedhomeState },
+  carts: { reducer: cartReducer, whitelist: storedCartState },
+  order: { reducer: orderReducer, whitelist: storedOrderState },
 };
 
 const temporaryReducers = {

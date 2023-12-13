@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { MapContainer, TileLayer } from 'react-leaflet';
 import RoutineMachine from '@components/RoutingMachine/index';

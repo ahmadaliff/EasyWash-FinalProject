@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { Circle, MapContainer, TileLayer, Tooltip } from 'react-leaflet';
 import { useCallback, useEffect, useState } from 'react';
 

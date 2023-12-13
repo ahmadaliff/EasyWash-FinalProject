@@ -43,7 +43,7 @@
   }
   .content {
     display: grid;
-    grid-template-columns: repeat(1, minmax(15rem, 15rem));
+    grid-template-columns: repeat(2, minmax(10rem, 10rem));
     @include apply-at-sm-size {
       grid-template-columns: repeat(2, minmax(15rem, 1fr));
     }
@@ -53,7 +53,7 @@
     @include apply-at-xl-size {
       grid-template-columns: repeat(4, minmax(15rem, 1fr));
     }
-    gap: 0.5rem;
+    gap: 1rem;
     padding-top: 2rem;
   }
   .noData {

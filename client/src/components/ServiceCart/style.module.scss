@@ -1,0 +1,38 @@
+@import '@styles/base';
+.service {
+  @include directionX;
+  align-items: center;
+  hr {
+    margin: 0;
+  }
+  gap: 0.125rem;
+  padding: 0.25rem;
+  .serviceInfoWrap {
+    width: 100%;
+    p {
+      margin: 0;
+      font-size: small;
+    }
+    .quantity {
+      @include directionX;
+      align-items: center;
+      justify-content: space-between;
+      font-size: medium;
+      gap: 0.5rem;
+      svg {
+        height: 1rem;
+        width: 1rem;
+      }
+    }
+    .delete {
+      svg {
+        height: 1rem;
+        width: 1rem;
+      }
+    }
+    .serviceInfo {
+      @include directionX;
+      justify-content: space-between;
+    }
+  }
+}

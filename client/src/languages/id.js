@@ -44,7 +44,7 @@ export default {
   app_success_already_exist: 'Data sudah ada',
   app_success_add_to_cart: 'Berhasil menambahkan ke keranjang',
   app_success_delete_from_cart: 'Berhasil menghapus dari keranjang',
-  app_created_order: 'Berhasil Membuat Order',
+  app_created_order: 'Berhasil Membuat Order, silahkan cek status order di halaman order',
   app_cannot_cancel_order: 'Order kamu telah diambil oleh laundry, kamu tidak bisa membatalkan pesanan',
   app_cancel_order_success: 'Order dibatalkan',
   app_not_have_access: 'Tidak punya akses',
@@ -135,6 +135,14 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   app_detail_order: 'Detail pesanan',
   app_acc: 'Terima',
   app_next_status: 'Status selanjutnya',
+
+  // cart
+  app_cart_header: 'Cart',
+  app_create_order: 'Buat Pesanan',
+
+  // order
+  app_order: 'Pesan',
+  app_location_order: 'Lokasi Penjemputan',
 
   // status
   app_pending: 'Ditunda',

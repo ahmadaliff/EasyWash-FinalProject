@@ -1,10 +1,11 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import MerchantCard from '@components/MerchantCard';
+import NoData from '@components/NoData';
 
 import { selectMerchants } from '@pages/Home/selectors';
 import { actionGetMerchants, actionResetMerchants } from '@pages/Home/actions';
@@ -37,11 +38,7 @@ const Home = ({ merchants }) => {
           <MerchantCard merchant={val} key={key} />
         ))}
       </div>
-      {merchants?.length === 0 && (
-        <div className={classes.noData}>
-          <FormattedMessage id="app_no_data_to_show" />
-        </div>
-      )}
+      {merchants?.length === 0 && <NoData />}
     </main>
   );
 };
