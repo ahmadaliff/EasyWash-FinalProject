@@ -10,6 +10,7 @@ export default {
   app_my_location: 'Lokasi Saya',
   app_tagline: 'Pengalaman mencuci Anda lebih mudah !!',
   app_no_data_to_show: 'Tidak ada data untuk ditampilkan',
+  app_must_user_role: 'Kamu harus login dengan role user',
 
   // backend response
   app_404: 'Data tidak ditemukan',
@@ -147,6 +148,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   // order
   app_order: 'Pesan',
   app_location_order: 'Lokasi Penjemputan',
+  app_cancel: 'Batalkan',
 
   // status
   app_pending: 'Ditunda',

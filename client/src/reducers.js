@@ -15,6 +15,7 @@ import statusOrderReducer from '@pages/StatusOrder/reducer';
 import languageReducer from '@containers/Language/reducer';
 import myMerchantReducer from '@pages/MyMerchant/reducer';
 import { merchantReducer } from '@pages/Laundry/reducer';
+import myOrderReducer from '@pages/MyOrder/reducer';
 import profileReducer from '@pages/Profile/reducer';
 import favoritReducer from '@pages/Favorit/reducer';
 
@@ -40,6 +41,7 @@ const temporaryReducers = {
   laundryOrders: laundryOrdersReducer,
   favorit: favoritReducer,
   merchant: merchantReducer,
+  myOrder: myOrderReducer,
 };
 
 const createReducer = () => {

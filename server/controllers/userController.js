@@ -239,7 +239,7 @@ exports.getMyOrderById = async (req, res) => {
         userId: id,
         id: orderId,
       },
-      include: Service,
+      include: { model: Service, include: Merchant },
     });
     if (!response) {
       return handleNotFound(res);
@@ -325,14 +325,13 @@ exports.cancelOrder = async (req, res) => {
     if (!isExist) {
       return handleNotFound(res);
     }
-    if (isExist.status !== "pending") {
+    if (isExist.status !== "app_pending") {
       return handleClientError(res, 400, "app_cannot_cancel_order");
     }
-    await Order.destroy({
-      id: orderId,
-    });
+    await isExist.destroy();
     return handleSuccess(res, { message: "app_cancel_order_success" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

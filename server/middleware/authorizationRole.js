@@ -44,7 +44,6 @@ exports.authorizationOwnService = async (req, res, next) => {
   const { id } = req;
   const { serviceId } = req.params;
 
-  console.log(req);
   if (serviceId) {
     const service = await Service.findOne({
       where: { id: serviceId },

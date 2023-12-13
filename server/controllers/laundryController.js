@@ -254,7 +254,6 @@ exports.getOrders = async (req, res) => {
           attributes: ["location"],
           required: true,
         },
-        attributes: ["merchantId"],
       },
       required: true,
       offset: offset,

@@ -10,6 +10,7 @@ export default {
   app_my_location: 'My location',
   app_tagline: 'Make your wash life easier!!',
   app_no_data_to_show: 'No data to show',
+  app_must_user_role: 'You must login with user role',
 
   // backend response
   app_404: 'Data not found',
@@ -147,6 +148,7 @@ It is recommended not to use excess capital letters, include more than 1 service
   // order
   app_order: 'Order',
   app_location_order: 'Pickup Location',
+  app_cancel: 'Cancel',
 
   // status
   app_pending: 'Pending',

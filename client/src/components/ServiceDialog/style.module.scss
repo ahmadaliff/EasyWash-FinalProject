@@ -18,7 +18,10 @@
       border-radius: 10rem;
       padding: 0.25rem 1rem 0.25rem 1rem;
       text-transform: capitalize;
-      font-size: medium;
+      font-size: small;
+      @include apply-at-md-size {
+        font-size: medium;
+      }
       &:hover {
         background-color: var(--color-primary);
       }

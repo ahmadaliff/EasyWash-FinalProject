@@ -14,3 +14,27 @@
     width: 100%;
   }
 }
+.service {
+  @include directionX;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.25rem;
+  width: 100%;
+  .serviceInfoWrap {
+    width: 100%;
+    p {
+      margin: 0;
+      font-size: small;
+    }
+    .quantity {
+      @include directionX;
+      align-items: center;
+      justify-content: space-between;
+      font-size: small;
+    }
+    .serviceInfo {
+      @include directionX;
+      justify-content: space-between;
+    }
+  }
+}

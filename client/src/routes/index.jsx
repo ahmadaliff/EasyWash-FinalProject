@@ -17,6 +17,7 @@ import Favorit from '@pages/Favorit';
 import Cart from '@pages/Cart';
 import Order from '@pages/Order';
 import Laundry from '@pages/Laundry';
+import MyOrder from '@pages/MyOrder';
 
 const routes = [
   {
@@ -34,7 +35,7 @@ const routes = [
     layout: MainLayout,
   },
   {
-    path: '/laundry/:id',
+    path: '/user/laundry/:id',
     name: 'Laundry',
     protected: true,
     component: Laundry,
@@ -52,6 +53,13 @@ const routes = [
     name: 'Order',
     protected: true,
     component: Order,
+    layout: MainLayout,
+  },
+  {
+    path: '/user/order',
+    name: 'My Order',
+    protected: true,
+    component: MyOrder,
     layout: MainLayout,
   },
   {
@@ -128,7 +136,7 @@ const routes = [
     layout: MainLayout,
   },
   {
-    path: '/order/status/:orderId',
+    path: '/user/order/status/:orderId',
     name: 'Status Order',
     protected: true,
     component: StatusOrder,

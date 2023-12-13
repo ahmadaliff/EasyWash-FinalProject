@@ -7,6 +7,7 @@ import usersSaga from '@pages/Users/saga';
 import appSaga from '@containers/App/saga';
 import profileSaga from '@pages/Profile/saga';
 import favoritSaga from '@pages/Favorit/saga';
+import myOrderSaga from '@pages/MyOrder/saga';
 import merchantSaga from '@pages/Laundry/saga';
 import clientSaga from '@containers/Client/saga';
 import myMerchantSaga from '@pages/MyMerchant/saga';
@@ -25,6 +26,7 @@ export default function* rootSaga() {
     usersSaga(),
     clientSaga(),
     profileSaga(),
+    myOrderSaga(),
     favoritSaga(),
     merchantSaga(),
     servicesSaga(),

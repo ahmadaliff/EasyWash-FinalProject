@@ -1,23 +1,34 @@
 import PropTypes from 'prop-types';
-import { Avatar, Card, CardContent, CardMedia, IconButton, Skeleton } from '@mui/material';
-import classes from '@components/MerchantCard/style.module.scss';
-import { Favorite } from '@mui/icons-material';
-import { useState } from 'react';
-import config from '@config/index';
-import { createStructuredSelector } from 'reselect';
-import { selectLogin, selectUser } from '@containers/Client/selectors';
-import { connect, useDispatch } from 'react-redux';
 import _ from 'lodash';
-import { actionAddToFavorit, actionDeleteFromFavorit } from '@pages/Favorit/action';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { Avatar, Card, CardContent, CardMedia, IconButton, Skeleton } from '@mui/material';
+import { Favorite } from '@mui/icons-material';
+
+import config from '@config/index';
+
+import { selectLogin, selectUser } from '@containers/Client/selectors';
+import { actionAddToFavorit, actionDeleteFromFavorit } from '@pages/Favorit/action';
+
+import classes from '@components/MerchantCard/style.module.scss';
+import toast from 'react-hot-toast';
+import intlHelper from '@utils/intlHelper';
 
 const MerchantCard = ({ user, login, merchant }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const handleNavigate = () => {
+    if (!login) navigate(`/login`);
+    else if (user?.role === 'user') navigate(`/user/laundry/${merchant?.id}`);
+    else toast.error(intlHelper({ message: 'app_must_user_role' }));
+  };
   return (
     <div className={classes.cardWrap}>
-      <Card className={classes.card} onClick={() => navigate(`/laundry/${merchant?.id}`)}>
+      <Card className={classes.card} onClick={handleNavigate}>
         {merchant?.imagePath ? (
           <>
             {loading && <Skeleton variant="rectangular" height="194" width="100%" />}
@@ -42,7 +53,7 @@ const MerchantCard = ({ user, login, merchant }) => {
           <p className={classes.desc}>{merchant?.description}</p>
         </CardContent>
       </Card>
-      {login && (
+      {login && user?.role === 'user' && (
         <div className={classes.cardAction}>
           {!_.find(merchant.Favorits, (val) => val?.userId === user?.id) ? (
             <IconButton onClick={() => dispatch(actionAddToFavorit(merchant?.id))}>

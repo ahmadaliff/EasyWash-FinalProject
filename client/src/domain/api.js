@@ -92,3 +92,7 @@ export const apiCreateOrder = (data) => callAPI(`${urls.user}/order/add`, 'POST'
 // laundry page
 export const apiGetMerchantById = (id, location) =>
   callAPI(`${urls.user}/detail/laundry/${id}`, 'POST', location, true);
+
+// Myorder page
+export const apiGetMyOrder = () => callAPI(`${urls.user}/orders`, 'GET', {}, true);
+export const apiCancelOrder = (id) => callAPI(`${urls.user}/order/cancel/${id}}`, 'DELETE', {}, true);

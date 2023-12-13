@@ -1,6 +1,6 @@
 import Proptypes from 'prop-types';
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { Close, DryCleaning } from '@mui/icons-material';
 import { FormattedMessage, FormattedNumber, injectIntl } from 'react-intl';
 import MapRouting from '@components/MapRouting';
 
@@ -47,6 +47,30 @@ const EditProfile = ({ order, open, handleClose }) => (
             <FormattedMessage id={order?.status} />
           </p>
         </div>
+        {order?.Services?.map((service, key) => (
+          <div className={classes.service} key={key}>
+            <DryCleaning />
+            <div className={classes.serviceInfoWrap}>
+              <hr />
+              <div className={classes.serviceInfo}>
+                <p>
+                  {service?.name} x {service?.ServicesOrdered?.quantity}
+                </p>
+                <p>
+                  <FormattedNumber
+                    // eslint-disable-next-line no-unsafe-optional-chaining
+                    value={service?.price * service?.ServicesOrdered?.quantity}
+                    // eslint-disable-next-line react/style-prop-object
+                    style="currency"
+                    currency="IDR"
+                    minimumFractionDigits={0}
+                  />
+                </p>
+              </div>
+              <hr />
+            </div>
+          </div>
+        ))}
         <div className={classes.field}>
           <p className={classes.label}>
             <FormattedMessage id="app_location" />
