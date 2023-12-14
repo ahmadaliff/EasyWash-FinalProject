@@ -1,24 +1,27 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 
+import { Button, Card, CardContent } from '@mui/material';
+import { ArrowBack, DoNotDisturb, DryCleaning, Payment } from '@mui/icons-material';
+
+import NoData from '@components/NoData';
+import MapRouting from '@components/MapRouting';
+
+import { actionCancelOrder } from '@pages/MyOrder/action';
 import {
   actionConnectSocket,
   actionDisconnectSocket,
   actionGetStatus,
+  actionPay,
   watchStatusUpdates,
 } from '@pages/StatusOrder/actions';
-import { createStructuredSelector } from 'reselect';
 import { selectOrder } from '@pages/StatusOrder/selectors';
 
 import classes from '@pages/StatusOrder/style.module.scss';
-import { FormattedMessage, FormattedNumber } from 'react-intl';
-import MapRouting from '@components/MapRouting';
-import { Button, Card, CardContent } from '@mui/material';
-import { ArrowBack, DoNotDisturb, DryCleaning } from '@mui/icons-material';
-import { actionCancelOrder } from '@pages/MyOrder/action';
-import NoData from '@components/NoData';
 
 const StatusOrder = ({ order }) => {
   const dispatch = useDispatch();
@@ -26,12 +29,12 @@ const StatusOrder = ({ order }) => {
   const { orderId } = useParams();
 
   useEffect(() => {
-    dispatch(actionConnectSocket(orderId));
+    dispatch(actionConnectSocket());
     dispatch(actionGetStatus(orderId));
-    dispatch(watchStatusUpdates());
+    dispatch(watchStatusUpdates(orderId));
     return () => {
       if (order) {
-        dispatch(actionDisconnectSocket(orderId));
+        dispatch(actionDisconnectSocket());
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -120,6 +123,16 @@ const StatusOrder = ({ order }) => {
             laundryPoint={order && JSON.parse(order?.Services[0]?.Merchant?.location)}
             userPoint={order && JSON.parse(order?.location)}
           />
+          {order?.status === 'app_payment' && (
+            <Button
+              variant="contained"
+              className={classes.payButton}
+              startIcon={<Payment />}
+              onClick={() => dispatch(actionPay(order?.id))}
+            >
+              <FormattedMessage id="app_pay" />
+            </Button>
+          )}
           <Button
             variant="contained"
             className={classes.cancelButton}

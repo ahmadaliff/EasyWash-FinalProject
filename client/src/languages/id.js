@@ -149,6 +149,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   app_order: 'Pesan',
   app_location_order: 'Lokasi Penjemputan',
   app_cancel: 'Batalkan',
+  app_pay: 'Bayar',
 
   // status
   app_pending: 'Ditunda',

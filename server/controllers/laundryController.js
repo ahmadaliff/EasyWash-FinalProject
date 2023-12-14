@@ -330,7 +330,7 @@ exports.changeStatus = async (req, res) => {
   try {
     const { io } = req;
     const { orderId, newStatus } = req.body;
-    if (!checkStatusOrder(newStatus)) {
+    if (!checkStatusOrder(newStatus) || newStatus === "app_pickUp") {
       return handleClientError(res, 400, "app_status_invalid");
     }
     const isExist = await Order.findOne({ where: { id: orderId } });
@@ -340,7 +340,7 @@ exports.changeStatus = async (req, res) => {
 
     const response = await isExist.update({ status: newStatus });
 
-    io.of(`/user/${orderId}`).emit("statusUpdated", response.status);
+    io.emit(`statusUpdated/${orderId}`, response.status);
     return handleSuccess(res, { message: "app_status_updated" });
   } catch (error) {
     return handleServerError(res);

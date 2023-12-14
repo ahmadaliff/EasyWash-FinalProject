@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       totalPrice: DataTypes.INTEGER,
       location: DataTypes.STRING,
       status: DataTypes.STRING,
+      midtransToken: DataTypes.STRING,
     },
     {
       sequelize,

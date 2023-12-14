@@ -1,9 +1,9 @@
 import { produce } from 'immer';
-import { SET_STATUS, STATUS_UPDATED } from './constants';
+import { CONNECTED_SOCKET, DISCONNECT_SOCKET, SET_STATUS, STATUS_UPDATED } from './constants';
 
 export const initialState = {
   order: null,
-  status: null,
+  socket: null,
 };
 
 const statusOrderReducer = (state = initialState, action) =>
@@ -12,10 +12,15 @@ const statusOrderReducer = (state = initialState, action) =>
       case SET_STATUS:
         draft.order = action.data;
         break;
+      case CONNECTED_SOCKET:
+        draft.socket = action.data;
+        break;
+      case DISCONNECT_SOCKET:
+        return initialState;
       case STATUS_UPDATED: {
         const order = { ...state.order };
         order.status = action.data;
-        draft.status = order;
+        draft.order = order;
         break;
       }
     }

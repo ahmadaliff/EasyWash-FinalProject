@@ -96,3 +96,10 @@ export const apiGetMerchantById = (id, location) =>
 // Myorder page
 export const apiGetMyOrder = () => callAPI(`${urls.user}/orders`, 'GET', {}, true);
 export const apiCancelOrder = (id) => callAPI(`${urls.user}/order/cancel/${id}}`, 'DELETE', {}, true);
+
+// statusOrder page
+export const apiGetTokenMidtrans = (orderId) => callAPI(`${urls.user}/midtransToken/${orderId}`, 'GET', {}, true);
+export const apiPaymentSuccess = (orderId) => {
+  console.log('test');
+  callAPI(`${urls.user}/changeStatusPayment/${orderId}`, 'PUT', {}, true);
+};

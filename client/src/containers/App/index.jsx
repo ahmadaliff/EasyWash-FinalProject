@@ -10,6 +10,7 @@ import { selectTheme, selectPopup, selectLoading } from '@containers/App/selecto
 import Loader from '@components/Loader';
 import ClientRoutes from '@components/ClientRoutes';
 import PopupMessage from '@components/PopupMessage/Dialog';
+import config from '@config/index';
 
 const App = ({ theme, popup, loading }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,17 @@ const App = ({ theme, popup, loading }) => {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const midtransScript = document.createElement('script');
+    midtransScript.src = config.api.midtransSrc;
+    midtransScript.setAttribute('data-client-key', config.api.midtransKey);
+    midtransScript.async = true;
+    document.body.appendChild(midtransScript);
+    return () => {
+      document.body.removeChild(midtransScript);
+    };
+  }, []);
 
   return (
     <ThemeProvider theme={muiTheme}>

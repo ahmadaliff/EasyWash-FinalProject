@@ -2,16 +2,16 @@ require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const socketIo = require("socket.io");
+const { Server } = require("socket.io");
 const http = require("http");
 
 const app = express();
 const routes = require("./routers/index");
 const socketIoMiddleware = require("./middleware/socketIoMiddleware");
 const server = http.createServer(app);
-const io = socketIo(server, {
+const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_HOST,
+    origin: [process.env.CLIENT_HOST],
   },
 });
 

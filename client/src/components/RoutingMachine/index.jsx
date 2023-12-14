@@ -13,8 +13,9 @@ const iconPerson = divIcon({
   className: classes.marker,
 });
 const twoIcon = divIcon({
-  html: renderToStaticMarkup(<LocalLaundryService className={classes.marker} />),
+  html: renderToStaticMarkup(<LocalLaundryService className={classes.iconMarker} />),
   iconSize: [0, 0],
+  className: classes.marker,
 });
 
 const createRoutineMachineLayer = ({ laundryPoint, userPoint }) => {

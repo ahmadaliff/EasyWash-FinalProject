@@ -15,6 +15,7 @@ const {
   sequelize,
 } = require("../models");
 const getDistance = require("../utils/getDistanceUtil");
+const { snap } = require("../utils/midtransUtil");
 
 exports.getAllLaundry = async (req, res) => {
   try {
@@ -119,7 +120,6 @@ exports.deleteFromFavorit = async (req, res) => {
     await isExist.destroy();
     return handleSuccess(res, { message: "app_success_delete_from_fav" });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -147,7 +147,6 @@ exports.getCart = async (req, res) => {
 
     return handleSuccess(res, { data: response });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -207,7 +206,6 @@ exports.deleteFromCart = async (req, res) => {
     await isExist.destroy();
     return handleSuccess(res, { message: "app_success_delete_from_cart" });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -246,7 +244,6 @@ exports.getMyOrderById = async (req, res) => {
     }
     return handleSuccess(res, { data: response });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -331,7 +328,58 @@ exports.cancelOrder = async (req, res) => {
     await isExist.destroy();
     return handleSuccess(res, { message: "app_cancel_order_success" });
   } catch (error) {
-    console.log(error);
+    return handleServerError(res);
+  }
+};
+
+exports.createMidtransToken = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const order = await Order.findOne({
+      where: { id: orderId },
+    });
+    if (order?.midtransToken) {
+      return handleSuccess(res, { token: order.midtransToken });
+    }
+    const parameter = {
+      item_details: {
+        price: order.totalPrice,
+        orderId: order.id,
+        name: order.id,
+        quantity: 1,
+      },
+      transaction_details: {
+        order_id: order.id + "tests",
+        gross_amount: order.totalPrice,
+      },
+    };
+    const token = await snap.createTransactionToken(parameter);
+    console.log(token);
+    if (!token) {
+      return handleNotFound(res);
+    }
+    await order.update({ midtransToken: token });
+    return handleCreated(res, { token: token });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.changeOrderPayment = async (req, res) => {
+  try {
+    const { io } = req;
+    const { orderId } = req.params;
+    const order = await Order.findOne({
+      where: { id: orderId },
+    });
+
+    if (order.status !== "app_payment") {
+      return handleClientError(res, 400, "app_status_invalid");
+    }
+    await order.update({ status: "app_pickUp", midtransToken: null });
+    io.emit(`statusUpdated/${orderId}`, "app_pickUp");
+    return handleSuccess(res, { message: "app_status_updated" });
+  } catch (error) {
     return handleServerError(res);
   }
 };

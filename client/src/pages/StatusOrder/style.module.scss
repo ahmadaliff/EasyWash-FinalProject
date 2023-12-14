@@ -70,7 +70,8 @@
         }
       }
     }
-    .cancelButton {
+    .cancelButton,
+    .payButton {
       margin-top: 1rem;
       width: 100%;
       background-color: rgba($color: red, $alpha: 0.7);
@@ -78,6 +79,9 @@
       padding: 0.25rem 1rem 0.25rem 1rem;
       text-transform: capitalize;
       font-size: small;
+    }
+    .payButton {
+      background-color: var(--color-primary);
     }
   }
 }

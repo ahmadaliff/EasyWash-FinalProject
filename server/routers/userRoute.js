@@ -13,6 +13,8 @@ const {
   cancelOrder,
   createOrder,
   getLaundryById,
+  createMidtransToken,
+  changeOrderPayment,
 } = require("../controllers/userController");
 const {
   authenticationMiddleware,
@@ -38,5 +40,7 @@ router.get("/orders", getMyOrders);
 router.post("/order/add", createOrder);
 router.delete("/order/cancel/:orderId", cancelOrder);
 router.get("/order/:orderId", getMyOrderById);
+router.get("/midtransToken/:orderId", createMidtransToken);
+router.put("/changeStatusPayment/:orderId", changeOrderPayment);
 
 module.exports = router;

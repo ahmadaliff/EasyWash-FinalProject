@@ -14,18 +14,22 @@ module.exports = {
      */
     return await queryInterface.bulkInsert("Orders", [
       {
+        id: `Order-1702535973296`,
         userId: 2,
         totalPrice: 12000,
         status: "app_pending",
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
+        midtransToken: null,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
+        id: `Order-1702536051382`,
         userId: 2,
         totalPrice: 6000,
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
         status: "app_finish",
+        midtransToken: null,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

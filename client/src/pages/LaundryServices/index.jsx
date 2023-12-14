@@ -19,7 +19,7 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { DoNotDisturb, Edit, ManageSearch } from '@mui/icons-material';
+import { Add, DoNotDisturb, Edit, ManageSearch } from '@mui/icons-material';
 
 import { selectUser } from '@containers/Client/selectors';
 import { selectServices } from '@pages/LaundryServices/selectors';
@@ -88,6 +88,18 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
         <div className={classes.searchInputWrap}>
           <ManageSearch />
           <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
+          <Button
+            type="button"
+            variant="contained"
+            className={classes.buttonAdd}
+            onClick={() => navigate(`/service/add`)}
+            size="small"
+          >
+            <Add />
+            <div className={classes.buttonText}>
+              <FormattedMessage id="app_service_add_header" />
+            </div>
+          </Button>
         </div>
       </div>
       <Card className={classes.card}>

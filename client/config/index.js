@@ -10,6 +10,8 @@ const config = {
     host: env.API_HOST,
     server: env.SERVER,
     secretKeyCrypto: env.CRYPTOJS_SECRET,
+    midtransKey: env.MIDTRANS_CLIENT,
+    midtransSrc: env.SNAP_MIDTRANS_LINK,
   },
 };
 

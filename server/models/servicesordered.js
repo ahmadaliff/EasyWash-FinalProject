@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   ServicesOrdered.init(
     {
-      orderId: DataTypes.INTEGER,
+      orderId: DataTypes.STRING,
       serviceId: DataTypes.INTEGER,
       quantity: DataTypes.INTEGER,
     },

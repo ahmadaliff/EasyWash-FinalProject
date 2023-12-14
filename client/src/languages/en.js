@@ -93,7 +93,7 @@ export default {
   app_merchant_name: 'Merchant Name',
   app_merchant_require: 'Merchant Name is required',
   app_not_have_access: 'Not have access',
-  app_success_add_total_price: 'Success ad total price',
+  app_success_add_total_price: 'Success add total price',
   app_status_invalid: 'Status Invalid',
   app_status_updated: 'Status updated',
 
@@ -149,6 +149,7 @@ It is recommended not to use excess capital letters, include more than 1 service
   app_order: 'Order',
   app_location_order: 'Pickup Location',
   app_cancel: 'Cancel',
+  app_pay: 'Pay',
 
   // status
   app_pending: 'Pending',
