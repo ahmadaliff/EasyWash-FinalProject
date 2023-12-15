@@ -56,6 +56,7 @@ export default {
   app_updated_merchant_photo: 'Berhasil ubah foto merchant',
   app_laundry_out_of_range: 'Laundry diluar jangkauan, hanya bisa akses dalam range 3km',
   app_unathorize_auto: 'Tidak diizinkan, dikeluarkan secara automatis',
+  app_chat_created: 'Pesan telah dibuat',
 
   // login and register
   app_profile: 'Profil',

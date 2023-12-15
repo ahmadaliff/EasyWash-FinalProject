@@ -18,6 +18,7 @@ import Cart from '@pages/Cart';
 import Order from '@pages/Order';
 import Laundry from '@pages/Laundry';
 import MyOrder from '@pages/MyOrder';
+import ChatPage from '@pages/ChatPage';
 
 const routes = [
   {
@@ -133,6 +134,13 @@ const routes = [
     name: 'My Merchant',
     protected: true,
     component: MyMerchant,
+    layout: MainLayout,
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    protected: true,
+    component: ChatPage,
     layout: MainLayout,
   },
   {

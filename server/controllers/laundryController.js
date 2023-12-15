@@ -12,6 +12,7 @@ const {
   schemaService,
   schemaMerchant,
 } = require("../helpers/joiHelper");
+
 const { Merchant, Service, Order } = require("../models");
 
 exports.getMerchant = async (req, res) => {

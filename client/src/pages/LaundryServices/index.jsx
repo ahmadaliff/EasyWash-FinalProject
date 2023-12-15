@@ -47,7 +47,7 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
     }).format(val);
 
   useEffect(() => {
-    if (user?.role !== 'laundry') {
+    if (user?.role !== 'merchant') {
       navigate('/');
     }
   }, [navigate, user]);

@@ -12,6 +12,7 @@ const config = {
     secretKeyCrypto: env.CRYPTOJS_SECRET,
     midtransKey: env.MIDTRANS_CLIENT,
     midtransSrc: env.SNAP_MIDTRANS_LINK,
+    streamKey: env.STREAM_KEY,
   },
 };
 

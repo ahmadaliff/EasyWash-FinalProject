@@ -96,6 +96,7 @@ export default {
   app_success_add_total_price: 'Success add total price',
   app_status_invalid: 'Status Invalid',
   app_status_updated: 'Status updated',
+  app_chat_created: 'Chat created',
 
   // profile
   app_edit_profile_desc:

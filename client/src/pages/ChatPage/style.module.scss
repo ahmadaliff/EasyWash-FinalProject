@@ -1,0 +1,77 @@
+@import '@styles/base';
+.mainWrap {
+  @include directionY;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  .chatWrap {
+    @include directionX;
+    height: calc(100vh - 4rem);
+    .channelListWrap {
+      @include directionY;
+      width: 0;
+      @include apply-at-md-size {
+        width: 30%;
+      }
+      .buttonNew {
+        @include directionX;
+        gap: 0.5rem;
+        align-items: center;
+        text-transform: capitalize;
+        text-align: center;
+        font-size: medium;
+        font-weight: 700;
+        padding: 1rem;
+        color: var(--color-text);
+      }
+      .channelList {
+        height: 100%;
+      }
+    }
+    .channelListWrap.open {
+      width: 100%;
+      @include apply-at-md-size {
+        width: 30%;
+      }
+    }
+    .chatBox {
+      display: none;
+      @include apply-at-md-size {
+        display: block;
+        width: 70%;
+      }
+      .windowWrap {
+        @include directionY;
+        @include apply-at-md-size {
+          @include directionX;
+        }
+        width: 100%;
+        .headerChannelWrap {
+          @include directionX;
+          margin: 0 0 0.5rem 0;
+        }
+        .thread {
+          background-color: var(-- color-text);
+          padding-top: 0.25rem;
+          max-height: 50vh;
+          @include apply-at-md-size {
+            padding-top: 0;
+            max-height: 100vh;
+          }
+        }
+      }
+    }
+    .chatBox.open {
+      display: block;
+      width: 100%;
+      @include apply-at-md-size {
+        width: 70%;
+      }
+    }
+    .hamburgerButton {
+      @include apply-at-md-size {
+        display: none;
+      }
+    }
+  }
+}

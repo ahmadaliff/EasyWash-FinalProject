@@ -3,6 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 
 const { hashPassword } = require("../utils/bcryptUtil");
+const { chatStreamClient } = require("../utils/streamChatUtil");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -16,6 +17,28 @@ module.exports = {
      * }], {});
      */
 
+    await chatStreamClient.upsertUsers([
+      {
+        id: "1",
+        name: "Ahmad Alif Sofian",
+        image: null,
+      },
+      {
+        id: "2",
+        name: "user",
+        image: null,
+      },
+      {
+        id: "3",
+        name: "laundry",
+        image: null,
+      },
+      {
+        id: "4",
+        name: "laundry 2",
+        image: null,
+      },
+    ]);
     return queryInterface.bulkInsert("Users", [
       {
         id: 1,
@@ -44,7 +67,7 @@ module.exports = {
         id: 3,
         fullName: "laundry",
         email: "laundry@user.com",
-        role: "laundry",
+        role: "merchant",
         imagePath: null,
         isVerified: true,
         password: hashPassword("password123"),
@@ -53,20 +76,9 @@ module.exports = {
       },
       {
         id: 4,
-        fullName: "courier",
-        email: "courier@user.com",
-        role: "courier",
-        imagePath: null,
-        isVerified: true,
-        password: hashPassword("password123"),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: 5,
         fullName: "laundry 2",
         email: "laundry2@user.com",
-        role: "laundry",
+        role: "merchant",
         imagePath: null,
         isVerified: false,
         password: hashPassword("password123"),

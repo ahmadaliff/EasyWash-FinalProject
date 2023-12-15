@@ -27,7 +27,7 @@ const FormService = ({ user, intl: { formatMessage } }) => {
   } = useForm();
 
   useEffect(() => {
-    if (user?.role !== 'laundry') {
+    if (user?.role !== 'merchant') {
       navigate('/');
     }
   }, [navigate, user]);

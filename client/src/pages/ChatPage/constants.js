@@ -1,0 +1,9 @@
+export const GET_PROFILE = 'Message/GET_PROFILE';
+export const SET_PROFILE = 'Message/SET_PROFILE';
+export const RESET_PROFILE = 'Message/RESET_PROFILE';
+export const SET_TOKEN_STREAM = 'Message/SET_TOKEN_STREAM';
+export const GET_TOKEN_STREAM = 'Message/GET_TOKEN_STREAM';
+export const GET_USERS = 'Message/GET_USERS';
+export const SET_USERS = 'Message/SET_USERS';
+export const RESET_USERS = 'Message/RESET_USERS';
+export const ADD_CHANNEL = 'Message/ADD_CHANNEL';

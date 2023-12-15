@@ -7,8 +7,9 @@ const {
   handleNotFound,
 } = require("../helpers/handleResponseHelper");
 
-const { User, Merchant, sequelize } = require("../models");
+const { chatStreamClient } = require("../utils/streamChatUtil");
 
+const { User, Merchant, sequelize } = require("../models");
 exports.getUsers = async (req, res) => {
   try {
     const { id } = req;
@@ -142,13 +143,25 @@ exports.deleteUser = async (req, res) => {
     if (!isExist) {
       return handleNotFound(res);
     }
-    await User.destroy({ where: { id: id } });
+    await isExist.destroy({ where: { id: id } });
+
+    await chatStreamClient.deleteUser(id.toString(), {
+      delete_conversation_channels: true,
+    });
+    await chatStreamClient.restoreUsers([id.toString()]);
+    await chatStreamClient.upsertUser({
+      id: id.toString(),
+      name: null,
+      image: null,
+    });
+
     return handleSuccess(res, {
       message: isExist.dataValues.isVerified
         ? "app_user_deleted"
         : "app_user_decline",
     });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

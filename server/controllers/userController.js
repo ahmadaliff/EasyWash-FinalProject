@@ -349,7 +349,7 @@ exports.createMidtransToken = async (req, res) => {
         quantity: 1,
       },
       transaction_details: {
-        order_id: order.id + "tests",
+        order_id: order.id + `-${Date.now()}`,
         gross_amount: order.totalPrice,
       },
     };

@@ -50,7 +50,7 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
     }).format(val);
 
   useEffect(() => {
-    if (user?.role !== 'laundry') {
+    if (user?.role !== 'merchant') {
       navigate('/');
     }
   }, [navigate, user]);

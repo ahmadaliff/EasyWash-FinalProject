@@ -4,6 +4,7 @@ const authRoute = require("./authRoute");
 const adminRoute = require("./adminRoute");
 const laundryRoute = require("./laundryRoute");
 const userRoute = require("./userRoute");
+const messageRoute = require("./messageRoute");
 const {
   authenticationMiddleware,
 } = require("../middleware/AuthenticationMiddleware");
@@ -15,5 +16,6 @@ router.use(authenticationMiddleware);
 
 router.use("/admin", adminRoute);
 router.use("/laundry", laundryRoute);
+router.use("/chat", messageRoute);
 
 module.exports = router;

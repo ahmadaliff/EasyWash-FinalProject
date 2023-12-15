@@ -12,7 +12,7 @@ const MapRouting = ({ laundryPoint, userPoint, user }) => (
     doubleClickZoom={false}
     id="mapId"
     zoom={14}
-    center={user?.role === 'laundry' ? laundryPoint : userPoint}
+    center={user?.role === 'merchant' ? laundryPoint : userPoint}
     className={classes.map}
   >
     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

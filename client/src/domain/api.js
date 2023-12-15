@@ -9,6 +9,7 @@ const urls = {
   admin: 'admin',
   laundry: 'laundry',
   user: 'user',
+  chat: 'chat',
 };
 
 export const callAPI = async (endpoint, method, data = {}, iswithCredentials = false, header = {}, params = {}) => {
@@ -99,7 +100,9 @@ export const apiCancelOrder = (id) => callAPI(`${urls.user}/order/cancel/${id}}`
 
 // statusOrder page
 export const apiGetTokenMidtrans = (orderId) => callAPI(`${urls.user}/midtransToken/${orderId}`, 'GET', {}, true);
-export const apiPaymentSuccess = (orderId) => {
-  console.log('test');
-  callAPI(`${urls.user}/changeStatusPayment/${orderId}`, 'PUT', {}, true);
-};
+export const apiPaymentSuccess = (orderId) => callAPI(`${urls.user}/changeStatusPayment/${orderId}`, 'PUT', {}, true);
+
+// message stream.io
+export const apiHandleGetTokenStream = () => callAPI(`${urls.chat}/token`, 'POST');
+export const apiHandleGetUsersAvailable = () => callAPI(`${urls.chat}/userAvailable`, 'GET');
+export const apiHandleAddChannel = (data) => callAPI(`${urls.chat}/createChannel`, 'POST', data, true);

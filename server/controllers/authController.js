@@ -20,6 +20,7 @@ const {
 } = require("../helpers/sendMailHelper");
 
 const { comparePassword, hashPassword } = require("../utils/bcryptUtil");
+const { chatStreamClient } = require("../utils/streamChatUtil");
 const {
   createToken,
   createTokenForForgetPassword,
@@ -30,8 +31,6 @@ const {
 const redisClient = require("../utils/redisClient");
 
 const { User, Merchant, sequelize } = require("../models");
-
-const { chatStreamClient } = require("../utils/streamChatUtil");
 
 exports.login = async (req, res) => {
   try {
@@ -155,7 +154,7 @@ exports.register = async (req, res) => {
 
     const response = await sequelize.transaction(async (t) => {
       const responseUser = await User.create(newUser, { transaction: t });
-      if (newUser.role === "laundry") {
+      if (newUser.role === "merchant") {
         merchant.userId = responseUser.id;
         merchant.location = JSON.stringify(merchant.location);
         await Merchant.create(merchant, {
@@ -165,10 +164,24 @@ exports.register = async (req, res) => {
       return responseUser;
     });
 
+    if (response.role !== "merchant") {
+      await chatStreamClient.upsertUser({
+        id: response.id.toString(),
+        name: response.fullName,
+        image: `${process.env.SERVER_HOST}${response.imagePath}`,
+      });
+    } else {
+      await chatStreamClient.upsertUser({
+        id: response.id.toString(),
+        name: response.fullName,
+        image: `${process.env.SERVER_HOST}${response.imagePath}`,
+      });
+    }
+
     return handleSuccess(res, {
       data: response,
       message:
-        newUser.role === "laundry"
+        newUser.role === "merchant"
           ? `app_register_success_laundry`
           : `app_register_success`,
     });
@@ -295,6 +308,12 @@ exports.editPhotoProfile = async (req, res) => {
     }
     const response = await user.update({ imagePath: image });
 
+    await chatStreamClient.upsertUser({
+      id: response.id.toString(),
+      name: response.fullName,
+      image: `${process.env.SERVER_HOST}${image}`,
+    });
+
     return handleSuccess(res, {
       data: response,
       message: "app_edit_photo_profile_success",
@@ -335,6 +354,13 @@ exports.editProfile = async (req, res) => {
       return handleRes;
     }
     const response = await User.update(newUser, { where: { id: id } });
+    const user = await User.findOne({ where: { id: id } });
+
+    await chatStreamClient.upsertUser({
+      id: id.toString(),
+      name: user.fullName,
+      image: `${process.env.SERVER_HOST}${user.imagePath}`,
+    });
 
     return handleSuccess(res, {
       data: response,

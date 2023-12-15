@@ -5,6 +5,7 @@ import clientReducer, { storedKey as storedClientState } from '@containers/Clien
 import registerReducer, { storedKey as storedResisterStep } from '@pages/Register/reducer';
 import usersReducer, { storedKey as storedUsersState } from '@pages/Users/reducer';
 import orderReducer, { storedKey as storedOrderState } from '@pages/Order/reducer';
+import messageReducer, { storedKey as storedMessageState } from '@pages/ChatPage/reducer';
 import homeReducer, { storedKey as storedhomeState } from '@pages/Home/reducer';
 import cartReducer, { storedKey as storedCartState } from '@pages/Cart/reducer';
 
@@ -23,12 +24,13 @@ import { mapWithPersistor } from './persistence';
 
 const storedReducers = {
   app: { reducer: appReducer, whitelist: storedAppState },
-  client: { reducer: clientReducer, whitelist: storedClientState },
-  registerStep: { reducer: registerReducer, whitelist: storedResisterStep },
-  users: { reducer: usersReducer, whitelist: storedUsersState },
   home: { reducer: homeReducer, whitelist: storedhomeState },
   carts: { reducer: cartReducer, whitelist: storedCartState },
+  users: { reducer: usersReducer, whitelist: storedUsersState },
   order: { reducer: orderReducer, whitelist: storedOrderState },
+  client: { reducer: clientReducer, whitelist: storedClientState },
+  message: { reducer: messageReducer, whitelist: storedMessageState },
+  registerStep: { reducer: registerReducer, whitelist: storedResisterStep },
 };
 
 const temporaryReducers = {

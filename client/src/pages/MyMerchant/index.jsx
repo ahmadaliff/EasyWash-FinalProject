@@ -21,7 +21,7 @@ const MyMerchant = ({ user, merchant }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    if (user?.role !== 'laundry') {
+    if (user?.role !== 'merchant') {
       navigate('/');
     }
   }, [navigate, user]);

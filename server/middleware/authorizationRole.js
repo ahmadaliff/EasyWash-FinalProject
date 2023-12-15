@@ -7,23 +7,15 @@ const { Service, Merchant } = require("../models");
 exports.authorizationRoleAdmin = async (req, res, next) => {
   const { role } = req;
   if (role != "admin") {
-    return handleClientError(
-      res,
-      401,
-      "unauthorize, forbidden access this endpoint login with admin account"
-    );
+    return handleClientError(res, 401, "app_unathorize_auto");
   }
   next();
 };
 
 exports.authorizationRoleLaundry = async (req, res, next) => {
   const { role } = req;
-  if (role != "laundry") {
-    return handleClientError(
-      res,
-      401,
-      "unauthorize, forbidden access this endpoint login with laundry account"
-    );
+  if (role != "merchant") {
+    return handleClientError(res, 401, "app_unathorize_auto");
   }
   next();
 };
@@ -31,11 +23,7 @@ exports.authorizationRoleLaundry = async (req, res, next) => {
 exports.authorizationRoleUser = async (req, res, next) => {
   const { role } = req;
   if (role != "user") {
-    return handleClientError(
-      res,
-      401,
-      "unauthorize, forbidden access this endpoint login with user account"
-    );
+    return handleClientError(res, 401, "app_unathorize_auto");
   }
   next();
 };
@@ -55,7 +43,7 @@ exports.authorizationOwnService = async (req, res, next) => {
     if (!merchant) {
       return handleNotFound(res);
     } else if (merchant?.userId != id) {
-      return handleClientError(res, 401, "Forbidden, not your merchant");
+      return handleClientError(res, 401, "app_unathorize_auto");
     }
   }
 

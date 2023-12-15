@@ -27,7 +27,7 @@ module.exports = {
       {
         id: 2,
         name: "Laundry 2",
-        userId: 5,
+        userId: 4,
         description: "ini adalah description",
         imagePath: null,
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,

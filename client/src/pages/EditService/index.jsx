@@ -29,7 +29,7 @@ const EditService = ({ user, service, intl: { formatMessage } }) => {
   } = useForm();
 
   useEffect(() => {
-    if (user?.role !== 'laundry') {
+    if (user?.role !== 'merchant') {
       navigate('/');
     }
   }, [navigate, user]);
