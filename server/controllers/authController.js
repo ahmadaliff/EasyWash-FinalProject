@@ -1,6 +1,6 @@
-require("dotenv").config();
 const CryptoJS = require("crypto-js");
 const { unlink } = require("fs");
+require("dotenv").config();
 require("cookie-parser");
 
 const {
@@ -151,7 +151,6 @@ exports.register = async (req, res) => {
     if (isExist) {
       return handleClientError(res, 400, "app_register_already_exist");
     }
-
     const response = await sequelize.transaction(async (t) => {
       const responseUser = await User.create(newUser, { transaction: t });
       if (newUser.role === "merchant") {
@@ -164,19 +163,11 @@ exports.register = async (req, res) => {
       return responseUser;
     });
 
-    if (response.role !== "merchant") {
-      await chatStreamClient.upsertUser({
-        id: response.id.toString(),
-        name: response.fullName,
-        image: `${process.env.SERVER_HOST}${response.imagePath}`,
-      });
-    } else {
-      await chatStreamClient.upsertUser({
-        id: response.id.toString(),
-        name: response.fullName,
-        image: `${process.env.SERVER_HOST}${response.imagePath}`,
-      });
-    }
+    await chatStreamClient.upsertUser({
+      id: response.id.toString(),
+      name: response.role !== "merchant" ? response.fullName : merchant.name,
+      image: null,
+    });
 
     return handleSuccess(res, {
       data: response,
@@ -308,17 +299,20 @@ exports.editPhotoProfile = async (req, res) => {
     }
     const response = await user.update({ imagePath: image });
 
-    await chatStreamClient.upsertUser({
-      id: response.id.toString(),
-      name: response.fullName,
-      image: `${process.env.SERVER_HOST}${image}`,
-    });
+    if (user.role !== "merchant") {
+      await chatStreamClient.upsertUser({
+        id: response.id.toString(),
+        name: response.fullName,
+        image: `${process.env.SERVER_HOST}${image}`,
+      });
+    }
 
     return handleSuccess(res, {
       data: response,
       message: "app_edit_photo_profile_success",
     });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };
@@ -356,11 +350,13 @@ exports.editProfile = async (req, res) => {
     const response = await User.update(newUser, { where: { id: id } });
     const user = await User.findOne({ where: { id: id } });
 
-    await chatStreamClient.upsertUser({
-      id: id.toString(),
-      name: user.fullName,
-      image: `${process.env.SERVER_HOST}${user.imagePath}`,
-    });
+    if (user.role !== "merchant") {
+      await chatStreamClient.upsertUser({
+        id: id.toString(),
+        name: user.fullName,
+        image: `${process.env.SERVER_HOST}${user.imagePath}`,
+      });
+    }
 
     return handleSuccess(res, {
       data: response,

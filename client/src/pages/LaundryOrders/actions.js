@@ -11,10 +11,11 @@ export const actionSetOrders = (orders) => ({
   orders,
 });
 
-export const actionChangeStatus = (id, newStatus) => ({
+export const actionChangeStatus = (id, newStatus, callback) => ({
   type: CHANGE_STATUS,
   id,
   newStatus,
+  callback,
 });
 
 export const actionResetOrders = () => ({

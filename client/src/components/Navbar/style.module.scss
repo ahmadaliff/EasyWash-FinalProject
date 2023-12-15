@@ -2,14 +2,15 @@
 
 .headerWrapper {
   background-color: var(--color-bg) !important;
-  box-shadow: 0 0.25rem 0.75rem rgba(25, 49, 83, 0.2) !important;
+  border-bottom: 1px solid rgba($color: gray, $alpha: 0.2);
   position: sticky;
   top: 0;
+  z-index: 15;
   .contentWrapper {
     @include directionX;
 
     color: var(--color-text);
-    padding: 1rem;
+    padding: 0.75rem;
     align-items: center;
     justify-content: space-between;
     font-size: 1rem;
@@ -21,39 +22,66 @@
       gap: 0.5rem;
       .logo {
         width: auto;
-        height: 1.5rem;
+        height: 2rem;
+        &:hover {
+          transform: scale(1.05, 1.05);
+        }
       }
     }
 
     .toolbar {
       @include directionX;
-      .theme {
-        @include directionX;
-        align-items: center;
-        margin-right: 0.5rem;
-        cursor: pointer;
+      align-items: center;
+      .navButton {
+        display: none;
+        @include apply-at-sm-size {
+          @include directionX;
+        }
+        gap: 0.25rem;
+        color: var(--color-text);
+        svg {
+          height: 1.25rem;
+          width: 1.25rem;
+        }
+      }
+      .verticalLine {
+        display: none;
+        @include apply-at-sm-size {
+          display: block;
+        }
+        height: 1.5rem;
+        width: 2px;
+        margin: 0 1.25rem;
+        background-color: rgba($color: gray, $alpha: 0.75);
       }
       .toggle {
         @include directionX;
         align-items: center;
         cursor: pointer;
-
+        gap: 0.125rem;
         .avatar {
-          width: 1.2rem;
-          height: 1.2rem;
-          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-          margin-right: 0.5rem;
+          width: 1.75rem;
+          height: 1.75rem;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 10px 0px;
+          margin-right: 0.25rem;
+          background-color: var(--color-primary);
+          p {
+            text-transform: uppercase;
+            font-size: small;
+            font-weight: 700;
+            color: white;
+          }
         }
 
-        .lang {
+        .name {
           font-family: Poppins, Arial, Helvetica, sans-serif;
           font-weight: 700;
-          font-size: 1rem;
-          text-transform: uppercase;
+          font-size: 0.75rem;
+          text-transform: capitalize;
         }
 
         .arrow {
-          font-size: 1rem;
+          font-size: 1.125rem;
         }
       }
     }
@@ -64,15 +92,38 @@
   @include directionX;
   align-items: center;
 
-  .menuAvatar {
-    width: 1rem;
-    height: 1rem;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    margin-right: 0.5rem;
-  }
-
-  .menuLang {
+  .menuItem {
     font-family: Poppins, Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
+    font-size: small;
+    text-transform: capitalize;
+    gap: 0.5rem;
+    .avatarMenuItem {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    .menuItemButtonContained,
+    .menuItemButtonOutlined {
+      text-transform: capitalize;
+      font-size: small;
+      padding: 0.45rem 2rem;
+    }
+    .menuItemButtonContained {
+      background-color: var(--color-primary);
+    }
+    .menuItemButtonOutlined {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    p {
+      margin: 0;
+    }
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+  .theme {
+    @include directionX;
+    cursor: pointer;
   }
 }

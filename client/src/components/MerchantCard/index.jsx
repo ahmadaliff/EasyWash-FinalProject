@@ -61,7 +61,7 @@ const MerchantCard = ({ user, login, merchant }) => {
             </IconButton>
           ) : (
             <IconButton onClick={() => dispatch(actionDeleteFromFavorit(merchant?.id))}>
-              <Favorite sx={{ color: 'red' }} />
+              <Favorite className={classes.favoritRed} />
             </IconButton>
           )}
         </div>

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Op } = require("sequelize");
 const { checkStatusOrder } = require("../helpers/checkStatusOrderHelper");
 const {
@@ -12,6 +13,8 @@ const {
   schemaService,
   schemaMerchant,
 } = require("../helpers/joiHelper");
+
+const { chatStreamClient } = require("../utils/streamChatUtil");
 
 const { Merchant, Service, Order } = require("../models");
 
@@ -48,6 +51,12 @@ exports.editMerchant = async (req, res) => {
     }
     const response = await isExist.update(data);
 
+    await chatStreamClient.upsertUser({
+      id: id.toString(),
+      name: response.name,
+      image: `${process.env.SERVER_HOST}${response.imagePath}`,
+    });
+
     return handleSuccess(res, {
       message: "app_updated_merchant",
       data: response,
@@ -71,6 +80,12 @@ exports.editPhotoMerchant = async (req, res) => {
       return handleNotFound(res);
     }
     const response = await isExist.update({ imagePath: image });
+
+    await chatStreamClient.upsertUser({
+      id: id.toString(),
+      name: response.name,
+      image: `${process.env.SERVER_HOST}${image}`,
+    });
 
     return handleSuccess(res, {
       data: response,

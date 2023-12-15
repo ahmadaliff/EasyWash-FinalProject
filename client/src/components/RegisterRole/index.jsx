@@ -74,7 +74,7 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
           <StyledToggleButton value="user">
             <AccountBox /> <FormattedMessage id="app_user" />
           </StyledToggleButton>
-          <StyledToggleButton value="Merchant">
+          <StyledToggleButton value="merchant">
             <LocalLaundryService /> Laundry
           </StyledToggleButton>
         </ToggleButtonGroup>

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
-import { Add, AddShoppingCart, Close, Receipt, Remove } from '@mui/icons-material';
+import { Add, AddShoppingCart, Close, LibraryBooksOutlined, Remove } from '@mui/icons-material';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
 
 import { actionAddToCart } from '@pages/Cart/action';
@@ -25,8 +25,10 @@ const ServiceDialog = ({ handleClose, open, service }) => {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth className={classes.dialog}>
-      <DialogTitle fontSize="larger">
-        <FormattedMessage id="app_service_datail" />
+      <DialogTitle fontSize="large">
+        <b>
+          <FormattedMessage id="app_service_datail" />
+        </b>
       </DialogTitle>
       <IconButton
         aria-label="close"
@@ -87,7 +89,7 @@ const ServiceDialog = ({ handleClose, open, service }) => {
         <Button
           variant="contained"
           className={classes.dialogAction}
-          startIcon={<Receipt />}
+          startIcon={<LibraryBooksOutlined />}
           onClick={handleCreateOrder}
         >
           <FormattedMessage id="app_create_order" />
@@ -102,4 +104,5 @@ ServiceDialog.propTypes = {
   open: PropTypes.bool,
   service: PropTypes.object,
 };
+
 export default ServiceDialog;

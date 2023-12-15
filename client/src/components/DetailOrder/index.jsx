@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import { Close, DryCleaning } from '@mui/icons-material';
 import { FormattedMessage, FormattedNumber, injectIntl } from 'react-intl';
@@ -8,8 +8,10 @@ import classes from '@components/DetailOrder/style.module.scss';
 
 const EditProfile = ({ order, open, handleClose }) => (
   <Dialog open={open} onClose={handleClose} fullWidth>
-    <DialogTitle fontSize="larger">
-      <FormattedMessage id="app_detail_order" />
+    <DialogTitle fontSize="large">
+      <b>
+        <FormattedMessage id="app_detail_order" />
+      </b>
     </DialogTitle>
     <IconButton
       aria-label="close"
@@ -86,9 +88,9 @@ const EditProfile = ({ order, open, handleClose }) => (
 );
 
 EditProfile.propTypes = {
-  order: Proptypes.object,
-  open: Proptypes.bool,
-  handleClose: Proptypes.func,
+  order: PropTypes.object,
+  open: PropTypes.bool,
+  handleClose: PropTypes.func,
 };
 
 export default injectIntl(EditProfile);

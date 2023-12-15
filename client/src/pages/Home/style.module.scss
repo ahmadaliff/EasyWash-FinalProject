@@ -45,13 +45,13 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(10rem, 10rem));
     @include apply-at-sm-size {
-      grid-template-columns: repeat(2, minmax(15rem, 1fr));
+      grid-template-columns: repeat(2, minmax(12rem, 1fr));
     }
     @include apply-at-lg-size {
-      grid-template-columns: repeat(3, minmax(15rem, 1fr));
+      grid-template-columns: repeat(3, minmax(12rem, 1fr));
     }
     @include apply-at-xl-size {
-      grid-template-columns: repeat(4, minmax(15rem, 1fr));
+      grid-template-columns: repeat(4, minmax(12rem, 1fr));
     }
     gap: 1rem;
     padding-top: 2rem;

@@ -53,7 +53,7 @@ const MyOrder = ({ user, orders }) => {
                   </b>
                 </p>
                 <p>
-                  <FormattedMessage id={order?.status} /> x {order?.quantity}
+                  <FormattedMessage id={order?.status} />
                 </p>
               </div>
               <div>

@@ -7,6 +7,7 @@
     @include directionX;
   }
   gap: 1rem;
+  position: relative;
   .imgWrap {
     align-self: center;
     @include apply-at-md-size {
@@ -75,5 +76,10 @@
         max-width: 15rem;
       }
     }
+  }
+  .chatButton {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }

@@ -9,35 +9,31 @@ import ChannelInner from '@components/ChannelInner';
 
 import config from '@config/index';
 
-import { selectProfile, selectTokenStream } from '@pages/ChatPage/selectors';
+import { selectTokenStream } from '@pages/ChatPage/selectors';
 import { selectTheme } from '@containers/App/selectors';
-import { actionGetProfile, actionGetTokenMessage } from '@pages/ChatPage/actions';
+import { actionGetTokenMessage } from '@pages/ChatPage/actions';
+import { selectUser } from '@containers/Client/selectors';
 import { showPopup } from '@containers/App/actions';
 
 import classes from '@pages/ChatPage/style.module.scss';
 import 'stream-chat-react/dist/css/v2/index.css';
 
-const ChatPage = ({ theme, profile, tokenChat }) => {
+const ChatPage = ({ theme, user, tokenChat }) => {
   const dispatch = useDispatch();
   const [chatClient, setChatClient] = useState(null);
   const [isMenuopen, setIsMenuOpen] = useState(true);
 
   useEffect(() => {
-    if (!profile) {
-      dispatch(actionGetProfile());
-    }
-    if (!tokenChat) {
-      dispatch(actionGetTokenMessage());
-    }
+    dispatch(actionGetTokenMessage());
     const initChat = async () => {
       if (chatClient === null) {
         const client = StreamChat.getInstance(config.api.streamKey);
         try {
           await client.connectUser(
             {
-              id: JSON.stringify(profile?.id),
-              name: profile?.fullName,
-              image: `${config.api.server}${profile?.imagePath}`,
+              id: JSON.stringify(user?.id),
+              name: user?.fullName,
+              image: `${config.api.server}${user?.imagePath}`,
             },
             tokenChat
           );
@@ -47,16 +43,16 @@ const ChatPage = ({ theme, profile, tokenChat }) => {
         }
       }
     };
-    if (tokenChat && profile) {
+    if (tokenChat) {
       initChat();
     }
     return () => {
       const disconnect = async () => {
-        await chatClient.disconnectUser();
+        if (chatClient) await chatClient.disconnectUser();
       };
-      if (chatClient) disconnect();
+      disconnect();
     };
-  }, [chatClient, dispatch, profile, tokenChat]);
+  }, [chatClient, dispatch, tokenChat, user]);
 
   return (
     <main className={classes.mainWrap}>
@@ -67,8 +63,9 @@ const ChatPage = ({ theme, profile, tokenChat }) => {
               <div className={`${classes.channelList} str-chat str-chat__channel-list str-chat__theme-${theme}`}>
                 <div onClick={() => setIsMenuOpen(false)}>
                   <ChannelList
-                    filters={{ members: { $in: [JSON.stringify(profile?.id)] } }}
+                    filters={{ members: { $in: [JSON.stringify(user?.id)] } }}
                     sort={{ last_message_at: -1 }}
+                    showChannelSearch
                   />
                 </div>
               </div>
@@ -87,12 +84,12 @@ const ChatPage = ({ theme, profile, tokenChat }) => {
 
 ChatPage.propTypes = {
   tokenChat: PropTypes.string,
-  profile: PropTypes.object,
+  user: PropTypes.object,
   theme: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
-  profile: selectProfile,
+  user: selectUser,
   tokenChat: selectTokenStream,
   theme: selectTheme,
 });

@@ -1,5 +1,3 @@
-const { Op } = require("sequelize");
-
 const { chatStreamClient } = require("../utils/streamChatUtil");
 
 const {
@@ -30,20 +28,20 @@ exports.createChannels = async (req, res) => {
       return handleNotFound(res);
     }
 
-    const filter = {
-      type: "messaging",
-      members: { $in: [id.toString(), userId.toString()] },
-    };
-
-    const isExistChannel = await chatStreamClient.queryChannels(filter);
-    if (isExistChannel.length !== 0) {
-      return handleSuccess(res, {});
-    }
-
     const arrId = [id, userId];
     arrId.sort(function (a, b) {
       return a - b;
     });
+
+    const filter = {
+      cid: `messaging:${arrId[0]}-${arrId[1]}`,
+    };
+
+    const isExistChannel = await chatStreamClient.queryChannels(filter);
+
+    if (isExistChannel.length !== 0) {
+      return handleSuccess(res, {});
+    }
 
     const channel = chatStreamClient.channel(
       "messaging",
@@ -65,15 +63,22 @@ exports.deleteChannel = async (req, res) => {
   try {
     const { id } = req;
     const { userId } = req.params;
+    const arrId = [id, userId];
+    arrId.sort(function (a, b) {
+      return a - b;
+    });
+
     const filter = {
-      type: "messaging",
-      members: { $in: [id.toString(), userId.toString()] },
+      cid: `messaging:${arrId[0]}-${arrId[1]}`,
     };
     const isExistChannel = await chatStreamClient.queryChannels(filter);
     if (isExistChannel.length === 0) {
       return handleNotFound(res);
     }
-    await chatStreamClient.deleteChannels([`messaging:1-4`]);
+
+    await chatStreamClient.deleteChannels([
+      `messaging:${arrId[0]}-${arrId[1]}`,
+    ]);
     return handleSuccess(req, {});
   } catch (error) {
     return handleServerError(res);

@@ -39,6 +39,7 @@ import {
 } from '@containers/Client/actions';
 import { selectUser } from '@containers/Client/selectors';
 import { selectMerchant } from '@pages/Register/selectors';
+import { actionResetTokenMessage } from '@pages/ChatPage/actions';
 
 function* sagaHandleLogin({ data, callback }) {
   yield put(setLoading(true));
@@ -70,6 +71,7 @@ function* sagaHandleLogout({ callback }) {
     yield put(setLogin(false));
     yield put(setToken(null));
     yield put(setUser(null));
+    yield put(actionResetTokenMessage());
     if (callback) {
       yield call(callback);
     }

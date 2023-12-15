@@ -11,6 +11,9 @@ export default {
   app_tagline: 'Pengalaman mencuci Anda lebih mudah !!',
   app_no_data_to_show: 'Tidak ada data untuk ditampilkan',
   app_must_user_role: 'Kamu harus login dengan role user',
+  app_select_language: 'Pilih Bahasa',
+  app_chat: 'Pesan',
+  app_order_list: 'List Pesanan',
 
   // backend response
   app_404: 'Data tidak ditemukan',

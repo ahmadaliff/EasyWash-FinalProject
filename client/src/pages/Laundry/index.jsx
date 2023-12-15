@@ -12,10 +12,11 @@ import NoData from '@components/NoData';
 import MerchantInfo from '@components/MerchantInfo';
 import { selectMerchant } from '@pages/Laundry/selectors';
 
+import ServiceDialog from '@components/ServiceDialog';
+
 import { actionGetMerchant, actionResetMerchant } from '@pages/Laundry/action';
 
 import classes from '@pages/Laundry/style.module.scss';
-import ServiceDialog from '@components/ServiceDialog';
 
 const Laundry = ({ merchant }) => {
   const dispatch = useDispatch();

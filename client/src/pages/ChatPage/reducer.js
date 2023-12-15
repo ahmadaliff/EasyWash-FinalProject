@@ -1,31 +1,20 @@
 import { produce } from 'immer';
 
-import { SET_TOKEN_STREAM, SET_PROFILE, RESET_PROFILE, SET_USERS, RESET_USERS } from '@pages/ChatPage/constants';
+import { RESET_TOKEN_STREAM, SET_TOKEN_STREAM } from '@pages/ChatPage/constants';
 
 export const initialState = {
-  profile: null,
   token: null,
-  users: null,
 };
 
-export const storedKey = ['profile', 'token', 'users'];
+export const storedKey = ['token'];
 
 const messageReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case SET_PROFILE:
-        draft.profile = action.profile;
-        break;
       case SET_TOKEN_STREAM:
         draft.token = action.token;
         break;
-      case SET_USERS:
-        draft.users = action.users;
-        break;
-      case RESET_USERS:
-        draft.users = null;
-        break;
-      case RESET_PROFILE:
+      case RESET_TOKEN_STREAM:
         return initialState;
     }
   });

@@ -21,12 +21,14 @@ import {
 } from '@mui/material';
 import { ArrowRight, DoNotDisturb, Done } from '@mui/icons-material';
 
+import DetailOrder from '@components/DetailOrder';
+
 import { selectUser } from '@containers/Client/selectors';
 import { selectOrders } from '@pages/LaundryOrders/selectors';
 import { actionChangeStatus, actionGetOrders, actionResetOrders } from '@pages/LaundryOrders/actions';
+import { actionAddChannel, actionDeleteChannel } from '@pages/ChatPage/actions';
 
 import classes from '@pages/LaundryOrders/style.module.scss';
-import DetailOrder from '@components/DetailOrder';
 
 const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [order, setOrder] = useState(null);
+  const [orderState, setOrderState] = useState(null);
 
   const columns = [
     { id: 'id', label: formatMessage({ id: 'app_order_id' }), maxWidth: 50 },
@@ -65,8 +67,12 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, page, rowsPerPage]);
 
-  const buttonComp = (newStatus, row, idIntl, nameClass = classes.buttonActionAcc) => (
-    <Button type="button" className={nameClass} onClick={() => dispatch(actionChangeStatus(row.id, newStatus))}>
+  const buttonComp = (newStatus, row, idIntl, callback, nameClass = classes.buttonActionAcc) => (
+    <Button
+      type="button"
+      className={nameClass}
+      onClick={() => dispatch(actionChangeStatus(row.id, newStatus, callback))}
+    >
       {nameClass === classes.buttonActionAcc ? <Done /> : <DoNotDisturb />}
       <div className={classes.email}>
         <FormattedMessage id={idIntl} />
@@ -74,21 +80,21 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
     </Button>
   );
 
-  const actionComp = (row) => {
-    switch (row.status) {
+  const actionComp = (order) => {
+    switch (order.status) {
       case 'app_pending':
         return (
           <>
-            {buttonComp('app_payment', row, 'app_acc')}
-            {buttonComp('app_rejected', row, 'app_decline', classes.buttonActionDec)}
+            {buttonComp('app_payment', order, 'app_acc', () => dispatch(actionAddChannel(order?.userId)))}
+            {buttonComp('app_rejected', order, 'app_decline', undefined, classes.buttonActionDec)}
           </>
         );
       case 'app_pickUp':
-        return buttonComp('app_onProcess', row, 'app_onProcess');
+        return buttonComp('app_onProcess', order, 'app_onProcess');
       case 'app_onProcess':
-        return buttonComp('app_onDelivery', row, 'app_onDelivery');
+        return buttonComp('app_onDelivery', order, 'app_onDelivery');
       case 'app_onDelivery':
-        return buttonComp('app_finish', row, 'app_finish');
+        return buttonComp('app_finish', order, 'app_finish', () => dispatch(actionDeleteChannel(order?.userId)));
       default:
         return 'No Action';
     }
@@ -129,10 +135,10 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders?.data?.map((row) => (
-                <TableRow hover key={row.id}>
+              {orders?.data?.map((order) => (
+                <TableRow hover key={order.id}>
                   {columns.map((column) => {
-                    const value = row[column.id];
+                    const value = order[column.id];
                     return (
                       <TableCell key={column.id} className={classes.tableBody}>
                         {
@@ -148,12 +154,12 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
                   })}
 
                   <TableCell className={classes.tableBody}>
-                    <div className={classes.tableAction}>{actionComp(row)}</div>
+                    <div className={classes.tableAction}>{actionComp(order)}</div>
                   </TableCell>
                   <TableCell>
                     <IconButton
                       onClick={() => {
-                        setOrder(row);
+                        setOrderState(order);
                         setIsDetailOpen(true);
                       }}
                     >
@@ -163,7 +169,7 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
                 </TableRow>
               ))}
               <DetailOrder
-                order={order}
+                order={orderState}
                 open={isDetailOpen}
                 handleClose={() => {
                   setIsDetailOpen(false);

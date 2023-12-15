@@ -30,7 +30,8 @@ const Profile = ({ user, profile }) => {
         dispatch(actionResetProfile());
       }
     };
-  }, [dispatch, profile, user?.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, user?.id]);
 
   const handleImageChange = (e) => {
     dispatch(actionEditPhotoProfile(e.target.files[0]));

@@ -21,11 +21,14 @@ function* sagaGetOrders({ limit, page }) {
   yield put(setLoading(false));
 }
 
-function* sagaChangeStatus({ id, newStatus }) {
+function* sagaChangeStatus({ id, newStatus, callback }) {
   yield put(setLoading(true));
   try {
     // eslint-disable-next-line object-shorthand
     const response = yield call(apiChangeStatus, { orderId: id, newStatus: newStatus });
+    if (callback) {
+      yield call(callback);
+    }
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {

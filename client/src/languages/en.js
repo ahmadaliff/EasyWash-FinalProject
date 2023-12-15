@@ -11,6 +11,9 @@ export default {
   app_tagline: 'Make your wash life easier!!',
   app_no_data_to_show: 'No data to show',
   app_must_user_role: 'You must login with user role',
+  app_select_language: 'Select Language',
+  app_chat: 'Chat',
+  app_order_list: 'Order List',
 
   // backend response
   app_404: 'Data not found',

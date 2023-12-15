@@ -1,8 +1,9 @@
 @import '@styles/base';
+
 .dialog {
-  &:nth-child(3) {
+  &:nth-child(5) {
     bottom: 0;
-    &:nth-child(3) {
+    &:nth-child(5) {
       position: absolute;
       width: 100%;
       top: unset;

@@ -50,7 +50,9 @@ export const apiHandleSendForgotPassword = (data) => callAPI(`${urls.auth}/forgo
 export const apiHandleResetForgotPassword = (data) => callAPI(`${urls.auth}/resetPassword`, 'PUT', data);
 export const apiHandleGetProfile = () => callAPI(`${urls.auth}/profile`, 'GET', {}, true);
 export const apiHandleEditPhotoProfile = (data) =>
-  callAPI(`${urls.auth}/edit/photoProfile`, 'PUT', true, data, { 'Content-Type': 'multipart/form-data' });
+  callAPI(`${urls.auth}/edit/photoProfile`, 'PUT', data, true, {
+    'Content-Type': 'multipart/form-data',
+  });
 export const apiHandleEditProfile = (data) => callAPI(`${urls.auth}/edit/profile`, 'PUT', data, true);
 
 // admin
@@ -104,5 +106,5 @@ export const apiPaymentSuccess = (orderId) => callAPI(`${urls.user}/changeStatus
 
 // message stream.io
 export const apiHandleGetTokenStream = () => callAPI(`${urls.chat}/token`, 'POST');
-export const apiHandleGetUsersAvailable = () => callAPI(`${urls.chat}/userAvailable`, 'GET');
 export const apiHandleAddChannel = (data) => callAPI(`${urls.chat}/createChannel`, 'POST', data, true);
+export const apiHandleDeleteChannel = (userId) => callAPI(`${urls.chat}/delete/${userId}`, 'DELETE', {}, true);
