@@ -14,6 +14,7 @@ export default {
   app_select_language: 'Select Language',
   app_chat: 'Chat',
   app_order_list: 'Order List',
+  app_free_delivery: 'Free Delivery',
 
   // backend response
   app_404: 'Data not found',

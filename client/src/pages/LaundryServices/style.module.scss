@@ -1,81 +1,91 @@
 @import '@styles/base';
-
-.header {
-  @include directionY;
-  @include apply-at-md-size {
-    @include directionX;
+.mainWrap {
+  min-height: var(--min-height);
+  @include apply-at-sm-size {
+    min-height: var(--min-height-sm);
   }
-  gap: 0.5rem;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  .searchInputWrap {
-    @include directionX;
-    align-items: center;
-    gap: 0.25rem;
-    width: 100%;
-    @include apply-at-md-size {
-      width: auto;
-    }
-    .searchInput {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 0.5rem;
-      font-size: small;
-      border: 1px solid var(--color-text);
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      border-radius: 3px;
-      @include apply-at-md-size {
-        width: auto;
-      }
-      &:focus {
-        outline: none;
-        border: 1px solid var(--color-primary);
-      }
-    }
-    .buttonAdd {
-      border-radius: 2.5rem;
-      background-color: var(--color-primary);
-      padding: 0.25rem 1rem;
-      font-size: small;
-      text-transform: capitalize;
-      margin: auto;
-      box-shadow: none;
-      font-weight: bold;
-      cursor: pointer;
-      &:hover {
-        transform: scale(1.025, 1.025);
-      }
-      .buttonText {
-        display: none;
-        @include apply-at-md-size {
-          display: block;
-        }
-      }
-    }
-  }
-  .toggleRole {
-    button {
-      width: 11rem;
-      svg {
-        color: var(--color-primary);
-      }
-      font-weight: 600;
-      border-color: var(--color-primary);
-      text-transform: capitalize;
-    }
-  }
-}
-.card {
-  margin: 1rem 0 1rem 0;
-  box-shadow: 0 0 0.25rem gray !important;
-}
-.tableWrap {
   padding: 0.75rem;
   @include apply-at-md-size {
     padding: 2rem 4rem 2rem 4rem;
   }
+  .header {
+    @include directionY;
+    @include apply-at-md-size {
+      @include directionX;
+    }
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+  .card {
+    margin: 1rem 0 1rem 0;
+    box-shadow: none !important;
+    .searchInputWrap {
+      @include directionX;
+      align-items: center;
+      gap: 0.25rem;
+      width: 100%;
+      position: relative;
+      @include apply-at-md-size {
+        width: auto;
+      }
+      .iconSearch {
+        position: absolute;
+        left: 0.5rem;
+        width: 1rem;
+        height: 1rem;
+      }
+      .searchInput {
+        font-size: small;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        border-radius: 3px;
+        padding: 0.5rem;
+        padding-left: 2rem;
+        width: 100%;
+        @include apply-at-md-size {
+          width: auto;
+        }
+        border: none;
+        border: 1px solid var(--color-primary);
+        &:focus {
+          outline: none;
+        }
+      }
+      .buttonAdd {
+        border-radius: 2.5rem;
+        background-color: var(--color-primary);
+        padding: 0.25rem 1rem;
+        font-size: small;
+        text-transform: capitalize;
+        box-shadow: none;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.025, 1.025);
+        }
+        .buttonText {
+          display: none;
+          @include apply-at-md-size {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
   .tableHead {
     color: var(--color-primary);
     font-weight: 600;

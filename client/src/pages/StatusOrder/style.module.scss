@@ -5,10 +5,13 @@
   @include apply-at-md-size {
     padding: 2rem 5rem 2rem 5rem;
   }
-  min-height: calc(100vh - 3.55rem);
+  min-height: var(--min-height);
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
   * {
     box-sizing: border-box;
   }

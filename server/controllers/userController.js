@@ -24,14 +24,23 @@ exports.getAllLaundry = async (req, res) => {
       return handleNotFound(res);
     }
     const reqLocation = JSON.parse(location);
-    const response = await Merchant.findAll({ include: Favorit });
+    const response = await Merchant.findAll({
+      include: Favorit,
+      order: [["id", "ASC"]],
+    });
     const filteredResponse = response.filter((merchant) => {
       const { lat, lng } = JSON.parse(merchant.location);
       const distance = getDistance(reqLocation.lat, reqLocation.lng, lat, lng);
       merchant.dataValues.distance = distance;
-      return distance < 3;
+      return merchant.dataValues.distance < 3;
     });
-    return handleSuccess(res, { data: filteredResponse });
+    filteredResponse.sort(
+      (a, b) =>
+        parseFloat(a.dataValues.distance) - parseFloat(b.dataValues.distance)
+    );
+    return handleSuccess(res, {
+      data: filteredResponse,
+    });
   } catch (error) {
     return handleServerError(res);
   }
@@ -354,7 +363,6 @@ exports.createMidtransToken = async (req, res) => {
       },
     };
     const token = await snap.createTransactionToken(parameter);
-    console.log(token);
     if (!token) {
       return handleNotFound(res);
     }

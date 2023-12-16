@@ -7,7 +7,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 3.5rem);
+  height: var(--min-height);
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
 
   .image {
     width: 7rem;

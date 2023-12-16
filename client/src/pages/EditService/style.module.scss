@@ -3,10 +3,11 @@
 .mainWrap {
   @include directionY;
   padding: 1rem;
+  min-height: var(--min-height);
   @include apply-at-md-size {
+    min-height: var(--min-height-sm);
     padding: 2rem 5rem 2rem 5rem;
   }
-  min-height: calc(100vh - 3.55rem);
   align-items: center;
   box-sizing: border-box;
   position: relative;

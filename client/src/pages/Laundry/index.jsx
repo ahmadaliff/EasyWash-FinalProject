@@ -53,7 +53,6 @@ const Laundry = ({ merchant }) => {
           <MerchantInfo merchant={merchant} />
           {merchant?.Services?.map((service, k) => (
             <div key={k}>
-              <hr />
               <div
                 className={classes.service}
                 onClick={() => {
@@ -77,7 +76,6 @@ const Laundry = ({ merchant }) => {
                   </div>
                 </div>
               </div>
-              <hr />
             </div>
           ))}
           <ServiceDialog handleClose={() => setOpenDialog(false)} open={openDialog} service={serviceProps} />

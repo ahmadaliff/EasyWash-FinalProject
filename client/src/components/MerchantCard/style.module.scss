@@ -3,29 +3,45 @@
   position: relative;
   .card {
     width: 10rem;
-    @include apply-at-sm-size {
-      width: 12rem;
+    box-shadow: none;
+    .logoDelivery {
+      @include directionX;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: x-small;
+      padding: 0.25rem 0;
+      text-transform: capitalize;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
     }
-    box-shadow: 0 0 0.25rem gray;
+    .headerText {
+      margin: 0;
+      font-size: medium;
+      font-weight: 400;
+    }
+    .distance {
+      margin: 0;
+      opacity: 0.7;
+      font-size: small;
+    }
+    .desc {
+      display: -webkit-box;
+      margin: 0;
+      font-size: small;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      @include apply-at-sm-size {
+        -webkit-line-clamp: 4;
+      }
+      -webkit-box-orient: vertical;
+    }
     &:hover {
       transform: scale(1.0125, 1.0125);
       cursor: pointer;
       opacity: 0.7;
     }
-  }
-  .headerText {
-    margin: 0;
-    font-size: medium;
-  }
-  .desc {
-    font-size: small;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    @include apply-at-sm-size {
-      -webkit-line-clamp: 4;
-    }
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
   .cardAction {
     position: absolute;
@@ -37,17 +53,11 @@
     }
   }
   .img {
-    height: 125px;
-    @include apply-at-sm-size {
-      height: 194px;
-    }
+    height: 8rem;
     object-fit: contain;
   }
   .avatar {
-    height: 125px;
-    @include apply-at-sm-size {
-      height: 194px;
-    }
+    height: 8rem;
     width: 100%;
     background-color: var(--color-primary);
   }

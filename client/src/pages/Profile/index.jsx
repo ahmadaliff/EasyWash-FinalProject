@@ -68,9 +68,9 @@ const Profile = ({ user, profile }) => {
           </CardContent>
         </Card>
         <div>
-          <h4>
+          <h3>
             <FormattedMessage id="app_profile" />
-          </h4>
+          </h3>
           <span className={classes.profileInfo}>
             <p className={classes.profileLabel}>
               <FormattedMessage id="app_user_fullName" />
@@ -81,7 +81,7 @@ const Profile = ({ user, profile }) => {
             <p className={classes.profileLabel}>
               <FormattedMessage id="app_user_phone" />
             </p>
-            <p className={classes.profileText}>{profile?.phone}</p>
+            <p className={classes.profileText}>{profile?.phone || '-'}</p>
           </span>
           <span className={classes.profileInfo}>
             <p className={classes.profileLabel}>

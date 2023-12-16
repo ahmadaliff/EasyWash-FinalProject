@@ -3,8 +3,10 @@ import { injectIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import {
+  DryCleaningOutlined,
   FavoriteBorder,
   LibraryBooksOutlined,
+  LocalLaundryServiceOutlined,
   MessageOutlined,
   PersonOutline,
   ShoppingCartOutlined,
@@ -28,6 +30,21 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
             onClick={() => navigate('/cart')}
           />
         )}
+        {user?.role === 'merchant' && (
+          <BottomNavigationAction
+            label={formatMessage({ id: 'app_services_header' })}
+            icon={<DryCleaningOutlined />}
+            onClick={() => navigate('/service')}
+          />
+        )}
+        {user?.role === 'merchant' && (
+          <BottomNavigationAction
+            label={formatMessage({ id: 'app_merchant_header' })}
+            icon={<LocalLaundryServiceOutlined />}
+            onClick={() => navigate('/laundry')}
+          />
+        )}
+
         {user?.role !== 'admin' && (
           <BottomNavigationAction
             label={formatMessage({ id: 'app_order_list' })}

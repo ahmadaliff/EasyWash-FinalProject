@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { Avatar, Card, CardContent, CardMedia, IconButton, Skeleton } from '@mui/material';
-import { Favorite } from '@mui/icons-material';
+import { Avatar, Card, CardMedia, IconButton, Skeleton } from '@mui/material';
+import { Favorite, LocalShipping } from '@mui/icons-material';
 
 import config from '@config/index';
 
@@ -16,6 +16,7 @@ import { actionAddToFavorit, actionDeleteFromFavorit } from '@pages/Favorit/acti
 import classes from '@components/MerchantCard/style.module.scss';
 import toast from 'react-hot-toast';
 import intlHelper from '@utils/intlHelper';
+import { FormattedMessage } from 'react-intl';
 
 const MerchantCard = ({ user, login, merchant }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,6 @@ const MerchantCard = ({ user, login, merchant }) => {
         {merchant?.imagePath ? (
           <>
             {loading && <Skeleton variant="rectangular" height="194" width="100%" />}
-
             <CardMedia
               component="img"
               className={classes.img}
@@ -48,10 +48,13 @@ const MerchantCard = ({ user, login, merchant }) => {
             {merchant?.name?.split(' ').length > 1 && merchant?.name?.split(' ')[1][0]}
           </Avatar>
         )}
-        <CardContent>
-          <h4 className={classes.headerText}>{merchant?.name}</h4>
-          <p className={classes.desc}>{merchant?.description}</p>
-        </CardContent>
+        <div className={classes.logoDelivery}>
+          <LocalShipping />
+          <FormattedMessage id="app_free_delivery" />
+        </div>
+        <h4 className={classes.headerText}>{merchant?.name}</h4>
+        <p className={classes.distance}>{merchant.distance} Km</p>
+        <p className={classes.desc}>{merchant?.description}</p>
       </Card>
       {login && user?.role === 'user' && (
         <div className={classes.cardAction}>

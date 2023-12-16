@@ -41,6 +41,7 @@
       }
     }
     .avatar {
+      background-color: var(--color-primary);
       height: var(--image-size-sm);
       width: var(--image-size-sm);
       @include apply-at-md-size {
@@ -58,6 +59,7 @@
   }
   .merchantInfoHeader {
     margin: 0;
+    font-size: medium;
   }
   .profileInfo {
     @include directionX;

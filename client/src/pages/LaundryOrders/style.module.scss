@@ -1,60 +1,46 @@
 @import '@styles/base';
-
-.header {
-  @include directionY;
-  @include apply-at-md-size {
-    @include directionX;
+.mainWrap {
+  min-height: var(--min-height);
+  @include apply-at-sm-size {
+    min-height: var(--min-height-sm);
   }
-  gap: 0.5rem;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  .searchInputWrap {
-    @include directionX;
-    align-items: center;
-    gap: 0.25rem;
-    width: 100%;
-    @include apply-at-md-size {
-      width: auto;
-    }
-    .searchInput {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 0.5rem;
-      font-size: small;
-      border: 1px solid var(--color-text);
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      border-radius: 3px;
-      @include apply-at-md-size {
-        width: auto;
-      }
-      &:focus {
-        outline: none;
-        border: 1px solid var(--color-primary);
-      }
-    }
-  }
-  .toggleRole {
-    button {
-      width: 11rem;
-      svg {
-        color: var(--color-primary);
-      }
-      font-weight: 600;
-      border-color: var(--color-primary);
-      text-transform: capitalize;
-    }
-  }
-}
-.card {
-  margin: 1rem 0 1rem 0;
-  box-shadow: 0 0 0.25rem gray !important;
-}
-.tableWrap {
   padding: 0.75rem;
   @include apply-at-md-size {
     padding: 2rem 4rem 2rem 4rem;
+  }
+  .header {
+    @include directionY;
+    @include apply-at-md-size {
+      @include directionX;
+    }
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+    .searchInputWrap {
+      @include directionX;
+      align-items: center;
+      gap: 0.25rem;
+      width: 100%;
+      @include apply-at-md-size {
+        width: auto;
+      }
+    }
+  }
+  .card {
+    margin: 1rem 0 1rem 0;
+    box-shadow: none !important;
   }
   .tableHead {
     color: var(--color-primary);

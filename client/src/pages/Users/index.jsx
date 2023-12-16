@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { selectUser } from '@containers/Client/selectors';
-import { selectUsers } from '@pages/Users/selectors';
-import { createStructuredSelector } from 'reselect';
+import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import {
   Alert,
   Button,
@@ -19,7 +19,9 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { ArrowBack, Delete, DoNotDisturb, Search, Unpublished, Verified } from '@mui/icons-material';
+import styled from 'styled-components';
+
 import {
   actionDeleteUser,
   actionGetUnverifiedUsers,
@@ -27,11 +29,10 @@ import {
   actionResetUsers,
   actionVerifyUser,
 } from '@pages/Users/actions';
+import { selectUser } from '@containers/Client/selectors';
+import { selectUsers } from '@pages/Users/selectors';
 
 import classes from '@pages/Users/style.module.scss';
-import { FormattedMessage, injectIntl } from 'react-intl';
-import { Delete, DoNotDisturb, ManageSearch, Unpublished, Verified } from '@mui/icons-material';
-import styled from 'styled-components';
 
 const StyledToggle = styled(ToggleButton)({
   '&.Mui-selected, &.Mui-selected:hover': {
@@ -93,12 +94,22 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
   ];
 
   return (
-    <div className={classes.tableWrap}>
+    <main className={classes.mainWrap}>
       <div className={classes.header}>
-        <div>
+        <div className={classes.rowOne}>
           <h3>
             <FormattedMessage id="app_user_page_header" />
           </h3>
+          <Button
+            variant="contained"
+            className={classes.backButton}
+            startIcon={<ArrowBack />}
+            onClick={() => navigate(-1)}
+          >
+            <FormattedMessage id="app_back" />
+          </Button>
+        </div>
+        <div className={classes.rowTwo}>
           <ToggleButtonGroup
             value={isVerifiedUsers}
             exclusive
@@ -114,10 +125,10 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
               <Unpublished /> <FormattedMessage id="app_account_unverified" />
             </StyledToggle>
           </ToggleButtonGroup>
-        </div>
-        <div className={classes.searchInputWrap}>
-          <ManageSearch />
-          <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
+          <div className={classes.searchInputWrap}>
+            <Search className={classes.iconSearch} />
+            <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
+          </div>
         </div>
       </div>
       <Card className={classes.card}>
@@ -219,7 +230,7 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-    </div>
+    </main>
   );
 };
 

@@ -6,10 +6,13 @@
   --image-size-md: 12rem;
   @include directionY;
   padding: 0 0 2rem 0;
-  min-height: calc(100vh - 3.55rem);
+  min-height: var(--min-height);
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
   * {
     box-sizing: border-box;
   }

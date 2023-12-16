@@ -25,7 +25,35 @@
   }
   .card {
     margin: 1rem 0 1rem 0;
-    box-shadow: 0 0 0.25rem gray !important;
+    box-shadow: none !important;
+    .cardContent {
+      @include directionY;
+      gap: 0.75rem;
+      .service {
+        @include directionX;
+        align-items: center;
+        gap: 0.125rem;
+        padding: 0.75rem;
+        border: 1px solid rgba($color: gray, $alpha: 0.4);
+        border-radius: 10px;
+        .serviceInfoWrap {
+          width: 100%;
+          p {
+            margin: 0;
+            font-size: small;
+          }
+          .serviceInfo {
+            @include directionX;
+            justify-content: space-between;
+          }
+        }
+        &:hover {
+          background-color: rgba($color: gray, $alpha: 0.1);
+          cursor: pointer;
+          transform: scale(1.0125, 1.0125);
+        }
+      }
+    }
   }
   .createButton {
     margin-left: auto;
@@ -36,31 +64,6 @@
     font-size: small;
     &:hover {
       background-color: var(--color-primary);
-    }
-  }
-  .service {
-    @include directionX;
-    align-items: center;
-    hr {
-      margin: 0;
-    }
-    gap: 0.125rem;
-    padding: 0.25rem;
-    .serviceInfoWrap {
-      width: 100%;
-      p {
-        margin: 0;
-        font-size: small;
-      }
-      .serviceInfo {
-        @include directionX;
-        justify-content: space-between;
-      }
-    }
-    &:hover {
-      background-color: rgba($color: gray, $alpha: 0.1);
-      cursor: pointer;
-      transform: scale(1.0125, 1.0125);
     }
   }
 }

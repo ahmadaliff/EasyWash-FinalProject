@@ -1,17 +1,20 @@
 @import '@styles/base';
 
 .mainWrap {
-  --image-size-sm: 2rem;
-  --image-size-md: 2rem;
+  --image-size-sm: 8rem;
+  --image-size-md: 10rem;
   @include directionY;
   padding: 1rem;
   @include apply-at-md-size {
     padding: 2rem 5rem 2rem 5rem;
   }
-  min-height: calc(100vh - 3.55rem);
+  min-height: var(--min-height);
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
   * {
     box-sizing: border-box;
   }
@@ -33,7 +36,6 @@
   .Wrap {
     width: 100%;
     margin: 1rem;
-    box-shadow: 0 0 0.25rem gray;
     .cardWrap {
       @include directionY;
       @include apply-at-md-size {
@@ -73,6 +75,7 @@
           }
         }
         .avatar {
+          background-color: var(--color-primary);
           height: var(--image-size-sm);
           width: var(--image-size-sm);
           @include apply-at-md-size {

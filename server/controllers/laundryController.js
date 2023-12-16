@@ -29,7 +29,6 @@ exports.getMerchant = async (req, res) => {
     }
     return handleSuccess(res, { data: response });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -103,23 +102,7 @@ exports.getMyService = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search || "";
     const offset = limit * page;
-    const totalRows = await Service.count({
-      where: {
-        name: {
-          [Op.like]: "%" + search + "%",
-        },
-      },
-      include: {
-        model: Merchant,
-        where: {
-          userId: id,
-        },
-        attributes: [],
-        required: true,
-      },
-    });
-    const totalPage = Math.ceil(totalRows / limit);
-    const response = await Service.findAll({
+    const response = await Service.findAndCountAll({
       where: {
         name: {
           [Op.like]: "%" + search + "%",
@@ -136,10 +119,11 @@ exports.getMyService = async (req, res) => {
       offset: offset,
       limit: limit,
     });
+    const totalPage = Math.ceil(response.count / limit);
     return handleSuccess(res, {
-      data: response,
+      data: response.rows,
       totalPage: totalPage,
-      totalRows: totalRows,
+      totalRows: response.count,
     });
   } catch (error) {
     return handleServerError(res);
@@ -190,7 +174,6 @@ exports.addService = async (req, res) => {
     }
     const getMerchant = await Merchant.findOne({ where: { userId: id } });
     if (!getMerchant) {
-      console.log(id);
       return handleNotFound(res);
     }
     newService.merchantId = getMerchant.id;
@@ -222,7 +205,6 @@ exports.editService = async (req, res) => {
 
     return handleSuccess(res, { message: "app_service_updated" });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -243,23 +225,7 @@ exports.getOrders = async (req, res) => {
     const page = parseInt(req.query.page) || 0;
     const limit = parseInt(req.query.limit) || 10;
     const offset = limit * page;
-    const totalRows = await Order.count({
-      include: {
-        model: Service,
-        include: {
-          model: Merchant,
-          where: {
-            userId: id,
-          },
-          attributes: [],
-          required: true,
-        },
-        required: true,
-        attributes: [],
-      },
-    });
-    const totalPage = Math.ceil(totalRows / limit);
-    const response = await Order.findAll({
+    const response = await Order.findAndCountAll({
       include: {
         model: Service,
         include: {
@@ -275,10 +241,11 @@ exports.getOrders = async (req, res) => {
       offset: offset,
       limit: limit,
     });
+    const totalPage = Math.ceil(response.count / limit);
     return handleSuccess(res, {
-      data: response,
+      data: response.rows,
       totalPage: totalPage,
-      totalRows: totalRows,
+      totalRows: response.count,
     });
   } catch (error) {
     return handleServerError(res);

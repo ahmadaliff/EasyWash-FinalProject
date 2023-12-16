@@ -8,10 +8,11 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --min-height: calc(100vh - 7.5rem);
+  --min-height-sm: calc(100vh - 3.6rem);
   @include apply-at-md-size {
     font-size: 120%;
   }
-
   @include apply-at-lg-size {
     font-size: 125%;
   }

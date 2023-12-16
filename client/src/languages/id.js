@@ -60,6 +60,7 @@ export default {
   app_laundry_out_of_range: 'Laundry diluar jangkauan, hanya bisa akses dalam range 3km',
   app_unathorize_auto: 'Tidak diizinkan, dikeluarkan secara automatis',
   app_chat_created: 'Pesan telah dibuat',
+  app_free_delivery: 'Gratis Ongkir',
 
   // login and register
   app_profile: 'Profil',

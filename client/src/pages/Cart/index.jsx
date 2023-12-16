@@ -63,9 +63,7 @@ const Cart = ({ carts }) => {
               <MerchantInfo merchant={merchant} />
               {merchant?.Services?.map((service, k) => (
                 <div key={k}>
-                  <hr />
                   <ServiceCart service={service} />
-                  <hr />
                 </div>
               ))}
               <Button

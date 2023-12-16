@@ -17,26 +17,7 @@ exports.getUsers = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search || "";
     const offset = limit * page;
-    const totalRows = await User.count({
-      where: {
-        id: { [Op.ne]: id },
-        isVerified: true,
-        [Op.or]: [
-          {
-            fullName: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-          {
-            email: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-        ],
-      },
-    });
-    const totalPage = Math.ceil(totalRows / limit);
-    const response = await User.findAll({
+    const response = await User.findAndCountAll({
       where: {
         id: { [Op.ne]: id },
         isVerified: true,
@@ -56,17 +37,18 @@ exports.getUsers = async (req, res) => {
       offset: offset,
       limit: limit,
     });
-    if (!response) {
+    if (!response?.rows) {
       return handleNotFound(res);
     }
-    response.map(({ dataValues }) => {
+    const totalPage = Math.ceil(response.count / limit);
+    response.rows.map(({ dataValues }) => {
       delete dataValues.password;
       return dataValues;
     });
     return handleSuccess(res, {
-      data: response,
+      data: response.rows,
       totalPage: totalPage,
-      totalRows: totalRows,
+      totalRows: response.count,
     });
   } catch (error) {
     return handleServerError(res);
@@ -80,26 +62,7 @@ exports.getUnverifiedUsers = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search || "";
     const offset = limit * page;
-    const totalRows = await User.count({
-      where: {
-        id: { [Op.ne]: id },
-        isVerified: false,
-        [Op.or]: [
-          {
-            fullName: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-          {
-            email: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-        ],
-      },
-    });
-    const totalPage = Math.ceil(totalRows / limit);
-    const response = await User.findAll({
+    const response = await User.findAndCountAll({
       where: {
         id: { [Op.ne]: id },
         isVerified: false,
@@ -119,17 +82,18 @@ exports.getUnverifiedUsers = async (req, res) => {
       offset: offset,
       limit: limit,
     });
-    if (!response) {
+    if (!response?.rows) {
       return handleNotFound(res);
     }
-    response.map(({ dataValues }) => {
+    const totalPage = Math.ceil(response.count / limit);
+    response.rows.map(({ dataValues }) => {
       delete dataValues.password;
       return dataValues;
     });
     return handleSuccess(res, {
-      data: response,
+      data: response.rows,
       totalPage: totalPage,
-      totalRows: totalRows,
+      totalRows: response.count,
     });
   } catch (error) {
     return handleServerError(res);
@@ -161,7 +125,6 @@ exports.deleteUser = async (req, res) => {
         : "app_user_decline",
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };

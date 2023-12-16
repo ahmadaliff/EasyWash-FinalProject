@@ -98,7 +98,6 @@ exports.logout = async (req, res) => {
     redisClient.del(id.toString());
     return handleSuccess(res, { message: "app_logout_success" });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -312,7 +311,6 @@ exports.editPhotoProfile = async (req, res) => {
       message: "app_edit_photo_profile_success",
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };

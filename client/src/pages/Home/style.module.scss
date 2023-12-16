@@ -6,10 +6,13 @@
   --image-size-md: 12rem;
   @include directionY;
   padding: 0 0 2rem 0;
-  min-height: calc(100vh - 3.55rem);
   align-items: center;
+  min-height: var(--min-height);
   box-sizing: border-box;
   position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
   * {
     box-sizing: border-box;
   }
@@ -30,31 +33,57 @@
       }
     }
     .headerText {
-      @include directionX;
+      @include directionY;
       align-items: center;
-      font-size: 2.5rem;
-      max-width: 15rem;
-      @include apply-at-md-size {
-        font-size: 3rem;
+      justify-content: center;
+      gap: 0.5rem;
+      h2 {
+        font-size: 2.5rem;
         max-width: 15rem;
+        font-family: 'Lobster', cursive;
+        margin: 0;
       }
-      font-family: 'Lobster', cursive;
+      .searchInputWrap {
+        @include directionX;
+        align-items: center;
+        gap: 0.25rem;
+        width: 100%;
+        position: relative;
+        .iconSearch {
+          position: absolute;
+          left: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+        .searchInput {
+          font-size: small;
+          background-color: var(--color-bg);
+          color: var(--color-text);
+          border-radius: 3px;
+          padding: 0.5rem;
+          padding-left: 2rem;
+          width: 100%;
+          @include apply-at-md-size {
+            width: auto;
+          }
+          border: none;
+          border: 1px solid var(--color-primary);
+          &:focus {
+            outline: none;
+          }
+        }
+      }
     }
   }
   .content {
     display: grid;
-    grid-template-columns: repeat(2, minmax(10rem, 10rem));
-    @include apply-at-sm-size {
-      grid-template-columns: repeat(2, minmax(12rem, 1fr));
-    }
-    @include apply-at-lg-size {
-      grid-template-columns: repeat(3, minmax(12rem, 1fr));
-    }
-    @include apply-at-xl-size {
-      grid-template-columns: repeat(4, minmax(12rem, 1fr));
-    }
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 10rem));
     gap: 1rem;
-    padding-top: 2rem;
+    padding: 1rem;
+    @include apply-at-md-size {
+      padding: 5rem;
+    }
   }
   .noData {
     @include directionX;

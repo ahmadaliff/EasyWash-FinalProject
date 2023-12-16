@@ -19,7 +19,7 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { Add, DoNotDisturb, Edit, ManageSearch } from '@mui/icons-material';
+import { Add, ArrowBack, DoNotDisturb, Edit, Search } from '@mui/icons-material';
 
 import { selectUser } from '@containers/Client/selectors';
 import { selectServices } from '@pages/LaundryServices/selectors';
@@ -78,15 +78,25 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
   };
 
   return (
-    <div className={classes.tableWrap}>
+    <main className={classes.mainWrap}>
       <div className={classes.header}>
         <div>
           <h3>
             <FormattedMessage id="app_services_header" />
           </h3>
         </div>
+        <Button
+          variant="contained"
+          className={classes.backButton}
+          startIcon={<ArrowBack />}
+          onClick={() => navigate(-1)}
+        >
+          <FormattedMessage id="app_back" />
+        </Button>
+      </div>
+      <Card className={classes.card}>
         <div className={classes.searchInputWrap}>
-          <ManageSearch />
+          <Search className={classes.iconSearch} />
           <input className={classes.searchInput} onChange={(e) => setSearch(e.target.value)} />
           <Button
             type="button"
@@ -101,8 +111,6 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
             </div>
           </Button>
         </div>
-      </div>
-      <Card className={classes.card}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -187,7 +195,7 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-    </div>
+    </main>
   );
 };
 

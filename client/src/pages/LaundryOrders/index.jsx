@@ -19,7 +19,7 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { ArrowRight, DoNotDisturb, Done } from '@mui/icons-material';
+import { ArrowBack, ArrowRight, DoNotDisturb, Done } from '@mui/icons-material';
 
 import DetailOrder from '@components/DetailOrder';
 
@@ -110,13 +110,21 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
   };
 
   return (
-    <div className={classes.tableWrap}>
+    <main className={classes.mainWrap}>
       <div className={classes.header}>
         <div>
           <h3>
             <FormattedMessage id="app_orders_header" />
           </h3>
         </div>
+        <Button
+          variant="contained"
+          className={classes.backButton}
+          startIcon={<ArrowBack />}
+          onClick={() => navigate(-1)}
+        >
+          <FormattedMessage id="app_back" />
+        </Button>
       </div>
       <Card className={classes.card}>
         <TableContainer sx={{ maxHeight: 440 }}>
@@ -200,7 +208,7 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-    </div>
+    </main>
   );
 };
 

@@ -1,14 +1,17 @@
 @import '@styles/base';
 
 .mainWrap {
-  --image-size-sm: 10rem;
-  --image-size-md: 12rem;
+  --image-size-sm: 8rem;
+  --image-size-md: 10rem;
   @include directionY;
-  padding: 5rem;
-  min-height: calc(100vh - 3.55rem);
+  padding: 2rem;
+  min-height: var(--min-height);
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
   * {
     box-sizing: border-box;
   }
@@ -17,11 +20,9 @@
     @include apply-at-md-size {
       @include directionX;
     }
+    flex-direction: column-reverse;
     gap: 0.75rem;
-    h2 {
-      margin: auto;
-      font-size: 24px;
-      font-weight: 700;
+    h3 {
       text-align: center;
     }
     .cardWrap {
@@ -57,6 +58,7 @@
           }
         }
         .avatar {
+          background-color: var(--color-primary);
           height: var(--image-size-sm);
           width: var(--image-size-sm);
           @include apply-at-md-size {
@@ -106,6 +108,7 @@
     .profileLabel {
       float: left;
       width: 10rem;
+      font-weight: 700;
     }
     .profileText {
       width: 100%;

@@ -2,9 +2,7 @@
 .service {
   @include directionX;
   align-items: center;
-  hr {
-    margin: 0;
-  }
+  margin: 1.25rem 0;
   gap: 0.125rem;
   padding: 0.25rem;
   .serviceInfoWrap {

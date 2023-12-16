@@ -13,8 +13,6 @@ function* sagaGetMyOrder() {
     yield put(actionSetMyOrder(response.data));
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
-      toast.error(error.response.data.message);
-
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());
@@ -31,8 +29,6 @@ function* sagaCancelOrder({ id, callback }) {
     yield call(callback);
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 404 || error?.response?.status === 401) {
-      toast.error(error.response.data.message);
-
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
       yield put(showPopup());

@@ -10,11 +10,13 @@ import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
-import { Button, IconButton, Tooltip } from '@mui/material';
+import { Button } from '@mui/material';
 import {
+  DryCleaningOutlined,
   FavoriteBorder,
   Language,
   LibraryBooksOutlined,
+  LocalLaundryServiceOutlined,
   LogoutOutlined,
   MessageOutlined,
   PersonOutline,
@@ -22,6 +24,7 @@ import {
 } from '@mui/icons-material';
 
 import DialogLanguage from '@components/DialogLanguage';
+import NavbarIconButton from '@components/NavbarIconButton';
 
 import config from '@config/index';
 
@@ -69,51 +72,56 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
         </div>
         <div className={classes.toolbar}>
           {login && (
-            <>
-              <div className={classes.navButton}>
-                {user?.role === 'user' && (
-                  <>
-                    <Tooltip title="Favorit" arrow>
-                      <IconButton color="inherit" onClick={() => navigate('/favorit')}>
-                        <FavoriteBorder />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title={formatMessage({ id: 'app_cart_header' })} arrow>
-                      <IconButton color="inherit" onClick={() => navigate('/cart')}>
-                        <ShoppingCartOutlined />
-                      </IconButton>
-                    </Tooltip>
-                  </>
-                )}
-                {user?.role !== 'admin' ? (
-                  <>
-                    <Tooltip title={formatMessage({ id: 'app_order_list' })} arrow>
-                      <IconButton
-                        color="inherit"
-                        onClick={() => {
-                          if (user?.role === 'user') navigate('/user/order');
-                          else navigate('/laundry/orders');
-                        }}
-                      >
-                        <LibraryBooksOutlined />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title={formatMessage({ id: 'app_chat' })} arrow>
-                      <IconButton color="inherit" onClick={() => navigate('/chat')}>
-                        <MessageOutlined />
-                      </IconButton>
-                    </Tooltip>
-                  </>
-                ) : (
-                  <Tooltip title={formatMessage({ id: 'app_user_page_header' })} arrow>
-                    <IconButton color="inherit" onClick={() => navigate('/admin/user')}>
-                      <PersonOutline />
-                    </IconButton>
-                  </Tooltip>
-                )}
-              </div>
+            <div className={classes.navButton}>
+              {user?.role === 'user' && (
+                <>
+                  <NavbarIconButton title="Favorit" onClick={() => navigate('/favorit')} icon={<FavoriteBorder />} />
+                  <NavbarIconButton
+                    title={formatMessage({ id: 'app_cart_header' })}
+                    onClick={() => navigate('/cart')}
+                    icon={<ShoppingCartOutlined />}
+                  />
+                </>
+              )}
+              {user?.role === 'merchant' && (
+                <>
+                  <NavbarIconButton
+                    title={formatMessage({ id: 'app_services_header' })}
+                    onClick={() => navigate('/service')}
+                    icon={<DryCleaningOutlined />}
+                  />
+                  <NavbarIconButton
+                    title={formatMessage({ id: 'app_merchant_header' })}
+                    onClick={() => navigate('/laundry')}
+                    icon={<LocalLaundryServiceOutlined />}
+                  />
+                </>
+              )}
+              {user?.role !== 'admin' ? (
+                <>
+                  <NavbarIconButton
+                    title={formatMessage({ id: 'app_order_list' })}
+                    onClick={() => {
+                      if (user?.role === 'user') navigate('/user/order');
+                      else navigate('/laundry/orders');
+                    }}
+                    icon={<LibraryBooksOutlined />}
+                  />
+                  <NavbarIconButton
+                    title={formatMessage({ id: 'app_chat' })}
+                    onClick={() => navigate('/chat')}
+                    icon={<MessageOutlined />}
+                  />
+                </>
+              ) : (
+                <NavbarIconButton
+                  title={formatMessage({ id: 'app_user_page_header' })}
+                  onClick={() => navigate('/admin/user')}
+                  icon={<PersonOutline />}
+                />
+              )}
               <span className={classes.verticalLine} />
-            </>
+            </div>
           )}
           <div className={classes.toggle} onClick={handleProfilClick}>
             {login ? (
@@ -139,11 +147,6 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
         <Menu open={openProfil} anchorEl={profilePosition} onClose={handleProfileClose} className={classes.menu}>
           {login ? (
             <div>
-              {user?.role === 'merchant' && (
-                <div>
-                  <MenuItem className={classes.menuItem}>test</MenuItem>
-                </div>
-              )}
               <MenuItem className={classes.menuItem} onClick={() => navigate('/profile')}>
                 <Avatar className={classes.avatarMenuItem} />
                 <FormattedMessage id="app_profile" />
