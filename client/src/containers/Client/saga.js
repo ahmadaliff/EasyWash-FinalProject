@@ -82,7 +82,6 @@ function* sagaHandleLoginGoogle({ code, callback }) {
       if (response.created) toast.success(intlHelper({ message: response.created }));
     }
   } catch (error) {
-    console.log(error);
     if (error?.response?.status === 400) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
@@ -95,15 +94,17 @@ function* sagaHandleLoginGoogle({ code, callback }) {
 function* sagaHandleLogout({ callback }) {
   yield put(setLoading(true));
   try {
-    const { id } = yield select(selectUser);
-    const response = yield call(apiHandleLogout, id);
-    toast.success(intlHelper({ message: response?.message }));
-    yield put(setLogin(false));
-    yield put(setToken(null));
-    yield put(setUser(null));
-    yield put(actionResetTokenMessage());
-    if (callback) {
-      yield call(callback);
+    const user = yield select(selectUser);
+    if (user) {
+      const response = yield call(apiHandleLogout, user.id);
+      toast.success(intlHelper({ message: response?.message }));
+      yield put(setLogin(false));
+      yield put(setToken(null));
+      yield put(setUser(null));
+      yield put(actionResetTokenMessage());
+      if (callback) {
+        yield call(callback);
+      }
     }
   } catch (error) {
     if (error?.response?.status === 400 || error?.response?.status === 401) {

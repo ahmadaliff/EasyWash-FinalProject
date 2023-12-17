@@ -107,7 +107,7 @@
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 10rem));
     gap: 1rem;
-    padding: 1rem;
+    padding: 2rem 1rem;
     @include apply-at-md-size {
       padding: 2rem 5rem;
     }

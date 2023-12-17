@@ -18,18 +18,11 @@ axios.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     if (error.response?.status === 403) {
-      try {
-        const response = await apiRefreshToken();
-        if (response?.token) {
-          store.dispatch(setToken(response?.token));
-          originalRequest.headers.Authorization = `Bearer ${response?.token}`;
-          return axios.request(originalRequest);
-        }
-      } catch (err) {
-        if (err.response?.status === 401) {
-          store.dispatch(actionHandleLogout());
-          return Promise.reject(err);
-        }
+      const response = await apiRefreshToken();
+      if (response?.token) {
+        store.dispatch(setToken(response?.token));
+        originalRequest.headers.Authorization = `Bearer ${response?.token}`;
+        return axios.request(originalRequest);
       }
     }
     if (error.response?.status === 401) {

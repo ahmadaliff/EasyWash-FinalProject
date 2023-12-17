@@ -7,11 +7,13 @@ import { selectLogin, selectUser } from '@containers/Client/selectors';
 
 import Navbar from '@components/Navbar';
 import MobileNavbar from '@components/MobileNavbar';
+import Footer from '@components/Footer';
 
 const MainLayout = ({ user, login, children, locale, theme }) => (
   <div>
     <Navbar locale={locale} user={user} login={login} theme={theme} />
     {children}
+    <Footer />
     <MobileNavbar user={user} login={login} />
   </div>
 );

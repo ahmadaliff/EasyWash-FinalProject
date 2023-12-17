@@ -22,7 +22,8 @@ export const servicesReducer = (state = initialState, action) =>
         break;
       }
       case RESET_SERVICES:
-        return initialState;
+        draft.services = null;
+        break;
     }
   });
 

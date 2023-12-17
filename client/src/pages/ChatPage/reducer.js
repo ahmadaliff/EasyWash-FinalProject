@@ -15,7 +15,8 @@ const messageReducer = (state = initialState, action) =>
         draft.token = action.token;
         break;
       case RESET_TOKEN_STREAM:
-        return initialState;
+        draft.token = null;
+        break;
     }
   });
 

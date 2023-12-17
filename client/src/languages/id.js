@@ -72,6 +72,7 @@ export default {
   app_unathorize_auto: 'Tidak diizinkan, dikeluarkan secara automatis',
   app_unathorize: 'Tidak diizinkan',
   app_chat_created: 'Pesan telah dibuat',
+  app_develop_by: 'Dikembangkan Oleh',
 
   // login and register
   app_profile: 'Profil',

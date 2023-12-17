@@ -68,6 +68,7 @@ export default {
   app_unathorize_auto: 'Unauthorize, Auto logout',
   app_unathorize: 'Unauthorize',
   app_chat_created: 'Chat created',
+  app_develop_by: 'Develop By',
 
   // login and register
   app_profile: 'Profile',

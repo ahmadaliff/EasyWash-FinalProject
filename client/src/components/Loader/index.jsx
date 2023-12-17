@@ -11,7 +11,8 @@ const Loader = ({ isLoading }) => (
       [classes.showLoader]: isLoading || false,
     })}
   >
-    <img src="/loader.svg" alt="Loading" />
+    <img src="/loader1.svg" alt="Loading" className={classes.img1} />
+    <img src="/loader2.svg" alt="Loading" className={classes.img2} />
   </div>
 );
 

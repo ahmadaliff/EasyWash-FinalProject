@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import toast from 'react-hot-toast';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { selectLogin, selectUser } from '@containers/Client/selectors';
-import intlHelper from '@utils/intlHelper';
 
 const Client = ({ login, role, user, children }) => {
   const navigate = useNavigate();
@@ -14,7 +12,6 @@ const Client = ({ login, role, user, children }) => {
     if (!login) {
       navigate('/login');
     } else if (role && role !== user?.role) {
-      toast.error(intlHelper({ message: '' }));
       navigate('/');
     }
   }, [login, role, navigate, user?.role]);
