@@ -7,17 +7,19 @@ import { createStructuredSelector } from 'reselect';
 import MerchantCard from '@components/MerchantCard';
 import NoData from '@components/NoData';
 
-import { Search } from '@mui/icons-material';
+import { Map, Search } from '@mui/icons-material';
 
 import { selectMerchants } from '@pages/Home/selectors';
 import { actionGetMerchants, actionResetMerchants } from '@pages/Home/actions';
 
 import classes from '@pages/Home/style.module.scss';
+import { IconButton } from '@mui/material';
+import DialogMerchantsMap from '@components/DialogMerchantsMap';
 
 const Home = ({ merchants }) => {
   const dispatch = useDispatch();
   const [filterSearch, setFilterSearch] = useState('');
-
+  const [isMapOpen, setIsMapOpen] = useState(false);
   useEffect(() => {
     dispatch(actionGetMerchants());
     return () => {
@@ -30,7 +32,7 @@ const Home = ({ merchants }) => {
 
   return (
     <main className={classes.mainWrap}>
-      <div className={classes.head}>
+      <header className={classes.head}>
         <div className={classes.headerText}>
           <h2>
             <FormattedMessage id="app_tagline" />
@@ -38,10 +40,26 @@ const Home = ({ merchants }) => {
           <div className={classes.searchInputWrap}>
             <Search className={classes.iconSearch} />
             <input className={classes.searchInput} onChange={(e) => setFilterSearch(e.target.value)} />
+            <IconButton color="inherit" onClick={() => setIsMapOpen(true)}>
+              <Map />
+            </IconButton>
           </div>
         </div>
-        <img src="homePage.svg" className={classes.ilustration} alt="https://storyset.com" />
-      </div>
+        <div className={classes.ilustrationWrap}>
+          <img src="homePage.svg" className={classes.ilustration} alt="https://storyset.com" />
+          <a href="https://storyset.com/web" className={classes.storySet}>
+            Web illustrations by Storyset
+          </a>
+        </div>
+      </header>
+      <header className={classes.secondHeader}>
+        <h3>
+          <FormattedMessage id="app_looking_for_laundry" />
+        </h3>
+        <p>
+          <FormattedMessage id="app_second_header_description" />
+        </p>
+      </header>
       <div className={classes.content}>
         {merchants
           ?.filter(({ name }) => name.toLowerCase().includes(filterSearch.toLowerCase()))
@@ -52,6 +70,7 @@ const Home = ({ merchants }) => {
       {merchants?.filter(({ name }) => name.toLowerCase().includes(filterSearch.toLowerCase()))?.length === 0 && (
         <NoData />
       )}
+      <DialogMerchantsMap merchants={merchants} open={isMapOpen} handleClose={() => setIsMapOpen(false)} />
     </main>
   );
 };

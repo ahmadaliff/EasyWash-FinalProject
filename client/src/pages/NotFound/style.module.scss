@@ -13,12 +13,37 @@
   }
 
   .image {
-    width: 7rem;
+    width: 20rem;
   }
-
+  .storySet {
+    margin: 0;
+    font-size: x-small;
+    color: var(--color-primary);
+  }
   .title {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 1rem;
     font-weight: 700;
+  }
+  .desc {
+    margin: 0;
+    max-width: 20rem;
+    text-align: center;
+    font-size: medium;
+  }
+  .backButton {
+    background-color: var(--color-primary);
+    text-transform: capitalize;
+    color: var(--color-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: medium;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 2rem;
+    border: none;
+    &:hover {
+      transform: scale(1.05, 1.05);
+    }
   }
 }

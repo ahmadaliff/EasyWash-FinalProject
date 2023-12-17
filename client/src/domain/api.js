@@ -4,7 +4,6 @@ import { merge } from 'lodash';
 import request from '@utils/request';
 
 const urls = {
-  ping: 'ping.json',
   auth: 'auth',
   admin: 'admin',
   laundry: 'laundry',
@@ -33,7 +32,6 @@ export const callAPI = async (endpoint, method, data = {}, iswithCredentials = f
   });
 };
 
-export const ping = () => callAPI(urls.ping, 'get');
 // refresh token
 export const apiRefreshToken = () => callAPI(`${urls.auth}/refresh`, 'get', {}, true);
 
@@ -42,6 +40,8 @@ export const apiGetMerchants = (data) => callAPI(`${urls.user}/merchant`, 'post'
 
 // userAUTH
 export const apiHandleLogin = (data) => callAPI(`${urls.auth}/login`, 'post', data, true);
+export const apiHandleLoginGoogle = () => callAPI(`${urls.auth}/google`, 'get', {}, true);
+export const apiHandleGetUserLoginGoogle = (code) => callAPI(`${urls.auth}/google/data`, 'post', code, true);
 export const apiHandleLogout = (id) => callAPI(`${urls.auth}/logout`, 'post', { id }, true);
 export const apiHandleRegister = (data) => callAPI(`${urls.auth}/register`, 'POST', data);
 export const apiHandleSendVerifyEmail = (data) => callAPI(`${urls.auth}/verifyEmail`, 'POST', data);
@@ -103,6 +103,7 @@ export const apiCancelOrder = (id) => callAPI(`${urls.user}/order/cancel/${id}}`
 // statusOrder page
 export const apiGetTokenMidtrans = (orderId) => callAPI(`${urls.user}/midtransToken/${orderId}`, 'GET', {}, true);
 export const apiPaymentSuccess = (orderId) => callAPI(`${urls.user}/changeStatusPayment/${orderId}`, 'PUT', {}, true);
+export const apiGetMidtransStatus = (orderId) => callAPI(`${urls.user}/status/midtrans/${orderId}`, 'GET', {}, true);
 
 // message stream.io
 export const apiHandleGetTokenStream = () => callAPI(`${urls.chat}/token`, 'POST');

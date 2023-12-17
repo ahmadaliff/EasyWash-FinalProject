@@ -23,14 +23,13 @@ import { ArrowBack, ArrowRight, DoNotDisturb, Done } from '@mui/icons-material';
 
 import DetailOrder from '@components/DetailOrder';
 
-import { selectUser } from '@containers/Client/selectors';
 import { selectOrders } from '@pages/LaundryOrders/selectors';
 import { actionChangeStatus, actionGetOrders, actionResetOrders } from '@pages/LaundryOrders/actions';
 import { actionAddChannel, actionDeleteChannel } from '@pages/ChatPage/actions';
 
 import classes from '@pages/LaundryOrders/style.module.scss';
 
-const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
+const LaundryOrders = ({ orders, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
@@ -50,12 +49,6 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
       currency: 'IDR',
       minimumFractionDigits: 0,
     }).format(val);
-
-  useEffect(() => {
-    if (user?.role !== 'merchant') {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   useEffect(() => {
     dispatch(actionGetOrders(rowsPerPage, page));
@@ -214,12 +207,10 @@ const LaundryOrders = ({ user, orders, intl: { formatMessage } }) => {
 
 LaundryOrders.propTypes = {
   intl: PropTypes.object,
-  user: PropTypes.object,
   orders: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
   orders: selectOrders,
 });
 

@@ -7,6 +7,7 @@ exports.checkStatusOrder = (newStatus) => {
     "app_onDelivery",
     "app_finish",
     "app_rejected",
+    "app_expired",
   ];
   return statusArr.includes(newStatus);
 };

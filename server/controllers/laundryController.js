@@ -24,9 +24,7 @@ exports.getMerchant = async (req, res) => {
     const response = await Merchant.findOne({
       where: { userId: id },
     });
-    if (!response) {
-      return handleNotFound(res);
-    }
+    if (!response) return handleNotFound(res);
     return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);
@@ -45,9 +43,7 @@ exports.editMerchant = async (req, res) => {
     const isExist = await Merchant.findOne({
       where: { userId: id },
     });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
     const response = await isExist.update(data);
 
     await chatStreamClient.upsertUser({
@@ -69,15 +65,11 @@ exports.editPhotoMerchant = async (req, res) => {
   try {
     const { id } = req;
     const image = req?.file?.path;
-    if (!image) {
-      return handleNotFound(res);
-    }
+    if (!image) return handleNotFound(res);
     const isExist = await Merchant.findOne({
       where: { userId: id },
     });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
     const response = await isExist.update({ imagePath: image });
 
     await chatStreamClient.upsertUser({
@@ -173,9 +165,7 @@ exports.addService = async (req, res) => {
       return handleClientError(res, 400, "app_service_already_exist");
     }
     const getMerchant = await Merchant.findOne({ where: { userId: id } });
-    if (!getMerchant) {
-      return handleNotFound(res);
-    }
+    if (!getMerchant) return handleNotFound(res);
     newService.merchantId = getMerchant.id;
 
     await Service.create(newService);
@@ -252,37 +242,6 @@ exports.getOrders = async (req, res) => {
   }
 };
 
-exports.getOrderById = async (req, res) => {
-  try {
-    const { id } = req;
-    const { orderId } = req.params;
-    const response = await Order.findOne({
-      where: {
-        id: orderId,
-      },
-      include: {
-        model: Service,
-        include: {
-          model: Merchant,
-          where: {
-            userId: id,
-          },
-          attributes: [],
-          required: true,
-        },
-        required: true,
-        attributes: [],
-      },
-    });
-    if (!response) {
-      return handleNotFound(res);
-    }
-    return handleSuccess(res, { data: response });
-  } catch (error) {
-    return handleServerError(res);
-  }
-};
-
 exports.addTotalPriceOrder = async (req, res) => {
   try {
     const { id } = req;
@@ -293,9 +252,7 @@ exports.addTotalPriceOrder = async (req, res) => {
       include: Service,
     });
     const myMerchant = await Merchant.findOne({ where: { userId: id } });
-    if (!isExist || !myMerchant) {
-      return handleNotFound(res);
-    }
+    if (!isExist || !myMerchant) return handleNotFound(res);
     if (isExist.Service[0].merchantId !== myMerchant.id) {
       return handleClientError(res, 400, { message: "app_not_have_access" });
     }
@@ -317,13 +274,11 @@ exports.changeStatus = async (req, res) => {
       return handleClientError(res, 400, "app_status_invalid");
     }
     const isExist = await Order.findOne({ where: { id: orderId } });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
 
     const response = await isExist.update({ status: newStatus });
-
     io.emit(`statusUpdated/${orderId}`, response.status);
+
     return handleSuccess(res, { message: "app_status_updated" });
   } catch (error) {
     return handleServerError(res);

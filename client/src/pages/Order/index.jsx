@@ -15,19 +15,18 @@ import { selectOrder } from '@pages/Order/selectors';
 import { actionCreateOrder, actionResetOrder } from '@pages/Order/action';
 
 import classes from '@pages/Order/style.module.scss';
-import { selectUser } from '@containers/Client/selectors';
 
-const Order = ({ user, orders }) => {
+const Order = ({ orders }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [location, setLocation] = useState();
 
-  useEffect(() => {
-    user?.role !== 'user' && navigate(-1);
-    return () => {
+  useEffect(
+    () => () => {
       if (orders) dispatch(actionResetOrder());
-    };
-  }, [dispatch, navigate, orders, user]);
+    },
+    [dispatch, orders]
+  );
 
   const handleLocation = (loc) => {
     setLocation(loc);
@@ -122,11 +121,10 @@ const Order = ({ user, orders }) => {
 
 Order.propTypes = {
   orders: PropTypes.array,
-  user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   orders: selectOrder,
-  user: selectUser,
 });
+
 export default connect(mapStateToProps)(Order);

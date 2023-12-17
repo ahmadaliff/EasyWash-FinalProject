@@ -1,7 +1,7 @@
 @import '@styles/base';
 .mapWrap {
   position: relative;
-  height: 10rem;
+  height: auto;
   width: 100%;
   .myLocationButton {
     position: absolute;
@@ -22,5 +22,30 @@
     z-index: 4;
     height: 10rem;
     width: 100%;
+  }
+  .mapContainer.merchants {
+    height: var(--min-height);
+    @include apply-at-sm-size {
+      height: calc(100vh - 6rem);
+    }
+  }
+  .avatarMarker {
+    width: 1.5rem;
+    height: 1.5rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 10px 0px;
+    margin-right: 0.25rem;
+    background-color: var(--color-primary);
+    overflow: hidden;
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: cover;
+    }
+    p {
+      text-transform: uppercase;
+      font-size: small;
+      font-weight: 700;
+      color: white;
+    }
   }
 }

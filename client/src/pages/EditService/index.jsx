@@ -12,12 +12,11 @@ import { ArrowBack } from '@mui/icons-material';
 import InputRHF from '@components/InputRHF';
 
 import { actionEditService, actionGetService, actionResetService } from '@pages/EditService/actions';
-import { selectUser } from '@containers/Client/selectors';
 import { selectService } from '@pages/EditService/selectors';
 
 import classes from '@pages/EditService/style.module.scss';
 
-const EditService = ({ user, service, intl: { formatMessage } }) => {
+const EditService = ({ service, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -27,12 +26,6 @@ const EditService = ({ user, service, intl: { formatMessage } }) => {
     register,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    if (user?.role !== 'merchant') {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   useEffect(() => {
     dispatch(actionGetService(id));
@@ -138,12 +131,10 @@ const EditService = ({ user, service, intl: { formatMessage } }) => {
 
 EditService.propTypes = {
   intl: PropTypes.object,
-  user: PropTypes.object,
   service: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
   service: selectService,
 });
 

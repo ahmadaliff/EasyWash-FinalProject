@@ -8,23 +8,21 @@ import { ArrowBack, DryCleaning } from '@mui/icons-material';
 
 import { actionGetMyOrder, actionResetMyOrder } from '@pages/MyOrder/action';
 import { selectMyOrder } from '@pages/MyOrder/selectors';
-import { selectUser } from '@containers/Client/selectors';
 
 import classes from '@pages/MyOrder/style.module.scss';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { Button } from '@mui/material';
 
-const MyOrder = ({ user, orders }) => {
+const MyOrder = ({ orders }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    user?.role !== 'user' && navigate(-1);
     dispatch(actionGetMyOrder());
     return () => {
       if (orders) dispatch(actionResetMyOrder());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, user]);
+  }, [navigate]);
   return (
     <main className={classes.mainWrap}>
       <div className={classes.header}>
@@ -80,11 +78,9 @@ const MyOrder = ({ user, orders }) => {
 };
 
 MyOrder.propTypes = {
-  user: PropTypes.object,
   orders: PropTypes.array,
 };
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
   orders: selectMyOrder,
 });
 export default connect(mapStateToProps)(MyOrder);

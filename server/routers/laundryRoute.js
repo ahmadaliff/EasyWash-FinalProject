@@ -37,6 +37,5 @@ router.patch("/order/totalPrice/:orderId", addTotalPriceOrder);
 router.get("/my", getMerchant);
 router.put("/edit", editMerchant);
 router.patch("/changePhoto", multerMiddleware, editPhotoMerchant);
-router.get("/order/:orderId", getOrderById);
 
 module.exports = router;

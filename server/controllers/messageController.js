@@ -24,9 +24,7 @@ exports.createChannels = async (req, res) => {
     const { id } = req;
     const { userId } = req.body;
     const isExist = await User.findOne({ where: { id: userId } });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
 
     const arrId = [id, userId];
     arrId.sort(function (a, b) {
@@ -72,9 +70,7 @@ exports.deleteChannel = async (req, res) => {
       cid: `messaging:${arrId[0]}-${arrId[1]}`,
     };
     const isExistChannel = await chatStreamClient.queryChannels(filter);
-    if (isExistChannel.length === 0) {
-      return handleNotFound(res);
-    }
+    if (isExistChannel.length === 0) return handleNotFound(res);
 
     await chatStreamClient.deleteChannels([
       `messaging:${arrId[0]}-${arrId[1]}`,

@@ -18,6 +18,15 @@
       height: 90vh;
     }
   }
+  .storySet {
+    display: none;
+    @include apply-at-sm-size {
+      display: block;
+    }
+    margin: 0.5rem;
+    font-size: x-small;
+    color: var(--color-primary);
+  }
   .content {
     @include directionY;
     align-items: center;
@@ -49,7 +58,7 @@
         @include directionX;
         align-items: end;
         justify-content: space-between;
-        padding: 1.5rem 0 1.5rem 0;
+        padding: 0 0 1.5rem 0;
         h3 {
           margin: 0;
         }
@@ -94,6 +103,16 @@
         &:disabled:hover {
           transform: none;
         }
+      }
+      .or {
+        font-size: small;
+        text-align: center;
+      }
+      .buttonGoogle {
+        text-transform: capitalize;
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+        border-radius: 20px;
       }
     }
   }

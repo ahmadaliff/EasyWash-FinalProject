@@ -20,6 +20,8 @@
       margin: 0;
       font-size: medium;
       font-weight: 400;
+      font-weight: 700;
+      color: var(--color-primary);
     }
     .distance {
       margin: 0;
@@ -54,7 +56,7 @@
   }
   .img {
     height: 8rem;
-    object-fit: contain;
+    object-fit: cover;
   }
   .avatar {
     height: 8rem;

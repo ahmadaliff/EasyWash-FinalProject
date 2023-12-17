@@ -49,7 +49,12 @@ const Register = ({ isLogin, step, intl: { formatMessage } }) => {
       <div onClick={() => navigate('/')} className={classes.logoHeader}>
         <img src="longLogo.svg" alt="logo" className={classes.logo} />
       </div>
-      <img src="register.svg" className={classes.registerIlustration} alt="https://storyset.com" />
+      <div className={classes.ilustrationWrap}>
+        <img src="register.svg" className={classes.registerIlustration} alt="https://storyset.com" />
+        <a href="https://storyset.com/web" className={classes.storySet}>
+          Web illustrations by Storyset
+        </a>
+      </div>
       <div className={classes.content}>
         <Card className={classes.registerCard}>
           <CardContent>

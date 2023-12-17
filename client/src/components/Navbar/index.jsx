@@ -56,7 +56,6 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
     if (lang !== locale) {
       dispatch(setLocale(lang));
     }
-    handleProfileClose();
     setOpenDialogLanguage(false);
   };
 
@@ -64,6 +63,10 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
     navigate('/');
   };
 
+  const handleNavigate = (to) => {
+    navigate(to);
+    handleProfileClose();
+  };
   return (
     <div className={classes.headerWrapper} data-testid="navbar">
       <div className={classes.contentWrapper}>
@@ -75,10 +78,14 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
             <div className={classes.navButton}>
               {user?.role === 'user' && (
                 <>
-                  <NavbarIconButton title="Favorit" onClick={() => navigate('/favorit')} icon={<FavoriteBorder />} />
+                  <NavbarIconButton
+                    title="Favorit"
+                    onClick={() => handleNavigate('/favorit')}
+                    icon={<FavoriteBorder />}
+                  />
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_cart_header' })}
-                    onClick={() => navigate('/cart')}
+                    onClick={() => handleNavigate('/cart')}
                     icon={<ShoppingCartOutlined />}
                   />
                 </>
@@ -87,12 +94,12 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                 <>
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_services_header' })}
-                    onClick={() => navigate('/service')}
+                    onClick={() => handleNavigate('/service')}
                     icon={<DryCleaningOutlined />}
                   />
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_merchant_header' })}
-                    onClick={() => navigate('/laundry')}
+                    onClick={() => handleNavigate('/laundry')}
                     icon={<LocalLaundryServiceOutlined />}
                   />
                 </>
@@ -102,21 +109,21 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_order_list' })}
                     onClick={() => {
-                      if (user?.role === 'user') navigate('/user/order');
-                      else navigate('/laundry/orders');
+                      if (user?.role === 'user') handleNavigate('/user/order');
+                      else handleNavigate('/laundry/orders');
                     }}
                     icon={<LibraryBooksOutlined />}
                   />
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_chat' })}
-                    onClick={() => navigate('/chat')}
+                    onClick={() => handleNavigate('/chat')}
                     icon={<MessageOutlined />}
                   />
                 </>
               ) : (
                 <NavbarIconButton
                   title={formatMessage({ id: 'app_user_page_header' })}
-                  onClick={() => navigate('/admin/user')}
+                  onClick={() => handleNavigate('/admin/user')}
                   icon={<PersonOutline />}
                 />
               )}
@@ -127,7 +134,14 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
             {login ? (
               <>
                 {user?.imagePath ? (
-                  <Avatar className={classes.avatar} src={`${config.api.server}${user?.imagePath}`} />
+                  <Avatar
+                    className={classes.avatar}
+                    src={
+                      user?.imagePath.includes('https://lh3.googleusercontent.com/')
+                        ? user?.imagePath
+                        : `${config.api.server}${user?.imagePath}`
+                    }
+                  />
                 ) : (
                   <Avatar className={classes.avatar}>
                     <p>
@@ -147,7 +161,7 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
         <Menu open={openProfil} anchorEl={profilePosition} onClose={handleProfileClose} className={classes.menu}>
           {login ? (
             <div>
-              <MenuItem className={classes.menuItem} onClick={() => navigate('/profile')}>
+              <MenuItem className={classes.menuItem} onClick={() => handleNavigate('/profile')}>
                 <Avatar className={classes.avatarMenuItem} />
                 <FormattedMessage id="app_profile" />
               </MenuItem>
@@ -161,14 +175,14 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
               <Button
                 variant="contained"
                 className={classes.menuItemButtonContained}
-                onClick={() => navigate('/login')}
+                onClick={() => handleNavigate('/login')}
               >
                 <FormattedMessage id="app_header_login" />
               </Button>
               <Button
                 variant="outlined"
                 className={classes.menuItemButtonOutlined}
-                onClick={() => navigate('/register')}
+                onClick={() => handleNavigate('/register')}
               >
                 <FormattedMessage id="app_header_register" />
               </Button>

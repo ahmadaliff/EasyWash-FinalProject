@@ -21,13 +21,12 @@ import {
 } from '@mui/material';
 import { Add, ArrowBack, DoNotDisturb, Edit, Search } from '@mui/icons-material';
 
-import { selectUser } from '@containers/Client/selectors';
 import { selectServices } from '@pages/LaundryServices/selectors';
 import { actionDeleteService, actionGetServices, actionResetServices } from '@pages/LaundryServices/actions';
 
 import classes from '@pages/LaundryServices/style.module.scss';
 
-const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
+const LaundryServices = ({ services, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
@@ -45,12 +44,6 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
       currency: 'IDR',
       minimumFractionDigits: 0,
     }).format(val);
-
-  useEffect(() => {
-    if (user?.role !== 'merchant') {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   useEffect(() => {
     dispatch(actionGetServices(search, rowsPerPage, page));
@@ -201,12 +194,10 @@ const LaundryServices = ({ user, services, intl: { formatMessage } }) => {
 
 LaundryServices.propTypes = {
   intl: PropTypes.object,
-  user: PropTypes.object,
   services: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
   services: selectServices,
 });
 

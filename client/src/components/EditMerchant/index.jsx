@@ -14,7 +14,7 @@ import { actionEditMerchant } from '@pages/MyMerchant/actions';
 
 const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
-  const [location, setLocation] = useState(merchant && JSON.parse(merchant?.location));
+  const [location, setLocation] = useState();
   const {
     handleSubmit,
     register,
@@ -26,8 +26,9 @@ const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) 
   const description = watch('description');
 
   const onSubmit = (data) => {
-    data.location = JSON.stringify(location);
+    data.location = location ? JSON.stringify(location) : JSON.parse(merchant?.location);
     dispatch(actionEditMerchant(data));
+    handleClose();
   };
 
   const handleLocation = (loc) => {
@@ -67,7 +68,7 @@ const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) 
           <FormControl fullWidth>
             <div className={classes.inputLabel}>
               <FormattedMessage id="app_location" />
-              <MapLeaflet handleLocation={handleLocation} islocated={location} />
+              <MapLeaflet handleLocation={handleLocation} islocated={merchant && JSON.parse(merchant?.location)} />
             </div>
           </FormControl>
           <FormControl className={classes.inputContainer}>

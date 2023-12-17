@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -10,13 +12,12 @@ import { Favorite, LocalShipping } from '@mui/icons-material';
 
 import config from '@config/index';
 
+import intlHelper from '@utils/intlHelper';
+
 import { selectLogin, selectUser } from '@containers/Client/selectors';
 import { actionAddToFavorit, actionDeleteFromFavorit } from '@pages/Favorit/action';
 
 import classes from '@components/MerchantCard/style.module.scss';
-import toast from 'react-hot-toast';
-import intlHelper from '@utils/intlHelper';
-import { FormattedMessage } from 'react-intl';
 
 const MerchantCard = ({ user, login, merchant }) => {
   const dispatch = useDispatch();

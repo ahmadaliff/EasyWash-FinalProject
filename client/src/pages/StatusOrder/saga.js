@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 
 import intlHelper from '@utils/intlHelper';
 
-import { apiGetOrderById, apiGetTokenMidtrans, apiPaymentSuccess } from '@domain/api';
+import { apiGetMidtransStatus, apiGetOrderById, apiGetTokenMidtrans, apiPaymentSuccess } from '@domain/api';
 
 import config from '@config/index';
 
@@ -63,6 +63,9 @@ function* sagaHandlePay({ orderId }) {
       },
       onPending(result) {
         toast(result.transaction_status);
+      },
+      onClose() {
+        apiGetMidtransStatus(orderId);
       },
       language,
     });

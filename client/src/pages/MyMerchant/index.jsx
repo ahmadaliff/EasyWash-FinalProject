@@ -1,30 +1,28 @@
 import PropTypes from 'prop-types';
-import { Avatar, Button, Card, CardContent, Skeleton } from '@mui/material';
-import classes from '@pages/MyMerchant/style.module.scss';
-import config from '@config/index';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { ArrowBack, Edit } from '@mui/icons-material';
-import { createStructuredSelector } from 'reselect';
+import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
-import { selectUser } from '@containers/Client/selectors';
-import { selectMerchant } from '@pages/MyMerchant/selectors';
-import { actionEditPhotoMerchant, actionGetMerchant, actionResetMerchant } from '@pages/MyMerchant/actions';
+import { createStructuredSelector } from 'reselect';
+import { useEffect, useRef, useState } from 'react';
+
+import config from '@config/index';
+
+import { Avatar, Button, Card, CardContent, Skeleton } from '@mui/material';
+import { ArrowBack, Edit, FlipCameraIos } from '@mui/icons-material';
+
 import EditMerchant from '@components/EditMerchant';
 
-const MyMerchant = ({ user, merchant }) => {
+import { selectMerchant } from '@pages/MyMerchant/selectors';
+import { actionEditPhotoMerchant, actionGetMerchant, actionResetMerchant } from '@pages/MyMerchant/actions';
+
+import classes from '@pages/MyMerchant/style.module.scss';
+
+const MyMerchant = ({ merchant }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const fileInputMerchant = useRef(null);
   const [loading, setLoading] = useState();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  useEffect(() => {
-    if (user?.role !== 'merchant') {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   useEffect(() => {
     dispatch(actionGetMerchant());
@@ -78,6 +76,7 @@ const MyMerchant = ({ user, merchant }) => {
               </Avatar>
             )}
             <Edit className={classes.buttonEdit} />
+            <FlipCameraIos className={classes.iconCamera} />
           </div>
           <EditMerchant merchant={merchant} open={isDialogOpen} handleClose={() => setIsDialogOpen(false)} />
           <div>
@@ -86,18 +85,18 @@ const MyMerchant = ({ user, merchant }) => {
             </h4>
             <span className={classes.profileInfo}>
               <p className={classes.profileLabel}>
-                <FormattedMessage id="app_user_fullName" />
+                <FormattedMessage id="app_merchant_name" />
               </p>
               <p className={classes.profileText}>: {merchant?.name}</p>
             </span>
             <span className={classes.profileInfo}>
               <p className={classes.profileLabel}>
-                <FormattedMessage id="app_user_phone" />
+                <FormattedMessage id="app_description" />
               </p>
               <p className={classes.profileText}>: {merchant?.description}</p>
             </span>
             <button type="button" onClick={() => setIsDialogOpen(true)} className={classes.buttonEditProfile}>
-              <FormattedMessage id="app_profile_edit" />
+              <FormattedMessage id="app_edit" />
             </button>
           </div>
         </CardContent>
@@ -107,11 +106,11 @@ const MyMerchant = ({ user, merchant }) => {
 };
 
 MyMerchant.propTypes = {
-  user: PropTypes.object,
   merchant: PropTypes.object,
 };
+
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
   merchant: selectMerchant,
 });
+
 export default connect(mapStateToProps)(MyMerchant);

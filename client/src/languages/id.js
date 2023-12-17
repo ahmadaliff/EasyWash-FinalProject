@@ -2,6 +2,8 @@ export default {
   app_greeting: 'Hai dari Web!',
   app_title_header: 'Bootcamp',
   app_not_found: 'Halaman tidak ditemukan',
+  app_not_found_desc: 'Maaf halaman yang kamu cari gak ada nih, (error 404)',
+  app_back_to_home: 'Kembali ke halaman utama',
   app_lang_id: 'Bahasa Indonesia',
   app_lang_en: 'Bahasa Inggris',
   app_popup_error_title: 'Terjadi kesalahan!',
@@ -14,6 +16,12 @@ export default {
   app_select_language: 'Pilih Bahasa',
   app_chat: 'Pesan',
   app_order_list: 'List Pesanan',
+  app_free_delivery: 'Gratis Ongkir',
+  app_map: 'Peta laundry (dalam radius 3 km)',
+  app_looking_for_laundry: 'Sedang mencari laundry?',
+  app_second_header_description:
+    'Temukan laundry dengan layanan terbaik dan penawaran terbaik, kami tampilkan laundry dalam radius 3 km.',
+  app_or_login: 'atau masuk dengan',
 
   // backend response
   app_404: 'Data tidak ditemukan',
@@ -21,6 +29,8 @@ export default {
   app_login_invalid: 'Email atau password tidak sesuai',
   app_login_success: 'Berhasil masuk',
   app_login_not_verify: 'Akun mu perlu diverifikasi oleh admin',
+  app_login_failed: 'Gagal masuk, Coba lagi',
+  app_user_created_check_email: 'Akun kamu berhasil dibuat, silahkan check email kamu',
   app_logout_success: 'Berhasil keluar',
   app_register_already_exist: 'Pengguna dengan Email tersebut telah ada',
   app_register_success: `Berhasil daftar`,
@@ -35,7 +45,8 @@ export default {
   app_token_expired: 'Token telah kedaluwarsa',
   app_session_expired: 'Sesi login kedaluwarsa',
   app_edit_profile_pass_invalid: 'Password lama tidak sesuai',
-  app_edit_photo_profile_success: 'Sukses mengganti foto pofil',
+  app_edit_photo_profile_success: 'Berhasil mengganti foto pofil',
+  app_edit_profile_success: 'Berhasil edit profil',
   app_user_deleted: 'Berhasil menghapus user',
   app_user_decline: 'User Berhasil ditolak dan dihapus',
   app_service_already_exist: 'Layanan dengan nama tersebut sudah ada di laundry anda',
@@ -59,8 +70,8 @@ export default {
   app_updated_merchant_photo: 'Berhasil ubah foto merchant',
   app_laundry_out_of_range: 'Laundry diluar jangkauan, hanya bisa akses dalam range 3km',
   app_unathorize_auto: 'Tidak diizinkan, dikeluarkan secara automatis',
+  app_unathorize: 'Tidak diizinkan',
   app_chat_created: 'Pesan telah dibuat',
-  app_free_delivery: 'Gratis Ongkir',
 
   // login and register
   app_profile: 'Profil',
@@ -164,4 +175,5 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
   app_onDelivery: 'Diantar',
   app_finish: 'Selesai',
   app_rejected: 'Ditolak',
+  app_expired: 'Kedaluwarsa',
 };

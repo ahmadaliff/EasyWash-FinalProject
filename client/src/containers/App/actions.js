@@ -1,4 +1,4 @@
-import { SET_LOCAL, SET_THEME, SET_POPUP, SET_LOADING, PING } from '@containers/App/constants';
+import { SET_LOCAL, SET_THEME, SET_POPUP, SET_LOADING } from '@containers/App/constants';
 
 export const setLocale = (locale) => ({
   type: SET_LOCAL,
@@ -31,8 +31,4 @@ export const hidePopup = () => ({
 export const setLoading = (loading) => ({
   type: SET_LOADING,
   loading,
-});
-
-export const ping = () => ({
-  type: PING,
 });

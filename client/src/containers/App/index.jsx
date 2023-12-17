@@ -33,6 +33,7 @@ const App = ({ theme, popup, loading }) => {
     const midtransScript = document.createElement('script');
     midtransScript.src = config.api.midtransSrc;
     midtransScript.setAttribute('data-client-key', config.api.midtransKey);
+    midtransScript.setAttribute('type', 'text/javascript');
     midtransScript.async = true;
     document.body.appendChild(midtransScript);
     return () => {

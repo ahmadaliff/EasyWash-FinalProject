@@ -2,6 +2,8 @@ export default {
   app_greeting: 'Hi from Web!',
   app_title_header: 'Bootcamp',
   app_not_found: 'Page not found',
+  app_not_found_desc: `Sorry, the page you're looking for doesn't exist, (error 404)`,
+  app_back_to_home: 'Back to home',
   app_lang_id: 'Indonesian',
   app_lang_en: 'English',
   app_popup_error_title: 'Something went wrong!',
@@ -15,6 +17,11 @@ export default {
   app_chat: 'Chat',
   app_order_list: 'Order List',
   app_free_delivery: 'Free Delivery',
+  app_map: 'Map Merchant (within 3 km radius)',
+  app_looking_for_laundry: 'Looking for a laundry?',
+  app_second_header_description:
+    'Find a laundry with the best service and best deal, we show laundry within a radius of 3 km.',
+  app_or_login: 'or login with',
 
   // backend response
   app_404: 'Data not found',
@@ -22,6 +29,8 @@ export default {
   app_login_invalid: 'Invalid email or password',
   app_login_success: 'Login success',
   app_login_not_verify: 'Your account need to verify by admin',
+  app_login_failed: 'Login failed, Try again',
+  app_user_created_check_email: 'Your account created, check email for password',
   app_logout_success: 'Logout success',
   app_register_already_exist: 'User with that email already existed',
   app_register_success: `Register success`,
@@ -37,6 +46,7 @@ export default {
   app_session_expired: 'Login session expired',
   app_edit_profile_pass_invalid: 'Invalid old password',
   app_edit_photo_profile_success: 'Success change photo profile',
+  app_edit_profile_success: 'Success edit profile',
   app_user_deleted: 'Success, user deleted',
   app_user_decline: 'User declined and deleted',
   app_service_already_exist: 'Services with that name already existed in your laundry services',
@@ -56,6 +66,8 @@ export default {
   app_updated_merchant_photo: 'Success update photo merchant',
   app_laundry_out_of_range: 'Laundry out of range, minimum in range 3km',
   app_unathorize_auto: 'Unauthorize, Auto logout',
+  app_unathorize: 'Unauthorize',
+  app_chat_created: 'Chat created',
 
   // login and register
   app_profile: 'Profile',
@@ -100,7 +112,6 @@ export default {
   app_success_add_total_price: 'Success add total price',
   app_status_invalid: 'Status Invalid',
   app_status_updated: 'Status updated',
-  app_chat_created: 'Chat created',
 
   // profile
   app_edit_profile_desc:
@@ -164,4 +175,5 @@ It is recommended not to use excess capital letters, include more than 1 service
   app_onDelivery: 'On Delivery',
   app_finish: 'Finish',
   app_rejected: 'Rejected',
+  app_expired: 'Expired',
 };

@@ -16,17 +16,19 @@ const {
 } = require("../models");
 const getDistance = require("../utils/getDistanceUtil");
 const { snap } = require("../utils/midtransUtil");
+const axios = require("axios");
 
 exports.getAllLaundry = async (req, res) => {
   try {
     const { location } = req.body;
-    if (!location) {
-      return handleNotFound(res);
-    }
+    if (!location) return handleNotFound(res);
     const reqLocation = JSON.parse(location);
     const response = await Merchant.findAll({
       include: Favorit,
       order: [["id", "ASC"]],
+      where: {
+        isVerified: true,
+      },
     });
     const filteredResponse = response.filter((merchant) => {
       const { lat, lng } = JSON.parse(merchant.location);
@@ -50,17 +52,13 @@ exports.getLaundryById = async (req, res) => {
   try {
     const { location } = req.body;
     const { merchantId } = req.params;
-    if (!location || !merchantId) {
-      return handleNotFound(res);
-    }
+    if (!location || !merchantId) return handleNotFound(res);
     const reqLocation = JSON.parse(location);
     const response = await Merchant.findOne({
       where: { id: merchantId },
       include: Service,
     });
-    if (!response) {
-      return handleNotFound(res);
-    }
+    if (!response) return handleNotFound(res);
     const { lat, lng } = JSON.parse(response.location);
     const distance = getDistance(reqLocation.lat, reqLocation.lng, lat, lng);
     if (distance > 3) {
@@ -83,9 +81,7 @@ exports.getFavorit = async (req, res) => {
       },
     });
 
-    if (!response) {
-      return handleNotFound(res);
-    }
+    if (!response) return handleNotFound(res);
 
     return handleSuccess(res, { data: response });
   } catch (error) {
@@ -123,9 +119,7 @@ exports.deleteFromFavorit = async (req, res) => {
     const isExist = await Favorit.findOne({
       where: { userId: id, merchantId: merchantId },
     });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
     await isExist.destroy();
     return handleSuccess(res, { message: "app_success_delete_from_fav" });
   } catch (error) {
@@ -150,9 +144,7 @@ exports.getCart = async (req, res) => {
       },
     });
 
-    if (!response) {
-      return handleNotFound(res);
-    }
+    if (!response) return handleNotFound(res);
 
     return handleSuccess(res, { data: response });
   } catch (error) {
@@ -191,9 +183,7 @@ exports.updateQuantity = async (req, res) => {
     const isExist = await Cart.findOne({
       where: { userId: id, serviceId: serviceId },
     });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
     const response = await isExist.update({ quantity: quantity });
     return handleSuccess(res, { data: response });
   } catch (error) {
@@ -209,9 +199,7 @@ exports.deleteFromCart = async (req, res) => {
       where: { userId: id, id: cartId },
     });
 
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
     await isExist.destroy();
     return handleSuccess(res, { message: "app_success_delete_from_cart" });
   } catch (error) {
@@ -227,10 +215,9 @@ exports.getMyOrders = async (req, res) => {
         userId: id,
       },
       include: Service,
+      order: [["updatedAt", "DESC"]],
     });
-    if (!response) {
-      return handleNotFound(res);
-    }
+    if (!response) return handleNotFound(res);
     return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);
@@ -248,9 +235,7 @@ exports.getMyOrderById = async (req, res) => {
       },
       include: { model: Service, include: Merchant },
     });
-    if (!response) {
-      return handleNotFound(res);
-    }
+    if (!response) return handleNotFound(res);
     return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);
@@ -261,9 +246,7 @@ exports.createOrder = async (req, res) => {
   try {
     const { id } = req;
     const { orderItems, location } = req.body;
-    if (!orderItems || !location) {
-      return handleNotFound(res);
-    }
+    if (!orderItems || !location) return handleNotFound(res);
     const cartId = [];
     const filteredOrderItems = orderItems.map(({ id, ...order }) => {
       if (id) {
@@ -274,6 +257,7 @@ exports.createOrder = async (req, res) => {
     await sequelize.transaction(async (t) => {
       const order = await Order.create(
         {
+          id: `Order-${Date.now()}`,
           userId: id,
           status: "app_pending",
           location: location,
@@ -328,9 +312,7 @@ exports.cancelOrder = async (req, res) => {
     const isExist = await Order.findOne({
       where: { userId: id, id: orderId },
     });
-    if (!isExist) {
-      return handleNotFound(res);
-    }
+    if (!isExist) return handleNotFound(res);
     if (isExist.status !== "app_pending") {
       return handleClientError(res, 400, "app_cannot_cancel_order");
     }
@@ -358,14 +340,12 @@ exports.createMidtransToken = async (req, res) => {
         quantity: 1,
       },
       transaction_details: {
-        order_id: order.id + `-${Date.now()}`,
+        order_id: order.id,
         gross_amount: order.totalPrice,
       },
     };
     const token = await snap.createTransactionToken(parameter);
-    if (!token) {
-      return handleNotFound(res);
-    }
+    if (!token) return handleNotFound(res);
     await order.update({ midtransToken: token });
     return handleCreated(res, { token: token });
   } catch (error) {
@@ -387,6 +367,34 @@ exports.changeOrderPayment = async (req, res) => {
     await order.update({ status: "app_pickUp", midtransToken: null });
     io.emit(`statusUpdated/${orderId}`, "app_pickUp");
     return handleSuccess(res, { message: "app_status_updated" });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.getTransactionStatusMidtrans = async (req, res) => {
+  const { io } = req;
+  const { orderId } = req.params;
+  try {
+    const response = await axios.get(
+      `https://api.sandbox.midtrans.com/v2/${orderId}/status`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${Buffer.from(
+            process.env.MIDTRANS_SERVER_KEY + ":"
+          ).toString("base64")}`,
+        },
+      }
+    );
+    if (response?.data?.transaction_status) {
+      await Order.update(
+        { status: "app_expired", midtransToken: null },
+        { where: { id: orderId } }
+      );
+      io.emit(`statusUpdated/${orderId}`, "app_expired");
+    }
+    return handleSuccess(res, {});
   } catch (error) {
     return handleServerError(res);
   }

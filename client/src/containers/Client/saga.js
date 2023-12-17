@@ -16,11 +16,14 @@ import {
   apiHandleRegister,
   apiHandleSendForgotPassword,
   apiHandleResetForgotPassword,
+  apiHandleLoginGoogle,
+  apiHandleGetUserLoginGoogle,
 } from '@domain/api';
 
 import {
   FORGOT_PASSWORD,
   LOGIN,
+  LOGIN_GOOGLE,
   LOGOUT,
   REGISTER,
   SEND_OTP,
@@ -53,6 +56,33 @@ function* sagaHandleLogin({ data, callback }) {
     yield put(setUser({ role, id, fullName, imagePath: response.imagePath }));
     toast.success(intlHelper({ message: response.message }));
   } catch (error) {
+    if (error?.response?.status === 400) {
+      toast.error(intlHelper({ message: error.response.data.message }));
+    } else {
+      yield put(showPopup());
+    }
+  }
+  yield put(setLoading(false));
+}
+
+function* sagaHandleLoginGoogle({ code, callback }) {
+  yield put(setLoading(true));
+  try {
+    if (!code) {
+      const response = yield call(apiHandleLoginGoogle);
+      window.location.href = response.Location;
+    } else {
+      const response = yield call(apiHandleGetUserLoginGoogle, { code });
+      yield call(callback);
+      yield put(setLogin(true));
+      yield put(setToken(response.token));
+      const { role, id, fullName } = jwtDecode(response.token);
+      yield put(setUser({ role, id, fullName, imagePath: response.imagePath }));
+      toast.success(intlHelper({ message: response.message }));
+      if (response.created) toast.success(intlHelper({ message: response.created }));
+    }
+  } catch (error) {
+    console.log(error);
     if (error?.response?.status === 400) {
       toast.error(intlHelper({ message: error.response.data.message }));
     } else {
@@ -180,6 +210,7 @@ function* sendResetPassword({ data, callback }) {
 
 export default function* clientSaga() {
   yield takeLatest(LOGIN, sagaHandleLogin);
+  yield takeLatest(LOGIN_GOOGLE, sagaHandleLoginGoogle);
   yield takeLatest(LOGOUT, sagaHandleLogout);
   yield takeLatest(SEND_VERIFY_EMAIL, sagaHandleSendVerifyEmail);
   yield takeLatest(SEND_OTP, sagaHandleSendOTP);

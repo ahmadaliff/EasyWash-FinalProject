@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { connect, useDispatch } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { useDispatch } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Button, Card, CardContent, FormControl, Switch } from '@mui/material';
@@ -12,11 +11,10 @@ import { ArrowBack } from '@mui/icons-material';
 import InputRHF from '@components/InputRHF';
 
 import { actionAddService } from '@pages/FormService/actions';
-import { selectUser } from '@containers/Client/selectors';
 
 import classes from '@pages/FormService/style.module.scss';
 
-const FormService = ({ user, intl: { formatMessage } }) => {
+const FormService = ({ intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isUnit, setIsUnit] = useState(false);
@@ -25,12 +23,6 @@ const FormService = ({ user, intl: { formatMessage } }) => {
     register,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    if (user?.role !== 'merchant') {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   const onSubmit = (data) => {
     data.isUnit = isUnit;
@@ -126,11 +118,6 @@ const FormService = ({ user, intl: { formatMessage } }) => {
 
 FormService.propTypes = {
   intl: PropTypes.object,
-  user: PropTypes.object,
 };
 
-const mapStateToProps = createStructuredSelector({
-  user: selectUser,
-});
-
-export default injectIntl(connect(mapStateToProps)(FormService));
+export default injectIntl(FormService);

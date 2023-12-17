@@ -30,12 +30,12 @@ module.exports = {
       },
       {
         id: "3",
-        name: "laundry",
+        name: "Laundry 1",
         image: null,
       },
       {
         id: "4",
-        name: "laundry 2",
+        name: "Laundry 2",
         image: null,
       },
     ]);

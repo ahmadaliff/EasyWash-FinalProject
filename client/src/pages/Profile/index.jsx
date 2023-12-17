@@ -8,7 +8,7 @@ import config from '@config/index';
 
 import EditProfile from '@components/EditProfile';
 
-import { Edit } from '@mui/icons-material';
+import { Edit, FlipCameraIos } from '@mui/icons-material';
 import { Avatar, Card, CardContent, Skeleton } from '@mui/material';
 
 import { actionEditPhotoProfile, actionGetProfile, actionResetProfile } from '@pages/Profile/actions';
@@ -48,7 +48,11 @@ const Profile = ({ user, profile }) => {
                 <>
                   {loading && <Skeleton variant="square" className={classes.skeleton} />}
                   <img
-                    src={`${config.api.server}${profile?.imagePath}`}
+                    src={
+                      profile?.imagePath.includes('https://lh3.googleusercontent.com/')
+                        ? profile?.imagePath
+                        : `${config.api.server}${profile?.imagePath}`
+                    }
                     alt={profile?.fullName}
                     loading="lazy"
                     onLoad={() => setLoading(false)}
@@ -61,6 +65,7 @@ const Profile = ({ user, profile }) => {
                 </Avatar>
               )}
               <Edit className={classes.buttonEdit} />
+              <FlipCameraIos className={classes.iconCamera} />
             </div>
             <button type="button" onClick={() => setIsDialogOpen(true)} className={classes.buttonEditProfile}>
               <FormattedMessage id="app_profile_edit" />

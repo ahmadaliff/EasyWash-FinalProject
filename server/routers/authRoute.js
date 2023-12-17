@@ -11,6 +11,8 @@ const {
   getProfile,
   editPhotoProfile,
   editProfile,
+  redirectGoogle,
+  handleLoginGoogle,
 } = require("../controllers/authController");
 
 const {
@@ -27,6 +29,8 @@ const { multerMiddleware } = require("../middleware/multerMiddleware");
 const router = Router();
 
 router.post("/login", login);
+router.get("/google", redirectGoogle);
+router.post("/google/data", handleLoginGoogle);
 router.post("/register", register);
 router.post("/verifyEmail", verifyEmail);
 router.post("/checkOtpVerifyEmail", verifyEmailMiddleware, checkOtpVerifyEmail);

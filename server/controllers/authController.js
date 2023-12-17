@@ -1,4 +1,5 @@
 const CryptoJS = require("crypto-js");
+const { google } = require("googleapis");
 const { unlink } = require("fs");
 require("dotenv").config();
 require("cookie-parser");
@@ -17,6 +18,7 @@ const {
 const {
   handleSendMailForgotPass,
   handleSendMailVerifyOTP,
+  handleSendMailPassword,
 } = require("../helpers/sendMailHelper");
 
 const { comparePassword, hashPassword } = require("../utils/bcryptUtil");
@@ -29,6 +31,7 @@ const {
   verifyRefreshToken,
 } = require("../utils/jwtUtil");
 const redisClient = require("../utils/redisClient");
+const { oauth2Client, authorizationUrl } = require("../utils/googleLoginUtil");
 
 const { User, Merchant, sequelize } = require("../models");
 
@@ -92,6 +95,67 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.redirectGoogle = (req, res) => {
+  try {
+    console.log(authorizationUrl);
+    return handleSuccess(res, { Location: authorizationUrl });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.handleLoginGoogle = async (req, res) => {
+  try {
+    const { code } = req.body;
+    if (!code) return handleClientError(res, 400, "app_login_failed");
+    const { tokens } = await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(tokens);
+
+    const oauth2 = google.oauth2({
+      auth: oauth2Client,
+      version: "v2",
+    });
+    const { data } = await oauth2.userinfo.get();
+    if (!data) return handleClientError(res, 400, "app_login_failed");
+
+    const randPassword = Math.random().toString(36).substring(2, 10);
+    const [user, created] = await User.findOrCreate({
+      where: { email: data.email },
+      defaults: {
+        fullName: data.name,
+        imagePath: data.picture,
+        role: "user",
+        password: randPassword,
+      },
+    });
+
+    const token = createToken(user);
+    const refreshToken = createRefreshToken(user);
+    if (!token || !refreshToken) {
+      throw new Error("Token Created failed");
+    }
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    redisClient.setex(user.id.toString(), 10 * 60, token);
+
+    const body = {
+      imagePath: user.imagePath,
+      token: token,
+      message: "app_login_success",
+    };
+    if (created) {
+      handleSendMailPassword(randPassword, data.email);
+      body.created = "app_user_created_check_email";
+    }
+
+    return handleSuccess(res, body);
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
 exports.logout = async (req, res) => {
   try {
     const { id } = req.body;
@@ -108,13 +172,9 @@ exports.refreshToken = async (req, res) => {
     if (!refreshToken)
       return handleClientError(res, 401, "app_session_expired");
     const { id, role, errorJWT } = verifyRefreshToken(refreshToken);
-    if (errorJWT) {
-      return handleClientError(res, 401, "app_session_expired");
-    }
+    if (errorJWT) return handleClientError(res, 401, "app_session_expired");
     const dataUser = await User.findOne({ where: { id: id, role: role } });
-    if (!dataUser) {
-      return handleNotFound(res);
-    }
+    if (!dataUser) return handleNotFound(res);
     const token = createToken(dataUser);
     redisClient.setex(dataUser.id.toString(), 10 * 60, token);
     return handleSuccess(res, { token: token });
@@ -229,9 +289,7 @@ exports.forgotPassword = async (req, res) => {
     const isUserExist = await User.findOne({
       where: { email: email, isVerified: true },
     });
-    if (!isUserExist) {
-      return handleNotFound(res);
-    }
+    if (!isUserExist) return handleNotFound(res);
     const token = createTokenForForgetPassword(email);
     const resp = await handleSendMailForgotPass(token, email);
     if (resp.accepted.length > 0) {
@@ -259,9 +317,7 @@ exports.setResetPassword = async (req, res) => {
     ).toString(CryptoJS.enc.Utf8);
 
     const isUserExist = await User.findOne({ where: { email: email } });
-    if (!isUserExist) {
-      return handleNotFound(res);
-    }
+    if (!isUserExist) return handleNotFound(res);
     await User.update(
       { password: hashPassword(plainPassword) },
       { where: { email: email } }
@@ -289,9 +345,7 @@ exports.editPhotoProfile = async (req, res) => {
   try {
     const { id } = req;
     const image = req?.file?.path;
-    if (!image) {
-      return handleNotFound(res);
-    }
+    if (!image) return handleNotFound(res);
     const user = await User.findOne({ where: { id: id } });
     if (user.imagePath) {
       unlink(user.imagePath, (err) => {});
@@ -345,8 +399,8 @@ exports.editProfile = async (req, res) => {
     if (error) {
       return handleRes;
     }
-    const response = await User.update(newUser, { where: { id: id } });
     const user = await User.findOne({ where: { id: id } });
+    const response = await user.update(newUser);
 
     if (user.role !== "merchant") {
       await chatStreamClient.upsertUser({
@@ -358,7 +412,7 @@ exports.editProfile = async (req, res) => {
 
     return handleSuccess(res, {
       data: response,
-      message: "success edit profile",
+      message: "app_edit_profile_success",
     });
   } catch (error) {
     return handleServerError(res);

@@ -7,14 +7,15 @@ import { createStructuredSelector } from 'reselect';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import { Card, CardContent } from '@mui/material';
+import { Button, Card, CardContent } from '@mui/material';
 
 import InputRHF from '@components/InputRHF';
 
 import { selectLogin } from '@containers/Client/selectors';
-import { actionHandleLogin } from '@containers/Client/actions';
+import { actionHandleLogin, actionHandleLoginGoogle } from '@containers/Client/actions';
 
 import classes from '@pages/Login/style.module.scss';
+import { Google } from '@mui/icons-material';
 
 const Login = ({ isLogin, intl: { formatMessage } }) => {
   const navigate = useNavigate();
@@ -105,8 +106,23 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
                 <FormattedMessage id="app_header_login" />
               </button>
             </form>
+            <p className={classes.or}>
+              <FormattedMessage id="app_or_login" />
+            </p>
+            <Button
+              className={classes.buttonGoogle}
+              onClick={() => dispatch(actionHandleLoginGoogle())}
+              variant="outlined"
+              startIcon={<Google />}
+              fullWidth
+            >
+              Google
+            </Button>
           </CardContent>
         </Card>
+        <a href="https://storyset.com/web" className={classes.storySet}>
+          Web illustrations by Storyset
+        </a>
       </div>
     </main>
   );

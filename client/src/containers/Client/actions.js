@@ -2,6 +2,7 @@ import {
   FORGOT_PASSWORD,
   IS_VERIFY,
   LOGIN,
+  LOGIN_GOOGLE,
   LOGOUT,
   REGISTER,
   RESET_REGISTER_VALUE,
@@ -32,6 +33,12 @@ export const setToken = (token) => ({
 export const actionHandleLogin = (data, callback) => ({
   type: LOGIN,
   data,
+  callback,
+});
+
+export const actionHandleLoginGoogle = (code, callback) => ({
+  type: LOGIN_GOOGLE,
+  code,
   callback,
 });
 

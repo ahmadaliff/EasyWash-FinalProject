@@ -29,7 +29,6 @@ import {
   actionResetUsers,
   actionVerifyUser,
 } from '@pages/Users/actions';
-import { selectUser } from '@containers/Client/selectors';
 import { selectUsers } from '@pages/Users/selectors';
 
 import classes from '@pages/Users/style.module.scss';
@@ -41,19 +40,13 @@ const StyledToggle = styled(ToggleButton)({
   },
 });
 
-const Users = ({ user, users, intl: { formatMessage } }) => {
+const Users = ({ users, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isVerifiedUsers, setIsVerifiedUsers] = useState(true);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    if (user?.role !== 'admin') {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   useEffect(() => {
     isVerifiedUsers
@@ -236,12 +229,10 @@ const Users = ({ user, users, intl: { formatMessage } }) => {
 
 Users.propTypes = {
   intl: PropTypes.object,
-  user: PropTypes.object,
   users: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
   users: selectUsers,
 });
 

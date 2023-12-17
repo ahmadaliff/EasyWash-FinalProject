@@ -4,7 +4,6 @@ import homeSaga from '@pages/Home/saga';
 import cartsSaga from '@pages/Cart/saga';
 import orderSaga from '@pages/Order/saga';
 import usersSaga from '@pages/Users/saga';
-import appSaga from '@containers/App/saga';
 import profileSaga from '@pages/Profile/saga';
 import favoritSaga from '@pages/Favorit/saga';
 import myOrderSaga from '@pages/MyOrder/saga';
@@ -20,7 +19,6 @@ import laundryOrdersSaga from '@pages/LaundryOrders/saga';
 
 export default function* rootSaga() {
   yield all([
-    appSaga(),
     homeSaga(),
     cartsSaga(),
     orderSaga(),

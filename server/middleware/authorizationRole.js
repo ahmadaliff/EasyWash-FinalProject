@@ -40,9 +40,8 @@ exports.authorizationOwnService = async (req, res, next) => {
       },
     });
     const merchant = service?.Merchant;
-    if (!merchant) {
-      return handleNotFound(res);
-    } else if (merchant?.userId != id) {
+    if (!merchant) return handleNotFound(res);
+    else if (merchant?.userId != id) {
       return handleClientError(res, 401, "app_unathorize_auto");
     }
   }
