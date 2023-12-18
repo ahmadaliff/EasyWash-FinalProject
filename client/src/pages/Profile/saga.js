@@ -6,6 +6,8 @@ import { apiHandleEditPhotoProfile, apiHandleEditProfile, apiHandleGetProfile } 
 
 import intlHelper from '@utils/intlHelper';
 
+import config from '@config/index';
+
 import { showPopup, setLoading } from '@containers/App/actions';
 import { EDIT_PHOTO_PROFILE, EDIT_PROFILE, GET_PROFILE } from '@pages/Profile/constants';
 import { actionSetProfile } from '@pages/Profile/actions';
@@ -45,8 +47,8 @@ function* sagaHandleEditProfile({ data }) {
   yield put(setLoading(true));
   try {
     if (data?.new_password || data?.old_password) {
-      data.new_password = CryptoJS.AES.encrypt(data.new_password, import.meta.env.VITE_CRYPTOJS_SECRET).toString();
-      data.old_password = CryptoJS.AES.encrypt(data.old_password, import.meta.env.VITE_CRYPTOJS_SECRET).toString();
+      data.new_password = CryptoJS.AES.encrypt(data.new_password, config.api.secretKeyCrypto).toString();
+      data.old_password = CryptoJS.AES.encrypt(data.old_password, config.api.secretKeyCrypto).toString();
     }
     const response = yield call(apiHandleEditProfile, data);
     toast.success(intlHelper({ message: response?.message }));

@@ -19,9 +19,10 @@ export const actionChangeQuantity = (id, quantity) => ({
   quantity,
 });
 
-export const actionAddToCart = (id) => ({
+export const actionAddToCart = (id, quantity) => ({
   type: ADD_TO_CART,
   id,
+  quantity,
 });
 
 export const actionDeleteFromCart = (id) => ({

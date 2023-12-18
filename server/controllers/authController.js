@@ -97,7 +97,6 @@ exports.login = async (req, res) => {
 
 exports.redirectGoogle = (req, res) => {
   try {
-    console.log(authorizationUrl);
     return handleSuccess(res, { Location: authorizationUrl });
   } catch (error) {
     return handleServerError(res);
@@ -258,9 +257,7 @@ exports.verifyEmail = async (req, res) => {
         message: "app_verify_email_otp_send",
       });
     }
-    return handleSuccess(res, {
-      message: "app_verify_email_otp_failed",
-    });
+    return handleClientError(res, 400, "app_verify_email_otp_failed");
   } catch (error) {
     return handleServerError(res);
   }
@@ -287,7 +284,7 @@ exports.forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const isUserExist = await User.findOne({
-      where: { email: email, isVerified: true },
+      where: { email: email },
     });
     if (!isUserExist) return handleNotFound(res);
     const token = createTokenForForgetPassword(email);
@@ -297,9 +294,7 @@ exports.forgotPassword = async (req, res) => {
         message: "app_forgot_password_email_sent",
       });
     } else {
-      return handleSuccess(res, {
-        message: "app_forgot_password_email_failed",
-      });
+      return handleClientError(res, 400, "app_forgot_password_email_failed");
     }
   } catch (error) {
     return handleServerError(res);

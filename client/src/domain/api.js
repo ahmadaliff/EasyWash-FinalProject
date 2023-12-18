@@ -106,6 +106,6 @@ export const apiPaymentSuccess = (orderId) => callAPI(`${urls.user}/changeStatus
 export const apiGetMidtransStatus = (orderId) => callAPI(`${urls.user}/status/midtrans/${orderId}`, 'GET', {}, true);
 
 // message stream.io
-export const apiHandleGetTokenStream = () => callAPI(`${urls.chat}/token`, 'POST');
+export const apiHandleGetTokenStream = () => callAPI(`${urls.chat}/token`, 'GET');
 export const apiHandleAddChannel = (data) => callAPI(`${urls.chat}/createChannel`, 'POST', data, true);
 export const apiHandleDeleteChannel = (userId) => callAPI(`${urls.chat}/delete/${userId}`, 'DELETE', {}, true);

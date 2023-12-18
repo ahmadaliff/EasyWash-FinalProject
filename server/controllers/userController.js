@@ -224,24 +224,6 @@ exports.getMyOrders = async (req, res) => {
   }
 };
 
-exports.getMyOrderById = async (req, res) => {
-  try {
-    const { id } = req;
-    const { orderId } = req.params;
-    const response = await Order.findOne({
-      where: {
-        userId: id,
-        id: orderId,
-      },
-      include: { model: Service, include: Merchant },
-    });
-    if (!response) return handleNotFound(res);
-    return handleSuccess(res, { data: response });
-  } catch (error) {
-    return handleServerError(res);
-  }
-};
-
 exports.createOrder = async (req, res) => {
   try {
     const { id } = req;
@@ -318,6 +300,24 @@ exports.cancelOrder = async (req, res) => {
     }
     await isExist.destroy();
     return handleSuccess(res, { message: "app_cancel_order_success" });
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+
+exports.getMyOrderById = async (req, res) => {
+  try {
+    const { id } = req;
+    const { orderId } = req.params;
+    const response = await Order.findOne({
+      where: {
+        userId: id,
+        id: orderId,
+      },
+      include: { model: Service, include: Merchant },
+    });
+    if (!response) return handleNotFound(res);
+    return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);
   }

@@ -33,7 +33,6 @@ router.delete(
 router.get("/service/:serviceId", authorizationOwnService, getServiceById);
 router.get("/orders", getOrders);
 router.patch("/order/changeStatus", changeStatus);
-router.patch("/order/totalPrice/:orderId", addTotalPriceOrder);
 router.get("/my", getMerchant);
 router.put("/edit", editMerchant);
 router.patch("/changePhoto", multerMiddleware, editPhotoMerchant);

@@ -1,10 +1,9 @@
 import CryptoJS from 'crypto-js';
 import toast from 'react-hot-toast';
 import { jwtDecode } from 'jwt-decode';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import config from '@config/index';
-
-import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import intlHelper from '@utils/intlHelper';
 
@@ -195,7 +194,7 @@ function* sagaHandleSendEmailForgot({ data, callback }) {
 function* sendResetPassword({ data, callback }) {
   yield put(setLoading(true));
   try {
-    data.new_password = CryptoJS.AES.encrypt(data.new_password, import.meta.env.VITE_CRYPTOJS_SECRET).toString();
+    data.new_password = CryptoJS.AES.encrypt(data.new_password, config.api.secretKeyCrypto).toString();
     const response = yield call(apiHandleResetForgotPassword, data);
     toast.success(intlHelper({ message: response?.message }));
     yield call(callback);

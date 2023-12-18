@@ -32,7 +32,7 @@ const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, lo
         setMyLocation({ lat: latitude, lng: longitude });
         setMarkerloc({ lat: latitude, lng: longitude });
         if (islocated) setMarkerloc(islocated);
-        handleLocation({ lat: latitude, lng: longitude });
+        if (handleLocation) handleLocation({ lat: latitude, lng: longitude });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

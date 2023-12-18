@@ -10,6 +10,7 @@ const {
 const { chatStreamClient } = require("../utils/streamChatUtil");
 
 const { User, Merchant, sequelize } = require("../models");
+
 exports.getUsers = async (req, res) => {
   try {
     const { id } = req;
@@ -37,7 +38,7 @@ exports.getUsers = async (req, res) => {
       offset: offset,
       limit: limit,
     });
-    if (!response?.rows)   return handleNotFound(res);
+    if (!response?.rows) return handleNotFound(res);
     const totalPage = Math.ceil(response.count / limit);
     response.rows.map(({ dataValues }) => {
       delete dataValues.password;
@@ -80,7 +81,7 @@ exports.getUnverifiedUsers = async (req, res) => {
       offset: offset,
       limit: limit,
     });
-    if (!response?.rows)   return handleNotFound(res);
+    if (!response?.rows) return handleNotFound(res);
     const totalPage = Math.ceil(response.count / limit);
     response.rows.map(({ dataValues }) => {
       delete dataValues.password;
@@ -100,7 +101,7 @@ exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.body;
     const isExist = await User.findByPk(id);
-    if (!isExist)   return handleNotFound(res);
+    if (!isExist) return handleNotFound(res);
     await isExist.destroy({ where: { id: id } });
 
     await chatStreamClient.deleteUser(id.toString(), {
@@ -127,7 +128,7 @@ exports.verifyUser = async (req, res) => {
   try {
     const { id } = req.body;
     const isExist = await User.findByPk(id);
-    if (!isExist)   return handleNotFound(res);
+    if (!isExist) return handleNotFound(res);
     await sequelize.transaction(async (t) => {
       await User.update(
         { isVerified: true },

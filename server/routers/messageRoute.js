@@ -8,7 +8,7 @@ const { authorizationRoleLaundry } = require("../middleware/authorizationRole");
 
 const router = Router();
 
-router.post("/token", token);
+router.get("/token", token);
 router.post("/createChannel", createChannels);
 router.use(authorizationRoleLaundry);
 router.delete("/delete/:userid", deleteChannel);

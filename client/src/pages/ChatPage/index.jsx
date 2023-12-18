@@ -11,7 +11,7 @@ import config from '@config/index';
 
 import { selectTokenStream } from '@pages/ChatPage/selectors';
 import { selectTheme } from '@containers/App/selectors';
-import { actionGetTokenMessage } from '@pages/ChatPage/actions';
+import { actionGetTokenMessage, actionResetTokenMessage } from '@pages/ChatPage/actions';
 import { selectUser } from '@containers/Client/selectors';
 import { showPopup } from '@containers/App/actions';
 
@@ -48,7 +48,10 @@ const ChatPage = ({ theme, user, tokenChat }) => {
     }
     return () => {
       const disconnect = async () => {
-        if (chatClient) await chatClient.disconnectUser();
+        if (chatClient) {
+          await chatClient.disconnectUser();
+          dispatch(actionResetTokenMessage());
+        }
       };
       disconnect();
     };
@@ -56,7 +59,7 @@ const ChatPage = ({ theme, user, tokenChat }) => {
 
   return (
     <main className={classes.mainWrap}>
-      {chatClient?.userID && (
+      {user && chatClient?.userID && (
         <div className={classes.chatWrap}>
           <Chat client={chatClient} theme={`str-chat__theme-${theme}`}>
             <div className={`${classes.channelListWrap} ${isMenuopen && classes.open}`}>
