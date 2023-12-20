@@ -81,8 +81,6 @@ exports.getFavorit = async (req, res) => {
       },
     });
 
-    if (!response) return handleNotFound(res);
-
     return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);
@@ -143,8 +141,6 @@ exports.getCart = async (req, res) => {
         atrributes: ["id"],
       },
     });
-
-    if (!response) return handleNotFound(res);
 
     return handleSuccess(res, { data: response });
   } catch (error) {
@@ -217,7 +213,6 @@ exports.getMyOrders = async (req, res) => {
       include: Service,
       order: [["updatedAt", "DESC"]],
     });
-    if (!response) return handleNotFound(res);
     return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);
@@ -236,7 +231,7 @@ exports.createOrder = async (req, res) => {
       }
       return order;
     });
-    await sequelize.transaction(async (t) => {
+    const response = await sequelize.transaction(async (t) => {
       const order = await Order.create(
         {
           id: `Order-${Date.now()}`,
@@ -269,9 +264,9 @@ exports.createOrder = async (req, res) => {
         return acc + service.ServicesOrdered.quantity * service.price;
       }, 0);
 
-      await Order.update(
+      const response = await result.update(
         { totalPrice: total },
-        { where: { id: order.id }, transaction: t }
+        { transaction: t }
       );
       if (cartId.length > 0) {
         for (let j = 0; j < cartId.length; j++) {
@@ -279,9 +274,10 @@ exports.createOrder = async (req, res) => {
           await Cart.destroy({ where: { id: id }, transaction: t });
         }
       }
+      return response;
     });
 
-    return handleCreated(res, { message: "app_created_order" });
+    return handleCreated(res, { data: response, message: "app_created_order" });
   } catch (error) {
     return handleServerError(res);
   }

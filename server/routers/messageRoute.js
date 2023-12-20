@@ -11,6 +11,6 @@ const router = Router();
 router.get("/token", token);
 router.post("/createChannel", createChannels);
 router.use(authorizationRoleLaundry);
-router.delete("/delete/:userid", deleteChannel);
+router.delete("/delete/:userId", deleteChannel);
 
 module.exports = router;

@@ -12,9 +12,7 @@ exports.authenticationMiddleware = async (req, res, next) => {
   const token = authHeader.replace("Bearer ", "");
   const { id, role, fullName, error } = verifyToken(token);
 
-  if (error) {
-    return res.sendStatus(403);
-  }
+  if (error) return res.sendStatus(403);
   const chacheToken = await redisClient.get(id.toString());
   if (token !== chacheToken) {
     return handleClientError(res, 403, "app_token_expired");

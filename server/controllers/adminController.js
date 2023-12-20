@@ -38,7 +38,6 @@ exports.getUsers = async (req, res) => {
       offset: offset,
       limit: limit,
     });
-    if (!response?.rows) return handleNotFound(res);
     const totalPage = Math.ceil(response.count / limit);
     response.rows.map(({ dataValues }) => {
       delete dataValues.password;
@@ -81,7 +80,6 @@ exports.getUnverifiedUsers = async (req, res) => {
       offset: offset,
       limit: limit,
     });
-    if (!response?.rows) return handleNotFound(res);
     const totalPage = Math.ceil(response.count / limit);
     response.rows.map(({ dataValues }) => {
       delete dataValues.password;

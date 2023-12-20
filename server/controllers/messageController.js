@@ -75,8 +75,9 @@ exports.deleteChannel = async (req, res) => {
     await chatStreamClient.deleteChannels([
       `messaging:${arrId[0]}-${arrId[1]}`,
     ]);
-    return handleSuccess(req, { message: "deleted channel" });
+    return handleSuccess(res, { message: "deleted channel" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

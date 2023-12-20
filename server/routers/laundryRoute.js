@@ -6,8 +6,6 @@ const {
   addService,
   getServiceById,
   getOrders,
-  getOrderById,
-  addTotalPriceOrder,
   getMerchant,
   editMerchant,
   editPhotoMerchant,

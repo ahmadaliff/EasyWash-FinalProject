@@ -31,13 +31,13 @@ const router = Router();
 router.post("/login", login);
 router.get("/google", redirectGoogle);
 router.post("/google/data", handleLoginGoogle);
+router.post("/logout", logout);
 router.post("/register", register);
 router.post("/verifyEmail", verifyEmail);
 router.post("/checkOtpVerifyEmail", verifyEmailMiddleware, checkOtpVerifyEmail);
 router.post("/forgotPassword", forgotPassword);
 router.put("/resetPassword", verifySendResetMiddleware, setResetPassword);
 router.get("/refresh", refreshToken);
-router.post("/logout", logout);
 
 router.use(authenticationMiddleware);
 router.get("/profile", getProfile);

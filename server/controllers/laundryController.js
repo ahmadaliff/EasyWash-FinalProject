@@ -121,7 +121,8 @@ exports.editService = async (req, res) => {
     if (error) {
       return handleRes;
     }
-
+    const isExist = Service.findOne({ where: { id: serviceId } });
+    if (!isExist) return handleNotFound(res);
     await Service.update(dataService, { where: { id: serviceId } });
 
     return handleSuccess(res, { message: "app_service_updated" });
@@ -198,7 +199,6 @@ exports.getMerchant = async (req, res) => {
     const response = await Merchant.findOne({
       where: { userId: id },
     });
-    if (!response) return handleNotFound(res);
     return handleSuccess(res, { data: response });
   } catch (error) {
     return handleServerError(res);

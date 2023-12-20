@@ -74,10 +74,6 @@ exports.login = async (req, res) => {
     const token = createToken(dataUser);
     const refreshToken = createRefreshToken(dataUser);
 
-    if (!token || !refreshToken) {
-      throw new Error("Token Created failed");
-    }
-
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
@@ -109,14 +105,11 @@ exports.handleLoginGoogle = async (req, res) => {
     if (!code) return handleClientError(res, 400, "app_login_failed");
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
-
     const oauth2 = google.oauth2({
       auth: oauth2Client,
       version: "v2",
     });
     const { data } = await oauth2.userinfo.get();
-    if (!data) return handleClientError(res, 400, "app_login_failed");
-
     const randPassword = Math.random().toString(36).substring(2, 10);
     const [user, created] = await User.findOrCreate({
       where: { email: data.email },
@@ -130,9 +123,6 @@ exports.handleLoginGoogle = async (req, res) => {
 
     const token = createToken(user);
     const refreshToken = createRefreshToken(user);
-    if (!token || !refreshToken) {
-      throw new Error("Token Created failed");
-    }
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
@@ -170,8 +160,8 @@ exports.refreshToken = async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken)
       return handleClientError(res, 401, "app_session_expired");
-    const { id, role, errorJWT } = verifyRefreshToken(refreshToken);
-    if (errorJWT) return handleClientError(res, 401, "app_session_expired");
+    const { id, role, error } = verifyRefreshToken(refreshToken);
+    if (error) return handleClientError(res, 401, "app_session_expired");
     const dataUser = await User.findOne({ where: { id: id, role: role } });
     if (!dataUser) return handleNotFound(res);
     const token = createToken(dataUser);
@@ -257,7 +247,6 @@ exports.verifyEmail = async (req, res) => {
         message: "app_verify_email_otp_send",
       });
     }
-    return handleClientError(res, 400, "app_verify_email_otp_failed");
   } catch (error) {
     return handleServerError(res);
   }
@@ -288,14 +277,10 @@ exports.forgotPassword = async (req, res) => {
     });
     if (!isUserExist) return handleNotFound(res);
     const token = createTokenForForgetPassword(email);
-    const resp = await handleSendMailForgotPass(token, email);
-    if (resp.accepted.length > 0) {
-      return handleSuccess(res, {
-        message: "app_forgot_password_email_sent",
-      });
-    } else {
-      return handleClientError(res, 400, "app_forgot_password_email_failed");
-    }
+    await handleSendMailForgotPass(token, email);
+    return handleSuccess(res, {
+      message: "app_forgot_password_email_sent",
+    });
   } catch (error) {
     return handleServerError(res);
   }
@@ -368,6 +353,7 @@ exports.editProfile = async (req, res) => {
   try {
     const { id } = req;
     const newUser = req.body;
+    const user = await User.findOne({ where: { id: id } });
     if (newUser?.new_password || newUser?.old_password) {
       const plainNewPassword = CryptoJS.AES.decrypt(
         newUser.new_password,
@@ -377,7 +363,7 @@ exports.editProfile = async (req, res) => {
         newUser.old_password,
         process.env.CRYPTOJS_SECRET
       ).toString(CryptoJS.enc.Utf8);
-      if (!comparePassword(plainOldPassword, isExist.password)) {
+      if (!comparePassword(plainOldPassword, user.password)) {
         return handleClientError(res, 400, "app_edit_profile_pass_invalid");
       }
       newUser.password = hashPassword(plainNewPassword);
@@ -394,7 +380,6 @@ exports.editProfile = async (req, res) => {
     if (error) {
       return handleRes;
     }
-    const user = await User.findOne({ where: { id: id } });
     const response = await user.update(newUser);
 
     if (user.role !== "merchant") {
