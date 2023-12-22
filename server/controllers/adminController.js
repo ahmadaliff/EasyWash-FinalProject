@@ -9,7 +9,7 @@ const {
 
 const { chatStreamClient } = require("../utils/streamChatUtil");
 
-const { User, Merchant } = require("../models");
+const { User, Merchant, sequelize } = require("../models");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -24,22 +24,33 @@ exports.getUsers = async (req, res) => {
         [Op.or]: [
           {
             fullName: {
-              [Op.like]: "%" + search + "%",
+              [Op.like]: `%${search}%`,
             },
           },
           {
             email: {
-              [Op.like]: "%" + search + "%",
+              [Op.like]: `%${search}%`,
             },
           },
         ],
+        [Op.and]: [
+          {
+            [Op.or]: [
+              sequelize.literal(
+                "(SELECT COUNT(*) FROM Merchants WHERE Merchants.UserId = User.id AND Merchants.isVerified = true) > 0"
+              ),
+              { "$Merchant.id$": null },
+            ],
+          },
+        ],
       },
-
-      include: {
-        model: Merchant,
-        where: { isVerified: true },
-        required: false,
-      },
+      include: [
+        {
+          model: Merchant,
+          required: false,
+          attributes: [],
+        },
+      ],
       offset: offset,
       limit: limit,
     });
@@ -54,6 +65,7 @@ exports.getUsers = async (req, res) => {
       totalRows: response.count,
     });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };
@@ -71,12 +83,12 @@ exports.getUnverifiedUsers = async (req, res) => {
         [Op.or]: [
           {
             fullName: {
-              [Op.like]: "%" + search + "%",
+              [Op.like]: `%${search}%`,
             },
           },
           {
             email: {
-              [Op.like]: "%" + search + "%",
+              [Op.like]: `%${search}%`,
             },
           },
         ],

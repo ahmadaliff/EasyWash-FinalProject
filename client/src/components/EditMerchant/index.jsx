@@ -69,7 +69,11 @@ const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) 
           <FormControl fullWidth>
             <div className={classes.inputLabel}>
               <FormattedMessage id="app_location" />
-              <MapLeaflet handleLocation={handleLocation} islocated={merchant && JSON.parse(merchant?.location)} />
+              <MapLeaflet
+                handleLocation={handleLocation}
+                islocated={merchant && JSON.parse(merchant?.location)}
+                permanent={false}
+              />
             </div>
           </FormControl>
           <FormControl className={classes.inputContainer}>

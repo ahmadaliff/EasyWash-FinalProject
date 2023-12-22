@@ -51,7 +51,7 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
   const onSubmit = (data) => {
     dispatch(actionSetRole(role));
     if (role !== 'user') {
-      data.location = location;
+      data.location = location && JSON.stringify(location);
       dispatch(actionSetMerchant(data));
     }
     dispatch(actionSetStep(3));
