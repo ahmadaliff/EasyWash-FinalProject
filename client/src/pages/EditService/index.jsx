@@ -28,12 +28,11 @@ const EditService = ({ service, intl: { formatMessage } }) => {
   } = useForm();
 
   useEffect(() => {
-    dispatch(actionGetService(id));
+    if (!service) dispatch(actionGetService(id));
     return () => {
       if (service) dispatch(actionResetService());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, id]);
+  }, [dispatch, id, service]);
 
   const onSubmit = (data) => {
     data.isUnit = isUnit;
@@ -47,7 +46,7 @@ const EditService = ({ service, intl: { formatMessage } }) => {
   };
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="editservice-page">
       <div className={classes.header}>
         <h3>
           <FormattedMessage id="app_service_edit_header" />
@@ -57,6 +56,7 @@ const EditService = ({ service, intl: { formatMessage } }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="button-back"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -116,10 +116,14 @@ const EditService = ({ service, intl: { formatMessage } }) => {
                 </p>
               </div>
               <FormControl fullWidth>
-                <Switch onChange={(e) => setIsUnit(e.target.checked)} defaultChecked={service?.isUnit} />
+                <Switch
+                  onChange={(e) => setIsUnit(e.target.checked)}
+                  defaultChecked={service?.isUnit}
+                  data-testid="isUnit"
+                />
               </FormControl>
             </div>
-            <button type="submit" className={classes.buttonEditProfile}>
+            <button type="submit" className={classes.buttonEditProfile} data-testid="button-submit">
               <FormattedMessage id="app_service_edit_header" />
             </button>
           </form>

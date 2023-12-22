@@ -24,7 +24,7 @@ const ServiceDialog = ({ handleClose, open, service }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth className={classes.dialog}>
+    <Dialog open={open} onClose={handleClose} fullWidth className={classes.dialog} data-testid="dialog-service">
       <DialogTitle fontSize="large">
         <b>
           <FormattedMessage id="app_service_datail" />
@@ -68,11 +68,11 @@ const ServiceDialog = ({ handleClose, open, service }) => {
           </div>
         </div>
         <div className={classes.buttonQuantity}>
-          <IconButton onClick={() => setQuantity(quantity - 1)} disabled={quantity - 1 === 0}>
+          <IconButton onClick={() => setQuantity(quantity - 1)} disabled={quantity - 1 === 0} data-testid="button-min">
             <Remove />
           </IconButton>
           {quantity}
-          <IconButton onClick={() => setQuantity(quantity + 1)}>
+          <IconButton onClick={() => setQuantity(quantity + 1)} data-testid="button-plus">
             <Add />
           </IconButton>
         </div>
@@ -83,6 +83,7 @@ const ServiceDialog = ({ handleClose, open, service }) => {
           className={classes.dialogAction}
           startIcon={<AddShoppingCart />}
           onClick={() => dispatch(actionAddToCart(service?.id, quantity))}
+          data-testid="button-add"
         >
           <FormattedMessage id="app_add_to_cart" />
         </Button>
@@ -91,6 +92,7 @@ const ServiceDialog = ({ handleClose, open, service }) => {
           className={classes.dialogAction}
           startIcon={<LibraryBooksOutlined />}
           onClick={handleCreateOrder}
+          data-testid="button-create"
         >
           <FormattedMessage id="app_create_order" />
         </Button>

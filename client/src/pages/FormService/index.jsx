@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Button, Card, CardContent, FormControl, Switch } from '@mui/material';
@@ -46,6 +46,7 @@ const FormService = ({ intl: { formatMessage } }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -106,7 +107,7 @@ const FormService = ({ intl: { formatMessage } }) => {
                 <Switch onChange={(e) => setIsUnit(e.target.checked)} defaultChecked />
               </FormControl>
             </div>
-            <button type="submit" className={classes.buttonEditProfile}>
+            <button type="submit" className={classes.buttonEditProfile} data-testid="button-submit">
               <FormattedMessage id="app_service_add_header" />
             </button>
           </form>

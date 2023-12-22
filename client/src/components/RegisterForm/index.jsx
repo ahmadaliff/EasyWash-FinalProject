@@ -42,7 +42,7 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} data-testid="form-register">
       <InputRHF
         input={{
           name: 'fullName',
@@ -78,15 +78,31 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) => {
         errors={errors}
       >
         <label htmlFor="show" className={classes.showPassword}>
-          <input type="checkbox" name="show" id="show" onChange={(e) => setShowPass(e.target.checked)} />
+          <input
+            type="checkbox"
+            name="show"
+            id="show"
+            onChange={(e) => setShowPass(e.target.checked)}
+            data-testid="button-show-pass"
+          />
           <FormattedMessage id="app_user_password_show" />
         </label>
       </InputRHF>
       <div className={classes.buttonWrap}>
-        <button type="button" className={classes.buttonSubmit} onClick={() => dispatch(actionSetStep(step - 1))}>
+        <button
+          type="button"
+          className={classes.buttonSubmit}
+          onClick={() => dispatch(actionSetStep(step - 1))}
+          data-testid="button-back"
+        >
           <FormattedMessage id="app_back" />
         </button>
-        <button type="submit" className={classes.buttonSubmit} disabled={!fullName || !password || !phone}>
+        <button
+          type="submit"
+          className={classes.buttonSubmit}
+          disabled={!fullName || !password || !phone}
+          data-testid="button-submit"
+        >
           <FormattedMessage id="app_header_register" />
         </button>
       </div>

@@ -21,17 +21,16 @@ const Home = ({ merchants }) => {
   const [filterSearch, setFilterSearch] = useState('');
   const [isMapOpen, setIsMapOpen] = useState(false);
   useEffect(() => {
-    dispatch(actionGetMerchants());
+    if (!merchants) dispatch(actionGetMerchants());
     return () => {
       if (merchants) {
         dispatch(actionResetMerchants());
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, merchants]);
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="home-wrap">
       <header className={classes.head}>
         <div className={classes.headerText}>
           <h2>
@@ -39,7 +38,11 @@ const Home = ({ merchants }) => {
           </h2>
           <div className={classes.searchInputWrap}>
             <Search className={classes.iconSearch} />
-            <input className={classes.searchInput} onChange={(e) => setFilterSearch(e.target.value)} />
+            <input
+              className={classes.searchInput}
+              onChange={(e) => setFilterSearch(e.target.value)}
+              data-testid="search-input"
+            />
             <IconButton color="inherit" onClick={() => setIsMapOpen(true)}>
               <Map />
             </IconButton>

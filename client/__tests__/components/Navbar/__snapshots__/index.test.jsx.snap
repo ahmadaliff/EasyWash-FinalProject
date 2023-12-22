@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar Component Should match with snapshot 1`] = `
+exports[`Navbar Component Navbar with role Admin Should match with snapshot 1`] = `
 {
   "asFragment": [Function],
-  "baseElement": <body>
+  "baseElement": <body
+    style=""
+  >
     <div>
       <div
         class="headerWrapper"
@@ -18,55 +20,63 @@ exports[`Navbar Component Should match with snapshot 1`] = `
             <img
               alt="logo"
               class="logo"
-              src="/vite.svg"
+              src="/longLogo.svg"
             />
-            <div
-              class="title"
-            >
-              Title
-            </div>
           </div>
           <div
             class="toolbar"
           >
             <div
-              class="theme"
-              data-testid="toggleTheme"
+              class="navButton"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                data-testid="NightsStayIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+              <button
+                aria-label="Manajemen User"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+                data-mui-internal-clone-element="true"
+                data-testid="button-admin"
+                tabindex="0"
+                type="button"
               >
-                <path
-                  d="M11.1 12.08c-2.33-4.51-.5-8.48.53-10.07C6.27 2.2 1.98 6.59 1.98 12c0 .14.02.28.02.42.62-.27 1.29-.42 2-.42 1.66 0 3.18.83 4.1 2.15 1.67.48 2.9 2.02 2.9 3.85 0 1.52-.87 2.83-2.12 3.51.98.32 2.03.5 3.11.5 3.5 0 6.58-1.8 8.37-4.52-2.36.23-6.98-.97-9.26-5.41z"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="PersonOutlineIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
-                <path
-                  d="M7 16h-.18C6.4 14.84 5.3 14 4 14c-1.66 0-3 1.34-3 3s1.34 3 3 3h3c1.1 0 2-.9 2-2s-.9-2-2-2z"
-                />
-              </svg>
+              </button>
+              <span
+                class="verticalLine"
+              />
             </div>
             <div
               class="toggle"
+              data-testid="button-togle"
             >
               <div
-                class="MuiAvatar-root MuiAvatar-circular avatar css-1wlk0hk-MuiAvatar-root"
+                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault avatar css-2s90m6-MuiAvatar-root"
               >
-                <img
-                  class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                  src="/en.png"
-                />
+                <p>
+                  a
+                   
+                  a
+                </p>
               </div>
               <div
-                class="lang"
+                class="name"
               >
-                en
+                ahmad alif sofian 
               </div>
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium arrow css-i4bv87-MuiSvgIcon-root"
                 data-testid="ExpandMoreIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -95,55 +105,63 @@ exports[`Navbar Component Should match with snapshot 1`] = `
           <img
             alt="logo"
             class="logo"
-            src="/vite.svg"
+            src="/longLogo.svg"
           />
-          <div
-            class="title"
-          >
-            Title
-          </div>
         </div>
         <div
           class="toolbar"
         >
           <div
-            class="theme"
-            data-testid="toggleTheme"
+            class="navButton"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              data-testid="NightsStayIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <button
+              aria-label="Manajemen User"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+              data-mui-internal-clone-element="true"
+              data-testid="button-admin"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.1 12.08c-2.33-4.51-.5-8.48.53-10.07C6.27 2.2 1.98 6.59 1.98 12c0 .14.02.28.02.42.62-.27 1.29-.42 2-.42 1.66 0 3.18.83 4.1 2.15 1.67.48 2.9 2.02 2.9 3.85 0 1.52-.87 2.83-2.12 3.51.98.32 2.03.5 3.11.5 3.5 0 6.58-1.8 8.37-4.52-2.36.23-6.98-.97-9.26-5.41z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="PersonOutlineIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-              <path
-                d="M7 16h-.18C6.4 14.84 5.3 14 4 14c-1.66 0-3 1.34-3 3s1.34 3 3 3h3c1.1 0 2-.9 2-2s-.9-2-2-2z"
-              />
-            </svg>
+            </button>
+            <span
+              class="verticalLine"
+            />
           </div>
           <div
             class="toggle"
+            data-testid="button-togle"
           >
             <div
-              class="MuiAvatar-root MuiAvatar-circular avatar css-1wlk0hk-MuiAvatar-root"
+              class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault avatar css-2s90m6-MuiAvatar-root"
             >
-              <img
-                class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                src="/en.png"
-              />
+              <p>
+                a
+                 
+                a
+              </p>
             </div>
             <div
-              class="lang"
+              class="name"
             >
-              en
+              ahmad alif sofian 
             </div>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium arrow css-i4bv87-MuiSvgIcon-root"
               data-testid="ExpandMoreIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -157,6 +175,123 @@ exports[`Navbar Component Should match with snapshot 1`] = `
       </div>
     </div>
   </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Navbar Component Navbar without login Should match with snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body
+    style=""
+  >
+    <div>
+      <div
+        class="headerWrapper"
+        data-testid="navbar"
+      >
+        <div
+          class="contentWrapper"
+        >
+          <div
+            class="logoImage"
+          >
+            <img
+              alt="logo"
+              class="logo"
+              src="/longLogo.svg"
+            />
+          </div>
+          <div
+            class="toolbar"
+          >
+            <div
+              class="toggle"
+              data-testid="button-togle"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault avatar css-2s90m6-MuiAvatar-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                  data-testid="PersonIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  />
+                </svg>
+              </div>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium arrow css-i4bv87-MuiSvgIcon-root"
+                data-testid="ExpandMoreIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div />,
   "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],

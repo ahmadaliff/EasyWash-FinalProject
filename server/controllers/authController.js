@@ -64,11 +64,12 @@ exports.login = async (req, res) => {
     }
     const dataUser = await User.findOne({
       where: { email: email },
+      include: Merchant,
     });
     if (!dataUser || !comparePassword(plainPassword, dataUser?.password)) {
       return handleClientError(res, 400, "app_login_invalid");
     }
-    if (!dataUser.isVerified) {
+    if (dataUser.Merchant && !dataUser.Merchant?.isVerified) {
       return handleClientError(res, 400, "app_login_not_verify");
     }
     const token = createToken(dataUser);
@@ -87,6 +88,7 @@ exports.login = async (req, res) => {
       message: "app_login_success",
     });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

@@ -9,7 +9,7 @@ const {
 
 const { chatStreamClient } = require("../utils/streamChatUtil");
 
-const { User, Merchant, sequelize } = require("../models");
+const { User, Merchant } = require("../models");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -21,7 +21,6 @@ exports.getUsers = async (req, res) => {
     const response = await User.findAndCountAll({
       where: {
         id: { [Op.ne]: id },
-        isVerified: true,
         [Op.or]: [
           {
             fullName: {
@@ -34,6 +33,12 @@ exports.getUsers = async (req, res) => {
             },
           },
         ],
+      },
+
+      include: {
+        model: Merchant,
+        where: { isVerified: true },
+        required: false,
       },
       offset: offset,
       limit: limit,
@@ -63,7 +68,6 @@ exports.getUnverifiedUsers = async (req, res) => {
     const response = await User.findAndCountAll({
       where: {
         id: { [Op.ne]: id },
-        isVerified: false,
         [Op.or]: [
           {
             fullName: {
@@ -77,6 +81,7 @@ exports.getUnverifiedUsers = async (req, res) => {
           },
         ],
       },
+      include: { model: Merchant, where: { isVerified: false } },
       offset: offset,
       limit: limit,
     });
@@ -113,9 +118,7 @@ exports.deleteUser = async (req, res) => {
     });
 
     return handleSuccess(res, {
-      message: isExist.dataValues.isVerified
-        ? "app_user_deleted"
-        : "app_user_decline",
+      message: "app_user_deleted",
     });
   } catch (error) {
     return handleServerError(res);
@@ -127,18 +130,12 @@ exports.verifyUser = async (req, res) => {
     const { id } = req.body;
     const isExist = await User.findByPk(id);
     if (!isExist) return handleNotFound(res);
-    await sequelize.transaction(async (t) => {
-      await User.update(
-        { isVerified: true },
-        { where: { id: id }, transaction: t }
-      );
-      await Merchant.update(
-        { isVerified: true },
-        { where: { userId: id }, transaction: t }
-      );
-    });
+
+    await Merchant.update({ isVerified: true }, { where: { userId: id } });
+
     return handleSuccess(res, { message: "app_account_verified" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };

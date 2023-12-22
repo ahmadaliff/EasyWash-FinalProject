@@ -26,12 +26,11 @@ const Laundry = ({ merchant }) => {
   const [serviceProps, setServiceProps] = useState(null);
 
   useEffect(() => {
-    dispatch(actionGetMerchant(id));
+    if (!merchant) dispatch(actionGetMerchant(id));
     return () => {
       if (merchant) dispatch(actionResetMerchant());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, id]);
+  }, [dispatch, id, merchant]);
 
   return (
     <main className={classes.mainWrap}>

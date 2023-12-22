@@ -28,7 +28,7 @@ const VerifyEmailOTP = ({ tokenVerify, isExpire, email, step, intl: { formatMess
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.form} data-testid="verify-email-otp-form">
       <InputRHF
         input={{
           name: 'otp',
@@ -44,7 +44,7 @@ const VerifyEmailOTP = ({ tokenVerify, isExpire, email, step, intl: { formatMess
 
       <div className={classes.timerComp}>
         <FormattedMessage id="app_resend" /> ?
-        <Countdown date={isExpire}>
+        <Countdown date={isExpire} data-testid="countdown-timer">
           <button
             type="button"
             onClick={() => {
@@ -52,16 +52,22 @@ const VerifyEmailOTP = ({ tokenVerify, isExpire, email, step, intl: { formatMess
               dispatch(actionSetStep(1));
             }}
             className={classes.buttonResend}
+            data-testid="button-resend"
           >
             <FormattedMessage id="app_resend" />
           </button>
         </Countdown>
       </div>
       <div className={classes.buttonWrap}>
-        <button type="button" className={classes.buttonSubmit} onClick={() => dispatch(actionSetStep(step - 1))}>
+        <button
+          type="button"
+          className={classes.buttonSubmit}
+          onClick={() => dispatch(actionSetStep(step - 1))}
+          data-testid="button-back"
+        >
           <FormattedMessage id="app_back" />
         </button>
-        <button type="submit" className={classes.buttonSubmit}>
+        <button type="submit" className={classes.buttonSubmit} data-testid="button-submit">
           <FormattedMessage id="app_next" />
         </button>
       </div>

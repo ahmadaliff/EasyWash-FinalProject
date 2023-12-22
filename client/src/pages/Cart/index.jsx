@@ -42,7 +42,7 @@ const Cart = ({ carts }) => {
   };
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="cart-wrap">
       <div className={classes.header}>
         <h3>
           <FormattedMessage id="app_cart_header" />
@@ -52,6 +52,7 @@ const Cart = ({ carts }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="button-back"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -69,6 +70,7 @@ const Cart = ({ carts }) => {
               <Button
                 variant="contained"
                 className={classes.createButton}
+                data-testid="button-create"
                 onClick={() => {
                   dispatch(actionSetOrder(getCartOrder(merchant.Services)));
                   navigate('/order');

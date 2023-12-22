@@ -1,29 +1,34 @@
 import PropTypes from 'prop-types';
+import { divIcon } from 'leaflet';
+import toast from 'react-hot-toast';
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import MarkerClusterGroup from 'react-leaflet-cluster';
+import { useEffect, useRef, useState } from 'react';
 import { Circle, MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
-import { useCallback, useEffect, useState } from 'react';
+
+import { renderToStaticMarkup } from 'react-dom/server';
+
+import config from '@config/index';
 
 import MarkerLeaflet from '@components/MarkerLeaflet';
 
-import classes from '@components/MapLeaflet/style.module.scss';
 import { Avatar, IconButton } from '@mui/material';
 import { MyLocation } from '@mui/icons-material';
-import { FormattedMessage } from 'react-intl';
-import { divIcon } from 'leaflet';
-import { renderToStaticMarkup } from 'react-dom/server';
-import config from '@config/index';
-import MarkerClusterGroup from 'react-leaflet-cluster';
-import { useNavigate } from 'react-router-dom';
+
 import intlHelper from '@utils/intlHelper';
-import toast from 'react-hot-toast';
-import { createStructuredSelector } from 'reselect';
+
 import { selectLogin, selectUser } from '@containers/Client/selectors';
-import { connect } from 'react-redux';
+
+import classes from '@components/MapLeaflet/style.module.scss';
 
 const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, login, user }) => {
   const navigate = useNavigate();
   const [markerloc, setMarkerloc] = useState(null);
   const [myLocation, setMyLocation] = useState(null);
-  const [map, setMap] = useState(null);
+  const mapRef = useRef(null);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -38,7 +43,8 @@ const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, lo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleToMyLocation = useCallback(() => {
+  const handleToMyLocation = () => {
+    const map = mapRef.current;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
@@ -46,7 +52,7 @@ const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, lo
         map.setView({ lat: latitude, lng: longitude }, 17);
       });
     }
-  }, [map]);
+  };
 
   const handleNavigate = (merchant) => {
     if (!login) navigate(`/login`);
@@ -74,13 +80,13 @@ const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, lo
     });
 
   return (
-    <div className={classes.mapWrap}>
+    <div className={classes.mapWrap} data-testid="map-wrap">
       {markerloc != null && (
         <MapContainer
           center={markerloc}
           zoom={!merchants ? 17 : 14}
           className={`${classes.mapContainer} ${merchants && classes.merchants}`}
-          ref={setMap}
+          ref={mapRef}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {!merchants ? (
@@ -93,6 +99,7 @@ const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, lo
                     icon={merchantMarker(merchant)}
                     key={key}
                     position={JSON.parse(merchant.location)}
+                    data-testid="marker-click"
                     eventHandlers={{
                       click: () => {
                         handleNavigate(merchant);
@@ -113,7 +120,12 @@ const MapLeaflet = ({ handleLocation, islocated, permanent = true, merchants, lo
           </Circle>
         </MapContainer>
       )}
-      <IconButton onClick={handleToMyLocation} size="small" className={classes.myLocationButton}>
+      <IconButton
+        onClick={handleToMyLocation}
+        size="small"
+        className={classes.myLocationButton}
+        data-testid="button-position"
+      >
         <MyLocation />
       </IconButton>
     </div>

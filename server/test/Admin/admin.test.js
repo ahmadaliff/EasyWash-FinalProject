@@ -30,7 +30,6 @@ beforeAll(async () => {
       email: "admin4@user.com",
       role: "admin",
       imagePath: null,
-      isVerified: true,
       password: hashPassword("password123"),
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -40,18 +39,29 @@ beforeAll(async () => {
       email: "user5@user.com",
       role: "user",
       imagePath: null,
-      isVerified: true,
       password: hashPassword("password123"),
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
+      id: 110,
       fullName: "user2",
       email: "user2@user.com",
       role: "merchant",
       imagePath: null,
-      isVerified: false,
       password: hashPassword("password123"),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ]);
+  await queryInterface.bulkInsert("Merchants", [
+    {
+      name: "Laundry 1",
+      userId: 110,
+      description: "ini adalah description",
+      imagePath: null,
+      location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
+      isVerified: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -151,24 +161,6 @@ describe("Get All users unverified", () => {
   });
 });
 
-describe("Delete user or decline user", () => {
-  test("Success delete user with status 200", (done) => {
-    request(app)
-      .delete("/api/admin/user/delete")
-      .set("authorization", `Bearer ${adminToken}`)
-      .send({ id: idUserToDelete })
-      .then(({ body, status }) => {
-        expect(status).toBe(200);
-        expect(body).toHaveProperty("message");
-        expect(body.message).toBe("app_user_deleted");
-        done();
-      })
-      .catch((err) => {
-        done(err);
-      });
-  });
-});
-
 describe("Verify User", () => {
   test("Success verify user with status 200", (done) => {
     request(app)
@@ -185,6 +177,25 @@ describe("Verify User", () => {
         done(err);
       });
   });
+
+  describe("Delete user  user", () => {
+    test("Success delete user with status 200", (done) => {
+      request(app)
+        .delete("/api/admin/user/delete")
+        .set("authorization", `Bearer ${adminToken}`)
+        .send({ id: idUserToDelete })
+        .then(({ body, status }) => {
+          expect(status).toBe(200);
+          expect(body).toHaveProperty("message");
+          expect(body.message).toBe("app_user_deleted");
+          done();
+        })
+        .catch((err) => {
+          done(err);
+        });
+    });
+  });
+
   test("Failed verify user cause not found with status 404", (done) => {
     request(app)
       .put("/api/admin/user/verify")

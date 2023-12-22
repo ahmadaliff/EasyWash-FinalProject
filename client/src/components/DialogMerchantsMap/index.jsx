@@ -7,7 +7,7 @@ import { Close } from '@mui/icons-material';
 import MapLeaflet from '@components/MapLeaflet';
 
 const DialogMerchantsMap = ({ open, handleClose, merchants }) => (
-  <Dialog open={open} onClose={handleClose} fullScreen>
+  <Dialog open={open} onClose={handleClose} fullScreen data-testid="dialog-merchant-map">
     <DialogTitle fontSize="large">
       <b>
         <FormattedMessage id="app_map" />
@@ -16,6 +16,7 @@ const DialogMerchantsMap = ({ open, handleClose, merchants }) => (
     <IconButton
       aria-label="close"
       onClick={handleClose}
+      data-testid="button-close"
       sx={{
         position: 'absolute',
         right: 8,

@@ -20,16 +20,15 @@ const Favorit = ({ merchants }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    dispatch(actionGetFavoritMerchants());
+    if (!merchants) dispatch(actionGetFavoritMerchants());
     return () => {
       if (merchants) {
         dispatch(actionResetFavoritMerchants());
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, merchants]);
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="favorit-wrap">
       <div className={classes.head}>
         <h3>Favorit</h3>
         <Button
@@ -37,17 +36,18 @@ const Favorit = ({ merchants }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
       </div>
       <div className={classes.content}>
         {merchants?.map((val, key) => (
-          <MerchantCard merchant={val} key={key} />
+          <MerchantCard merchant={val} key={key} data-testid="merchant-card" />
         ))}
       </div>
 
-      {merchants?.length === 0 && <NoData />}
+      {merchants?.length === 0 && <NoData data-testid="nodata" />}
     </main>
   );
 };

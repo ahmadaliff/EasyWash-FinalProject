@@ -36,12 +36,13 @@ const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) 
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} data-testid="dialog-edit-merchant">
       <DialogTitle fontSize="larger">
         <FormattedMessage id="app_edit_merchant" />
       </DialogTitle>
       <IconButton
         aria-label="close"
+        data-testid="button-close"
         onClick={handleClose}
         sx={{
           position: 'absolute',
@@ -78,11 +79,17 @@ const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) 
                 className={`${classes.inputTextArea} ${errors.description && classes.inputError}`}
                 {...register('description', {})}
                 defaultValue={merchant?.description}
+                data-testid="input-description"
               />
             </label>
           </FormControl>
           <DialogActions>
-            <button type="submit" className={classes.buttonSubmit} disabled={!name || !description}>
+            <button
+              type="submit"
+              className={classes.buttonSubmit}
+              disabled={!name || !description}
+              data-testid="button-submit"
+            >
               <FormattedMessage id="app_edit_merchant" />
             </button>
           </DialogActions>

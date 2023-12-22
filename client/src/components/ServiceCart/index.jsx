@@ -10,9 +10,9 @@ import { actionChangeQuantity, actionDeleteFromCart } from '@pages/Cart/action';
 import classes from '@components/ServiceCart/style.module.scss';
 
 const ServiceCart = ({ service }) => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   return (
-    <div className={classes.service}>
+    <div className={classes.service} data-testid="service-cart">
       <DryCleaning />
       <div className={classes.serviceInfoWrap}>
         <div className={classes.serviceInfo}>
@@ -31,19 +31,25 @@ const ServiceCart = ({ service }) => {
         <div className={classes.quantity}>
           <div>
             <IconButton
-              onClick={() => dispacth(actionChangeQuantity(service?.id, parseInt(service?.Carts[0].quantity, 10) - 1))}
+              onClick={() => dispatch(actionChangeQuantity(service?.id, parseInt(service?.Carts[0].quantity, 10) - 1))}
               disabled={parseInt(service?.Carts[0].quantity, 10) - 1 === 0}
+              data-testid="button-min"
             >
               <Remove />
             </IconButton>
             {service?.Carts[0].quantity}
             <IconButton
-              onClick={() => dispacth(actionChangeQuantity(service?.id, parseInt(service?.Carts[0].quantity, 10) + 1))}
+              onClick={() => dispatch(actionChangeQuantity(service?.id, parseInt(service?.Carts[0].quantity, 10) + 1))}
+              data-testid="button-plus"
             >
               <Add />
             </IconButton>
           </div>
-          <IconButton className={classes.delete} onClick={() => dispacth(actionDeleteFromCart(service?.Carts[0].id))}>
+          <IconButton
+            className={classes.delete}
+            onClick={() => dispatch(actionDeleteFromCart(service?.Carts[0].id))}
+            data-testid="button-delete"
+          >
             <Delete />
           </IconButton>
         </div>

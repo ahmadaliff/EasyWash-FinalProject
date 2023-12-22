@@ -36,16 +36,12 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       password: DataTypes.STRING,
       role: DataTypes.STRING,
-      isVerified: DataTypes.BOOLEAN,
       imagePath: DataTypes.STRING,
     },
     {
       hooks: {
         beforeCreate: (user) => {
           user.password = hashPassword(user.password);
-          user.role === "merchant"
-            ? (user.isVerified = false)
-            : (user.isVerified = true);
         },
       },
       sequelize,

@@ -18,7 +18,7 @@ const MerchantInfo = ({ merchant, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   return (
-    <div className={classes.merchant}>
+    <div className={classes.merchant} data-testid="merchant-info">
       <div className={classes.imgWrap}>
         {merchant?.imagePath ? (
           <>

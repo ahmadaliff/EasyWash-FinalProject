@@ -25,14 +25,13 @@ const MyMerchant = ({ merchant }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(actionGetMerchant());
+    if (!merchant) dispatch(actionGetMerchant());
     return () => {
       if (merchant) {
         dispatch(actionResetMerchant());
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, merchant]);
 
   const handleImageChange = (e) => {
     dispatch(actionEditPhotoMerchant(e.target.files[0]));

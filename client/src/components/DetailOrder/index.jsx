@@ -6,8 +6,8 @@ import MapRouting from '@components/MapRouting';
 
 import classes from '@components/DetailOrder/style.module.scss';
 
-const EditProfile = ({ order, open, handleClose }) => (
-  <Dialog open={open} onClose={handleClose} fullWidth>
+const DetailOrder = ({ order, open, handleClose }) => (
+  <Dialog open={open} onClose={handleClose} fullWidth data-testid="dialog-detail">
     <DialogTitle fontSize="large">
       <b>
         <FormattedMessage id="app_detail_order" />
@@ -15,6 +15,7 @@ const EditProfile = ({ order, open, handleClose }) => (
     </DialogTitle>
     <IconButton
       aria-label="close"
+      data-testid="button-close"
       onClick={handleClose}
       sx={{
         position: 'absolute',
@@ -87,10 +88,10 @@ const EditProfile = ({ order, open, handleClose }) => (
   </Dialog>
 );
 
-EditProfile.propTypes = {
+DetailOrder.propTypes = {
   order: PropTypes.object,
   open: PropTypes.bool,
   handleClose: PropTypes.func,
 };
 
-export default injectIntl(EditProfile);
+export default injectIntl(DetailOrder);

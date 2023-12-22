@@ -29,8 +29,8 @@ const MerchantCard = ({ user, login, merchant }) => {
     else toast.error(intlHelper({ message: 'app_must_user_role' }));
   };
   return (
-    <div className={classes.cardWrap}>
-      <Card className={classes.card} onClick={handleNavigate}>
+    <div className={classes.cardWrap} data-testid="card-wrap">
+      <Card className={classes.card} onClick={handleNavigate} data-testid="card-merchant">
         {merchant?.imagePath ? (
           <>
             {loading && <Skeleton variant="rectangular" height="194" width="100%" />}
@@ -60,12 +60,12 @@ const MerchantCard = ({ user, login, merchant }) => {
       {login && user?.role === 'user' && (
         <div className={classes.cardAction}>
           {!_.find(merchant.Favorits, (val) => val?.userId === user?.id) ? (
-            <IconButton onClick={() => dispatch(actionAddToFavorit(merchant?.id))}>
+            <IconButton onClick={() => dispatch(actionAddToFavorit(merchant?.id))} data-testid="favorit-button">
               <Favorite />
             </IconButton>
           ) : (
             <IconButton onClick={() => dispatch(actionDeleteFromFavorit(merchant?.id))}>
-              <Favorite className={classes.favoritRed} />
+              <Favorite className={classes.favoritRed} data-testid="favorit-red-button" />
             </IconButton>
           )}
         </div>

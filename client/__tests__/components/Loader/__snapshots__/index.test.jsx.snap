@@ -11,7 +11,13 @@ exports[`Component Loader Should match with snapshot 1`] = `
       >
         <img
           alt="Loading"
-          src="/loader.svg"
+          class="img1"
+          src="/loader1.svg"
+        />
+        <img
+          alt="Loading"
+          class="img2"
+          src="/loader2.svg"
         />
       </div>
     </div>
@@ -23,7 +29,13 @@ exports[`Component Loader Should match with snapshot 1`] = `
     >
       <img
         alt="Loading"
-        src="/loader.svg"
+        class="img1"
+        src="/loader1.svg"
+      />
+      <img
+        alt="Loading"
+        class="img2"
+        src="/loader2.svg"
       />
     </div>
   </div>,

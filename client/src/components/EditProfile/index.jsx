@@ -28,17 +28,18 @@ const EditProfile = ({ profile, open, handleClose, intl: { formatMessage } }) =>
       delete data.new_password;
       delete data.old_password;
     }
-    handleClose();
     dispatch(actionEditProfile(data));
+    handleClose();
   };
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} data-testid="dialog-edit-profile">
       <DialogTitle fontSize="larger">
         <FormattedMessage id="app_profile_edit" />
       </DialogTitle>
       <IconButton
         aria-label="close"
         onClick={handleClose}
+        data-testid="button-close"
         sx={{
           position: 'absolute',
           right: 8,
@@ -104,7 +105,12 @@ const EditProfile = ({ profile, open, handleClose, intl: { formatMessage } }) =>
             </label>
           </InputRHF>
           <DialogActions>
-            <button type="submit" className={classes.buttonSubmit} disabled={!fullName || !phone}>
+            <button
+              type="submit"
+              className={classes.buttonSubmit}
+              disabled={!fullName || !phone}
+              data-testid="button-submit"
+            >
               <FormattedMessage id="app_profile_edit" />
             </button>
           </DialogActions>

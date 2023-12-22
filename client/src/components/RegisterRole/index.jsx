@@ -58,7 +58,7 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} data-testid="register-role">
       <FormGroup>
         <p className={classes.labelRole}>
           <FormattedMessage id="app_user_role" />
@@ -70,11 +70,12 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
           fullWidth
           className={classes.toggleRole}
           size="small"
+          data-testid="role"
         >
-          <StyledToggleButton value="user">
+          <StyledToggleButton data-testid="button-role-user" value="user">
             <AccountBox /> <FormattedMessage id="app_user" />
           </StyledToggleButton>
-          <StyledToggleButton value="merchant">
+          <StyledToggleButton data-testid="button-role-merchant" value="merchant">
             <LocalLaundryService /> Laundry
           </StyledToggleButton>
         </ToggleButtonGroup>
@@ -106,6 +107,7 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
                 className={`${classes.inputTextArea} ${errors.description && classes.inputError}`}
                 {...register('description', {})}
                 defaultValue={merchant?.description}
+                data-testid="input-description"
               />
             </label>
           </FormControl>
@@ -122,7 +124,8 @@ const RegisterRole = ({ rolePersist, merchant, isVerified, step, intl: { formatM
         <button
           type="submit"
           className={classes.buttonSubmit}
-          disabled={role !== 'user' ? !location || !role || !name || !description : !role}
+          disabled={role !== 'user' ? !role || !name || !description : !role}
+          data-testid="button-submit"
         >
           <FormattedMessage id="app_next" />
         </button>

@@ -18,16 +18,22 @@ import classes from '@components/MobileNavbar/style.module.scss';
 const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   return (
-    <div className={`${classes.MobileNavbar} ${!login && classes.hide}`}>
+    <div className={`${classes.MobileNavbar} ${!login && classes.hide}`} data-testid="navbar">
       <BottomNavigation showLabels>
         {user?.role === 'user' && (
-          <BottomNavigationAction label="Favorit" icon={<FavoriteBorder />} onClick={() => navigate('/favorit')} />
+          <BottomNavigationAction
+            label="Favorit"
+            icon={<FavoriteBorder />}
+            onClick={() => navigate('/favorit')}
+            data-testid="button-favorit"
+          />
         )}
         {user?.role === 'user' && (
           <BottomNavigationAction
             label={formatMessage({ id: 'app_cart_header' })}
             icon={<ShoppingCartOutlined />}
             onClick={() => navigate('/cart')}
+            data-testid="button-cart"
           />
         )}
         {user?.role === 'merchant' && (
@@ -35,6 +41,7 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
             label={formatMessage({ id: 'app_services_header' })}
             icon={<DryCleaningOutlined />}
             onClick={() => navigate('/service')}
+            data-testid="button-service"
           />
         )}
         {user?.role === 'merchant' && (
@@ -42,6 +49,7 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
             label={formatMessage({ id: 'app_merchant_header' })}
             icon={<LocalLaundryServiceOutlined />}
             onClick={() => navigate('/laundry')}
+            data-testid="button-laundry"
           />
         )}
 
@@ -53,6 +61,7 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
               if (user?.role === 'user') navigate('/user/order');
               else navigate('/laundry/orders');
             }}
+            data-testid="button-order"
           />
         )}
         {user?.role !== 'admin' && (
@@ -60,6 +69,7 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
             label={formatMessage({ id: 'app_chat' })}
             icon={<MessageOutlined />}
             onClick={() => navigate('/chat')}
+            data-testid="button-chat"
           />
         )}
         {user?.role === 'admin' && (
@@ -67,6 +77,7 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
             label={formatMessage({ id: 'app_user_page_header' })}
             icon={<PersonOutline />}
             onClick={() => navigate('/admin/user')}
+            data-testid="button-admin"
           />
         )}
       </BottomNavigation>

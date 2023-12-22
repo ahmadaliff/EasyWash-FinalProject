@@ -5,7 +5,7 @@ import { FormControl } from '@mui/material';
 import classes from '@components/InputRHF/style.module.scss';
 
 const InputRHF = ({ children, input, disabled = false, register, errors, accept = undefined }) => (
-  <FormControl className={classes.inputContainer}>
+  <FormControl className={classes.inputContainer} data-testid="inputRHF">
     <label htmlFor={input?.name} className={classes.inputLabel}>
       {input?.label}
       <input

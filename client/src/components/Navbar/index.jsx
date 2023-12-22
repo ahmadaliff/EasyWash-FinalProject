@@ -80,11 +80,13 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                 <>
                   <NavbarIconButton
                     title="Favorit"
+                    testId="button-favorit"
                     onClick={() => handleNavigate('/favorit')}
                     icon={<FavoriteBorder />}
                   />
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_cart_header' })}
+                    testId="button-cart"
                     onClick={() => handleNavigate('/cart')}
                     icon={<ShoppingCartOutlined />}
                   />
@@ -96,11 +98,13 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                     title={formatMessage({ id: 'app_services_header' })}
                     onClick={() => handleNavigate('/service')}
                     icon={<DryCleaningOutlined />}
+                    testId="button-service"
                   />
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_merchant_header' })}
                     onClick={() => handleNavigate('/laundry')}
                     icon={<LocalLaundryServiceOutlined />}
+                    testId="button-laundry"
                   />
                 </>
               )}
@@ -108,6 +112,7 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                 <>
                   <NavbarIconButton
                     title={formatMessage({ id: 'app_order_list' })}
+                    testId="button-order"
                     onClick={() => {
                       if (user?.role === 'user') handleNavigate('/user/order');
                       else handleNavigate('/laundry/orders');
@@ -115,6 +120,7 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                     icon={<LibraryBooksOutlined />}
                   />
                   <NavbarIconButton
+                    testId="button-chat"
                     title={formatMessage({ id: 'app_chat' })}
                     onClick={() => handleNavigate('/chat')}
                     icon={<MessageOutlined />}
@@ -122,6 +128,7 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                 </>
               ) : (
                 <NavbarIconButton
+                  testId="button-admin"
                   title={formatMessage({ id: 'app_user_page_header' })}
                   onClick={() => handleNavigate('/admin/user')}
                   icon={<PersonOutline />}
@@ -130,7 +137,7 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
               <span className={classes.verticalLine} />
             </div>
           )}
-          <div className={classes.toggle} onClick={handleProfilClick}>
+          <div className={classes.toggle} data-testid="button-togle" onClick={handleProfilClick}>
             {login ? (
               <>
                 {user?.imagePath ? (
@@ -161,7 +168,11 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
         <Menu open={openProfil} anchorEl={profilePosition} onClose={handleProfileClose} className={classes.menu}>
           {login ? (
             <div>
-              <MenuItem className={classes.menuItem} onClick={() => handleNavigate('/profile')}>
+              <MenuItem
+                className={classes.menuItem}
+                onClick={() => handleNavigate('/profile')}
+                data-testid="button-profile"
+              >
                 <Avatar className={classes.avatarMenuItem} />
                 <FormattedMessage id="app_profile" />
               </MenuItem>
@@ -176,6 +187,7 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                 variant="contained"
                 className={classes.menuItemButtonContained}
                 onClick={() => handleNavigate('/login')}
+                data-testid="button-login"
               >
                 <FormattedMessage id="app_header_login" />
               </Button>
@@ -183,13 +195,18 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                 variant="outlined"
                 className={classes.menuItemButtonOutlined}
                 onClick={() => handleNavigate('/register')}
+                data-testid="button-register"
               >
                 <FormattedMessage id="app_header_register" />
               </Button>
             </MenuItem>
           )}
           <hr />
-          <MenuItem onClick={() => setOpenDialogLanguage(true)} className={classes.menuItem}>
+          <MenuItem
+            onClick={() => setOpenDialogLanguage(true)}
+            className={classes.menuItem}
+            data-testid="button-dialog-language"
+          >
             <Language />
             <p>
               <FormattedMessage id="app_select_language" />

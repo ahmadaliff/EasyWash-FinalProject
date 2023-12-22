@@ -15,11 +15,11 @@ const ChannelInner = ({ isMenuOpen, setIsMenuOpen }) => {
   }, [deleteListener]);
 
   return (
-    <div className={classes.windowWrap}>
+    <div className={classes.windowWrap} data-testid="window-wrap">
       <Window>
         <div className={`${classes.headerChannelWrap} str-chat__channel-header`}>
           {!isMenuOpen && (
-            <IconButton className={classes.hamburgerButton} onClick={() => setIsMenuOpen(true)}>
+            <IconButton className={classes.hamburgerButton} onClick={() => setIsMenuOpen(true)} data-testid="open-menu">
               <ArrowBackIosNew />
             </IconButton>
           )}

@@ -17,12 +17,11 @@ const MyOrder = ({ orders }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actionGetMyOrder());
+    if (!orders) dispatch(actionGetMyOrder());
     return () => {
       if (orders) dispatch(actionResetMyOrder());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate]);
+  }, [dispatch, navigate, orders]);
   return (
     <main className={classes.mainWrap}>
       <div className={classes.header}>

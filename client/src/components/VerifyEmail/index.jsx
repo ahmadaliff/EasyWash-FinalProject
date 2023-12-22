@@ -27,7 +27,7 @@ const VerifyEmail = ({ email, step, isVerified, intl: { formatMessage } }) => {
     else dispatch(actionSetStep(step + 1));
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.form} data-testid="verify-email-form">
       <InputRHF
         input={{
           name: 'email',
@@ -41,7 +41,7 @@ const VerifyEmail = ({ email, step, isVerified, intl: { formatMessage } }) => {
         register={register}
         errors={errors}
       />
-      <button type="submit" className={classes.buttonSubmit}>
+      <button type="submit" className={classes.buttonSubmit} data-testid="submit-button">
         <FormattedMessage id="app_next" />
       </button>
     </form>

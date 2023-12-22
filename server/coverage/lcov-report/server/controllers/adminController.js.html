@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.07% </span>
+                <span class="strong">89.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>51/56</span>
+                <span class='fraction'>49/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>16/18</span>
+                <span class='fraction'>15/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.59% </span>
+                <span class="strong">90.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>50/54</span>
+                <span class='fraction'>48/53</span>
             </div>
         
             
@@ -204,10 +204,7 @@
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,10 +244,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -325,8 +327,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,18 +336,12 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -362,7 +356,7 @@ const {
 &nbsp;
 const { chatStreamClient } = require("../utils/streamChatUtil");
 &nbsp;
-const { User, Merchant, sequelize } = require("../models");
+const { User, Merchant } = require("../models");
 &nbsp;
 exports.getUsers = async (req, res) =&gt; {
   try {
@@ -374,7 +368,6 @@ exports.getUsers = async (req, res) =&gt; {
     const response = await User.findAndCountAll({
       where: {
         id: { [Op.ne]: id },
-        isVerified: true,
         [Op.or]: [
           {
             fullName: {
@@ -387,6 +380,12 @@ exports.getUsers = async (req, res) =&gt; {
             },
           },
         ],
+      },
+&nbsp;
+      include: {
+        model: Merchant,
+        where: { isVerified: true },
+        required: false,
       },
       offset: offset,
       limit: limit,
@@ -416,7 +415,6 @@ exports.getUnverifiedUsers = async (req, res) =&gt; {
     const response = await User.findAndCountAll({
       where: {
         id: { [Op.ne]: id },
-        isVerified: false,
         [Op.or]: [
           {
             fullName: {
@@ -430,6 +428,7 @@ exports.getUnverifiedUsers = async (req, res) =&gt; {
           },
         ],
       },
+      include: { model: Merchant, where: { isVerified: false } },
       offset: offset,
       limit: limit,
     });
@@ -466,9 +465,7 @@ exports.deleteUser = async (req, res) =&gt; {
     });
 &nbsp;
     return handleSuccess(res, {
-      message: isExist.dataValues.isVerified
-        ? "app_user_deleted"
-        : <span class="branch-1 cbranch-no" title="branch not covered" >"app_user_decline",</span>
+      message: "app_user_deleted",
     });
   } catch (error) {
 <span class="cstat-no" title="statement not covered" >    return handleServerError(res);</span>
@@ -480,18 +477,12 @@ exports.verifyUser = async (req, res) =&gt; {
     const { id } = req.body;
     const isExist = await User.findByPk(id);
     if (!isExist) return handleNotFound(res);
-    await sequelize.transaction(async (t) =&gt; {
-      await User.update(
-        { isVerified: true },
-        { where: { id: id }, transaction: t }
-      );
-      await Merchant.update(
-        { isVerified: true },
-        { where: { userId: id }, transaction: t }
-      );
-    });
+&nbsp;
+    await Merchant.update({ isVerified: true }, { where: { userId: id } });
+&nbsp;
     return handleSuccess(res, { message: "app_account_verified" });
   } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.log(error);</span>
 <span class="cstat-no" title="statement not covered" >    return handleServerError(res);</span>
   }
 };
@@ -502,7 +493,7 @@ exports.verifyUser = async (req, res) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-20T01:23:12.992Z
+                at 2023-12-21T13:38:52.188Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

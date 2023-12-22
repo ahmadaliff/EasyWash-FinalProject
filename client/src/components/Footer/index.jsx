@@ -4,7 +4,7 @@ import classes from '@components/Footer/style.module.scss';
 import { FormattedMessage } from 'react-intl';
 
 const Footer = () => (
-  <footer className={classes.footer}>
+  <footer className={classes.footer} data-testid="footer">
     <hr className={classes.line} />
     <div className={classes.footerContent}>
       <div className={classes.leftContent}>
@@ -12,7 +12,7 @@ const Footer = () => (
         <span className={classes.develop}>
           <FormattedMessage id="app_develop_by" /> :
         </span>
-        <span className={classes.link}>
+        <span className={classes.link} data-testid="linkedIn">
           <LinkedIn />
           <a
             className={classes.anchorLink}
@@ -23,13 +23,13 @@ const Footer = () => (
             Ahmad Alif Sofian
           </a>
         </span>
-        <span className={classes.link}>
+        <span className={classes.link} data-testid="github">
           <GitHub />
           <a href="https://github.com/alifahmaaad" target="_blank" className={classes.anchorLink} rel="noreferrer">
             Ahmad Alif Sofian
           </a>
         </span>
-        <span className={classes.link}>
+        <span className={classes.link} data-testid="email">
           <Email />
           <a className={classes.anchorLink} href="mailto:alif12sofian@gmail.com">
             alif12sofian@gmail.com

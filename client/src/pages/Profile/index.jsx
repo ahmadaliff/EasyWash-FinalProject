@@ -24,14 +24,13 @@ const Profile = ({ user, profile }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(actionGetProfile(user?.id));
+    if (!profile) dispatch(actionGetProfile(user?.id));
     return () => {
       if (profile) {
         dispatch(actionResetProfile());
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, user?.id]);
+  }, [dispatch, profile, user?.id]);
 
   const handleImageChange = (e) => {
     dispatch(actionEditPhotoProfile(e.target.files[0]));

@@ -47,7 +47,7 @@ const ForgotPassword = ({ login, intl: { formatMessage } }) => {
 
   return (
     <main className={classes.mainWrap}>
-      <div onClick={() => navigate('/')} className={classes.logoHeader}>
+      <div onClick={() => navigate('/')} className={classes.logoHeader} data-testid="navigate-logo">
         <img src="longLogo.svg" alt="logo" className={classes.logo} />
       </div>
       <div className={classes.forgotPasswordCard}>
@@ -67,7 +67,7 @@ const ForgotPassword = ({ login, intl: { formatMessage } }) => {
             register={register}
             errors={errors}
           />
-          <button type="submit" className={classes.buttonSubmit} disabled={!email}>
+          <button type="submit" className={classes.buttonSubmit} disabled={!email} data-testid="button-submit">
             <FormattedMessage id="app_forgot_password" />
           </button>
           <div className={classes.formNav}>
