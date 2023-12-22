@@ -1,0 +1,86 @@
+@import '@styles/base';
+
+.mainWrap {
+  @include directionY;
+  padding: 1rem;
+  @include apply-at-md-size {
+    padding: 2rem 5rem 2rem 5rem;
+  }
+  min-height: var(--min-height);
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .header {
+    @include directionX;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+  .service {
+    @include directionX;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0.25rem;
+    width: 100%;
+    .serviceInfoWrap {
+      width: 100%;
+      p {
+        margin: 0;
+        font-size: small;
+      }
+      .quantity {
+        @include directionX;
+        align-items: center;
+        justify-content: space-between;
+        font-size: small;
+      }
+      .serviceInfo {
+        @include directionX;
+        justify-content: space-between;
+      }
+    }
+  }
+  .totalPrice {
+    @include directionX;
+    width: 100%;
+    justify-content: space-between;
+    font-size: small;
+    font-weight: 700;
+  }
+  .inputLabel {
+    @include directionY;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0.5rem 0 0.5rem 0;
+    font-weight: 400;
+    font-size: small;
+  }
+  .createButton {
+    width: 100%;
+    background-color: var(--color-primary);
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    text-transform: capitalize;
+    font-size: small;
+    font-weight: 700;
+    &:hover {
+      background-color: var(--color-primary);
+    }
+  }
+}

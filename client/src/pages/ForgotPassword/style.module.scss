@@ -1,0 +1,80 @@
+@import '@styles/base';
+
+.mainWrap {
+  @include directionX;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  .logoHeader {
+    position: absolute;
+    cursor: pointer;
+    width: auto;
+    top: 0;
+    padding: 1rem;
+    height: 2.5rem;
+    .logo {
+      height: 2.5rem;
+    }
+  }
+  .forgotPasswordCard {
+    @include directionY;
+    justify-content: center;
+    align-items: center;
+    @include apply-at-md-size {
+      width: 100%;
+      padding: 5rem;
+    }
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--color-bg-secondary);
+    .forgotPasswordHeader {
+      width: 100%;
+      text-align: center;
+    }
+    .form {
+      .buttonSubmit {
+        width: 100%;
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+        border-radius: 2.5rem;
+        padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+        margin: auto;
+        margin-top: 0.75rem;
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.0125, 1.0125);
+        }
+        &:disabled {
+          background-color: rgba(gray, 0.2);
+          color: rgba($color: gray, $alpha: 0.5);
+        }
+        &:disabled:hover {
+          transform: none;
+        }
+      }
+    }
+    .showPassword {
+      @include directionX;
+      align-items: center;
+      padding-top: 0.25rem;
+      font-size: small;
+    }
+  }
+  .formNav {
+    @include directionY;
+    width: 100%;
+    padding-top: 1rem;
+    gap: 0.25rem;
+    .nav {
+      margin: 0;
+      font-size: small;
+      a {
+        color: var(--color-primary);
+      }
+    }
+  }
+}

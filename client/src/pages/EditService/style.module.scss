@@ -1,0 +1,92 @@
+@import '@styles/base';
+
+.mainWrap {
+  @include directionY;
+  padding: 1rem;
+  min-height: var(--min-height);
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+    padding: 2rem 5rem 2rem 5rem;
+  }
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  * {
+    box-sizing: border-box;
+  }
+  .header {
+    @include directionX;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .backButton {
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+    }
+  }
+  .cardWrap {
+    @include directionY;
+    gap: 0.5rem;
+    width: 100%;
+    box-shadow: none;
+    @include apply-at-md-size {
+      box-shadow: 0 0 0.25rem gray;
+    }
+    .cardContent {
+      .buttonEditProfile {
+        width: 100%;
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+        border: none;
+        border-radius: 2.5rem;
+        padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+        margin: auto;
+        margin-top: 0.75rem;
+        box-shadow: none;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.025, 1.025);
+        }
+      }
+      .inputWrap {
+        @include directionX;
+        align-items: start;
+        gap: 1rem;
+        .inputLabel {
+          padding: 8px 0 8px 0;
+          @include apply-at-md-size {
+            padding: 10px 0 10px 0;
+          }
+          font-size: small;
+          .inputLabelTitle {
+            margin: 0;
+            font-weight: 700;
+          }
+          float: left;
+          width: 10rem;
+        }
+        .input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.profileInfo {
+  @include directionX;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  .profileLabel {
+    float: left;
+    width: 10rem;
+  }
+  .profileText {
+    width: 100%;
+  }
+}

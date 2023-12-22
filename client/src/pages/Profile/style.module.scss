@@ -1,0 +1,125 @@
+@import '@styles/base';
+
+.mainWrap {
+  --image-size-sm: 8rem;
+  --image-size-md: 10rem;
+  @include directionY;
+  padding: 2rem;
+  min-height: var(--min-height);
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .Wrap {
+    @include directionY;
+    @include apply-at-md-size {
+      @include directionX;
+    }
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+    h3 {
+      text-align: center;
+    }
+    .cardWrap {
+      @include directionY;
+      gap: 0.5rem;
+      .imgWrap {
+        height: var(--image-size-sm);
+        width: var(--image-size-sm);
+        @include apply-at-md-size {
+          height: var(--image-size-md);
+          width: var(--image-size-md);
+        }
+        overflow: hidden;
+        margin: auto;
+        position: relative;
+        img {
+          object-fit: cover;
+          object-position: top;
+          height: var(--image-size-sm);
+          width: var(--image-size-sm);
+          @include apply-at-md-size {
+            height: var(--image-size-md);
+            width: var(--image-size-md);
+          }
+        }
+        .skeleton {
+          position: absolute;
+          height: var(--image-size-sm);
+          width: var(--image-size-sm);
+          @include apply-at-md-size {
+            height: var(--image-size-md);
+            width: var(--image-size-md);
+          }
+        }
+        .avatar {
+          background-color: var(--color-primary);
+          height: var(--image-size-sm);
+          width: var(--image-size-sm);
+          @include apply-at-md-size {
+            height: var(--image-size-md);
+            width: var(--image-size-md);
+          }
+        }
+        .buttonEdit {
+          position: absolute;
+          display: none;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .iconCamera {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 1.45rem;
+          height: 1.45rem;
+          opacity: 0.7;
+        }
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.025, 1.025);
+          opacity: 0.7;
+        }
+        &:hover > .buttonEdit {
+          display: block;
+        }
+      }
+      .buttonEditProfile {
+        width: 100%;
+        background-color: var(--color-bg);
+        color: var(--color-primary);
+        border: 1px solid var(--color-primary);
+        border-radius: 2.5rem;
+        padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+        margin: auto;
+        margin-top: 0.75rem;
+        box-shadow: none;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.025, 1.025);
+        }
+      }
+    }
+  }
+  .profileInfo {
+    @include directionX;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    .profileLabel {
+      float: left;
+      width: 10rem;
+      font-weight: 700;
+    }
+    .profileText {
+      width: 100%;
+    }
+  }
+}

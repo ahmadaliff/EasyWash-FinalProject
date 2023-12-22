@@ -1,0 +1,32 @@
+@import '@styles/base';
+
+.form {
+  .buttonSubmit {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border-radius: 2.5rem;
+    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    margin: auto;
+    margin-top: 0.75rem;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.0125, 1.0125);
+    }
+    &:disabled {
+      background-color: rgba(gray, 0.2);
+      color: rgba($color: gray, $alpha: 0.5);
+    }
+    &:disabled:hover {
+      transform: none;
+    }
+  }
+}
+.showPassword {
+  @include directionX;
+  align-items: center;
+  padding-top: 0.25rem;
+  font-size: small;
+}

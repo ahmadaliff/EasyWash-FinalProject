@@ -1,0 +1,57 @@
+@import '@styles/base';
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.mainWrap {
+  --image-size-sm: 10rem;
+  --image-size-md: 12rem;
+  @include directionY;
+  padding: 0 0 2rem 0;
+  min-height: var(--min-height);
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .head {
+    @include directionX;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 1rem;
+    @include apply-at-md-size {
+      padding: 2rem 5rem 2rem 5rem;
+    }
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+    }
+  }
+  .content {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(10rem, 10rem));
+    @include apply-at-sm-size {
+      grid-template-columns: repeat(2, minmax(12rem, 1fr));
+    }
+    @include apply-at-lg-size {
+      grid-template-columns: repeat(3, minmax(12rem, 1fr));
+    }
+    @include apply-at-xl-size {
+      grid-template-columns: repeat(4, minmax(12rem, 1fr));
+    }
+    gap: 1rem;
+    padding-top: 2rem;
+  }
+  .noData {
+    @include directionX;
+    align-items: center;
+    min-height: 40vh;
+  }
+}

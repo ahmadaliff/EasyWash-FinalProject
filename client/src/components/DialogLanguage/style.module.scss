@@ -1,0 +1,11 @@
+@import '@styles/base';
+
+.toggleRole {
+  button {
+    @include directionX;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-transform: capitalize;
+    border-color: var(--color-primary);
+  }
+}

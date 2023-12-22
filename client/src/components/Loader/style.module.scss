@@ -1,11 +1,25 @@
 @import '@styles/base';
 
-@keyframes image-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes img1 {
+  0% {
+    transform: translateY(0) scaleX(-1);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translateY(1rem) scaleX(-1);
+  }
+  100% {
+    transform: translateY(0) scaleX(-1);
+  }
+}
+@keyframes img2 {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(1rem) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
   }
 }
 
@@ -21,14 +35,20 @@
   background: $color-white-fade;
   z-index: 9990;
 
-  @media (prefers-reduced-motion: no-preference) {
-    img {
-      width: 3.75rem;
-      height: 60px;
-      border-radius: 100%;
-      padding: 0.75rem;
-      animation: image-spin infinite 0.8s linear;
-    }
+  .img1,
+  .img2 {
+    position: absolute;
+    padding: 0.75rem;
+    object-fit: contain;
+  }
+  .img1 {
+    width: 6rem;
+    animation: img1 infinite 0.8s ease-in-out;
+  }
+  .img2 {
+    width: 4.25rem;
+    margin-top: 0.8rem;
+    animation: img2 infinite 0.8s linear;
   }
 
   &.showLoader {

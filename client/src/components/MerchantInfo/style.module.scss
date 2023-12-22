@@ -1,0 +1,87 @@
+@import '@styles/base';
+.merchant {
+  --image-size-sm: 5rem;
+  --image-size-md: 5rem;
+  @include directionY;
+  @include apply-at-sm-size {
+    @include directionX;
+  }
+  gap: 1rem;
+  position: relative;
+  .imgWrap {
+    align-self: center;
+    @include apply-at-md-size {
+      align-self: auto;
+    }
+    height: var(--image-size-sm);
+    width: var(--image-size-sm);
+    @include apply-at-md-size {
+      height: var(--image-size-md);
+      width: var(--image-size-md);
+    }
+    overflow: hidden;
+    position: relative;
+    img {
+      object-fit: cover;
+      object-position: top;
+      height: var(--image-size-sm);
+      width: var(--image-size-sm);
+      @include apply-at-md-size {
+        height: var(--image-size-md);
+        width: var(--image-size-md);
+      }
+    }
+    .skeleton {
+      position: absolute;
+      height: var(--image-size-sm);
+      width: var(--image-size-sm);
+      @include apply-at-md-size {
+        height: var(--image-size-md);
+        width: var(--image-size-md);
+      }
+    }
+    .avatar {
+      background-color: var(--color-primary);
+      height: var(--image-size-sm);
+      width: var(--image-size-sm);
+      @include apply-at-md-size {
+        height: var(--image-size-md);
+        width: var(--image-size-md);
+      }
+    }
+    .buttonEdit {
+      position: absolute;
+      display: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .merchantInfoHeader {
+    margin: 0;
+    font-size: medium;
+  }
+  .profileInfo {
+    @include directionX;
+    font-size: 0.75rem;
+    font-weight: 500;
+    .profileLabel {
+      float: left;
+      width: 8rem;
+      margin: 0;
+    }
+    .profileText {
+      margin: 0;
+      width: 100%;
+      max-width: 10rem;
+      @include apply-at-sm-size {
+        max-width: 15rem;
+      }
+    }
+  }
+  .chatButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

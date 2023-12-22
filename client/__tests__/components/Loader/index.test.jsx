@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-
+import { render } from '@utils/testHelper';
 import Loader from '@components/Loader';
 import classes from '@components/Loader/style.module.scss';
 

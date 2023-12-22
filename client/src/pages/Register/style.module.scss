@@ -1,0 +1,91 @@
+@import '@styles/base';
+.main {
+  @include directionX;
+  position: relative;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: space-around;
+  @include apply-at-sm-size {
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .ilustrationWrap {
+    @include directionY;
+    align-items: center;
+    .registerIlustration {
+      display: none;
+      max-width: 100vw;
+      padding: 2rem;
+      margin: 0 2rem 0 2rem;
+      @include apply-at-sm-size {
+        display: block;
+        height: 40vh;
+      }
+      @include apply-at-md-size {
+        height: 60vh;
+      }
+      @include apply-at-lg-size {
+        height: 90vh;
+      }
+    }
+    .storySet {
+      display: none;
+      @include apply-at-sm-size {
+        display: block;
+      }
+      margin: 0;
+      font-size: x-small;
+      color: var(--color-primary);
+    }
+  }
+  .logoHeader {
+    position: absolute;
+    cursor: pointer;
+    width: auto;
+    top: 0;
+    padding: 1rem;
+    height: 2.5rem;
+    .logo {
+      height: 2.5rem;
+    }
+  }
+  .content {
+    @include directionY;
+    align-items: center;
+    width: 100%;
+    @include apply-at-sm-size {
+      z-index: 2;
+    }
+    .registerCard {
+      box-shadow: 0 0 0.25rem gray;
+      margin: 0;
+      padding: 2rem 0 2rem 0;
+      @include apply-at-sm-size {
+        margin: 4rem 0 1.5rem 0;
+        padding-top: 3rem;
+      }
+      width: 100%;
+      min-height: 100vh;
+      @include apply-at-sm-size {
+        padding-top: 0;
+        min-height: auto;
+        height: 100%;
+        max-width: 17rem;
+      }
+      .headerRegister {
+        @include directionX;
+        align-items: end;
+        justify-content: space-between;
+        padding: 1.5rem 0 1.5rem 0;
+        h3 {
+          margin: 0;
+        }
+        a {
+          font-size: small;
+          color: var(--color-primary);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

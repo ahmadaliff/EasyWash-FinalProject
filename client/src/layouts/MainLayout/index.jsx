@@ -1,29 +1,36 @@
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { selectLocale, selectTheme } from '@containers/App/selectors';
+import { selectLogin, selectUser } from '@containers/Client/selectors';
 
 import Navbar from '@components/Navbar';
+import MobileNavbar from '@components/MobileNavbar';
+import Footer from '@components/Footer';
 
-const MainLayout = ({ children, locale, theme, intl: { formatMessage } }) => (
+const MainLayout = ({ user, login, children, locale, theme }) => (
   <div>
-    <Navbar title={formatMessage({ id: 'app_title_header' })} locale={locale} theme={theme} />
+    <Navbar locale={locale} user={user} login={login} theme={theme} />
     {children}
+    <Footer />
+    <MobileNavbar user={user} login={login} />
   </div>
 );
 
 const mapStateToProps = createStructuredSelector({
   locale: selectLocale,
   theme: selectTheme,
+  user: selectUser,
+  login: selectLogin,
 });
 
 MainLayout.propTypes = {
   children: PropTypes.element.isRequired,
   locale: PropTypes.string,
   theme: PropTypes.string,
-  intl: PropTypes.object,
+  user: PropTypes.object,
+  login: PropTypes.bool,
 };
 
-export default injectIntl(connect(mapStateToProps)(MainLayout));
+export default connect(mapStateToProps)(MainLayout);

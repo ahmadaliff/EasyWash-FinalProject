@@ -1,0 +1,394 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormService Component Matches snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <main
+        class="mainWrap"
+      >
+        <div
+          class="header"
+        >
+          <h3>
+            Tambah Layanan
+          </h3>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium backButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+            data-testid="back-button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="ArrowBackIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </span>
+            Kembali
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root cardWrap css-bhp9pd-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            class="MuiCardContent-root cardContent css-46bh2p-MuiCardContent-root"
+          >
+            <form>
+              <div
+                class="inputWrap"
+              >
+                <div
+                  class="inputLabel"
+                >
+                  <p
+                    class="inputLabelTitle"
+                  >
+                    Nama Layanan
+                  </p>
+                  <p>
+                    Nama layanan 
+Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+                  </p>
+                </div>
+                <div
+                  class="MuiFormControl-root inputContainer css-1nrlq1o-MuiFormControl-root"
+                  data-testid="inputRHF"
+                >
+                  <label
+                    class="inputLabel"
+                    for="name"
+                  >
+                    Nama Layanan
+                    <input
+                      class="input undefined"
+                      id="name"
+                      name="name"
+                      type="text"
+                      value=""
+                    />
+                  </label>
+                </div>
+              </div>
+              <div
+                class="inputWrap"
+              >
+                <div
+                  class="inputLabel"
+                >
+                  <p
+                    class="inputLabelTitle"
+                  >
+                    Harga
+                  </p>
+                  <p>
+                    Harga yang dimasukkan dalam mata uang rupiah (RP.)
+                  </p>
+                </div>
+                <div
+                  class="MuiFormControl-root inputContainer css-1nrlq1o-MuiFormControl-root"
+                  data-testid="inputRHF"
+                >
+                  <label
+                    class="inputLabel"
+                    for="price"
+                  >
+                    Harga
+                    <input
+                      class="input undefined"
+                      id="price"
+                      name="price"
+                      type="number"
+                      value=""
+                    />
+                  </label>
+                </div>
+              </div>
+              <div
+                class="inputWrap"
+              >
+                <div
+                  class="inputLabel"
+                >
+                  <p
+                    class="inputLabelTitle"
+                  >
+                    Layanan Satuan?
+                  </p>
+                  <p>
+                    Tentukan apakah layanan ini satuan atau kiloan
+                  </p>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+                >
+                  <span
+                    class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
+                  >
+                    <span
+                      class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
+                    >
+                      <input
+                        checked=""
+                        class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
+                        type="checkbox"
+                      />
+                      <span
+                        class="MuiSwitch-thumb css-jsexje-MuiSwitch-thumb"
+                      />
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </span>
+                    <span
+                      class="MuiSwitch-track css-1yjjitx-MuiSwitch-track"
+                    />
+                  </span>
+                </div>
+              </div>
+              <button
+                class="buttonEditProfile"
+                data-testid="button-submit"
+                type="submit"
+              >
+                Tambah Layanan
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>,
+  "container": <div>
+    <main
+      class="mainWrap"
+    >
+      <div
+        class="header"
+      >
+        <h3>
+          Tambah Layanan
+        </h3>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium backButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+          data-testid="back-button"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="ArrowBackIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </span>
+          Kembali
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root cardWrap css-bhp9pd-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          class="MuiCardContent-root cardContent css-46bh2p-MuiCardContent-root"
+        >
+          <form>
+            <div
+              class="inputWrap"
+            >
+              <div
+                class="inputLabel"
+              >
+                <p
+                  class="inputLabelTitle"
+                >
+                  Nama Layanan
+                </p>
+                <p>
+                  Nama layanan 
+Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+                </p>
+              </div>
+              <div
+                class="MuiFormControl-root inputContainer css-1nrlq1o-MuiFormControl-root"
+                data-testid="inputRHF"
+              >
+                <label
+                  class="inputLabel"
+                  for="name"
+                >
+                  Nama Layanan
+                  <input
+                    class="input undefined"
+                    id="name"
+                    name="name"
+                    type="text"
+                    value=""
+                  />
+                </label>
+              </div>
+            </div>
+            <div
+              class="inputWrap"
+            >
+              <div
+                class="inputLabel"
+              >
+                <p
+                  class="inputLabelTitle"
+                >
+                  Harga
+                </p>
+                <p>
+                  Harga yang dimasukkan dalam mata uang rupiah (RP.)
+                </p>
+              </div>
+              <div
+                class="MuiFormControl-root inputContainer css-1nrlq1o-MuiFormControl-root"
+                data-testid="inputRHF"
+              >
+                <label
+                  class="inputLabel"
+                  for="price"
+                >
+                  Harga
+                  <input
+                    class="input undefined"
+                    id="price"
+                    name="price"
+                    type="number"
+                    value=""
+                  />
+                </label>
+              </div>
+            </div>
+            <div
+              class="inputWrap"
+            >
+              <div
+                class="inputLabel"
+              >
+                <p
+                  class="inputLabelTitle"
+                >
+                  Layanan Satuan?
+                </p>
+                <p>
+                  Tentukan apakah layanan ini satuan atau kiloan
+                </p>
+              </div>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+              >
+                <span
+                  class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
+                >
+                  <span
+                    class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
+                  >
+                    <input
+                      checked=""
+                      class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
+                      type="checkbox"
+                    />
+                    <span
+                      class="MuiSwitch-thumb css-jsexje-MuiSwitch-thumb"
+                    />
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiSwitch-track css-1yjjitx-MuiSwitch-track"
+                  />
+                </span>
+              </div>
+            </div>
+            <button
+              class="buttonEditProfile"
+              data-testid="button-submit"
+              type="submit"
+            >
+              Tambah Layanan
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

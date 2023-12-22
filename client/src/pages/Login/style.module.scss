@@ -1,0 +1,120 @@
+@import '@styles/base';
+.main {
+  @include directionY;
+  position: relative;
+  min-height: 100vh;
+  align-items: center;
+  @include apply-at-sm-size {
+    justify-content: center;
+  }
+  .loginIlustration {
+    position: absolute;
+    height: 0;
+    max-width: 100vw;
+    @include apply-at-sm-size {
+      height: 50vh;
+    }
+    @include apply-at-md-size {
+      height: 90vh;
+    }
+  }
+  .storySet {
+    display: none;
+    @include apply-at-sm-size {
+      display: block;
+    }
+    margin: 0.5rem;
+    font-size: x-small;
+    color: var(--color-primary);
+  }
+  .content {
+    @include directionY;
+    align-items: center;
+    z-index: 2;
+    width: 100%;
+    .logoHeader {
+      position: absolute;
+      cursor: pointer;
+      width: auto;
+      top: 0;
+      padding: 1rem;
+      height: 2.5rem;
+      .logo {
+        height: 2.5rem;
+      }
+    }
+    .loginCard {
+      padding-top: 5rem;
+      width: 100%;
+      min-height: 100vh;
+      box-shadow: 0 0 0.25rem gray;
+      @include apply-at-sm-size {
+        margin-top: 1.5rem;
+        padding-top: 0;
+        min-height: auto;
+        height: 100%;
+        max-width: 17rem;
+      }
+      .headerLogin {
+        @include directionX;
+        align-items: end;
+        justify-content: space-between;
+        padding: 0 0 1.5rem 0;
+        h3 {
+          margin: 0;
+        }
+        a {
+          font-size: small;
+          color: var(--color-primary);
+          text-decoration: none;
+        }
+      }
+      .showPassword,
+      .nav {
+        @include directionX;
+        align-items: center;
+        padding-top: 0.25rem;
+        font-size: small;
+        color: var(--color-primary);
+      }
+      .nav {
+        color: var(--color-text);
+        a {
+          color: var(--color-primary);
+        }
+      }
+      .buttonSubmit {
+        width: 100%;
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+        border-radius: 2.5rem;
+        padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+        margin: auto;
+        margin-top: 0.75rem;
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.0125, 1.0125);
+        }
+        &:disabled {
+          background-color: rgba(gray, 0.2);
+          color: rgba($color: gray, $alpha: 0.5);
+        }
+        &:disabled:hover {
+          transform: none;
+        }
+      }
+      .or {
+        font-size: small;
+        text-align: center;
+      }
+      .buttonGoogle {
+        text-transform: capitalize;
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+        border-radius: 20px;
+      }
+    }
+  }
+}

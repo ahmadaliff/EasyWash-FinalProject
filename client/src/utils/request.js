@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-import store from '@store';
+import { actionHandleLogout, setToken } from '@containers/Client/actions';
+import { apiRefreshToken } from '@domain/api';
+import store from '../configureStore';
 
 axios.interceptors.request.use((reqConfig) => {
   const state = store.getState();
@@ -13,7 +15,21 @@ axios.interceptors.request.use((reqConfig) => {
 
 axios.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error)
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response?.status === 403) {
+      const response = await apiRefreshToken();
+      if (response?.token) {
+        store.dispatch(setToken(response?.token));
+        originalRequest.headers.Authorization = `Bearer ${response?.token}`;
+        return axios.request(originalRequest);
+      }
+    }
+    if (error.response?.status === 401) {
+      store.dispatch(actionHandleLogout());
+    }
+    return Promise.reject(error);
+  }
 );
 
 const request = (options) => axios(options);

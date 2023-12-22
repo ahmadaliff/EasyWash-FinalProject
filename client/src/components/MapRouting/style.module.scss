@@ -1,0 +1,11 @@
+@import '@styles/base';
+
+.map {
+  position: relative;
+  height: 30rem;
+  @include apply-at-md-size {
+    height: 24rem;
+  }
+  width: 100%;
+  z-index: 4;
+}

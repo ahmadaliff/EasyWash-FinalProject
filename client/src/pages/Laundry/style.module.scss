@@ -1,0 +1,72 @@
+@import '@styles/base';
+
+.mainWrap {
+  padding: 1rem;
+  @include apply-at-md-size {
+    padding: 1rem 5rem;
+  }
+  min-height: var(--min-height);
+  @include apply-at-sm-size {
+    min-height: var(--min-height-sm);
+  }
+  .header {
+    @include directionX;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+  .card {
+    margin: 1rem 0 1rem 0;
+    box-shadow: none !important;
+    .cardContent {
+      @include directionY;
+      gap: 0.75rem;
+      .service {
+        @include directionX;
+        align-items: center;
+        gap: 0.125rem;
+        padding: 0.75rem;
+        border: 1px solid rgba($color: gray, $alpha: 0.4);
+        border-radius: 10px;
+        .serviceInfoWrap {
+          width: 100%;
+          p {
+            margin: 0;
+            font-size: small;
+          }
+          .serviceInfo {
+            @include directionX;
+            justify-content: space-between;
+          }
+        }
+        &:hover {
+          background-color: rgba($color: gray, $alpha: 0.1);
+          cursor: pointer;
+          transform: scale(1.0125, 1.0125);
+        }
+      }
+    }
+  }
+  .createButton {
+    margin-left: auto;
+    background-color: var(--color-primary);
+    border-radius: 10rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    text-transform: capitalize;
+    font-size: small;
+    &:hover {
+      background-color: var(--color-primary);
+    }
+  }
+}

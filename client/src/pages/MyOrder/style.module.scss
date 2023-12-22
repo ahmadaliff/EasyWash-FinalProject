@@ -1,0 +1,70 @@
+@import '@styles/base';
+
+.mainWrap {
+  @include directionY;
+  padding: 1rem;
+  @include apply-at-md-size {
+    padding: 2rem 5rem 2rem 5rem;
+  }
+  min-height: var(--min-height);
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  @include apply-at-md-size {
+    min-height: var(--min-height-sm);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .header {
+    @include directionX;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    .backButton {
+      margin-left: auto;
+      background-color: var(--color-primary);
+      border-radius: 10rem;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: medium;
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+  .order {
+    @include directionX;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0.25rem;
+    width: 100%;
+    .orderInfoWrap {
+      width: 100%;
+      p {
+        margin: 0;
+        font-size: small;
+      }
+      .quantity {
+        @include directionX;
+        align-items: center;
+        justify-content: space-between;
+        font-size: small;
+      }
+      .orderInfo {
+        @include directionX;
+        justify-content: space-between;
+      }
+      .buttonDetail {
+        font-size: small;
+        color: var(--color-primary);
+        font-weight: 600;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.0125, 1.0125);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
