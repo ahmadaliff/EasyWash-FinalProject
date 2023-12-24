@@ -17,7 +17,8 @@ import classes from '@pages/FormService/style.module.scss';
 const FormService = ({ intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isUnit, setIsUnit] = useState(false);
+  const [isUnit, setIsUnit] = useState(true);
+  const [isEnable, setIsEnable] = useState(true);
   const {
     handleSubmit,
     register,
@@ -26,6 +27,7 @@ const FormService = ({ intl: { formatMessage } }) => {
 
   const onSubmit = (data) => {
     data.isUnit = isUnit;
+    data.enable = isEnable;
     dispatch(
       actionAddService(data, () => {
         setTimeout(() => {
@@ -60,7 +62,13 @@ const FormService = ({ intl: { formatMessage } }) => {
                   <FormattedMessage id="app_service_name" />
                 </p>
                 <p>
-                  <FormattedMessage id="app_service_name_desc" />
+                  <FormattedMessage
+                    id="app_service_name_desc"
+                    values={{
+                      // eslint-disable-next-line react/no-unstable-nested-components
+                      b: (chunks) => <b>{chunks}</b>,
+                    }}
+                  />
                 </p>
               </div>
               <InputRHF
@@ -105,6 +113,19 @@ const FormService = ({ intl: { formatMessage } }) => {
               </div>
               <FormControl fullWidth>
                 <Switch onChange={(e) => setIsUnit(e.target.checked)} defaultChecked />
+              </FormControl>
+            </div>
+            <div className={classes.inputWrap}>
+              <div className={classes.inputLabel}>
+                <p className={classes.inputLabelTitle}>
+                  <FormattedMessage id="app_service_enable" />
+                </p>
+                <p>
+                  <FormattedMessage id="app_service_enable_desc" />
+                </p>
+              </div>
+              <FormControl fullWidth>
+                <Switch onChange={(e) => setIsEnable(e.target.checked)} defaultChecked />
               </FormControl>
             </div>
             <button type="submit" className={classes.buttonEditProfile} data-testid="button-submit">

@@ -23,9 +23,11 @@ module.exports = {
           model: "Services",
           key: "id",
         },
-        onDelete: "CASCADE",
       },
       quantity: {
+        type: Sequelize.INTEGER,
+      },
+      price: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

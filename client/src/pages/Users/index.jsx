@@ -8,6 +8,10 @@ import {
   Alert,
   Button,
   Card,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  IconButton,
   Stack,
   Table,
   TableBody,
@@ -19,7 +23,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from '@mui/material';
-import { ArrowBack, Delete, DoNotDisturb, Search, Unpublished, Verified } from '@mui/icons-material';
+import { ArrowBack, ArrowRight, Delete, DoNotDisturb, Search, Unpublished, Verified } from '@mui/icons-material';
 import styled from 'styled-components';
 
 import {
@@ -32,6 +36,8 @@ import {
 import { selectUsers } from '@pages/Users/selectors';
 
 import classes from '@pages/Users/style.module.scss';
+import MerchantInfo from '@components/MerchantInfo';
+import MapLeaflet from '@components/MapLeaflet';
 
 const StyledToggle = styled(ToggleButton)({
   '&.Mui-selected, &.Mui-selected:hover': {
@@ -43,6 +49,8 @@ const StyledToggle = styled(ToggleButton)({
 const Users = ({ users, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [merchant, setMerchant] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [isVerifiedUsers, setIsVerifiedUsers] = useState(true);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -140,6 +148,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
                 <TableCell className={classes.tableHead}>
                   <FormattedMessage id="app_action" />
                 </TableCell>
+                {!isVerifiedUsers && <TableCell className={classes.tableHead}>Detail</TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -196,11 +205,23 @@ const Users = ({ users, intl: { formatMessage } }) => {
                       )}
                     </div>
                   </TableCell>
+                  {!isVerifiedUsers && (
+                    <TableCell className={classes.tableBody}>
+                      <IconButton
+                        onClick={() => {
+                          setMerchant(row.Merchant);
+                          setDialogOpen(true);
+                        }}
+                      >
+                        <ArrowRight />
+                      </IconButton>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
               {users?.data?.length === 0 && (
                 <TableRow hover>
-                  <TableCell colSpan={4}>
+                  <TableCell colSpan={5}>
                     <Stack sx={{ width: '100%' }} spacing={2}>
                       <Alert severity="error">
                         <FormattedMessage id="app_404" />
@@ -223,6 +244,16 @@ const Users = ({ users, intl: { formatMessage } }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)}>X</Button>
+        </DialogActions>
+        <DialogContent>
+          <MerchantInfo merchant={merchant} chat={false} />
+          <br />
+          <MapLeaflet islocated={merchant && JSON.parse(merchant?.location)} />
+        </DialogContent>
+      </Dialog>
     </main>
   );
 };

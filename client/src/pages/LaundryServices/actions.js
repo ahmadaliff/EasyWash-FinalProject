@@ -1,4 +1,4 @@
-import { DELETE_SERVICE, GET_SERVICES, RESET_SERVICES, SET_SERVICES } from './constants';
+import { CHANGE_ENABLE_STATUS_SERVICE, GET_SERVICES, RESET_SERVICES, SET_SERVICES } from './constants';
 
 export const actionGetServices = (search, limit, page) => ({
   type: GET_SERVICES,
@@ -12,9 +12,9 @@ export const actionSetServices = (services) => ({
   services,
 });
 
-export const actionDeleteService = (data) => ({
-  type: DELETE_SERVICE,
-  data,
+export const actionStatusService = (id) => ({
+  type: CHANGE_ENABLE_STATUS_SERVICE,
+  id,
 });
 
 export const actionResetServices = () => ({

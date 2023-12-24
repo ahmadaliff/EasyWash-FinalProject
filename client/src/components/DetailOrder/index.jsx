@@ -62,7 +62,7 @@ const DetailOrder = ({ order, open, handleClose }) => (
                 <p>
                   <FormattedNumber
                     // eslint-disable-next-line no-unsafe-optional-chaining
-                    value={service?.price * service?.ServicesOrdered?.quantity}
+                    value={service?.ServicesOrdered?.price * service?.ServicesOrdered?.quantity}
                     // eslint-disable-next-line react/style-prop-object
                     style="currency"
                     currency="IDR"

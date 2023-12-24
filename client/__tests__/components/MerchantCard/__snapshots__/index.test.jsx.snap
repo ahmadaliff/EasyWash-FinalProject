@@ -43,7 +43,8 @@ exports[`MerchantCard Component Should match with snapshot 1`] = `
             class="distance"
           >
             5
-             Km
+             
+            Km
           </p>
           <p
             class="desc"
@@ -116,7 +117,8 @@ exports[`MerchantCard Component Should match with snapshot 1`] = `
           class="distance"
         >
           5
-           Km
+           
+          Km
         </p>
         <p
           class="desc"

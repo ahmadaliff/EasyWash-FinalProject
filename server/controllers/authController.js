@@ -205,7 +205,7 @@ exports.register = async (req, res) => {
       const responseUser = await User.create(newUser, { transaction: t });
       if (newUser.role === "merchant") {
         merchant.userId = responseUser.id;
-        merchant.location = JSON.stringify(merchant.location);
+        merchant.location = merchant.location;
         await Merchant.create(merchant, {
           transaction: t,
         });

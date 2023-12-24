@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           name: "userId",
         },
+        onDelete: "SET NULL",
       });
       Merchant.hasMany(models.Favorit, {
         foreignKey: {

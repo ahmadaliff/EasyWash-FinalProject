@@ -3,7 +3,7 @@
 .form {
   .buttonWrap {
     @include directionX;
-    gap: 2rem;
+    gap: 1rem;
     .buttonSubmit {
       width: 100%;
       border-radius: 2.5rem;

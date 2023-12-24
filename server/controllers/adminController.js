@@ -117,6 +117,7 @@ exports.deleteUser = async (req, res) => {
     const { id } = req.body;
     const isExist = await User.findByPk(id);
     if (!isExist) return handleNotFound(res);
+    await Merchant.update({ isVerified: false }, { where: { userId: id } });
     await isExist.destroy({ where: { id: id } });
 
     await chatStreamClient.deleteUser(id.toString(), {

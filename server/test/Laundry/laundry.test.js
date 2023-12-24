@@ -94,6 +94,7 @@ beforeAll(async () => {
       merchantId: 1,
       price: 6000,
       isUnit: false,
+      enable: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -103,6 +104,7 @@ beforeAll(async () => {
       merchantId: 3,
       price: 8000,
       isUnit: true,
+      enable: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -191,6 +193,7 @@ describe("Add Service", () => {
       name: "Baju",
       price: 31231,
       isUnit: false,
+      enable: true,
     };
     request(app)
       .post("/api/laundry/service/add")
@@ -211,6 +214,7 @@ describe("Add Service", () => {
       name: "Baju",
       price: 31231,
       isUnit: false,
+      enable: true,
     };
     request(app)
       .post("/api/laundry/service/add")
@@ -250,7 +254,6 @@ describe("Add Service", () => {
 describe("Edit Service", () => {
   test("Success edit service with status 200", (done) => {
     const data = {
-      name: "Baju",
       price: 31231,
       isUnit: false,
     };
@@ -340,15 +343,29 @@ describe("Get Service by id", () => {
   });
 });
 
-describe("Delete Service", () => {
-  test("Success delete with status 200", (done) => {
+describe("Change enable status Service", () => {
+  test("Success change status with status 200", (done) => {
     request(app)
-      .delete("/api/laundry/service/delete/1")
+      .put("/api/laundry/service/status/1")
       .set("authorization", `Bearer ${laundryToken}`)
       .then(({ body, status }) => {
         expect(status).toBe(200);
         expect(body).toHaveProperty("message");
-        expect(body.message).toBe("app_service_deleted");
+        expect(body.message).toBe("app_service_status");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+  test("Failed change status with status 404 notfound", (done) => {
+    request(app)
+      .put("/api/laundry/service/status/999999")
+      .set("authorization", `Bearer ${laundryToken}`)
+      .then(({ body, status }) => {
+        expect(status).toBe(404);
+        expect(body).toHaveProperty("message");
+        expect(body.message).toBe("app_404");
         done();
       })
       .catch((err) => {

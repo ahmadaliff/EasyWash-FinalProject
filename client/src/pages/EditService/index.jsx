@@ -20,7 +20,7 @@ const EditService = ({ service, intl: { formatMessage } }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [isUnit, setIsUnit] = useState(service ? service?.isUnit : false);
+  const [isUnit, setIsUnit] = useState(false);
   const {
     handleSubmit,
     register,
@@ -29,12 +29,14 @@ const EditService = ({ service, intl: { formatMessage } }) => {
 
   useEffect(() => {
     if (!service) dispatch(actionGetService(id));
+    else setIsUnit(!!service.isUnit);
     return () => {
       if (service) dispatch(actionResetService());
     };
   }, [dispatch, id, service]);
 
   const onSubmit = (data) => {
+    delete data.name;
     data.isUnit = isUnit;
     dispatch(
       actionEditService(service.id, data, () => {
@@ -70,17 +72,23 @@ const EditService = ({ service, intl: { formatMessage } }) => {
                   <FormattedMessage id="app_service_name" />
                 </p>
                 <p>
-                  <FormattedMessage id="app_service_name_desc" />
+                  <FormattedMessage
+                    id="app_service_name_desc"
+                    values={{
+                      // eslint-disable-next-line react/no-unstable-nested-components
+                      b: (chunks) => <b>{chunks}</b>,
+                    }}
+                  />
                 </p>
               </div>
               <InputRHF
                 input={{
                   name: 'name',
-                  required: formatMessage({ id: 'app_service_name_require_message' }),
                   type: 'text',
                   label: formatMessage({ id: 'app_service_name' }),
                   value: service?.name,
                 }}
+                disabled
                 register={register}
                 errors={errors}
               />
@@ -116,11 +124,13 @@ const EditService = ({ service, intl: { formatMessage } }) => {
                 </p>
               </div>
               <FormControl fullWidth>
-                <Switch
-                  onChange={(e) => setIsUnit(e.target.checked)}
-                  defaultChecked={service?.isUnit}
-                  data-testid="isUnit"
-                />
+                {service && (
+                  <Switch
+                    onChange={(e) => setIsUnit(e.target.checked)}
+                    checked={!!service?.isUnit}
+                    data-testid="isUnit"
+                  />
+                )}
               </FormControl>
             </div>
             <button type="submit" className={classes.buttonEditProfile} data-testid="button-submit">

@@ -63,6 +63,11 @@ exports[`EditService Page Matches snapshot 1`] = `
                   <p>
                     Nama layanan 
 Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+Nama 
+                    <b>
+                      tidak bisa diubah
+                    </b>
+                     setelah layanan diorder, ya.
                   </p>
                 </div>
                 <div
@@ -76,6 +81,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                     Nama Layanan
                     <input
                       class="input undefined"
+                      disabled=""
                       id="name"
                       name="name"
                       type="text"
@@ -140,7 +146,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                     class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
                   >
                     <span
-                      class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
+                      class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
                       data-testid="isUnit"
                     >
                       <input
@@ -233,6 +239,11 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                 <p>
                   Nama layanan 
 Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+Nama 
+                  <b>
+                    tidak bisa diubah
+                  </b>
+                   setelah layanan diorder, ya.
                 </p>
               </div>
               <div
@@ -246,6 +257,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                   Nama Layanan
                   <input
                     class="input undefined"
+                    disabled=""
                     id="name"
                     name="name"
                     type="text"
@@ -310,7 +322,7 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                   class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
                 >
                   <span
-                    class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
+                    class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
                     data-testid="isUnit"
                   >
                     <input

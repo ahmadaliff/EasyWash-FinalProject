@@ -72,16 +72,13 @@ const StatusOrder = ({ order }) => {
               <FormattedMessage id="app_total_price" />
             </p>
             <p className={classes.text}>
-              {
+              <FormattedNumber
+                value={order?.totalPrice}
                 // eslint-disable-next-line react/style-prop-object
-                <FormattedNumber
-                  value={order?.totalPrice}
-                  // eslint-disable-next-line react/style-prop-object
-                  style="currency"
-                  currency="IDR"
-                  minimumFractionDigits={0}
-                />
-              }
+                style="currency"
+                currency="IDR"
+                minimumFractionDigits={0}
+              />
             </p>
           </div>
           <div className={classes.field}>
@@ -102,7 +99,7 @@ const StatusOrder = ({ order }) => {
                   <p>
                     <FormattedNumber
                       // eslint-disable-next-line no-unsafe-optional-chaining
-                      value={service?.price * service?.ServicesOrdered?.quantity}
+                      value={service?.ServicesOrdered?.price * service?.ServicesOrdered?.quantity}
                       // eslint-disable-next-line react/style-prop-object
                       style="currency"
                       currency="IDR"

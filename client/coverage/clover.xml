@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703214998678" clover="3.2.0">
-  <project timestamp="1703214998678" name="All files">
-    <metrics statements="1022" coveredstatements="436" conditionals="335" coveredconditionals="28" methods="303" coveredmethods="66" elements="1660" coveredelements="530" complexity="0" loc="1022" ncloc="1022" packages="25" files="91" classes="91"/>
+<coverage generated="1703407496873" clover="3.2.0">
+  <project timestamp="1703407496873" name="All files">
+    <metrics statements="1024" coveredstatements="444" conditionals="340" coveredconditionals="32" methods="304" coveredmethods="70" elements="1668" coveredelements="546" complexity="0" loc="1024" ncloc="1024" packages="25" files="90" classes="90"/>
     <package name="config">
       <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="development.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\config\development.js">
@@ -68,7 +68,7 @@
       <file name="index.jsx" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\components\InputRHF\index.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="8" count="10" type="stmt"/>
+        <line num="8" count="22" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
       </file>
     </package>
@@ -530,13 +530,13 @@
       </file>
     </package>
     <package name="src.pages.EditService">
-      <metrics statements="34" coveredstatements="14" conditionals="13" coveredconditionals="1" methods="9" coveredmethods="3"/>
+      <metrics statements="57" coveredstatements="34" conditionals="19" coveredconditionals="5" methods="18" coveredmethods="11"/>
       <file name="actions.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\EditService\actions.js">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
       </file>
       <file name="constants.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\EditService\constants.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -544,6 +544,32 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="index.jsx" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\EditService\index.jsx">
+        <metrics statements="23" coveredstatements="20" conditionals="6" coveredconditionals="4" methods="9" coveredmethods="6"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="11" type="stmt"/>
+        <line num="21" count="11" type="stmt"/>
+        <line num="22" count="11" type="stmt"/>
+        <line num="23" count="11" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="30" count="11" type="stmt"/>
+        <line num="31" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="34" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="11" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="50" count="11" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="79" count="11" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="146" count="1" type="stmt"/>
+        <line num="151" count="1" type="stmt"/>
       </file>
       <file name="reducer.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\EditService\reducer.js">
         <metrics statements="7" coveredstatements="4" conditionals="3" coveredconditionals="1" methods="2" coveredmethods="2"/>
@@ -654,31 +680,10 @@
       </file>
     </package>
     <package name="src.pages.FormService">
-      <metrics statements="26" coveredstatements="14" conditionals="5" coveredconditionals="0" methods="9" coveredmethods="5"/>
-      <file name="actions.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\FormService\actions.js">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="3" count="1" type="stmt"/>
-      </file>
+      <metrics statements="11" coveredstatements="2" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="1"/>
       <file name="constants.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\FormService\constants.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
-      </file>
-      <file name="index.jsx" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\FormService\index.jsx">
-        <metrics statements="14" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="3"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
-        <line num="20" count="5" type="stmt"/>
-        <line num="25" count="5" type="stmt"/>
-        <line num="27" count="5" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="38" count="5" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="107" count="0" type="stmt"/>
-        <line num="120" count="1" type="stmt"/>
       </file>
       <file name="saga.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\FormService\saga.js">
         <metrics statements="10" coveredstatements="1" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="1"/>
@@ -846,7 +851,7 @@
       </file>
     </package>
     <package name="src.pages.LaundryServices">
-      <metrics statements="40" coveredstatements="14" conditionals="14" coveredconditionals="1" methods="10" coveredmethods="3"/>
+      <metrics statements="34" coveredstatements="14" conditionals="13" coveredconditionals="1" methods="9" coveredmethods="3"/>
       <file name="actions.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\LaundryServices\actions.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
@@ -862,21 +867,15 @@
         <line num="4" count="1" type="stmt"/>
       </file>
       <file name="reducer.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\LaundryServices\reducer.js">
-        <metrics statements="14" coveredstatements="4" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="2"/>
+        <metrics statements="8" coveredstatements="4" conditionals="3" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
         <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="9" count="13" type="stmt"/>
-        <line num="10" count="13" type="cond" truecount="0" falsecount="3"/>
+        <line num="10" count="13" type="cond" truecount="0" falsecount="2"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
       </file>
       <file name="saga.js" path="F:\New Document\Documents\00.Training Bootcamp Phincon\12. Final Project\client\src\pages\LaundryServices\saga.js">
         <metrics statements="18" coveredstatements="2" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="1"/>
@@ -1366,9 +1365,9 @@
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
         <line num="13" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="19" count="4" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
       </file>
     </package>

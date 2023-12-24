@@ -52,4 +52,11 @@ exports.schemaService = {
   name: joi.string().required(),
   price: joi.number().required(),
   isUnit: joi.boolean().required(),
+  enable: joi.boolean().required(),
+};
+
+//Schema OrderItems
+exports.schemaOrderItems = {
+  serviceId: joi.number().required(),
+  quantity: joi.number().required(),
 };

@@ -121,21 +121,38 @@ exports.editService = async (req, res) => {
     if (error) {
       return handleRes;
     }
-    const isExist = Service.findOne({ where: { id: serviceId } });
+    const isExist = await Service.findOne({
+      where: { id: serviceId },
+      include: {
+        model: Order,
+        where: {
+          status: {
+            [Op.notIn]: ["app_finish", " app_rejected", "app_expired"],
+          },
+        },
+        required: false,
+      },
+    });
     if (!isExist) return handleNotFound(res);
+    if (isExist.Orders.length > 0)
+      return handleClientError(res, 400, "app_cannot_edit_service");
+
     await Service.update(dataService, { where: { id: serviceId } });
 
     return handleSuccess(res, { message: "app_service_updated" });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };
 
-exports.deleteService = async (req, res) => {
+exports.changeEnableStatusService = async (req, res) => {
   try {
     const { serviceId } = req.params;
-    await Service.destroy({ where: { id: serviceId } });
-    return handleSuccess(res, { message: "app_service_deleted" });
+    const service = await Service.findOne({ where: { id: serviceId } });
+    if (!service) return handleNotFound(res);
+    await service.update({ enable: !service.enable });
+    return handleSuccess(res, { message: "app_service_status" });
   } catch (error) {
     return handleServerError(res);
   }
@@ -170,6 +187,7 @@ exports.getOrders = async (req, res) => {
       totalRows: response.count,
     });
   } catch (error) {
+    console.log(error);
     return handleServerError(res);
   }
 };
