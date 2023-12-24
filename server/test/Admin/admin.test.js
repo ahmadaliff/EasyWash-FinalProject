@@ -93,6 +93,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await queryInterface.bulkDelete("Users", null, {});
+  await queryInterface.bulkDelete("Merchants", null, {});
 });
 
 describe("Get All users verified", () => {

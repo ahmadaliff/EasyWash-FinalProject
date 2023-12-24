@@ -36,18 +36,16 @@
   }
   .content {
     display: grid;
-    grid-template-columns: repeat(1, minmax(10rem, 10rem));
-    @include apply-at-sm-size {
-      grid-template-columns: repeat(2, minmax(12rem, 1fr));
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 10rem));
+    gap: 1rem;
+    padding: 2rem 1rem;
+    @include apply-at-md-size {
+      padding: 2rem 5rem;
     }
     @include apply-at-lg-size {
-      grid-template-columns: repeat(3, minmax(12rem, 1fr));
+      padding: 2rem 9rem;
     }
-    @include apply-at-xl-size {
-      grid-template-columns: repeat(4, minmax(12rem, 1fr));
-    }
-    gap: 1rem;
-    padding-top: 2rem;
   }
   .noData {
     @include directionX;

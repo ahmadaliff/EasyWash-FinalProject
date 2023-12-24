@@ -2,7 +2,6 @@ const { Router } = require("express");
 const {
   getMyService,
   editService,
-  deleteService,
   addService,
   getServiceById,
   getOrders,
@@ -10,6 +9,7 @@ const {
   editMerchant,
   editPhotoMerchant,
   changeStatus,
+  changeEnableStatusService,
 } = require("../controllers/laundryController");
 const {
   authorizationOwnService,
@@ -23,10 +23,10 @@ router.use(authorizationRoleLaundry);
 router.get("/services", getMyService);
 router.post("/service/add", addService);
 router.put("/service/edit/:serviceId", authorizationOwnService, editService);
-router.delete(
-  "/service/delete/:serviceId",
+router.put(
+  "/service/status/:serviceId",
   authorizationOwnService,
-  deleteService
+  changeEnableStatusService
 );
 router.get("/service/:serviceId", authorizationOwnService, getServiceById);
 router.get("/orders", getOrders);

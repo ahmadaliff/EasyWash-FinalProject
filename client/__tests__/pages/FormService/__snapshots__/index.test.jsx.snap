@@ -62,6 +62,11 @@ exports[`FormService Component Matches snapshot 1`] = `
                   <p>
                     Nama layanan 
 Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+Nama 
+                    <b>
+                      tidak bisa diubah
+                    </b>
+                     setelah layanan diorder, ya.
                   </p>
                 </div>
                 <div
@@ -130,6 +135,48 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                   </p>
                   <p>
                     Tentukan apakah layanan ini satuan atau kiloan
+                  </p>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+                >
+                  <span
+                    class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
+                  >
+                    <span
+                      class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
+                    >
+                      <input
+                        checked=""
+                        class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
+                        type="checkbox"
+                      />
+                      <span
+                        class="MuiSwitch-thumb css-jsexje-MuiSwitch-thumb"
+                      />
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </span>
+                    <span
+                      class="MuiSwitch-track css-1yjjitx-MuiSwitch-track"
+                    />
+                  </span>
+                </div>
+              </div>
+              <div
+                class="inputWrap"
+              >
+                <div
+                  class="inputLabel"
+                >
+                  <p
+                    class="inputLabelTitle"
+                  >
+                    Status produk?
+                  </p>
+                  <p>
+                    Jika statusnya diaktifkan, layanan Anda dapat dicari oleh calon pembeli.
                   </p>
                 </div>
                 <div
@@ -230,6 +277,11 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                 <p>
                   Nama layanan 
 Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+Nama 
+                  <b>
+                    tidak bisa diubah
+                  </b>
+                   setelah layanan diorder, ya.
                 </p>
               </div>
               <div
@@ -298,6 +350,48 @@ Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari
                 </p>
                 <p>
                   Tentukan apakah layanan ini satuan atau kiloan
+                </p>
+              </div>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+              >
+                <span
+                  class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
+                >
+                  <span
+                    class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary Mui-checked css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase"
+                  >
+                    <input
+                      checked=""
+                      class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
+                      type="checkbox"
+                    />
+                    <span
+                      class="MuiSwitch-thumb css-jsexje-MuiSwitch-thumb"
+                    />
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiSwitch-track css-1yjjitx-MuiSwitch-track"
+                  />
+                </span>
+              </div>
+            </div>
+            <div
+              class="inputWrap"
+            >
+              <div
+                class="inputLabel"
+              >
+                <p
+                  class="inputLabelTitle"
+                >
+                  Status produk?
+                </p>
+                <p>
+                  Jika statusnya diaktifkan, layanan Anda dapat dicari oleh calon pembeli.
                 </p>
               </div>
               <div

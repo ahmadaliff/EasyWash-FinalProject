@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           name: "userId",
         },
+        onDelete: "SET NULL",
       });
       Order.hasMany(models.ServicesOrdered, {
         foreignKey: {

@@ -52,7 +52,8 @@ export default {
   app_service_already_exist: 'Layanan dengan nama tersebut sudah ada di laundry anda',
   app_service_created: 'Layanan berhasil ditambahkan',
   app_service_updated: 'Data layanan berhasil diubah',
-  app_service_deleted: 'Data layanan berhasil dihapus',
+  app_cannot_edit_service: 'layanan tidak dapat diubah karena masih ada pesanan yang aktif',
+  app_service_status: 'Status layanan berhasil diubah',
   app_success_already_fav: 'Sudah ada dalam favorit',
   app_success_add_to_fav: 'Berhasil menambahkan favorit',
   app_success_delete_from_fav: 'Berhasil menghapus dari favorit',
@@ -135,13 +136,17 @@ export default {
   app_service_name: 'Nama Layanan',
   app_service_name_require_message: 'Nama Layanan Dibutuhkan',
   app_service_name_desc: `Nama layanan 
-Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.`,
+Disarankan untuk tidak menggunakan huruf kapital berlebih, memasukkan lebih dari 1 layanan, dan kata-kata promosi.
+Nama <b>tidak bisa diubah</b> setelah layanan diorder, ya.`,
   app_service_price: 'Harga',
   app_service_price_require_message: 'Harga Dibutuhkan',
   app_service_price_desc: `Harga yang dimasukkan dalam mata uang rupiah (RP.)`,
   app_service_isUnit: 'Layanan Satuan?',
-  app_service_isUnit_require_message: 'layanan Satuan ? is required',
+  app_service_isUnit_require_message: 'layanan Satuan?, dibutuhkan',
   app_service_isUnit_desc: `Tentukan apakah layanan ini satuan atau kiloan`,
+  app_service_enable: 'Status produk?',
+  app_service_enable_require_message: 'status produk dibutuhkan',
+  app_service_enable_desc: `Jika statusnya diaktifkan, layanan Anda dapat dicari oleh calon pembeli.`,
 
   // laundry
   app_merchant_header: 'Laundry',

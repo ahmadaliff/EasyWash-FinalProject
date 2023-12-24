@@ -52,7 +52,8 @@ export default {
   app_service_already_exist: 'Services with that name already existed in your laundry services',
   app_service_created: 'Service created',
   app_service_updated: 'Service edited',
-  app_service_deleted: 'Service deleted',
+  app_cannot_edit_service: 'Service cannot be changed because there are still active orders',
+  app_service_status: 'Service enable status change',
   app_success_already_fav: 'Merchant already in favorit',
   app_success_add_to_fav: 'Success add to favorit',
   app_success_delete_from_fav: 'Success delete from favorit',
@@ -135,13 +136,17 @@ export default {
   app_service_name: 'Service Name',
   app_service_name_require_message: 'Service Name is required',
   app_service_name_desc: `Service name 
-It is recommended not to use excess capital letters, include more than 1 service, and promotional words.`,
+It is recommended not to use excess capital letters, include more than 1 service, and promotional words.
+The name <b>cannot be changed</b> after the Service is ordered.`,
   app_service_price: 'Price',
   app_service_price_require_message: 'Price is required',
   app_service_price_desc: `price entered in rupiah (RP.) currency`,
   app_service_isUnit: 'Is unit service?',
   app_service_isUnit_require_message: 'Is unit service ? is required',
   app_service_isUnit_desc: `Specify whether this service is unit or kilo`,
+  app_service_enable: 'Enable?',
+  app_service_enable_require_message: 'Enable status ? is required',
+  app_service_enable_desc: `If the status is enabled, your service can be searched by potential buyers.`,
 
   // laundry
   app_merchant_header: 'Merchant',

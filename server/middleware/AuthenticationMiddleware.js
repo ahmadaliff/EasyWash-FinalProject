@@ -15,7 +15,7 @@ exports.authenticationMiddleware = async (req, res, next) => {
   if (error) return res.sendStatus(403);
   const chacheToken = await redisClient.get(id.toString());
   if (token !== chacheToken) {
-    return handleClientError(res, 403, "app_token_expired");
+    return handleClientError(res, 401, "app_token_expired");
   }
   const isExist = await User.findOne({ where: { id: id } });
   if (!isExist) {

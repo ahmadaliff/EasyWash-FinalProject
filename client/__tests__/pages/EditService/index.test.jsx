@@ -1,5 +1,6 @@
 import { render, fireEvent, screen } from '@utils/testHelper';
 import EditService from '@pages/EditService';
+import { act } from 'react-dom/test-utils';
 
 let wrapper;
 const mockDispatch = jest.fn();
@@ -30,19 +31,23 @@ const mockProps = {
 };
 
 beforeEach(() => {
-  wrapper = render(<EditService {...mockProps} />);
+  act(() => {
+    wrapper = render(<EditService {...mockProps} />);
+  });
   jest.clearAllMocks();
 });
 
 describe('EditService Page', () => {
-  test('Correct render', async () => {
+  test('Correct render', () => {
     const { getByTestId } = wrapper;
     expect(getByTestId('editservice-page')).toBeInTheDocument();
   });
 
   test('Should be navigate -1', () => {
     const { getByTestId } = wrapper;
-    fireEvent.click(getByTestId('button-back'));
+    act(() => {
+      fireEvent.click(getByTestId('button-back'));
+    });
     expect(mockNavigate).toHaveBeenCalledWith(-1);
   });
   test('Should change field value', () => {
@@ -53,10 +58,12 @@ describe('EditService Page', () => {
     expect(inputName.value).toBe('Updated Name');
     expect(inputPrice.value).toBe('2000');
   });
-  test('Should submit', () => {
+  test('Should submit', async () => {
     const { getByTestId } = wrapper;
     const buttonSubmit = getByTestId('button-submit');
-    fireEvent.click(buttonSubmit);
+    await act(() => {
+      fireEvent.click(buttonSubmit);
+    });
   });
 
   test('Matches snapshot', () => {

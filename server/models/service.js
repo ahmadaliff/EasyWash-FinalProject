@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       });
       Service.hasMany(models.ServicesOrdered, {
         foreignKey: { name: "serviceId" },
-        onDelete: "CASCADE",
       });
       Service.hasMany(models.Cart, {
         foreignKey: { name: "serviceId" },
@@ -35,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.INTEGER,
       merchantId: DataTypes.INTEGER,
       isUnit: DataTypes.BOOLEAN,
+      enable: DataTypes.BOOLEAN,
     },
     {
       sequelize,

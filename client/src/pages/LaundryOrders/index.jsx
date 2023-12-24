@@ -178,7 +178,7 @@ const LaundryOrders = ({ orders, intl: { formatMessage } }) => {
               />
               {orders?.data?.length === 0 && (
                 <TableRow hover>
-                  <TableCell colSpan={4}>
+                  <TableCell colSpan={5}>
                     <Stack sx={{ width: '100%' }} spacing={2}>
                       <Alert severity="error">
                         <FormattedMessage id="app_404" />

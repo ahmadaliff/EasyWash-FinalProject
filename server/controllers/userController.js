@@ -5,6 +5,7 @@ const {
   handleCreated,
   handleClientError,
 } = require("../helpers/handleResponseHelper");
+const { validateJoi, schemaOrderItems } = require("../helpers/joiHelper");
 const {
   Merchant,
   Cart,
@@ -56,7 +57,7 @@ exports.getLaundryById = async (req, res) => {
     const reqLocation = JSON.parse(location);
     const response = await Merchant.findOne({
       where: { id: merchantId },
-      include: Service,
+      include: { model: Service, where: { enable: true }, required: false },
     });
     if (!response) return handleNotFound(res);
     const { lat, lng } = JSON.parse(response.location);
@@ -231,6 +232,10 @@ exports.createOrder = async (req, res) => {
       }
       return order;
     });
+    filteredOrderItems.forEach((element) => {
+      const { error, handleRes } = validateJoi(res, element, schemaOrderItems);
+      if (error) return handleRes;
+    });
     const response = await sequelize.transaction(async (t) => {
       const order = await Order.create(
         {
@@ -256,14 +261,25 @@ exports.createOrder = async (req, res) => {
 
       const result = await Order.findOne({
         where: { id: order.id },
-        include: Service,
+        include: { model: Service, include: Merchant },
         transaction: t,
       });
 
-      const total = result.Services.reduce((acc, service) => {
+      const { lat: userLat, lng: userLng } = JSON.parse(location);
+      const total = await result.Services.reduce(async (acc, service) => {
+        await service.ServicesOrdered.update(
+          {
+            price: service.price,
+          },
+          { transaction: t }
+        );
+        const { lat, lng } = JSON.parse(service.Merchant.location);
+        if (getDistance(lat, lng, userLat, userLng) > 3) return { error: true };
         return acc + service.ServicesOrdered.quantity * service.price;
       }, 0);
-
+      if (total.error) {
+        throw new Error("out_of_range");
+      }
       const response = await result.update(
         { totalPrice: total },
         { transaction: t }
@@ -279,6 +295,8 @@ exports.createOrder = async (req, res) => {
 
     return handleCreated(res, { data: response, message: "app_created_order" });
   } catch (error) {
+    if (error.message === "out_of_range")
+      return handleClientError(res, 400, "app_laundry_out_of_range");
     return handleServerError(res);
   }
 };

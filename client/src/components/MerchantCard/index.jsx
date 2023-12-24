@@ -54,7 +54,9 @@ const MerchantCard = ({ user, login, merchant }) => {
           <FormattedMessage id="app_free_delivery" />
         </div>
         <h4 className={classes.headerText}>{merchant?.name}</h4>
-        <p className={classes.distance}>{merchant.distance} Km</p>
+        <p className={classes.distance}>
+          {merchant?.distance} {merchant?.distance !== undefined && 'Km'}
+        </p>
         <p className={classes.desc}>{merchant?.description}</p>
       </Card>
       {login && user?.role === 'user' && (

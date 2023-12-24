@@ -67,7 +67,7 @@ export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT',
 export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'GET', {}, true);
 export const apiAddServices = (data) => callAPI(`${urls.laundry}/service/add`, 'POST', data, true);
 export const apiEditServices = (data, id) => callAPI(`${urls.laundry}/service/edit/${id}`, 'PUT', data, true);
-export const apiDeleteService = (id) => callAPI(`${urls.laundry}/service/delete/${id}`, 'DELETE', {}, true);
+export const apichangeEnableStatusService = (id) => callAPI(`${urls.laundry}/service/status/${id}`, 'PUT', {}, true);
 export const apiGetMyMerchant = () => callAPI(`${urls.laundry}/my`, 'GET', {}, true);
 export const apiEditMerchant = (data) => callAPI(`${urls.laundry}/edit`, 'PUT', data, true);
 export const apiEditPhotoMerchant = (data) =>

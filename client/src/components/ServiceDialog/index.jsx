@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import { Add, AddShoppingCart, Close, LibraryBooksOutlined, Remove } from '@mui/icons-material';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { Button, DialogActions, DialogContent, DialogTitle, IconButton, SwipeableDrawer } from '@mui/material';
 
 import { actionAddToCart } from '@pages/Cart/action';
 
@@ -24,7 +24,14 @@ const ServiceDialog = ({ handleClose, open, service }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth className={classes.dialog} data-testid="dialog-service">
+    <SwipeableDrawer
+      anchor="bottom"
+      open={open}
+      onClose={handleClose}
+      onOpen={() => open}
+      className={classes.dialog}
+      data-testid="dialog-service"
+    >
       <DialogTitle fontSize="large">
         <b>
           <FormattedMessage id="app_service_datail" />
@@ -97,7 +104,7 @@ const ServiceDialog = ({ handleClose, open, service }) => {
           <FormattedMessage id="app_create_order" />
         </Button>
       </DialogActions>
-    </Dialog>
+    </SwipeableDrawer>
   );
 };
 

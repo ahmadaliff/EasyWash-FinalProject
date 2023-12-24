@@ -13,7 +13,7 @@ import { actionAddChannel } from '@pages/ChatPage/actions';
 
 import classes from '@components/MerchantInfo/style.module.scss';
 
-const MerchantInfo = ({ merchant, intl: { formatMessage } }) => {
+const MerchantInfo = ({ merchant, intl: { formatMessage }, chat = true }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -43,15 +43,17 @@ const MerchantInfo = ({ merchant, intl: { formatMessage } }) => {
           <p className={classes.profileText}>{merchant?.description}</p>
         </span>
       </div>
-      <Tooltip title={formatMessage({ id: 'app_chat' })} arrow>
-        <IconButton
-          className={classes.chatButton}
-          onClick={() => dispatch(actionAddChannel(merchant?.userId, () => navigate('/chat')))}
-          color="inherit"
-        >
-          <AddCommentOutlined />
-        </IconButton>
-      </Tooltip>
+      {chat && (
+        <Tooltip title={formatMessage({ id: 'app_chat' })} arrow>
+          <IconButton
+            className={classes.chatButton}
+            onClick={() => dispatch(actionAddChannel(merchant?.userId, () => navigate('/chat')))}
+            color="inherit"
+          >
+            <AddCommentOutlined />
+          </IconButton>
+        </Tooltip>
+      )}
     </div>
   );
 };
@@ -59,6 +61,7 @@ const MerchantInfo = ({ merchant, intl: { formatMessage } }) => {
 MerchantInfo.propTypes = {
   merchant: PropTypes.object,
   intl: PropTypes.object,
+  chat: PropTypes.bool,
 };
 
 export default injectIntl(MerchantInfo);

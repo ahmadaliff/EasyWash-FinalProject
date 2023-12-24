@@ -19,10 +19,10 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { Add, ArrowBack, DoNotDisturb, Edit, Search } from '@mui/icons-material';
+import { Add, ArrowBack, Edit, Search } from '@mui/icons-material';
 
 import { selectServices } from '@pages/LaundryServices/selectors';
-import { actionDeleteService, actionGetServices, actionResetServices } from '@pages/LaundryServices/actions';
+import { actionGetServices, actionResetServices, actionStatusService } from '@pages/LaundryServices/actions';
 
 import classes from '@pages/LaundryServices/style.module.scss';
 
@@ -117,6 +117,9 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
                   <FormattedMessage id="app_service_isUnit" />
                 </TableCell>
                 <TableCell className={classes.tableHead}>
+                  <FormattedMessage id="app_service_enable" />
+                </TableCell>
+                <TableCell className={classes.tableHead}>
                   <FormattedMessage id="app_action" />
                 </TableCell>
               </TableRow>
@@ -136,6 +139,9 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
                     <Switch defaultChecked={row.isUnit} disabled />
                   </TableCell>
                   <TableCell className={classes.tableBody}>
+                    <Switch defaultChecked={!!row.enable} onChange={() => dispatch(actionStatusService(row.id))} />
+                  </TableCell>
+                  <TableCell className={classes.tableBody}>
                     <div className={classes.tableAction}>
                       <Button
                         type="button"
@@ -148,24 +154,13 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
                           <FormattedMessage id="app_service_edit_header" />
                         </div>
                       </Button>
-                      <Button
-                        type="button"
-                        className={classes.buttonActionDec}
-                        onClick={() => dispatch(actionDeleteService(row.id))}
-                      >
-                        <DoNotDisturb />
-
-                        <div className={classes.email}>
-                          <FormattedMessage id="app_delete_service" />
-                        </div>
-                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>
               ))}
               {services?.data?.length === 0 && (
                 <TableRow hover>
-                  <TableCell colSpan={4}>
+                  <TableCell colSpan={5}>
                     <Stack sx={{ width: '100%' }} spacing={2}>
                       <Alert severity="error">
                         <FormattedMessage id="app_404" />
