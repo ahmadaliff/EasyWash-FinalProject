@@ -50,10 +50,10 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
   };
 
   return (
-    <main className={classes.main}>
+    <main className={classes.main} data-testid="login-wrap">
       <img src="login.svg" className={classes.loginIlustration} alt="https://storyset.com" />
       <div className={classes.content}>
-        <div onClick={() => navigate('/')} className={classes.logoHeader}>
+        <div onClick={() => navigate('/')} className={classes.logoHeader} data-testid="button-logo">
           <img src="longLogo.svg" alt="logo" className={classes.logo} />
         </div>
         <Card className={classes.loginCard}>
@@ -92,7 +92,13 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
                 errors={errors}
               >
                 <label htmlFor="show" className={classes.showPassword}>
-                  <input type="checkbox" name="show" id="show" onChange={(e) => setShowPass(e.target.checked)} />
+                  <input
+                    type="checkbox"
+                    name="show"
+                    id="show"
+                    onChange={(e) => setShowPass(e.target.checked)}
+                    data-testid="button-show"
+                  />
                   <FormattedMessage id="app_user_password_show" />
                 </label>
               </InputRHF>
@@ -102,7 +108,12 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
                   <FormattedMessage id="app_forgot_password" />
                 </Link>
               </p>
-              <button type="submit" className={classes.buttonSubmit} disabled={!email || !password}>
+              <button
+                type="submit"
+                className={classes.buttonSubmit}
+                disabled={!email || !password}
+                data-testid="button-submit"
+              >
                 <FormattedMessage id="app_header_login" />
               </button>
             </form>
@@ -115,6 +126,7 @@ const Login = ({ isLogin, intl: { formatMessage } }) => {
               variant="outlined"
               startIcon={<Google />}
               fullWidth
+              data-testid="button-google"
             >
               Google
             </Button>

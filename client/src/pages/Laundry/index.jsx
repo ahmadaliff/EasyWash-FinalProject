@@ -33,7 +33,7 @@ const Laundry = ({ merchant }) => {
   }, [dispatch, id, merchant]);
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="laundry-page">
       <div className={classes.header}>
         <h3>
           <FormattedMessage id="app_merchant_header" />
@@ -43,6 +43,7 @@ const Laundry = ({ merchant }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -58,6 +59,7 @@ const Laundry = ({ merchant }) => {
                   setOpenDialog(true);
                   setServiceProps(service);
                 }}
+                data-testid="button-dialog"
               >
                 <DryCleaning />
                 <div className={classes.serviceInfoWrap}>

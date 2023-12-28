@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not Found Page Matches snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="contentWrapper"
+        data-testid="not-found"
+      >
+        <img
+          alt="Not Found"
+          class="image"
+        />
+        <a
+          class="storySet"
+          href="https://storyset.com/web"
+        >
+          Web illustrations by Storyset
+        </a>
+        <div
+          class="title"
+        >
+          Halaman tidak ditemukan
+        </div>
+        <div
+          class="desc"
+        >
+          Maaf halaman yang kamu cari gak ada nih, (error 404)
+        </div>
+        <button
+          class="backButton"
+          data-testid="button-home"
+          type="button"
+        >
+          Kembali ke halaman utama
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="contentWrapper"
+      data-testid="not-found"
+    >
+      <img
+        alt="Not Found"
+        class="image"
+      />
+      <a
+        class="storySet"
+        href="https://storyset.com/web"
+      >
+        Web illustrations by Storyset
+      </a>
+      <div
+        class="title"
+      >
+        Halaman tidak ditemukan
+      </div>
+      <div
+        class="desc"
+      >
+        Maaf halaman yang kamu cari gak ada nih, (error 404)
+      </div>
+      <button
+        class="backButton"
+        data-testid="button-home"
+        type="button"
+      >
+        Kembali ke halaman utama
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

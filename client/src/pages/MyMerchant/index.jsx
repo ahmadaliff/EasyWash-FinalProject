@@ -37,13 +37,14 @@ const MyMerchant = ({ merchant }) => {
     dispatch(actionEditPhotoMerchant(e.target.files[0]));
   };
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="myMerchant-wrap">
       <div className={classes.header}>
         <Button
           variant="contained"
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -94,7 +95,12 @@ const MyMerchant = ({ merchant }) => {
               </p>
               <p className={classes.profileText}>: {merchant?.description}</p>
             </span>
-            <button type="button" onClick={() => setIsDialogOpen(true)} className={classes.buttonEditProfile}>
+            <button
+              type="button"
+              onClick={() => setIsDialogOpen(true)}
+              className={classes.buttonEditProfile}
+              data-testid="button-dialog"
+            >
               <FormattedMessage id="app_edit" />
             </button>
           </div>

@@ -103,7 +103,7 @@ const LaundryOrders = ({ orders, intl: { formatMessage } }) => {
   };
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="laundry-orders">
       <div className={classes.header}>
         <div>
           <h3>
@@ -115,6 +115,7 @@ const LaundryOrders = ({ orders, intl: { formatMessage } }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -163,19 +164,13 @@ const LaundryOrders = ({ orders, intl: { formatMessage } }) => {
                         setOrderState(order);
                         setIsDetailOpen(true);
                       }}
+                      data-testid="button-dialog"
                     >
                       <ArrowRight />
                     </IconButton>
                   </TableCell>
                 </TableRow>
               ))}
-              <DetailOrder
-                order={orderState}
-                open={isDetailOpen}
-                handleClose={() => {
-                  setIsDetailOpen(false);
-                }}
-              />
               {orders?.data?.length === 0 && (
                 <TableRow hover>
                   <TableCell colSpan={5}>
@@ -199,6 +194,13 @@ const LaundryOrders = ({ orders, intl: { formatMessage } }) => {
           page={orders ? page : 0}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+        <DetailOrder
+          order={orderState}
+          open={isDetailOpen}
+          handleClose={() => {
+            setIsDetailOpen(false);
+          }}
         />
       </Card>
     </main>

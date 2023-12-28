@@ -8,7 +8,7 @@ import classes from './style.module.scss';
 const NotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className={classes.contentWrapper}>
+    <div className={classes.contentWrapper} data-testid="not-found">
       <img className={classes.image} src={logo} alt="Not Found" />
       <a href="https://storyset.com/web" className={classes.storySet}>
         Web illustrations by Storyset
@@ -19,7 +19,7 @@ const NotFound = () => {
       <div className={classes.desc}>
         <FormattedMessage id="app_not_found_desc" />
       </div>
-      <button className={classes.backButton} type="button" onClick={() => navigate('/')}>
+      <button className={classes.backButton} type="button" onClick={() => navigate('/')} data-testid="button-home">
         <FormattedMessage id="app_back_to_home" />
       </button>
     </div>

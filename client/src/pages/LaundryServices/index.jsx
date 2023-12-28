@@ -71,7 +71,7 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
   };
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="laundry-services">
       <div className={classes.header}>
         <div>
           <h3>
@@ -83,6 +83,7 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -97,6 +98,7 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
             className={classes.buttonAdd}
             onClick={() => navigate(`/service/add`)}
             size="small"
+            data-testid="button-add"
           >
             <Add />
             <div className={classes.buttonText}>
@@ -148,6 +150,7 @@ const LaundryServices = ({ services, intl: { formatMessage } }) => {
                         className={classes.buttonActionAcc}
                         onClick={() => navigate(`/service/edit/${row.id}`)}
                         size="small"
+                        data-testid="button-edit"
                       >
                         <Edit />
                         <div className={classes.email}>

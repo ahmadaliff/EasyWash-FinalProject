@@ -23,7 +23,7 @@ const MyOrder = ({ orders }) => {
     };
   }, [dispatch, navigate, orders]);
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="my-order">
       <div className={classes.header}>
         <h3>
           <FormattedMessage id="app_detail_order" />
@@ -33,6 +33,7 @@ const MyOrder = ({ orders }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="back-button"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -63,7 +64,11 @@ const MyOrder = ({ orders }) => {
                     minimumFractionDigits={0}
                   />
                 </p>
-                <div className={classes.buttonDetail} onClick={() => navigate(`/user/order/status/${order?.id}`)}>
+                <div
+                  className={classes.buttonDetail}
+                  onClick={() => navigate(`/user/order/status/${order?.id}`)}
+                  data-testid="button-order-detail"
+                >
                   <FormattedMessage id="app_detail_order" />
                 </div>
               </div>
