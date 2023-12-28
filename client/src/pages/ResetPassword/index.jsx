@@ -9,6 +9,8 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import InputRHF from '@components/InputRHF';
 
+import intlHelper from '@utils/intlHelper';
+
 import { actionResetPassword } from '@containers/Client/actions';
 import { selectLogin } from '@containers/Client/selectors';
 
@@ -44,14 +46,18 @@ const ResetPassword = ({ login, intl: { formatMessage } }) => {
   }, [navigate, token]);
 
   const onSubmit = (data) => {
-    data.token = token;
-    dispatch(
-      actionResetPassword(data, () => {
-        setTimeout(() => {
-          navigate('/login');
-        }, 1500);
-      })
-    );
+    if (data.newPassword !== data.confirmPassword) {
+      toast.error(intlHelper({ message: 'app_pass_not_same' }));
+    } else {
+      data.token = token;
+      dispatch(
+        actionResetPassword(data, () => {
+          setTimeout(() => {
+            navigate('/login');
+          }, 1500);
+        })
+      );
+    }
   };
 
   return (
@@ -75,9 +81,27 @@ const ResetPassword = ({ login, intl: { formatMessage } }) => {
             }}
             register={register}
             errors={errors}
+          />
+          <InputRHF
+            input={{
+              name: 'confirmPassword',
+              required: formatMessage({ id: 'app_user_confirm_password_require_message' }),
+              type: showPass ? 'text' : 'password',
+              label: formatMessage({ id: 'app_user_confirm_password' }),
+              minLength: 8,
+              messageMin: formatMessage({ id: 'app_user_confirm_password_min_length' }),
+            }}
+            register={register}
+            errors={errors}
           >
             <label htmlFor="show" className={classes.showPassword}>
-              <input type="checkbox" name="show" id="show" onChange={(e) => setShowPass(e.target.checked)} />
+              <input
+                type="checkbox"
+                name="show"
+                id="show"
+                onChange={(e) => setShowPass(e.target.checked)}
+                data-testid="button-show-pass"
+              />
               <FormattedMessage id="app_user_password_show" />
             </label>
           </InputRHF>

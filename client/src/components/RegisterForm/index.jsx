@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
@@ -7,6 +8,8 @@ import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import InputRHF from '@components/InputRHF';
+
+import intlHelper from '@utils/intlHelper';
 
 import { selectEmail, selectRole, selectStep } from '@pages/Register/selectors';
 import { actionHandleRegister } from '@containers/Client/actions';
@@ -30,15 +33,20 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) => {
   const phone = watch('phone');
 
   const onSubmit = (data) => {
-    data.email = email;
-    data.role = role;
-    dispatch(
-      actionHandleRegister(data, () => {
-        setTimeout(() => {
-          navigate('/login');
-        }, 1000);
-      })
-    );
+    if (data.password !== data.confirmPassword) {
+      toast.error(intlHelper({ message: 'app_pass_not_same' }));
+    } else {
+      data.email = email;
+      data.role = role;
+      delete data.confirmPassword;
+      dispatch(
+        actionHandleRegister(data, () => {
+          setTimeout(() => {
+            navigate('/login');
+          }, 1000);
+        })
+      );
+    }
   };
 
   return (
@@ -73,6 +81,18 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) => {
           label: formatMessage({ id: 'app_user_password' }),
           minLength: 8,
           messageMin: formatMessage({ id: 'app_user_password_min_length' }),
+        }}
+        register={register}
+        errors={errors}
+      />
+      <InputRHF
+        input={{
+          name: 'confirmPassword',
+          required: formatMessage({ id: 'app_user_confirm_password_require_message' }),
+          type: showPass ? 'text' : 'password',
+          label: formatMessage({ id: 'app_user_confirm_password' }),
+          minLength: 8,
+          messageMin: formatMessage({ id: 'app_user_confirm_password_min_length' }),
         }}
         register={register}
         errors={errors}

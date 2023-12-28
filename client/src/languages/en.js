@@ -90,11 +90,14 @@ export default {
   app_user_otp_require_message: 'OTP is require',
   app_user_otp_min_length: 'OTP minimum 4 character',
   app_user_password: 'Password',
+  app_user_confirm_password: 'Confirm password',
   app_user_old_password: 'Old Password',
   app_user_new_password: 'New Password',
   app_user_reset_password: 'Reset Password',
   app_user_password_require_message: 'Password is require',
   app_user_password_min_length: 'Password minimum 8 character',
+  app_user_confirm_password_require_message: 'Password is require',
+  app_user_confirm_password_min_length: 'Password minimum 8 character',
   app_user_password_show: 'Show password',
   app_no_account: 'No account? ',
   app_have_account: 'Have account? ',
@@ -114,6 +117,7 @@ export default {
   app_success_add_total_price: 'Success add total price',
   app_status_invalid: 'Status Invalid',
   app_status_updated: 'Status updated',
+  app_pass_not_same: 'Password and Confirm Password not same',
 
   // profile
   app_edit_profile_desc:
@@ -161,6 +165,9 @@ The name <b>cannot be changed</b> after the Service is ordered.`,
   app_detail_order: 'Order Detail',
   app_acc: 'Accept',
   app_next_status: 'Next status',
+  app_kilo: 'Kilos',
+  app_unit: 'Unit',
+  app_type: 'Type  ',
 
   // cart
   app_cart_header: 'Cart',
