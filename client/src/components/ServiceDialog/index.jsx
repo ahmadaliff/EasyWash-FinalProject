@@ -73,6 +73,14 @@ const ServiceDialog = ({ handleClose, open, service }) => {
               />
             </p>
           </div>
+          <div className={classes.field}>
+            <p className={classes.label}>
+              <FormattedMessage id="app_type" />
+            </p>
+            <p className={classes.text}>
+              <FormattedMessage id={service?.isUnit ? 'app_kilo' : 'app_unit'} />
+            </p>
+          </div>
         </div>
         <div className={classes.buttonQuantity}>
           <IconButton onClick={() => setQuantity(quantity - 1)} disabled={quantity - 1 === 0} data-testid="button-min">

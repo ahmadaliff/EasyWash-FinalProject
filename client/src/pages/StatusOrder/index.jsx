@@ -84,7 +84,8 @@ const StatusOrder = ({ order }) => {
           <div className={classes.field}>
             <p className={classes.label}>Status</p>
             <p className={classes.text}>
-              <FormattedMessage id={order?.status} /> (realtime)
+              <FormattedMessage id={order?.status} />
+              {/* (realtime) */}
             </p>
           </div>
           {order?.Services?.map((service, key) => (
@@ -93,9 +94,15 @@ const StatusOrder = ({ order }) => {
               <div className={classes.serviceInfoWrap}>
                 <hr />
                 <div className={classes.serviceInfo}>
-                  <p>
-                    {service?.name} x {service?.ServicesOrdered?.quantity}
-                  </p>
+                  <div className={classes.name}>
+                    <p>
+                      {service?.name} x {service?.ServicesOrdered?.quantity}
+                    </p>
+                    <p className={classes.type}>
+                      <FormattedMessage id="app_type" />
+                      <FormattedMessage id={service?.isUnit ? 'app_kilo' : 'app_unit'} />
+                    </p>
+                  </div>
                   <p>
                     <FormattedNumber
                       // eslint-disable-next-line no-unsafe-optional-chaining

@@ -94,11 +94,14 @@ export default {
   app_user_otp_require_message: 'OTP dibutuhkan',
   app_user_otp_min_length: 'OTP minimal 4 karakter',
   app_user_password: 'Kata Sandi',
+  app_user_confirm_password: 'Konfirmasi Kata Sandi',
   app_user_old_password: 'Kata Sandi lama',
   app_user_new_password: 'Kata Sandi Baru',
   app_user_reset_password: 'Reset kata Sandi',
   app_user_password_require_message: 'Kata Sandi dibutuhkan',
   app_user_password_min_length: 'Kata Sandi minimal 8 karakter',
+  app_user_confirm_password_require_message: 'Kata Sandi dibutuhkan',
+  app_user_confirm_password_min_length: 'Kata Sandi minimal 8 karakter',
   app_user_password_show: 'Tampilkan Kata Sandi',
   app_no_account: 'Tidak ada akun? ',
   app_have_account: 'Punya akun? ',
@@ -114,6 +117,7 @@ export default {
   app_location: 'Lokasi',
   app_merchant_name: 'Nama Laundry',
   app_merchant_require: 'Nama Laundry dibutuhkan',
+  app_pass_not_same: 'Kata Sandi dan Konfirmasi sandi tidak sama',
 
   // profile
   app_edit_profile_desc:
@@ -161,6 +165,9 @@ Nama <b>tidak bisa diubah</b> setelah layanan diorder, ya.`,
   app_detail_order: 'Detail pesanan',
   app_acc: 'Terima',
   app_next_status: 'Status selanjutnya',
+  app_kilo: 'Kiloan',
+  app_unit: 'Satuan',
+  app_type: 'Tipe  ',
 
   // cart
   app_cart_header: 'Cart',

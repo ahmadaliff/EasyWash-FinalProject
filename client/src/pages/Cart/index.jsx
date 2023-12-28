@@ -58,9 +58,9 @@ const Cart = ({ carts }) => {
         </Button>
       </div>
       <Card className={classes.card}>
-        <CardContent className={classes.cardContent}>
-          {carts?.map((merchant, key) => (
-            <div key={key}>
+        {carts?.map((merchant, key) => (
+          <CardContent className={classes.cardContent} key={key}>
+            <div>
               <MerchantInfo merchant={merchant} />
               {merchant?.Services?.map((service, k) => (
                 <div key={k}>
@@ -79,9 +79,9 @@ const Cart = ({ carts }) => {
                 <FormattedMessage id="app_create_order" />
               </Button>
             </div>
-          ))}
-          {carts?.length === 0 && <NoData />}
-        </CardContent>
+          </CardContent>
+        ))}
+        {carts?.length === 0 && <NoData />}
       </Card>
     </main>
   );

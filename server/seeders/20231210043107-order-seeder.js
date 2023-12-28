@@ -14,7 +14,7 @@ module.exports = {
      */
     return await queryInterface.bulkInsert("Orders", [
       {
-        id: `Order-1702535973296`,
+        id: `Order-1702535973299`,
         userId: 2,
         totalPrice: 12000,
         status: "app_pending",
@@ -24,7 +24,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: `Order-1702536051382`,
+        id: `Order-1702536051389`,
         userId: 2,
         totalPrice: 6000,
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,

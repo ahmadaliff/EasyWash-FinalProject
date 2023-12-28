@@ -62,7 +62,13 @@ const Laundry = ({ merchant }) => {
                 <DryCleaning />
                 <div className={classes.serviceInfoWrap}>
                   <div className={classes.serviceInfo}>
-                    <p>{service?.name}</p>
+                    <div className={classes.Name}>
+                      <p>{service?.name}</p>
+                      <p className={classes.type}>
+                        <FormattedMessage id="app_type" />
+                        <FormattedMessage id={service?.isUnit ? 'app_kilo' : 'app_unit'} />
+                      </p>
+                    </div>
                     <p>
                       <FormattedNumber
                         value={service?.price}

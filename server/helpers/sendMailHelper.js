@@ -123,6 +123,7 @@ exports.handleSendMailVerifyOTP = async (OTP, email) => {
       >
         <p>
           This your OTP Number <b>${OTP}</b>
+          OTP will be Expired in 2 minutes
         </p>
       </h2>
       <p style="font-size: 0.9em">Regards,<br />EasyWash</p>

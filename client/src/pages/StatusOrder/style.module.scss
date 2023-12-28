@@ -70,6 +70,12 @@
         .serviceInfo {
           @include directionX;
           justify-content: space-between;
+          .name {
+            @include directionY;
+            .type {
+              font-size: x-small;
+            }
+          }
         }
       }
     }

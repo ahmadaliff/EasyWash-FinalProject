@@ -77,7 +77,6 @@ exports.deleteChannel = async (req, res) => {
     ]);
     return handleSuccess(res, { message: "deleted channel" });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };

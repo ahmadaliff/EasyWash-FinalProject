@@ -88,7 +88,6 @@ exports.login = async (req, res) => {
       message: "app_login_success",
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -122,25 +121,31 @@ exports.handleLoginGoogle = async (req, res) => {
         password: randPassword,
       },
     });
-
     const token = createToken(user);
     const refreshToken = createRefreshToken(user);
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-    });
-    redisClient.setex(user.id.toString(), 10 * 60, token);
-
     const body = {
       imagePath: user.imagePath,
       token: token,
       message: "app_login_success",
     };
+
     if (created) {
       handleSendMailPassword(randPassword, data.email);
       body.created = "app_user_created_check_email";
+    } else {
+      const userWithMerc = await User.findOne({
+        where: { id: user.id },
+        include: Merchant,
+      });
+      if (userWithMerc.Merchant && !userWithMerc.Merchant?.isVerified) {
+        return handleClientError(res, 400, "app_login_not_verify");
+      }
     }
-
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    redisClient.setex(user.id.toString(), 10 * 60, token);
     return handleSuccess(res, body);
   } catch (error) {
     return handleServerError(res);
