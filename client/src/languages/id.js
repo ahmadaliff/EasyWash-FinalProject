@@ -133,6 +133,9 @@ export default {
   app_verify_action: 'Verifikasi',
   app_decline: 'Tolak',
 
+  // deletedMerchants page
+  app_deletedMerchants_header: 'Laundry yang dihapus',
+
   // service
   app_service_datail: 'Detail Layanan',
   app_service_add_header: 'Tambah Layanan',

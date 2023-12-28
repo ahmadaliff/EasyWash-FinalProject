@@ -44,6 +44,7 @@ import { selectMerchant } from '@pages/Register/selectors';
 import { actionResetTokenMessage } from '@pages/ChatPage/actions';
 import { actionResetServices } from '@pages/LaundryServices/actions';
 import { actionResetService } from '@pages/EditService/actions';
+import { actionResetDeletedMerchants } from '@pages/DeletedMerchant/action';
 
 function* sagaHandleLogin({ data, callback }) {
   yield put(setLoading(true));
@@ -105,6 +106,7 @@ function* sagaHandleLogout({ callback }) {
       yield put(actionResetServices());
       yield put(actionResetService());
       yield put(actionResetTokenMessage());
+      yield put(actionResetDeletedMerchants());
       if (callback) {
         yield call(callback);
       }

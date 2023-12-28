@@ -76,11 +76,17 @@ describe('Mobile Navbar Component', () => {
       const { getByTestId } = navbarAdmin;
       expect(getByTestId('navbar')).toBeInTheDocument();
     });
-    test('Should call navigate to admin iuser when button clicked', () => {
+    test('Should call navigate to admin user when button clicked', () => {
       const { getByTestId } = navbarAdmin;
       const button = getByTestId('button-admin');
       fireEvent.click(button);
       expect(mockNavigate).toHaveBeenCalledWith(`/admin/user`);
+    });
+    test('Should call navigate to admin deleted merchants when button clicked', () => {
+      const { getByTestId } = navbarAdmin;
+      const button = getByTestId('button-deletedMerchant');
+      fireEvent.click(button);
+      expect(mockNavigate).toHaveBeenCalledWith(`/admin/deletedMerchant`);
     });
     test('Should match with snapshot', () => {
       expect(navbarAdmin).toMatchSnapshot();

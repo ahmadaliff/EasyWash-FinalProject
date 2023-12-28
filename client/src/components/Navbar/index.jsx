@@ -15,6 +15,7 @@ import {
   DryCleaningOutlined,
   FavoriteBorder,
   Language,
+  LayersClear,
   LibraryBooksOutlined,
   LocalLaundryServiceOutlined,
   LogoutOutlined,
@@ -127,12 +128,20 @@ const Navbar = ({ locale, theme, user, login, intl: { formatMessage } }) => {
                   />
                 </>
               ) : (
-                <NavbarIconButton
-                  testId="button-admin"
-                  title={formatMessage({ id: 'app_user_page_header' })}
-                  onClick={() => handleNavigate('/admin/user')}
-                  icon={<PersonOutline />}
-                />
+                <>
+                  <NavbarIconButton
+                    testId="button-admin"
+                    title={formatMessage({ id: 'app_user_page_header' })}
+                    onClick={() => handleNavigate('/admin/user')}
+                    icon={<PersonOutline />}
+                  />
+                  <NavbarIconButton
+                    testId="button-deletedMerchant"
+                    title={formatMessage({ id: 'app_deletedMerchants_header' })}
+                    onClick={() => handleNavigate('/admin/deletedMerchant')}
+                    icon={<LayersClear />}
+                  />
+                </>
               )}
               <span className={classes.verticalLine} />
             </div>

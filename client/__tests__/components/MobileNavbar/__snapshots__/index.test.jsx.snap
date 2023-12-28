@@ -38,6 +38,32 @@ exports[`Mobile Navbar Component Navbar with role Admin Should match with snapsh
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
           </button>
+          <button
+            class="MuiButtonBase-root MuiBottomNavigationAction-root css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root"
+            data-testid="button-deletedMerchant"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="LayersClearIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="m19.81 14.99 1.19-.92-1.43-1.43-1.19.92 1.43 1.43zm-.45-4.72L21 9l-9-7-2.91 2.27 7.87 7.88 2.4-1.88zM3.27 1 2 2.27l4.22 4.22L3 9l1.63 1.27L12 16l2.1-1.63 1.43 1.43L12 18.54l-7.37-5.73L3 14.07l9 7 4.95-3.85L20.73 21 22 19.73 3.27 1z"
+              />
+            </svg>
+            <span
+              class="MuiBottomNavigationAction-label css-imwso6-MuiBottomNavigationAction-label"
+            >
+              Laundry yang dihapus
+            </span>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
         </div>
       </div>
     </div>
@@ -71,6 +97,32 @@ exports[`Mobile Navbar Component Navbar with role Admin Should match with snapsh
             class="MuiBottomNavigationAction-label css-imwso6-MuiBottomNavigationAction-label"
           >
             Manajemen User
+          </span>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          class="MuiButtonBase-root MuiBottomNavigationAction-root css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root"
+          data-testid="button-deletedMerchant"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="LayersClearIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m19.81 14.99 1.19-.92-1.43-1.43-1.19.92 1.43 1.43zm-.45-4.72L21 9l-9-7-2.91 2.27 7.87 7.88 2.4-1.88zM3.27 1 2 2.27l4.22 4.22L3 9l1.63 1.27L12 16l2.1-1.63 1.43 1.43L12 18.54l-7.37-5.73L3 14.07l9 7 4.95-3.85L20.73 21 22 19.73 3.27 1z"
+            />
+          </svg>
+          <span
+            class="MuiBottomNavigationAction-label css-imwso6-MuiBottomNavigationAction-label"
+          >
+            Laundry yang dihapus
           </span>
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
