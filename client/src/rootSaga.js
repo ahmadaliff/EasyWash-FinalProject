@@ -16,6 +16,7 @@ import formServiceSaga from '@pages/FormService/saga';
 import statusOrderSaga from '@pages/StatusOrder/saga';
 import servicesSaga from '@pages/LaundryServices/saga';
 import laundryOrdersSaga from '@pages/LaundryOrders/saga';
+import deletedMerchantsSaga from '@pages/DeletedMerchant/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -35,5 +36,6 @@ export default function* rootSaga() {
     editServiceSaga(),
     statusOrderSaga(),
     laundryOrdersSaga(),
+    deletedMerchantsSaga(),
   ]);
 }

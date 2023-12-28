@@ -20,6 +20,7 @@ import Laundry from '@pages/Laundry';
 import MyOrder from '@pages/MyOrder';
 import ChatPage from '@pages/ChatPage';
 import GoogleCallback from '@pages/GoogleCallback';
+import DeletedMerchant from '@pages/DeletedMerchant';
 
 const routes = [
   {
@@ -120,6 +121,14 @@ const routes = [
     name: 'User',
     protected: true,
     component: Users,
+    layout: MainLayout,
+    role: 'admin',
+  },
+  {
+    path: '/admin/deletedMerchant',
+    name: 'User',
+    protected: true,
+    component: DeletedMerchant,
     layout: MainLayout,
     role: 'admin',
   },

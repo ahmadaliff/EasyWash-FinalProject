@@ -99,6 +99,12 @@ describe('Navbar Component', () => {
       fireEvent.click(button);
       expect(mockNavigate).toHaveBeenCalledWith(`/admin/user`);
     });
+    test('Should call navigate to admin deleted merchants when button clicked', () => {
+      const { getByTestId } = navbarAdmin;
+      const button = getByTestId('button-deletedMerchant');
+      fireEvent.click(button);
+      expect(mockNavigate).toHaveBeenCalledWith(`/admin/deletedMerchant`);
+    });
     test('Should match with snapshot', () => {
       expect(navbarAdmin).toMatchSnapshot();
     });

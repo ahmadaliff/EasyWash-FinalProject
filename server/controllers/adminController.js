@@ -148,7 +148,15 @@ exports.verifyUser = async (req, res) => {
 
     return handleSuccess(res, { message: "app_account_verified" });
   } catch (error) {
-    console.log(error);
+    return handleServerError(res);
+  }
+};
+
+exports.getDeletedMerchant = async (req, res) => {
+  try {
+    const response = await Merchant.findAll({ where: { userId: null } });
+    return handleSuccess(res, { data: response });
+  } catch (error) {
     return handleServerError(res);
   }
 };

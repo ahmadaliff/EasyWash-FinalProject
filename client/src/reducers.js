@@ -6,6 +6,7 @@ import registerReducer, { storedKey as storedResisterStep } from '@pages/Registe
 import usersReducer, { storedKey as storedUsersState } from '@pages/Users/reducer';
 import orderReducer, { storedKey as storedOrderState } from '@pages/Order/reducer';
 import messageReducer, { storedKey as storedMessageState } from '@pages/ChatPage/reducer';
+import deletedMerchantsReducer, { storedKey as storedDeletedMerchants } from '@pages/DeletedMerchant/reducer';
 import homeReducer, { storedKey as storedhomeState } from '@pages/Home/reducer';
 import cartReducer, { storedKey as storedCartState } from '@pages/Cart/reducer';
 
@@ -31,6 +32,7 @@ const storedReducers = {
   client: { reducer: clientReducer, whitelist: storedClientState },
   message: { reducer: messageReducer, whitelist: storedMessageState },
   registerStep: { reducer: registerReducer, whitelist: storedResisterStep },
+  deletedMerchants: { reducer: deletedMerchantsReducer, whitelist: storedDeletedMerchants },
 };
 
 const temporaryReducers = {

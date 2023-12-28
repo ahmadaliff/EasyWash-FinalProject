@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   DryCleaningOutlined,
   FavoriteBorder,
+  LayersClear,
   LibraryBooksOutlined,
   LocalLaundryServiceOutlined,
   MessageOutlined,
@@ -78,6 +79,14 @@ const MobileNavbar = ({ login, user, intl: { formatMessage } }) => {
             icon={<PersonOutline />}
             onClick={() => navigate('/admin/user')}
             data-testid="button-admin"
+          />
+        )}
+        {user?.role === 'admin' && (
+          <BottomNavigationAction
+            label={formatMessage({ id: 'app_deletedMerchants_header' })}
+            icon={<LayersClear />}
+            onClick={() => navigate('/admin/deletedMerchant')}
+            data-testid="button-deletedMerchant"
           />
         )}
       </BottomNavigation>

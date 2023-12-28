@@ -13,7 +13,7 @@ const urls = {
 
 export const callAPI = async (endpoint, method, data = {}, iswithCredentials = false, header = {}, params = {}) => {
   const defaultHeader = {
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Content-Type': 'application/json; charset=UTF-8',
   };
 
   const headers = merge(defaultHeader, header);
@@ -62,6 +62,7 @@ export const apiGetUserUnverified = (search, limit, page) =>
   callAPI(`${urls.admin}/users/unverified?search=${search}&page=${page}&limit=${limit}`, 'GET', {}, true);
 export const apiDeleteUser = (id) => callAPI(`${urls.admin}/user/delete`, 'DELETE', id, true);
 export const apiVerifyUser = (id) => callAPI(`${urls.admin}/user/verify`, 'PUT', id, true);
+export const apiGetDeletedMerchants = () => callAPI(`${urls.admin}/deletedMerchant`, 'GET', {}, true);
 
 // laundry role
 export const apiGetService = (id) => callAPI(`${urls.laundry}/service/${id}`, 'GET', {}, true);

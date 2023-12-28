@@ -133,6 +133,9 @@ export default {
   app_verify_action: 'Verify',
   app_decline: 'Decline',
 
+  // deletedMerchants page
+  app_deletedMerchants_header: 'Deleted Merchants',
+
   // services
   app_service_datail: 'Service Detail',
   app_service_add_header: 'Add Service',
