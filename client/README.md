@@ -10,26 +10,29 @@ The front-end is built atop React.js(vite), and uses axios library to request da
 
 We use [Role and login guard](https://github.com/ahmadaliff/EasyWash-FinalProject/blob/main/client/src/components/ClientRoutes/index.jsx) to enforce authentication for routes that contain `protected` page.
 
-| Route              | Page            |
-| ------------------ | --------------- |
-| /login             | Login           |
-| /register          | Register        |
-| /forgotPassword    | Authentication  |
-| /resetPassword     | Authentication  |
-| /profile           | Profile         |
-| /chat              | Chat            |
-| /favorit           | Favorit         |
-| /user/laundry/     | Laundry Profile |
-| /cart              | Cart            |
-| /order             | OrderManagement |
-| /user/order        | Orders          |
-| /user/order/status | DetailOrder     |
-| /admin/user        | UserManagement  |
-| /service           | Service         |
-| /service/add       | CreateService   |
-| /service/edit/     | EditService     |
-| /laundry/orders    | Orders          |
-| /laundry           | Laundry         |
+| Route                  | Page            |
+| ---------------------- | --------------- |
+| /                      | Home            |
+| /login                 | Login           |
+| /register              | Register        |
+| /forgotPassword        | ForgotPassword  |
+| /resetPassword         | ResetPassword   |
+| /profile               | Profile         |
+| /chat                  | Chat            |
+| /favorit               | Favorit         |
+| /user/laundry/         | Laundry         |
+| /cart                  | Cart            |
+| /order                 | Order           |
+| /user/order            | MyOrder         |
+| /user/order/status     | StatusOrder     |
+| /admin/user            | UserManagement  |
+| /admin/deletedMerchant | DeletedMerchant |
+| /service               | LaundryServices |
+| /service/add           | FormService     |
+| /service/edit/         | EditService     |
+| /laundry/orders        | LaundryOrders   |
+| /laundry               | Merchant        |
+| /\*                    | NotFound        |
 
 ## Conventions
 
