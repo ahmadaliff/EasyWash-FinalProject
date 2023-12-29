@@ -10,29 +10,29 @@ The front-end is built atop React.js(vite), and uses axios library to request da
 
 We use [Role and login guard](https://github.com/ahmadaliff/EasyWash-FinalProject/blob/main/client/src/components/ClientRoutes/index.jsx) to enforce authentication for routes that contain `protected` page.
 
-| Route                  | Page            |
-| ---------------------- | --------------- |
-| /                      | Home            |
-| /login                 | Login           |
-| /register              | Register        |
-| /forgotPassword        | ForgotPassword  |
-| /resetPassword         | ResetPassword   |
-| /profile               | Profile         |
-| /chat                  | Chat            |
-| /favorit               | Favorit         |
-| /user/laundry/         | Laundry         |
-| /cart                  | Cart            |
-| /order                 | Order           |
-| /user/order            | MyOrder         |
-| /user/order/status     | StatusOrder     |
-| /admin/user            | UserManagement  |
-| /admin/deletedMerchant | DeletedMerchant |
-| /service               | LaundryServices |
-| /service/add           | FormService     |
-| /service/edit/         | EditService     |
-| /laundry/orders        | LaundryOrders   |
-| /laundry               | Merchant        |
-| /\*                    | NotFound        |
+| Route                       | Page            | Protected | Role     |
+| --------------------------- | --------------- | --------- | -------- |
+| /                           | Home            | false     | all      |
+| /login                      | Login           | false     | all      |
+| /register                   | Register        | false     | all      |
+| /forgotPassword             | ForgotPassword  | false     | all      |
+| /resetPassword              | ResetPassword   | false     | all      |
+| /profile                    | Profile         | true      | all      |
+| /chat                       | Chat            | true      | user     |
+| /favorit                    | Favorit         | true      | user     |
+| /user/laundry/:id           | Laundry         | true      | user     |
+| /cart                       | Cart            | true      | user     |
+| /order                      | Order           | true      | user     |
+| /user/order                 | MyOrder         | true      | user     |
+| /user/order/status/:orderId | StatusOrder     | true      | user     |
+| /admin/user                 | UserManagement  | true      | admin    |
+| /admin/deletedMerchant      | DeletedMerchant | true      | admin    |
+| /service                    | LaundryServices | true      | merchant |
+| /service/add                | FormService     | true      | merchant |
+| /service/edit/:id           | EditService     | true      | merchant |
+| /laundry/orders             | LaundryOrders   | true      | merchant |
+| /laundry                    | Merchant        | true      | merchant |
+| /\*                         | NotFound        | false     | all      |
 
 ## Conventions
 

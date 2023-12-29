@@ -875,9 +875,9 @@ _Response (200)_
 
 ---
 
-### 21. DELETE /api/laundry/service/delete/:serviceId
+### 21. PUT /api/laundry/service/status/:serviceId
 
-> delete service
+> change status enable service
 
 _Request Header_
 
@@ -901,7 +901,7 @@ _Response (200)_
 
 ```
 {
-    "message":"app_service_deleted"
+    "message":"app_service_status"
 }
 ```
 
