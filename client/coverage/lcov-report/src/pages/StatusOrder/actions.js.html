@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/16</span>
+                <span class='fraction'>12/16</span>
             </div>
         
             
@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
@@ -122,40 +122,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,7 +170,7 @@
   WATCH_STATUS_UPDATES,
 } from './constants';
 &nbsp;
-export const actionGetStatus = <span class="fstat-no" title="function not covered" >(o</span>rderId) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionGetStatus = (orderId) =&gt; ({
   type: GET_STATUS,
   orderId,
 });
@@ -185,7 +185,7 @@ export const actionStatusUpdated = <span class="fstat-no" title="function not co
   data,
 });
 &nbsp;
-export const actionConnectSocket = <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionConnectSocket = () =&gt; ({
   type: CONNECT_SOCKET,
 });
 &nbsp;
@@ -194,11 +194,11 @@ export const actionConnectedSocket = <span class="fstat-no" title="function not 
   data,
 });
 &nbsp;
-export const actionDisconnectSocket = <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionDisconnectSocket = () =&gt; ({
   type: DISCONNECT_SOCKET,
 });
 &nbsp;
-export const watchStatusUpdates = <span class="fstat-no" title="function not covered" >(o</span>rderId) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const watchStatusUpdates = (orderId) =&gt; ({
   type: WATCH_STATUS_UPDATES,
   orderId,
 });
@@ -214,7 +214,7 @@ export const actionPay = <span class="fstat-no" title="function not covered" >(o
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-28T08:49:11.613Z
+                at 2023-12-29T03:49:59.223Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

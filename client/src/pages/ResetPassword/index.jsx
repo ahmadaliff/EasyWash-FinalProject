@@ -30,7 +30,7 @@ const ResetPassword = ({ login, intl: { formatMessage } }) => {
   const newPassword = watch('new_password');
   useEffect(() => {
     if (login) {
-      toast.error(formatMessage({ id: 'app_already_login' }));
+      toast.error(formatMessage({ id: 'app_user_already_login' }));
       setTimeout(() => {
         navigate('/');
       }, 1500);
@@ -61,8 +61,8 @@ const ResetPassword = ({ login, intl: { formatMessage } }) => {
   };
 
   return (
-    <main className={classes.mainWrap}>
-      <div onClick={() => navigate('/')} className={classes.logoHeader}>
+    <main className={classes.mainWrap} data-testid="reset-password-page">
+      <div onClick={() => navigate('/')} className={classes.logoHeader} data-testid="logo">
         <img src="../../longLogo.svg" alt="logo" className={classes.logo} />
       </div>
       <div className={classes.forgotPasswordCard}>
@@ -105,7 +105,7 @@ const ResetPassword = ({ login, intl: { formatMessage } }) => {
               <FormattedMessage id="app_user_password_show" />
             </label>
           </InputRHF>
-          <button type="submit" className={classes.buttonSubmit} disabled={!newPassword}>
+          <button type="submit" className={classes.buttonSubmit} disabled={!newPassword} data-testid="button-submit">
             <FormattedMessage id="app_user_reset_password" />
           </button>
           <div className={classes.formNav}>

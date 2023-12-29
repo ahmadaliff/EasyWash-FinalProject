@@ -45,7 +45,7 @@ const StatusOrder = ({ order }) => {
   }
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="status-order">
       <div className={classes.header}>
         <h3>
           <FormattedMessage id="app_detail_order" />
@@ -55,6 +55,7 @@ const StatusOrder = ({ order }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="button-back"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -143,6 +144,7 @@ const StatusOrder = ({ order }) => {
             startIcon={<DoNotDisturb />}
             onClick={() => dispatch(actionCancelOrder(order.id, () => navigate(-1)))}
             disabled={order?.status !== 'app_pending'}
+            data-testid="button-cancel"
           >
             <FormattedMessage id="app_cancel" />
           </Button>

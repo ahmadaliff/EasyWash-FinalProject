@@ -95,7 +95,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
   ];
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="users-page">
       <div className={classes.header}>
         <div className={classes.rowOne}>
           <h3>
@@ -106,6 +106,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
             className={classes.backButton}
             startIcon={<ArrowBack />}
             onClick={() => navigate(-1)}
+            data-testid="back-button"
           >
             <FormattedMessage id="app_back" />
           </Button>
@@ -119,10 +120,10 @@ const Users = ({ users, intl: { formatMessage } }) => {
             className={classes.toggleRole}
             size="small"
           >
-            <StyledToggle value={false}>
+            <StyledToggle value={false} data-testid="button-verified-users">
               <Verified /> <FormattedMessage id="app_account_verified" />
             </StyledToggle>
-            <StyledToggle value>
+            <StyledToggle value data-testid="button-unverified-user">
               <Unpublished /> <FormattedMessage id="app_account_unverified" />
             </StyledToggle>
           </ToggleButtonGroup>
@@ -172,6 +173,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
                           type="button"
                           className={classes.buttonAction}
                           onClick={() => dispatch(actionDeleteUser(row.id))}
+                          data-testid="button-delete"
                         >
                           <Delete />
                           <div className={classes.email}>
@@ -185,6 +187,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
                             className={classes.buttonActionAcc}
                             onClick={() => dispatch(actionVerifyUser(row.id))}
                             size="small"
+                            data-testid="button-verify"
                           >
                             <Verified />
                             <div className={classes.email}>
@@ -195,6 +198,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
                             type="button"
                             className={classes.buttonActionDec}
                             onClick={() => dispatch(actionDeleteUser(row.id))}
+                            data-testid="button-decline"
                           >
                             <DoNotDisturb />
                             <div className={classes.email}>

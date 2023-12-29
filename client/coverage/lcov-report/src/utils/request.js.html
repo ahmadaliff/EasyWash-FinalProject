@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/20</span>
+                <span class='fraction'>8/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.78% </span>
+                <span class="strong">36.84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/19</span>
+                <span class='fraction'>7/19</span>
             </div>
         
             
@@ -106,35 +106,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios';
@@ -143,13 +143,13 @@ import { actionHandleLogout, setToken } from '@containers/Client/actions';
 import { apiRefreshToken } from '@domain/api';
 import store from '../configureStore';
 &nbsp;
-axios.interceptors.request.use(<span class="fstat-no" title="function not covered" >(r</span>eqConfig) =&gt; {
-  const state = <span class="cstat-no" title="statement not covered" >store.getState();</span>
-  const { token } = <span class="cstat-no" title="statement not covered" >state.client;</span>
-<span class="cstat-no" title="statement not covered" >  if (token) {</span>
+axios.interceptors.request.use((reqConfig) =&gt; {
+  const state = store.getState();
+  const { token } = state.client;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (token) {
 <span class="cstat-no" title="statement not covered" >    reqConfig.headers.Authorization = `Bearer ${token}`;</span>
   }
-<span class="cstat-no" title="statement not covered" >  return reqConfig;</span>
+  return reqConfig;
 });
 &nbsp;
 axios.interceptors.response.use(
@@ -171,7 +171,7 @@ axios.interceptors.response.use(
   }
 );
 &nbsp;
-const request = <span class="fstat-no" title="function not covered" >(o</span>ptions) =&gt; <span class="cstat-no" title="statement not covered" >axios(options);</span>
+const request = (options) =&gt; axios(options);
 &nbsp;
 export default request;
 &nbsp;</pre></td></tr></table></pre>
@@ -181,7 +181,7 @@ export default request;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-28T08:49:11.613Z
+                at 2023-12-29T03:49:59.223Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

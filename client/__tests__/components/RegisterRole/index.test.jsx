@@ -51,7 +51,7 @@ describe('RegisterRole Component', () => {
     expect(inputName.value).toBe('Laundry Mantap');
     expect(inputDescription.value).toBe('ini adlaah deskripsi');
     const button = getByTestId('button-submit');
-    await act(() => {
+    await act(async () => {
       fireEvent.click(button);
     });
   });

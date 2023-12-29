@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/19</span>
+                <span class='fraction'>14/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/19</span>
+                <span class='fraction'>14/22</span>
             </div>
         
             
@@ -189,7 +189,30 @@
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,16 +246,33 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -317,6 +357,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import PropTypes from 'prop-types';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
@@ -324,6 +365,8 @@ import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, injectIntl } from 'react-intl';
 &nbsp;
 import InputRHF from '@components/InputRHF';
+&nbsp;
+import intlHelper from '@utils/intlHelper';
 &nbsp;
 import { selectEmail, selectRole, selectStep } from '@pages/Register/selectors';
 import { actionHandleRegister } from '@containers/Client/actions';
@@ -347,15 +390,20 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) =&gt; {
   const phone = watch('phone');
 &nbsp;
   const onSubmit = <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {
-<span class="cstat-no" title="statement not covered" >    data.email = email;</span>
-<span class="cstat-no" title="statement not covered" >    data.role = role;</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(</span>
-      actionHandleRegister(data, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          navigate('/login');</span>
-        }, 1000);
-      })
-    );
+<span class="cstat-no" title="statement not covered" >    if (data.password !== data.confirmPassword) {</span>
+<span class="cstat-no" title="statement not covered" >      toast.error(intlHelper({ message: 'app_pass_not_same' }));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      data.email = email;</span>
+<span class="cstat-no" title="statement not covered" >      data.role = role;</span>
+<span class="cstat-no" title="statement not covered" >      delete data.confirmPassword;</span>
+<span class="cstat-no" title="statement not covered" >      dispatch(</span>
+        actionHandleRegister(data, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            navigate('/login');</span>
+          }, 1000);
+        })
+      );
+    }
   };
 &nbsp;
   return (
@@ -390,6 +438,18 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) =&gt; {
           label: formatMessage({ id: 'app_user_password' }),
           minLength: 8,
           messageMin: formatMessage({ id: 'app_user_password_min_length' }),
+        }}
+        register={register}
+        errors={errors}
+      /&gt;
+      &lt;InputRHF
+        input={{
+          name: 'confirmPassword',
+          required: formatMessage({ id: 'app_user_confirm_password_require_message' }),
+          type: showPass ? 'text' : 'password',
+          label: formatMessage({ id: 'app_user_confirm_password' }),
+          minLength: 8,
+          messageMin: formatMessage({ id: 'app_user_confirm_password_min_length' }),
         }}
         register={register}
         errors={errors}
@@ -448,7 +508,7 @@ export default injectIntl(connect(mapStateToProps)(RegisterForm));
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-27T05:03:24.480Z
+                at 2023-12-29T03:49:59.223Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

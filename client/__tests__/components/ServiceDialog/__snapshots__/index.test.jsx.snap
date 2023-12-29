@@ -92,6 +92,20 @@ exports[`ServiceDialog Component Matches snapshot 1`] = `
                 Rp 12.000
               </p>
             </div>
+            <div
+              class="field"
+            >
+              <p
+                class="label"
+              >
+                Tipe  
+              </p>
+              <p
+                class="text"
+              >
+                Satuan
+              </p>
+            </div>
           </div>
           <div
             class="buttonQuantity"

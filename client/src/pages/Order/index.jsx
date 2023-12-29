@@ -45,7 +45,7 @@ const Order = ({ orders }) => {
     dispatch(actionCreateOrder({ location: JSON.stringify(location), orderItems }, () => navigate('/user/order')));
   };
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="order-page">
       <div className={classes.header}>
         <h3>
           <FormattedMessage id="app_detail_order" />
@@ -55,6 +55,7 @@ const Order = ({ orders }) => {
           className={classes.backButton}
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
+          data-testid="button-back"
         >
           <FormattedMessage id="app_back" />
         </Button>
@@ -112,6 +113,7 @@ const Order = ({ orders }) => {
         className={classes.createButton}
         onClick={handleOrder}
         disabled={orders?.length === 0 || !orders}
+        data-testid="button-order"
       >
         <FormattedMessage id="app_order" />
       </Button>

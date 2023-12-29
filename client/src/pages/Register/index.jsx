@@ -10,6 +10,7 @@ import { Card, CardContent } from '@mui/material';
 
 import VerifyEmail from '@components/VerifyEmail';
 import RegisterForm from '@components/RegisterForm';
+import RegisterRole from '@components/RegisterRole';
 import VerifyEmailOTP from '@components/VerifyEmailOTP';
 
 import { selectLogin } from '@containers/Client/selectors';
@@ -18,7 +19,6 @@ import { actionResetRegisterValue } from '@containers/Client/actions';
 import { actionHandleResetStep } from '@pages/Register/actions';
 
 import classes from '@pages/Register/style.module.scss';
-import RegisterRole from '@components/RegisterRole';
 
 const Register = ({ isLogin, step, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
@@ -45,8 +45,8 @@ const Register = ({ isLogin, step, intl: { formatMessage } }) => {
   };
 
   return (
-    <main className={classes.main}>
-      <div onClick={() => navigate('/')} className={classes.logoHeader}>
+    <main className={classes.main} data-testid="register-page">
+      <div onClick={() => navigate('/')} className={classes.logoHeader} data-testid="logo">
         <img src="longLogo.svg" alt="logo" className={classes.logo} />
       </div>
       <div className={classes.ilustrationWrap}>

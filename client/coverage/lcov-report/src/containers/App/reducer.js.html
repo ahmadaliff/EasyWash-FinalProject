@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.46% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/13</span>
+                <span class='fraction'>9/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.46% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/13</span>
+                <span class='fraction'>9/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -103,34 +103,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">650x</span>
+<span class="cline-any cline-yes">650x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,18 +155,18 @@ export const storedKey = ['locale', 'theme'];
 const appReducer = (state = initialState, action) =&gt;
   produce(state, (draft) =&gt; {
     switch (action.type) {
-      case SET_LOCAL:
+<span class="branch-0 cbranch-no" title="branch not covered" >      case SET_LOCAL:</span>
 <span class="cstat-no" title="statement not covered" >        draft.locale = action.locale;</span>
 <span class="cstat-no" title="statement not covered" >        break;</span>
       case SET_THEME:
-<span class="cstat-no" title="statement not covered" >        draft.theme = action.theme;</span>
-<span class="cstat-no" title="statement not covered" >        break;</span>
-      case SET_POPUP:
+        draft.theme = action.theme;
+        break;
+<span class="branch-2 cbranch-no" title="branch not covered" >      case SET_POPUP:</span>
 <span class="cstat-no" title="statement not covered" >        draft.popup = action.popup;</span>
 <span class="cstat-no" title="statement not covered" >        break;</span>
       case SET_LOADING:
-<span class="cstat-no" title="statement not covered" >        draft.loading = action.loading;</span>
-<span class="cstat-no" title="statement not covered" >        break;</span>
+        draft.loading = action.loading;
+        break;
     }
   });
 &nbsp;
@@ -178,7 +178,7 @@ export default appReducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-28T08:49:11.613Z
+                at 2023-12-29T03:49:59.223Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

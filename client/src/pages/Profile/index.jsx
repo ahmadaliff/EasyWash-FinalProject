@@ -37,12 +37,23 @@ const Profile = ({ user, profile }) => {
   };
 
   return (
-    <main className={classes.mainWrap}>
+    <main className={classes.mainWrap} data-testid="profile-page">
       <div className={classes.Wrap}>
-        <input type="file" ref={fileInput} style={{ display: 'none' }} onChange={handleImageChange} accept="image/*" />
+        <input
+          type="file"
+          ref={fileInput}
+          style={{ display: 'none' }}
+          onChange={handleImageChange}
+          accept="image/*"
+          data-testid="input-image"
+        />
         <Card>
           <CardContent className={classes.cardWrap}>
-            <div className={classes.imgWrap} onClick={() => fileInput.current.click()}>
+            <div
+              className={classes.imgWrap}
+              onClick={() => fileInput.current.click()}
+              data-testid="button-change-image"
+            >
               {profile?.imagePath ? (
                 <>
                   {loading && <Skeleton variant="square" className={classes.skeleton} />}
@@ -66,7 +77,12 @@ const Profile = ({ user, profile }) => {
               <Edit className={classes.buttonEdit} />
               <FlipCameraIos className={classes.iconCamera} />
             </div>
-            <button type="button" onClick={() => setIsDialogOpen(true)} className={classes.buttonEditProfile}>
+            <button
+              type="button"
+              onClick={() => setIsDialogOpen(true)}
+              className={classes.buttonEditProfile}
+              data-testid="button-edit"
+            >
               <FormattedMessage id="app_profile_edit" />
             </button>
           </CardContent>

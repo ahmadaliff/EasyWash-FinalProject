@@ -61,6 +61,24 @@ exports[`RegisterForm Component Should match with snapshot 1`] = `
               value=""
             />
           </label>
+        </div>
+        <div
+          class="MuiFormControl-root inputContainer css-1nrlq1o-MuiFormControl-root"
+          data-testid="inputRHF"
+        >
+          <label
+            class="inputLabel"
+            for="confirmPassword"
+          >
+            Konfirmasi Kata Sandi
+            <input
+              class="input undefined"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value=""
+            />
+          </label>
           <label
             class="showPassword"
             for="show"
@@ -149,6 +167,24 @@ exports[`RegisterForm Component Should match with snapshot 1`] = `
             class="input undefined"
             id="password"
             name="password"
+            type="password"
+            value=""
+          />
+        </label>
+      </div>
+      <div
+        class="MuiFormControl-root inputContainer css-1nrlq1o-MuiFormControl-root"
+        data-testid="inputRHF"
+      >
+        <label
+          class="inputLabel"
+          for="confirmPassword"
+        >
+          Konfirmasi Kata Sandi
+          <input
+            class="input undefined"
+            id="confirmPassword"
+            name="confirmPassword"
             type="password"
             value=""
           />

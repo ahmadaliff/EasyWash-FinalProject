@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/12</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,38 +96,38 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ADD_TO_CART, CHANGE_QUANTITY, DELETE_FROM_CART, GET_CARTS, RESET_CARTS, SET_CARTS } from './constants';
 &nbsp;
-export const actionGetCarts = <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionGetCarts = () =&gt; ({
   type: GET_CARTS,
 });
 &nbsp;
@@ -136,23 +136,23 @@ export const actionSetCarts = <span class="fstat-no" title="function not covered
   data,
 });
 &nbsp;
-export const actionResetCarts = <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionResetCarts = () =&gt; ({
   type: RESET_CARTS,
 });
 &nbsp;
-export const actionChangeQuantity = <span class="fstat-no" title="function not covered" >(i</span>d, quantity) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionChangeQuantity = (id, quantity) =&gt; ({
   type: CHANGE_QUANTITY,
   id,
   quantity,
 });
 &nbsp;
-export const actionAddToCart = <span class="fstat-no" title="function not covered" >(i</span>d, quantity) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionAddToCart = (id, quantity) =&gt; ({
   type: ADD_TO_CART,
   id,
   quantity,
 });
 &nbsp;
-export const actionDeleteFromCart = <span class="fstat-no" title="function not covered" >(i</span>d) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+export const actionDeleteFromCart = (id) =&gt; ({
   type: DELETE_FROM_CART,
   id,
 });
@@ -163,7 +163,7 @@ export const actionDeleteFromCart = <span class="fstat-no" title="function not c
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-28T08:49:11.613Z
+                at 2023-12-29T03:49:59.223Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

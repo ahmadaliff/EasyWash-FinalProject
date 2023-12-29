@@ -131,11 +131,21 @@ exports[`Detail Order Should match with snapshot 1`] = `
                   <div
                     class="serviceInfo"
                   >
-                    <p>
-                      service
-                       x 
-                      2
-                    </p>
+                    <div
+                      class="name"
+                    >
+                      <p>
+                        service
+                         x 
+                        2
+                      </p>
+                      <p
+                        class="type"
+                      >
+                        Tipe  
+                        Satuan
+                      </p>
+                    </div>
                     <p>
                       RpNaN
                     </p>
