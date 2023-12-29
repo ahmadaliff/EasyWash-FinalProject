@@ -1,4 +1,4 @@
-# EasyWash
+# Backend EasyWash
 
 Express.js project with basic routes:
 
@@ -22,6 +22,10 @@ Express.js project with basic routes:
 - socket.io
 
 ---
+
+## Program flow
+
+![Program Flow](../media/programFlow.png)
 
 ## URL
 
