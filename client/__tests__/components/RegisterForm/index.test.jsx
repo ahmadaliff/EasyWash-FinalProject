@@ -5,6 +5,7 @@ let wrapper;
 let inputFullName;
 let inputPhone;
 let inputPassword;
+let ConfirmPassword;
 
 const mockProps = {
   intl: { formatMessage: jest.fn() },
@@ -28,14 +29,17 @@ describe('RegisterForm Component', () => {
     const { getByTestId } = wrapper;
     const buttonShowPass = getByTestId('button-show-pass');
     inputFullName = screen.getByLabelText('Nama Lengkap');
-    inputPhone = screen.getByLabelText('Telp/No.Hp');
+    inputPhone = getByTestId('phone-input');
     inputPassword = screen.getByLabelText('Kata Sandi');
+    ConfirmPassword = screen.getByLabelText('Konfirmasi Kata Sandi');
     fireEvent.change(inputFullName, { target: { value: 'Ahmad Alif Sofian' } });
-    fireEvent.change(inputPhone, { target: { value: '31302123131' } });
+    fireEvent.change(inputPhone, { target: { value: '+6281302123131' } });
     fireEvent.change(inputPassword, { target: { value: 'password123' } });
+    fireEvent.change(ConfirmPassword, { target: { value: 'password123' } });
     expect(inputFullName.value).toBe('Ahmad Alif Sofian');
-    expect(inputPhone.value).toBe('31302123131');
+    expect(inputPhone.value).toBe('+62 813 0212 3131');
     expect(inputPassword.value).toBe('password123');
+    expect(ConfirmPassword.value).toBe('password123');
     fireEvent.click(buttonShowPass);
     expect(inputPassword.type).toBe('text');
   });

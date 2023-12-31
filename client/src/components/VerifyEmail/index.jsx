@@ -6,10 +6,10 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import InputRHF from '@components/InputRHF';
 
-import { selectEmail, selectStep } from '@pages/Register/selectors';
-import { selectIsVerify } from '@containers/Client/selectors';
-import { actionHandleSendEmailVerify } from '@containers/Client/actions';
 import { actionSetStep } from '@pages/Register/actions';
+import { selectIsVerify } from '@containers/Client/selectors';
+import { selectEmail, selectStep } from '@pages/Register/selectors';
+import { actionHandleSendEmailVerify } from '@containers/Client/actions';
 
 import classes from '@components/VerifyEmail/style.module.scss';
 

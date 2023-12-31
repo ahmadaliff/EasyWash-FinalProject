@@ -16,4 +16,5 @@ NavbarIconButton.propTypes = {
   onClick: PropTypes.func,
   icon: PropTypes.element.isRequired,
 };
+
 export default NavbarIconButton;

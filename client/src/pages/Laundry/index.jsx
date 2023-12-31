@@ -10,9 +10,8 @@ import { ArrowBack, DryCleaning } from '@mui/icons-material';
 
 import NoData from '@components/NoData';
 import MerchantInfo from '@components/MerchantInfo';
-import { selectMerchant } from '@pages/Laundry/selectors';
-
 import ServiceDialog from '@components/ServiceDialog';
+import { selectMerchant } from '@pages/Laundry/selectors';
 
 import { actionGetMerchant, actionResetMerchant } from '@pages/Laundry/action';
 

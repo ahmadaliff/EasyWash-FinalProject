@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
+import { Google } from '@mui/icons-material';
 import { Button, Card, CardContent } from '@mui/material';
 
 import InputRHF from '@components/InputRHF';
@@ -15,7 +16,6 @@ import { selectLogin } from '@containers/Client/selectors';
 import { actionHandleLogin, actionHandleLoginGoogle } from '@containers/Client/actions';
 
 import classes from '@pages/Login/style.module.scss';
-import { Google } from '@mui/icons-material';
 
 const Login = ({ isLogin, intl: { formatMessage } }) => {
   const navigate = useNavigate();

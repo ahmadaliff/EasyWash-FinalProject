@@ -1,19 +1,32 @@
 import Proptypes from 'prop-types';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import PhoneInput from 'react-phone-number-input';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import classes from '@components/EditProfile/style.module.scss';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  IconButton,
+} from '@mui/material';
+import { Close } from '@mui/icons-material';
+
 import InputRHF from '@components/InputRHF';
 
 import { actionEditProfile } from '@pages/Profile/actions';
 
+import classes from '@components/EditProfile/style.module.scss';
+import 'react-phone-number-input/style.css';
+
 const EditProfile = ({ profile, open, handleClose, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
   const [showPass, setShowPass] = useState(false);
+  const [phone, setPhone] = useState(profile?.phone);
   const {
     handleSubmit,
     register,
@@ -21,9 +34,10 @@ const EditProfile = ({ profile, open, handleClose, intl: { formatMessage } }) =>
     watch,
   } = useForm();
   const fullName = watch('fullName');
-  const phone = watch('phone');
 
   const onSubmit = (data) => {
+    data.phone = phone;
+    if (!phone) delete data.phone;
     if (data.new_password === '') {
       delete data.new_password;
       delete data.old_password;
@@ -64,19 +78,18 @@ const EditProfile = ({ profile, open, handleClose, intl: { formatMessage } }) =>
             register={register}
             errors={errors}
           />
-          <InputRHF
-            input={{
-              name: 'phone',
-              required: formatMessage({ id: 'app_user_phone_require_message' }),
-              type: 'number',
-              label: formatMessage({ id: 'app_user_phone' }),
-              minLength: 8,
-              messageMin: formatMessage({ id: 'app_user_phone_min_length' }),
-              value: profile?.phone,
-            }}
-            register={register}
-            errors={errors}
-          />
+          <FormControl fullWidth>
+            <p className={classes.inputLabel}>
+              <FormattedMessage id="app_user_phone" />
+            </p>
+            <PhoneInput
+              defaultCountry="ID"
+              value={phone}
+              onChange={setPhone}
+              className={classes.input}
+              data-testid="phone-input"
+            />
+          </FormControl>
           <InputRHF
             input={{
               name: 'old_password',
@@ -119,6 +132,7 @@ const EditProfile = ({ profile, open, handleClose, intl: { formatMessage } }) =>
     </Dialog>
   );
 };
+
 EditProfile.propTypes = {
   profile: Proptypes.object,
   intl: Proptypes.object,

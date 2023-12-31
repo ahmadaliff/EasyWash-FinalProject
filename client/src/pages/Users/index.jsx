@@ -4,13 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, injectIntl } from 'react-intl';
+
 import {
   Alert,
   Button,
   Card,
-  Dialog,
-  DialogActions,
-  DialogContent,
   IconButton,
   Stack,
   Table,
@@ -26,6 +24,8 @@ import {
 import { ArrowBack, ArrowRight, Delete, DoNotDisturb, Search, Unpublished, Verified } from '@mui/icons-material';
 import styled from 'styled-components';
 
+import DialogMerchantInfo from '@components/DialogMerchantInfo';
+
 import {
   actionDeleteUser,
   actionGetUnverifiedUsers,
@@ -36,8 +36,6 @@ import {
 import { selectUsers } from '@pages/Users/selectors';
 
 import classes from '@pages/Users/style.module.scss';
-import MerchantInfo from '@components/MerchantInfo';
-import MapLeaflet from '@components/MapLeaflet';
 
 const StyledToggle = styled(ToggleButton)({
   '&.Mui-selected, &.Mui-selected:hover': {
@@ -248,16 +246,7 @@ const Users = ({ users, intl: { formatMessage } }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth>
-        <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>X</Button>
-        </DialogActions>
-        <DialogContent>
-          <MerchantInfo merchant={merchant} chat={false} />
-          <br />
-          <MapLeaflet islocated={merchant && JSON.parse(merchant?.location)} />
-        </DialogContent>
-      </Dialog>
+      <DialogMerchantInfo open={dialogOpen} handleClose={() => setDialogOpen(false)} merchant={merchant} />
     </main>
   );
 };

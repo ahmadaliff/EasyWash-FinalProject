@@ -7,9 +7,9 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 
 import InputRHF from '@components/InputRHF';
 
+import { actionSetStep } from '@pages/Register/actions';
 import { selectTokenEmail } from '@containers/Client/selectors';
 import { selectEmail, selectExpire, selectStep } from '@pages/Register/selectors';
-import { actionSetStep } from '@pages/Register/actions';
 import { actionHandleSendEmailVerify, actionHandleSendOTP } from '@containers/Client/actions';
 
 import classes from '@components/VerifyEmailOTP/style.module.scss';

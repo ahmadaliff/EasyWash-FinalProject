@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">60.86% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/22</span>
+                <span class='fraction'>14/23</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">60.86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/22</span>
+                <span class='fraction'>14/23</span>
             </div>
         
             
@@ -209,7 +209,18 @@
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -232,6 +243,7 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,7 +253,6 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -251,6 +262,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -261,6 +273,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -360,24 +374,29 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import PhoneInput from 'react-phone-number-input';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, injectIntl } from 'react-intl';
+&nbsp;
+import { FormControl } from '@mui/material';
 &nbsp;
 import InputRHF from '@components/InputRHF';
 &nbsp;
 import intlHelper from '@utils/intlHelper';
 &nbsp;
-import { selectEmail, selectRole, selectStep } from '@pages/Register/selectors';
-import { actionHandleRegister } from '@containers/Client/actions';
 import { actionSetStep } from '@pages/Register/actions';
+import { actionHandleRegister } from '@containers/Client/actions';
+import { selectEmail, selectRole, selectStep } from '@pages/Register/selectors';
 &nbsp;
 import classes from '@components/RegisterForm/style.module.scss';
+import 'react-phone-number-input/style.css';
 &nbsp;
 const RegisterForm = ({ step, role, email, intl: { formatMessage } }) =&gt; {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
+  const [phone, setPhone] = useState(null);
 &nbsp;
   const {
     handleSubmit,
@@ -387,7 +406,6 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) =&gt; {
   } = useForm();
   const fullName = watch('fullName');
   const password = watch('password');
-  const phone = watch('phone');
 &nbsp;
   const onSubmit = <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {
 <span class="cstat-no" title="statement not covered" >    if (data.password !== data.confirmPassword) {</span>
@@ -395,6 +413,7 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) =&gt; {
     } else {
 <span class="cstat-no" title="statement not covered" >      data.email = email;</span>
 <span class="cstat-no" title="statement not covered" >      data.role = role;</span>
+<span class="cstat-no" title="statement not covered" >      data.phone = phone;</span>
 <span class="cstat-no" title="statement not covered" >      delete data.confirmPassword;</span>
 <span class="cstat-no" title="statement not covered" >      dispatch(</span>
         actionHandleRegister(data, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
@@ -418,18 +437,20 @@ const RegisterForm = ({ step, role, email, intl: { formatMessage } }) =&gt; {
         register={register}
         errors={errors}
       /&gt;
-      &lt;InputRHF
-        input={{
-          name: 'phone',
-          required: formatMessage({ id: 'app_user_phone_require_message' }),
-          type: 'number',
-          label: formatMessage({ id: 'app_user_phone' }),
-          minLength: 8,
-          messageMin: formatMessage({ id: 'app_user_phone_min_length' }),
-        }}
-        register={register}
-        errors={errors}
-      /&gt;
+&nbsp;
+      &lt;FormControl fullWidth&gt;
+        &lt;p className={classes.inputLabel}&gt;
+          &lt;FormattedMessage id="app_user_phone" /&gt;
+        &lt;/p&gt;
+        &lt;PhoneInput
+          defaultCountry="ID"
+          value={phone}
+          onChange={setPhone}
+          className={classes.input}
+          data-testid="phone-input"
+        /&gt;
+      &lt;/FormControl&gt;
+&nbsp;
       &lt;InputRHF
         input={{
           name: 'password',
@@ -508,7 +529,7 @@ export default injectIntl(connect(mapStateToProps)(RegisterForm));
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-29T03:49:59.223Z
+                at 2023-12-31T08:59:46.779Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -36,4 +36,5 @@ DialogMerchantsMap.propTypes = {
   handleClose: PropTypes.func,
   merchants: PropTypes.array,
 };
+
 export default DialogMerchantsMap;

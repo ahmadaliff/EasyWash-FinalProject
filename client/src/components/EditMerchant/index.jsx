@@ -1,16 +1,18 @@
 import Proptypes from 'prop-types';
-import { Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import classes from '@components/EditMerchant/style.module.scss';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import InputRHF from '@components/InputRHF';
+import { Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
+import InputRHF from '@components/InputRHF';
 import MapLeaflet from '@components/MapLeaflet';
+
 import { actionEditMerchant } from '@pages/MyMerchant/actions';
+
+import classes from '@components/EditMerchant/style.module.scss';
 
 const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
@@ -102,6 +104,7 @@ const EditMerchant = ({ merchant, open, handleClose, intl: { formatMessage } }) 
     </Dialog>
   );
 };
+
 EditMerchant.propTypes = {
   merchant: Proptypes.object,
   intl: Proptypes.object,

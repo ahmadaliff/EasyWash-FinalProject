@@ -61,4 +61,5 @@ DialogLanguage.propTypes = {
   handleClose: PropTypes.func,
   locale: PropTypes.string.isRequired,
 };
+
 export default DialogLanguage;

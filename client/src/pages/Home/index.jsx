@@ -4,17 +4,17 @@ import { FormattedMessage } from 'react-intl';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import MerchantCard from '@components/MerchantCard';
 import NoData from '@components/NoData';
+import MerchantCard from '@components/MerchantCard';
+import DialogMerchantsMap from '@components/DialogMerchantsMap';
 
+import { IconButton } from '@mui/material';
 import { Map, Search } from '@mui/icons-material';
 
 import { selectMerchants } from '@pages/Home/selectors';
 import { actionGetMerchants, actionResetMerchants } from '@pages/Home/actions';
 
 import classes from '@pages/Home/style.module.scss';
-import { IconButton } from '@mui/material';
-import DialogMerchantsMap from '@components/DialogMerchantsMap';
 
 const Home = ({ merchants }) => {
   const dispatch = useDispatch();

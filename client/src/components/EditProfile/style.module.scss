@@ -29,3 +29,34 @@
   font-size: small;
   color: var(--color-primary);
 }
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: 1px solid var(--color-text);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-radius: 13px;
+  &:focus {
+    outline: none;
+    border: 1px solid var(--color-primary);
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+  input {
+    border: none;
+    font-size: medium;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.inputLabel {
+  @include directionY;
+  width: 100%;
+  font-weight: 400;
+  font-size: small;
+  margin: 0.25rem 0;
+}

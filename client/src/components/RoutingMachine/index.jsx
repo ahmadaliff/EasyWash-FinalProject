@@ -1,10 +1,12 @@
 import L, { divIcon } from 'leaflet';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { createControlComponent } from '@react-leaflet/core';
 import 'leaflet-routing-machine';
-import classes from '@components/RoutingMachine/style.module.scss';
 import 'leaflet-control-geocoder';
+
 import { LocalLaundryService, Person } from '@mui/icons-material';
-import { renderToStaticMarkup } from 'react-dom/server';
+
+import classes from '@components/RoutingMachine/style.module.scss';
 
 const iconPerson = divIcon({
   html: renderToStaticMarkup(<Person className={classes.iconMarker} />),

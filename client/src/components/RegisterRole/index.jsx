@@ -8,13 +8,13 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import InputRHF from '@components/InputRHF';
 import MapLeaflet from '@components/MapLeaflet';
 
-import { FormControl, FormGroup, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { AccountBox, LocalLaundryService } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
+import { AccountBox, LocalLaundryService } from '@mui/icons-material';
+import { FormControl, FormGroup, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
-import { selectEmail, selectMerchant, selectRole, selectStep } from '@pages/Register/selectors';
 import { selectIsVerify } from '@containers/Client/selectors';
 import { actionSetMerchant, actionSetRole, actionSetStep } from '@pages/Register/actions';
+import { selectEmail, selectMerchant, selectRole, selectStep } from '@pages/Register/selectors';
 
 import classes from '@components/RegisterRole/style.module.scss';
 

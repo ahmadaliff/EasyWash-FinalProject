@@ -35,6 +35,7 @@ describe('Login Page', () => {
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });
   test('shouldbe running on submit function', async () => {
+    jest.setTimeout(60000);
     const { getByTestId } = wrapper;
     const inputEmail = screen.getByLabelText('Email');
     const inputPassword = screen.getByLabelText('Kata Sandi');

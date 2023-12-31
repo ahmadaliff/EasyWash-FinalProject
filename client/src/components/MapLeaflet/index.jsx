@@ -4,19 +4,18 @@ import toast from 'react-hot-toast';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { createStructuredSelector } from 'reselect';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import { useEffect, useRef, useState } from 'react';
-import { Circle, MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
-
 import { renderToStaticMarkup } from 'react-dom/server';
+import { Circle, MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 
 import config from '@config/index';
 
 import MarkerLeaflet from '@components/MarkerLeaflet';
 
-import { Avatar, IconButton } from '@mui/material';
 import { MyLocation } from '@mui/icons-material';
+import { Avatar, IconButton } from '@mui/material';
 
 import intlHelper from '@utils/intlHelper';
 

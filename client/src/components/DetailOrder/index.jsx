@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { FormattedMessage, FormattedNumber, injectIntl } from 'react-intl';
+
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import { Close, DryCleaning } from '@mui/icons-material';
-import { FormattedMessage, FormattedNumber, injectIntl } from 'react-intl';
+
 import MapRouting from '@components/MapRouting';
 
 import classes from '@components/DetailOrder/style.module.scss';

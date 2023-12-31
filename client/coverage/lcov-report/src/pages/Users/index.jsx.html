@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.06% </span>
+                <span class="strong">80.95% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>34/43</span>
+                <span class='fraction'>34/42</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.27% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/22</span>
+                <span class='fraction'>16/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65% </span>
+                <span class="strong">68.42% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>13/20</span>
+                <span class='fraction'>13/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.48% </span>
+                <span class="strong">82.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>33/41</span>
+                <span class='fraction'>33/40</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -326,20 +326,7 @@
 <a name='L261'></a><a href='#L261'>261</a>
 <a name='L262'></a><a href='#L262'>262</a>
 <a name='L263'></a><a href='#L263'>263</a>
-<a name='L264'></a><a href='#L264'>264</a>
-<a name='L265'></a><a href='#L265'>265</a>
-<a name='L266'></a><a href='#L266'>266</a>
-<a name='L267'></a><a href='#L267'>267</a>
-<a name='L268'></a><a href='#L268'>268</a>
-<a name='L269'></a><a href='#L269'>269</a>
-<a name='L270'></a><a href='#L270'>270</a>
-<a name='L271'></a><a href='#L271'>271</a>
-<a name='L272'></a><a href='#L272'>272</a>
-<a name='L273'></a><a href='#L273'>273</a>
-<a name='L274'></a><a href='#L274'>274</a>
-<a name='L275'></a><a href='#L275'>275</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L264'></a><a href='#L264'>264</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -589,15 +576,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -617,13 +595,11 @@ import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedMessage, injectIntl } from 'react-intl';
+&nbsp;
 import {
   Alert,
   Button,
   Card,
-  Dialog,
-  DialogActions,
-  DialogContent,
   IconButton,
   Stack,
   Table,
@@ -639,6 +615,8 @@ import {
 import { ArrowBack, ArrowRight, Delete, DoNotDisturb, Search, Unpublished, Verified } from '@mui/icons-material';
 import styled from 'styled-components';
 &nbsp;
+import DialogMerchantInfo from '@components/DialogMerchantInfo';
+&nbsp;
 import {
   actionDeleteUser,
   actionGetUnverifiedUsers,
@@ -649,8 +627,6 @@ import {
 import { selectUsers } from '@pages/Users/selectors';
 &nbsp;
 import classes from '@pages/Users/style.module.scss';
-import MerchantInfo from '@components/MerchantInfo';
-import MapLeaflet from '@components/MapLeaflet';
 &nbsp;
 const StyledToggle = styled(ToggleButton)({
   '&amp;.Mui-selected, &amp;.Mui-selected:hover': {
@@ -861,16 +837,7 @@ const Users = ({ users, intl: { formatMessage } }) =&gt; {
           onRowsPerPageChange={handleChangeRowsPerPage}
         /&gt;
       &lt;/Card&gt;
-      &lt;Dialog open={dialogOpen} onClose={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setDialogOpen(false)}</span> fullWidth&gt;
-        &lt;DialogActions&gt;
-          &lt;Button onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setDialogOpen(false)}</span>&gt;X&lt;/Button&gt;
-        &lt;/DialogActions&gt;
-        &lt;DialogContent&gt;
-          &lt;MerchantInfo merchant={merchant} chat={false} /&gt;
-          &lt;br /&gt;
-          &lt;MapLeaflet islocated={merchant &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >JSON.parse(merchant?.location)}</span> /&gt;
-        &lt;/DialogContent&gt;
-      &lt;/Dialog&gt;
+      &lt;DialogMerchantInfo open={dialogOpen} handleClose={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setDialogOpen(false)}</span> merchant={merchant} /&gt;
     &lt;/main&gt;
   );
 };
@@ -892,7 +859,7 @@ export default injectIntl(connect(mapStateToProps)(Users));
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-29T03:49:59.223Z
+                at 2023-12-31T08:59:46.779Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
-import { Add, AddShoppingCart, Close, LibraryBooksOutlined, Remove } from '@mui/icons-material';
 import { Button, DialogActions, DialogContent, DialogTitle, IconButton, SwipeableDrawer } from '@mui/material';
+import { Add, AddShoppingCart, Close, LibraryBooksOutlined, Remove } from '@mui/icons-material';
 
 import { actionAddToCart } from '@pages/Cart/action';
+import { actionSetOrder } from '@pages/Order/action';
 
 import classes from '@components/ServiceDialog/style.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { actionSetOrder } from '@pages/Order/action';
 
 const ServiceDialog = ({ handleClose, open, service }) => {
   const navigate = useNavigate();

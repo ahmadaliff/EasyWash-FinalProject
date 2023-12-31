@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import MapLeaflet from '@components/MapLeaflet';
 import MerchantInfo from '@components/MerchantInfo';
+import DialogMerchantInfo from '@components/DialogMerchantInfo';
 
-import { Button, Dialog, DialogActions, DialogContent, IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { ArrowBack, ArrowRight, Search } from '@mui/icons-material';
 
 import { actionGetDeletedMerchants, actionResetDeletedMerchants } from '@pages/DeletedMerchant/action';
@@ -72,16 +72,7 @@ const DeletedMerchant = ({ deletedMerchants }) => {
           </div>
         ))}
 
-      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} fullWidth>
-        <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>X</Button>
-        </DialogActions>
-        <DialogContent>
-          <MerchantInfo merchant={merchantDialog} chat={false} />
-          <br />
-          <MapLeaflet islocated={merchantDialog && JSON.parse(merchantDialog?.location)} />
-        </DialogContent>
-      </Dialog>
+      <DialogMerchantInfo open={dialogOpen} handleClose={() => setDialogOpen(false)} merchant={merchantDialog} />
     </main>
   );
 };

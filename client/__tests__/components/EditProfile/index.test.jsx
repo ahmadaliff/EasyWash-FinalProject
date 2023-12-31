@@ -37,12 +37,12 @@ describe('Edit Profile Component', () => {
   test('Should be submit the dialog', () => {
     const { getByTestId } = wrapper;
     inputFullName = screen.getByLabelText('Nama Lengkap');
-    inputPhone = screen.getByLabelText('Telp/No.Hp');
+    inputPhone = getByTestId('phone-input');
     const button = getByTestId('button-submit');
     fireEvent.change(inputFullName, { target: { value: 'Ahmad Alif Sofian' } });
-    fireEvent.change(inputPhone, { target: { value: '31302123131' } });
+    fireEvent.change(inputPhone, { target: { value: '+31302123131' } });
     expect(inputFullName.value).toBe('Ahmad Alif Sofian');
-    expect(inputPhone.value).toBe('31302123131');
+    expect(inputPhone.value).toBe('+31 30 212 3131');
     act(() => {
       fireEvent.click(button);
     }).then(() => {

@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
-
-import { MapContainer, TileLayer } from 'react-leaflet';
-import RoutineMachine from '@components/RoutingMachine/index';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { MapContainer, TileLayer } from 'react-leaflet';
+
+import RoutineMachine from '@components/RoutingMachine/index';
+
 import { selectUser } from '@containers/Client/selectors';
+
 import classes from '@components/MapRouting/style.module.scss';
 
 const MapRouting = ({ laundryPoint, userPoint, user }) => (

@@ -1,7 +1,8 @@
+import { FormattedMessage } from 'react-intl';
+
 import { Copyright, Email, GitHub, LinkedIn } from '@mui/icons-material';
 
 import classes from '@components/Footer/style.module.scss';
-import { FormattedMessage } from 'react-intl';
 
 const Footer = () => (
   <footer className={classes.footer} data-testid="footer">

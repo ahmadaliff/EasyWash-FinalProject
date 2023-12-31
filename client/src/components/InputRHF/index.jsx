@@ -29,6 +29,7 @@ const InputRHF = ({ children, input, disabled = false, register, errors, accept 
     {children}
   </FormControl>
 );
+
 InputRHF.propTypes = {
   children: PropTypes.element,
   input: PropTypes.shape({

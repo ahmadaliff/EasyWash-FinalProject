@@ -3,15 +3,15 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 
+import { Button } from '@mui/material';
 import { ArrowBack, DryCleaning } from '@mui/icons-material';
 
-import { actionGetMyOrder, actionResetMyOrder } from '@pages/MyOrder/action';
 import { selectMyOrder } from '@pages/MyOrder/selectors';
+import { actionGetMyOrder, actionResetMyOrder } from '@pages/MyOrder/action';
 
 import classes from '@pages/MyOrder/style.module.scss';
-import { FormattedMessage, FormattedNumber } from 'react-intl';
-import { Button } from '@mui/material';
 
 const MyOrder = ({ orders }) => {
   const navigate = useNavigate();
