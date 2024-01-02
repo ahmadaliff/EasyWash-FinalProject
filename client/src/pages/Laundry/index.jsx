@@ -67,7 +67,7 @@ const Laundry = ({ merchant }) => {
                       <p>{service?.name}</p>
                       <p className={classes.type}>
                         <FormattedMessage id="app_type" />
-                        <FormattedMessage id={service?.isUnit ? 'app_kilo' : 'app_unit'} />
+                        <FormattedMessage id={service?.isUnit ? 'app_unit' : 'app_kilo'} />
                       </p>
                     </div>
                     <p>
