@@ -141,7 +141,6 @@ exports.editService = async (req, res) => {
 
     return handleSuccess(res, { message: "app_service_updated" });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
@@ -187,7 +186,6 @@ exports.getOrders = async (req, res) => {
       totalRows: response.count,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };

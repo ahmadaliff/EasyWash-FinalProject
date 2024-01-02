@@ -65,7 +65,6 @@ exports.getUsers = async (req, res) => {
       totalRows: response.count,
     });
   } catch (error) {
-    console.log(error);
     return handleServerError(res);
   }
 };
