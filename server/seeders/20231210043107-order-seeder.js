@@ -16,7 +16,7 @@ module.exports = {
       {
         id: `Order-1702535973299`,
         userId: 2,
-        totalPrice: 12000,
+        totalPrice: 4000,
         status: "app_pending",
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
         midtransToken: null,
@@ -26,7 +26,7 @@ module.exports = {
       {
         id: `Order-1702536051389`,
         userId: 2,
-        totalPrice: 6000,
+        totalPrice: 2000,
         location: `{"lat":-6.223710368739434,"lng":106.84333920478822}`,
         status: "app_finish",
         midtransToken: null,
