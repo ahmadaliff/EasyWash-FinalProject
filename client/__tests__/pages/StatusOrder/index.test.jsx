@@ -14,6 +14,9 @@ jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: () => mockDispatch,
 }));
+jest.mock('react-to-pdf', () => ({
+  usePDF: () => jest.fn(),
+}));
 jest.mock('@components/MapRouting', () => jest.fn().mockImplementation(() => <div />));
 jest.mock('@pages/StatusOrder/selectors', () => ({
   selectOrder: () => ({

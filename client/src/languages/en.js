@@ -182,6 +182,8 @@ The name <b>cannot be changed</b> after the Service is ordered.`,
   app_location_order: 'Pickup Location',
   app_cancel: 'Cancel',
   app_pay: 'Pay',
+  app_receipt: 'Receipt',
+  app_order_date: 'Order Date',
 
   // status
   app_pending: 'Pending',

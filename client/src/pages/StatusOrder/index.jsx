@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,6 +10,8 @@ import { ArrowBack, DoNotDisturb, DryCleaning, Payment } from '@mui/icons-materi
 
 import NoData from '@components/NoData';
 import MapRouting from '@components/MapRouting';
+import MerchantInfo from '@components/MerchantInfo';
+import DialogReceipt from '@components/DialogReceipt';
 
 import { actionCancelOrder } from '@pages/MyOrder/action';
 import {
@@ -27,6 +29,7 @@ const StatusOrder = ({ order }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { orderId } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(actionConnectSocket());
@@ -62,6 +65,7 @@ const StatusOrder = ({ order }) => {
       </div>
       <Card className={classes.card}>
         <CardContent>
+          <MerchantInfo merchant={order?.Services[0]?.Merchant} chat={false} />
           <div className={classes.field}>
             <p className={classes.label}>
               <FormattedMessage id="app_order_id" />
@@ -86,9 +90,18 @@ const StatusOrder = ({ order }) => {
             <p className={classes.label}>Status</p>
             <p className={classes.text}>
               <FormattedMessage id={order?.status} />
-              {/* (realtime) */}
             </p>
           </div>
+          {(order?.status === 'app_pickUp' ||
+            order?.status === 'app_onProcess' ||
+            order?.status === 'app_onDelivery' ||
+            order?.status === 'app_finish') && (
+            <div className={classes.field}>
+              <Button variant="contained" className={classes.downloadButton} onClick={() => setIsOpen(true)}>
+                <FormattedMessage id="app_receipt" />
+              </Button>
+            </div>
+          )}
           {order?.Services?.map((service, key) => (
             <div className={classes.service} key={key}>
               <DryCleaning />
@@ -150,6 +163,7 @@ const StatusOrder = ({ order }) => {
           </Button>
         </CardContent>
       </Card>
+      <DialogReceipt open={isOpen} handleClose={() => setIsOpen(false)} order={order} />
     </main>
   );
 };

@@ -1,4 +1,5 @@
 @import '@styles/base';
+
 .mainWrap {
   @include directionY;
   padding: 1rem;
@@ -77,6 +78,15 @@
             }
           }
         }
+      }
+    }
+    .downloadButton {
+      background-color: var(--color-primary);
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      text-transform: capitalize;
+      font-size: small;
+      &:hover {
+        background-color: var(--color-primary);
       }
     }
     .cancelButton,

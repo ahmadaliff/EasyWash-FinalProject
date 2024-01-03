@@ -49,6 +49,30 @@ exports[`Order Page Matches snapshot 1`] = `
             class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
+              class="merchant"
+              data-testid="merchant-info"
+            >
+              <div
+                class="imgWrap"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-square MuiAvatar-colorDefault avatar css-18gxrea-MuiAvatar-root"
+                />
+              </div>
+              <div>
+                <h4
+                  class="merchantInfoHeader"
+                />
+                <span
+                  class="profileInfo"
+                >
+                  <p
+                    class="profileText"
+                  />
+                </span>
+              </div>
+            </div>
+            <div
               class="field"
             >
               <p
@@ -217,6 +241,30 @@ exports[`Order Page Matches snapshot 1`] = `
         <div
           class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
         >
+          <div
+            class="merchant"
+            data-testid="merchant-info"
+          >
+            <div
+              class="imgWrap"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-square MuiAvatar-colorDefault avatar css-18gxrea-MuiAvatar-root"
+              />
+            </div>
+            <div>
+              <h4
+                class="merchantInfoHeader"
+              />
+              <span
+                class="profileInfo"
+              >
+                <p
+                  class="profileText"
+                />
+              </span>
+            </div>
+          </div>
           <div
             class="field"
           >
